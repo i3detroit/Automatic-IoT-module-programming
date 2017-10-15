@@ -1,0 +1,37 @@
+001	SONOFF_BASIC	10.13.0.184	5C:CF:7F:1B:D4:CA	east	light
+002	SONOFF_BASIC	10.13.0.146	5C:CF:7F:1B:CF:BC	east	light
+003	SONOFF_BASIC	10.13.0.204	5C:CF:7F:1B:CF:FA	east	light
+004	SONOFF_BASIC	10.13.0.132	5C:CF:7F:1C:7B:CB	east	light
+005	SONOFF_BASIC	10.13.0.169	5C:CF:7F:1B:EF:5E	emergency	light
+006	SONOFF_BASIC	10.13.0.243	5C:CF:7F:1B:EA:25	east	light
+007	SONOFF_BASIC	10.13.0.133	5C:CF:7F:1B:DF:BF	east	light
+008	SONOFF_BASIC	10.13.0.234	60:01:94:00:53:B3	east	light electrodragon
+009	SONOFF_BASIC	10.13.0.102	60:01:94:00:58:18	east	light electrodragon
+010	SONOFF_BASIC	10.13.0.141	60:01:94:00:BB:79	emergency	light electrodragon
+011	SONOFF_BASIC	10.13.0.205	5C:CF:7F:1C:B3:6E	east	light
+012	ABZMAN_OUTLET	10.13.0.145	38:2B:78:01:8B:0A	east	light unmodified ct-065w eco plug
+013	ABZMAN_OUTLET	10.13.0.106	38:2B:78:01:88:A5	east	light unmodified ct-065w eco plug
+014	ABZMAN_OUTLET	10.13.0.126	38:2B:78:01:84:90	east	light modified ct-065w eco plug
+015	ABZMAN_OUTLET	10.13.0.163	5C:CF:7F:04:E6:2C	east	light modified and broken ct-065w eco plug; Has an esp-12 module instead of default because the magic smoke left, and the voltage current sense was cut.
+016	SONOFF_BASIC	10.13.0.156	60:01:94:00:5B:98	east	light electrodragon; programming via pin header does not work
+017	ABZMAN_OUTLET	10.13.0.158	38:2B:78:01:8B:92	east	light modified ct-065w eco plug
+018	SONOFF_BASIC	10.13.0.186	60:01:94:00:54:2B	east	light electrodragon
+019	SONOFF_BASIC	10.13.0.112	2C:3A:E8:11:60:89	east	light
+020	SONOFF_BASIC	10.13.0.113	2C:3A:E8:07:AC:83	east	light
+021	SONOFF_BASIC	10.13.0.152	5C:CF:7F:BB:06:BC	east	light
+022	SONOFF_BASIC	10.13.0.181	5C:CF:7F:B4:D3:83	east	light
+023	SONOFF_BASIC	10.13.0.122	5C:CF:7F:BD:86:9A	east	light
+024	SONOFF_BASIC	10.13.0.200	5C:CF:7F:BD:72:B1	east	light
+025	SONOFF_BASIC	10.13.0.230	5C:CF:7F:BB:04:5F	emergency	light
+026	SONOFF_BASIC	10.13.0.140	2C:3A:E8:0F:4B:18	east	light
+027	SONOFF_BASIC	10.13.0.157	5C:CF:7F:BB:06:C2	emergency	light
+028	SONOFF_BASIC	10.13.0.154	5C:CF:7F:BD:86:A2	east	light
+029	SONOFF_BASIC	10.13.0.239	5C:CF:7F:BD:85:BC	east	light
+030	SONOFF_BASIC	10.13.0.233	5C:CF:7F:BB:04:61	east	light
+031	SONOFF_BASIC	10.13.0.212	2C:3A:E8:11:99:19	east	light
+032	SONOFF_BASIC	10.13.0.161	5C:CF:7F:BB:06:C3	east	light
+033	SONOFF_BASIC	10.13.0.180	5C:CF:7F:B4:D3:7F	east	light
+034	SONOFF_BASIC	10.13.0.250	5C:CF:7F:BD:75:B6	east	light
+035	SONOFF_BASIC	10.13.0.119	2C:3A:E8:07:AC:81	east	light
+036	SONOFF_BASIC	10.13.0.166	2C:3A:E8:11:6E:CC	east	light
+037	SONOFF_BASIC	10.13.0.216	5C:CF:7F:B4:D7:C6	east	light
