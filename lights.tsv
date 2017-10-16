@@ -6,17 +6,17 @@ id	module	ip	mac	MQTT_GRPTOPIC	APP_POWERON_STATE	MQTT_FULLTPIC	FRIENDLY_NAME	MQT
 005	SONOFF_BASIC	10.13.0.169	5C:CF:7F:1B:EF:5E	lights/emergency	0	%prefix%/i3/inside/%topic%/	light id	lights/id
 006	SONOFF_BASIC	10.13.0.243	5C:CF:7F:1B:EA:25	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id
 007	SONOFF_BASIC	10.13.0.133	5C:CF:7F:1B:DF:BF	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id
-008	SONOFF_BASIC	10.13.0.234	60:01:94:00:53:B3	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id electrodragon
-009	SONOFF_BASIC	10.13.0.102	60:01:94:00:58:18	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id electrodragon
+008	SONOFF_BASIC	10.13.0.234	60:01:94:00:53:B3	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id	electrodragon
+009	SONOFF_BASIC	10.13.0.102	60:01:94:00:58:18	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id	electrodragon
 010	SONOFF_BASIC	10.13.0.141	60:01:94:00:BB:79	lights/emergency	0	%prefix%/i3/inside/%topic%/	light id	lights/id electrodragon
 011	SONOFF_BASIC	10.13.0.205	5C:CF:7F:1C:B3:6E	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id
-012	ABZMAN_OUTLET	10.13.0.145	38:2B:78:01:8B:0A	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id unmodified ct-065w eco plug
-013	ABZMAN_OUTLET	10.13.0.106	38:2B:78:01:88:A5	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id unmodified ct-065w eco plug
-014	ABZMAN_OUTLET	10.13.0.126	38:2B:78:01:84:90	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id modified ct-065w eco plug
-015	ABZMAN_OUTLET	10.13.0.163	5C:CF:7F:04:E6:2C	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id modified and broken ct-065w eco plug; Has an esp-12 module instead of default because the magic smoke left, and the voltage current sense was cut.
-016	SONOFF_BASIC	10.13.0.156	60:01:94:00:5B:98	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id electrodragon; programming via pin header does not work
-017	ABZMAN_OUTLET	10.13.0.158	38:2B:78:01:8B:92	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id modified ct-065w eco plug
-018	SONOFF_BASIC	10.13.0.186	60:01:94:00:54:2B	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id electrodragon
+012	ABZMAN_OUTLET	10.13.0.145	38:2B:78:01:8B:0A	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id	unmodified ct-065w eco plug
+013	ABZMAN_OUTLET	10.13.0.106	38:2B:78:01:88:A5	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id	unmodified ct-065w eco plug
+014	ABZMAN_OUTLET	10.13.0.126	38:2B:78:01:84:90	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id	modified ct-065w eco plug
+015	ABZMAN_OUTLET	10.13.0.163	5C:CF:7F:04:E6:2C	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id	modified and broken ct-065w eco plug; Has an esp-12 module instead of default because the magic smoke left, and the voltage current sense was cut.
+016	SONOFF_BASIC	10.13.0.156	60:01:94:00:5B:98	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id	electrodragon; programming via pin header does not work
+017	ABZMAN_OUTLET	10.13.0.158	38:2B:78:01:8B:92	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id	modified ct-065w eco plug
+018	SONOFF_BASIC	10.13.0.186	60:01:94:00:54:2B	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id	electrodragon
 019	SONOFF_BASIC	10.13.0.112	2C:3A:E8:11:60:89	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id
 020	SONOFF_BASIC	10.13.0.113	2C:3A:E8:07:AC:83	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id
 021	SONOFF_BASIC	10.13.0.152	5C:CF:7F:BB:06:BC	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id
