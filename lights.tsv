@@ -8,7 +8,7 @@ id	module	ip	mac	MQTT_GRPTOPIC	APP_POWERON_STATE	MQTT_FULLTPIC	FRIENDLY_NAME	MQT
 007	SONOFF_BASIC	10.13.0.133	5C:CF:7F:1B:DF:BF	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id
 008	SONOFF_BASIC	10.13.0.234	60:01:94:00:53:B3	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id	electrodragon
 009	SONOFF_BASIC	10.13.0.102	60:01:94:00:58:18	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id	electrodragon
-010	SONOFF_BASIC	10.13.0.141	60:01:94:00:BB:79	lights/emergency	0	%prefix%/i3/inside/%topic%/	light id	lights/id electrodragon
+010	SONOFF_BASIC	10.13.0.141	60:01:94:00:BB:79	lights/emergency	0	%prefix%/i3/inside/%topic%/	light id	lights/id	electrodragon
 011	SONOFF_BASIC	10.13.0.205	5C:CF:7F:1C:B3:6E	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id
 012	ABZMAN_OUTLET	10.13.0.145	38:2B:78:01:8B:0A	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id	unmodified ct-065w eco plug
 013	ABZMAN_OUTLET	10.13.0.106	38:2B:78:01:88:A5	lights/east	0	%prefix%/i3/inside/%topic%/	light id	lights/id	unmodified ct-065w eco plug
