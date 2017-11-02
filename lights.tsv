@@ -37,3 +37,7 @@ id	module	ip	mac	MQTT_GRPTOPIC	APP_POWERON_STATE	MQTT_FULLTPIC	FRIENDLY_NAME	MQT
 036	SONOFF_BASIC	10.13.0.166	2C:3A:E8:11:6E:CC	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 037	SONOFF_BASIC	10.13.0.216	5C:CF:7F:B4:D7:C6	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 037	SONOFF_BASIC	10.13.0.182	5C:CF:7F:B4:DA:79	none	1	%prefix%/i3/inside/%topic%/	classroom sign	classroom/sign
+037	SONOFF_BASIC	10.13.0.182	5C:CF:7F:B4:DA:79	none	1	%prefix%/i3/inside/%topic%/	classroom sign	classroom/sign
+xxx	SONOFF_BASIC	10.13.0.121	2C:3A:E8:07:AC:86	none	0	%prefix%/i3/inside/%topic%/	disco ball	commons/disco
+xxx	SONOFF_TOUCH	10.13.0.197	60:01:94:86:BD:3D	none	0	%prefix%/i3/inside/%topic%/	large bathroom light	large-bathroom/light
+xxx	SONOFF_TOUCH	10.13.0.151	60:01:94:86:C9:FC	none	0	%prefix%/i3/inside/%topic%/	large bathroom vent fan	large-bathroom/vent
