@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
+use Term::ANSIColor;
 
 my $sonoffDir = "/home/mark/projects/esp/Sonoff-Tasmota.mod/sonoff";
 my $arduinoDir = "/home/mark/projects/esp/tasmota-light-arduino";
@@ -100,5 +101,16 @@ while (<>) {
 
   `$buildCommand`;
   my $programCommand = "curl 'http://$line[2]/u2' -F 'name=\@$buildDir/sonoff.ino.bin'";
-  `$programCommand`;
+  my $result = `$programCommand`;
+
+  if($? != 0) {
+    print color("red"), "non-zero return, maybe it's not on the network?\n", color("reset");
+  } elsif ($result =~ /failed/) {
+    $result =~ /body>.*<h3>(.*)<form action/;
+    print color("red"), "upload failed, stop fucking up\n", color("reset");
+    print "\n$1\n\n";
+  } else {
+    print color("green"), "upload win\n", color("reset");
+  }
+
 }
