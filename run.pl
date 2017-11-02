@@ -3,12 +3,15 @@ use strict;
 use warnings;
 use Term::ANSIColor;
 
-my $sonoffDir = "/home/mark/projects/esp/Sonoff-Tasmota.mod/sonoff";
+my $sonoffSrcDir = "/home/mark/projects/esp/Sonoff-Tasmota.mod/sonoff";
+my $sonoffDir = "/tmp/sonoff";
 my $arduinoDir = "/home/mark/projects/esp/tasmota-light-arduino";
 
 my $buildDir = "/tmp/autoSonoff_arduino_build";
 my $cacheDir = "/tmp/autoSonoff_arduino_cache";
 
+
+`rsync -avhI --delete --progress -r $sonoffSrcDir/* $sonoffDir`;
 `mkdir $buildDir`;
 `mkdir $cacheDir`;
 
