@@ -100,7 +100,6 @@ while (<>) {
   close $fh;
 
   my $buildCommand = buildCommand('generic', '1M0');
-  print "$buildCommand\n";
   `$buildCommand`;
   if($? != 0) {
     print color("red"), "non-zero return, stop fucking up?\n", color("reset");
