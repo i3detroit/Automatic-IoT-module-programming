@@ -1,0 +1,3 @@
+name	ip	fqbn
+basic	10.13.0.211	esp8266:esp8266:nodemcuv2:CpuFrequency=80,FlashSize=4M1M
+machine-shop-motion-sensor	10.13.0.155	esp8266:esp8266:generic:CpuFrequency=80,FlashFreq=40,FlashMode=dout,FlashSize=1M0

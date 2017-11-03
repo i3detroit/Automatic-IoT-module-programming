@@ -3,8 +3,6 @@ use strict;
 use warnings;
 use Term::ANSIColor;
 
-my $name = "machine-shop-motion-sensor";
-my $codeDir = "/home/mark/projects/esp/custom-mqtt-programs/machine-shop-motion-sensor";
 my $arduinoDir = "/home/mark/projects/esp/esp-arduino";
 
 my $buildDir = "/tmp/custom_arduino_build";
@@ -15,8 +13,8 @@ my $cacheDir = "/tmp/custom_arduino_cache";
 `mkdir $cacheDir`;
 
 sub buildCommand {
-  my ($device, $flash) = @_;
-my $fqbn = "esp8266:esp8266:$device:CpuFrequency=80,FlashFreq=40,FlashMode=dout,FlashSize=$flash";
+  my ($fqbn, $ino) = @_;
+  #my $fqbn = "esp8266:esp8266:$device:CpuFrequency=80,FlashFreq=40,FlashMode=dout,FlashSize=$flash";
   return <<EOF;
   $arduinoDir/arduino-builder \\
     -compile \\
@@ -38,26 +36,33 @@ my $fqbn = "esp8266:esp8266:$device:CpuFrequency=80,FlashFreq=40,FlashMode=dout,
     -prefs=runtime.tools.esptool.path=$arduinoDir/portable/packages/esp8266/tools/esptool/0.4.9 \\
     -prefs=runtime.tools.xtensa-lx106-elf-gcc.path=$arduinoDir/portable/packages/esp8266/tools/xtensa-lx106-elf-gcc/1.20.0-26-gb404fb9-2 \\
     -verbose \\
-    $codeDir/$name.ino
+    $ino
 EOF
 }
 
-my $buildCommand = buildCommand('generic', '1M0');
-print "$buildCommand\n";
-`$buildCommand`;
-if($? != 0) {
-  print color("red"), "non-zero return, stop fucking up?\n", color("reset");
-  exit(1);
+<>;
+while (<>) {
+  chomp;             # remove newline
+  my ($name, $ip, $fqbn) = split(/\t/,$_);
+
+  my $codeDir = "/home/mark/projects/esp/custom-mqtt-programs/$name";
+  print "Modifying sonoff directory for '$name'\n";
+
+  my $buildCommand = buildCommand($fqbn, "$codeDir/$name.ino");
+  print "$buildCommand\n";
+  `$buildCommand`;
+  if($? != 0) {
+    print color("red"), "non-zero return, stop fucking up?\n", color("reset");
+    exit(1);
+  }
+  my $programCommand = "python $arduinoDir/portable/packages/esp8266/hardware/esp8266/2.3.0/tools/espota.py -i $ip -f $buildDir/$name.ino.bin";
+  my $result = `$programCommand`;
+
+
+  if($? != 0) {
+    print color("red"), "non-zero return, maybe it's not on the network?\n", color("reset");
+    exit(1);
+  } else {
+    print color("green"), "upload win\n", color("reset");
+  }
 }
-my $ip = "10.13.0.155";
-my $programCommand = "python $arduinoDir/portable/packages/esp8266/hardware/esp8266/2.3.0/tools/espota.py -i $ip -f $buildDir/$name.ino.bin";
-my $result = `$programCommand`;
-
-
-if($? != 0) {
-  print color("red"), "non-zero return, maybe it's not on the network?\n", color("reset");
-  exit(1);
-} else {
-  print color("green"), "upload win\n", color("reset");
-}
-
