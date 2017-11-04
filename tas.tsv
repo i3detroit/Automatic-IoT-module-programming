@@ -42,3 +42,6 @@ xxx	SONOFF_TOUCH	10.13.0.197	60:01:94:86:BD:3D	none	0	%prefix%/i3/inside/%topic%
 xxx	SONOFF_TOUCH	10.13.0.151	60:01:94:86:C9:FC	none	0	%prefix%/i3/inside/%topic%/	large bathroom vent fan	large-bathroom/vent
 xxx	SONOFF_POW	10.13.0.220	5C:CF:7F:92:2C:CB	none	0	%prefix%/i3/inside/%topic%/	fablab chiller	fablab/chiller
 xxx	SONOFF_BASIC	10.13.0.202	5C:CF:7F:BD:72:AE	none	1	%prefix%/i3/inside/%topic%/	compressor valve	infrastructure/compressor-valve
+02	SONOFF_SV	10.13.0.231	5C:CF:7F:1B:D4:60	accent/chandelier	0	%prefix%/i3/inside/%topic%/	chandelier id	accent/chandelier-id
+01	SONOFF_SV	10.13.0.246	5C:CF:7F:1C:37:3E	accent/chandelier	0	%prefix%/i3/inside/%topic%/	chandelier id	accent/chandelier-id
+xxx	SONOFF_TOUCH	10.13.0.208	60:01:94:86:7C:5B	none	0	%prefix%/i3/inside/%topic%/	media lab lights	media-lab/lights

@@ -11,13 +11,24 @@ my $buildDir = "/tmp/autoSonoff_arduino_build";
 my $cacheDir = "/tmp/autoSonoff_arduino_cache";
 
 
+#TODO: if file named 'hosts' older than XXX run command from readme
+#sudo nmap -sP 10.13.0.0-255 | grep -v "Host" | tail -n +3 | tr '\n' ' ' | sed 's|Nmap|\nNmap|g' |  grep "MAC Address" | perl -pe 's/.*report for (?:([^ ]*) \()?((?:[0-9]{1,3}\.?){4})\)? MAC Address: ([A-Z0-9:]*).*/$1 $2 $3/'
+
 `rsync -avhI --delete --progress -r $sonoffSrcDir/* $codeDir`;
 `mkdir $buildDir`;
 `mkdir $cacheDir`;
 
 sub buildCommand {
   my ($device, $flash) = @_;
-my $fqbn = "esp8266:esp8266:$device:CpuFrequency=80,FlashFreq=40,FlashMode=dout,FlashSize=$flash";
+  my $fqbn;
+  if($device eq "generic") {
+    $fqbn = "esp8266:esp8266:$device:CpuFrequency=80,FlashFreq=40,FlashMode=dout,FlashSize=$flash";
+  } elsif ($device eq "esp8285") {
+    $fqbn = "esp8266:esp8266:$device:UploadTool=esptool,CpuFrequency=80,UploadSpeed=115200,FlashSize=$flash";
+  } else {
+    print color("red"), "Unknown Device Type\n", color("reset");
+    exit(42);
+  }
   return <<EOF;
   $arduinoDir/arduino-builder \\
     -compile \\
@@ -73,8 +84,8 @@ while (<>) {
 
   #same in every device
   print $fh "#define SAVE_STATE 0\n";
-  print $fh "#define STA_SSID1 \"i3detroit-wpa\"\n";
-  print $fh "#define STA_PASS1 \"i3detroit\"\n";
+  print $fh "#define STA_SSID1 \"i3detroit-iot\"\n";
+  print $fh "#define STA_PASS1 \"securityrisk\"\n";
   print $fh "#define STA_SSID2 \"i3detroit\"\n";
   print $fh "#define STA_PASS2 \"\"\n";
   print $fh "#define WIFI_CONFIG_TOOL  WIFI_RETRY\n";
@@ -99,13 +110,26 @@ while (<>) {
 
   close $fh;
 
-  my $buildCommand = buildCommand('generic', '1M0');
+  #SONOFF_TOUCH: esp8285
+  #everything else: generic
+  my $device = 'generic';
+  if(grep( /^$module$/, ('SONOFF_TOUCH', 'SONOFF_4CH') ) ) {
+    $device = 'esp8285';
+  }
+  my $buildCommand = buildCommand($device, '1M0');
+  print "$buildCommand\n";
   `$buildCommand`;
   if($? != 0) {
     print color("red"), "non-zero return, stop fucking up?\n", color("reset");
     exit(1);
   }
-  my $programCommand = "curl 'http://$ip/u2' -F 'name=\@$buildDir/sonoff.ino.bin'";
+  #get ip
+  #
+  my $realIP = `grep "$mac" hosts | cut -d' ' -f2`;
+  chomp $realIP;
+
+  my $programCommand = "curl 'http://$realIP/u2' -F 'name=\@$buildDir/sonoff.ino.bin'";
+  print "$programCommand\n";
   my $result = `$programCommand`;
 
 
