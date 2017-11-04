@@ -77,7 +77,6 @@ while (<>) {
   print $fh "#define MQTT_TOPIC \"$MQTT_TOPIC\"\n";
   print $fh "#define FRIENDLY_NAME \"$FRIENDLY_NAME\"\n";
   print $fh "#define APP_POWERON_STATE $APP_POWERON_STATE\n";
-  print $fh "#define SWITCH_MODE 0\n";
 
   #define CFG_HOLDER             0x20161206
   printf $fh "#define CFG_HOLDER 0x%08X\n", rand(0xffffffff);
