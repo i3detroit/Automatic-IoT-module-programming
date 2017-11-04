@@ -123,24 +123,23 @@ while (<>) {
     exit(1);
   }
 
-  my $programCommand = "curl 'http://$ip/u2' -F 'name=\@$buildDir/sonoff.ino.bin'";
   if($ip eq "x") {
     #get ip
     #
-    my $realIP = `grep "$mac" hosts | cut -d' ' -f2`;
-    chomp $realIP;
+    $ip = `grep "$mac" hosts | cut -d' ' -f2`;
+    chomp $ip;
 
-    if($realIP eq "") {
+    if($ip eq "") {
       print color("red"), "No ip for device\n", color("reset");
       exit(42);
     }
 
-    $programCommand = "curl 'http://$realIP/u2' -F 'name=\@$buildDir/sonoff.ino.bin'";
-    print "found ip from other file: $realIP\n";
+    print "found ip from other file: $ip\n";
 
   } else {
     print "ip from tsv: $ip\n";
   }
+  my $programCommand = "curl 'http://$ip/u2' -F 'name=\@$buildDir/sonoff.ino.bin'";
   print "$programCommand\n";
   my $result = `$programCommand`;
 

@@ -43,7 +43,7 @@ EOF
 <>;
 while (<>) {
   chomp;             # remove newline
-  my ($name, $ip, $fqbn) = split(/\t/,$_);
+  my ($name, $ip, $mac, $fqbn) = split(/\t/,$_);
 
   my $codeDir = "/home/mark/projects/esp/custom-mqtt-programs/$name";
   print "Modifying sonoff directory for '$name'\n";
@@ -55,7 +55,26 @@ while (<>) {
     print color("red"), "non-zero return, stop fucking up?\n", color("reset");
     exit(1);
   }
+
+
+  if($ip eq "x") {
+    #get ip
+    #
+    $ip = `grep "$mac" hosts | cut -d' ' -f2`;
+    chomp $ip;
+
+    if($ip eq "") {
+      print color("red"), "No ip for device\n", color("reset");
+      exit(42);
+    }
+
+    print "found ip from other file: '$ip'\n";
+
+  } else {
+    print "ip from tsv: $ip\n";
+  }
   my $programCommand = "python $arduinoDir/portable/packages/esp8266/hardware/esp8266/2.3.0/tools/espota.py -i $ip -f $buildDir/$name.ino.bin";
+  print "$programCommand\n";
   my $result = `$programCommand`;
 
 
