@@ -64,7 +64,7 @@ while (<>) {
 
   print "Modifying sonoff directory for '$FRIENDLY_NAME'\n";
   #device specific not in user_config_override.h
-  (my $hostname = $FRIENDLY_NAME) =~ s/\//-/g;
+  (my $hostname = $MQTT_TOPIC) =~ s/\//-/g;
   `sed -i 's/#define WIFI_HOSTNAME.*/#define WIFI_HOSTNAME "$hostname"/' $codeDir/sonoff.ino`;
   `sed -i 's/#define MODULE.*/#define MODULE $module/' $codeDir/sonoff.ino`;
 
@@ -123,12 +123,21 @@ while (<>) {
     print color("red"), "non-zero return, stop fucking up?\n", color("reset");
     exit(1);
   }
-  #get ip
-  #
-  my $realIP = `grep "$mac" hosts | cut -d' ' -f2`;
-  chomp $realIP;
 
-  my $programCommand = "curl 'http://$realIP/u2' -F 'name=\@$buildDir/sonoff.ino.bin'";
+  my $programCommand = "curl 'http://$ip/u2' -F 'name=\@$buildDir/sonoff.ino.bin'";
+  if(0) {
+    #get ip
+    #
+    my $realIP = `grep "$mac" hosts | cut -d' ' -f2`;
+    chomp $realIP;
+
+    if($realIP eq "") {
+      print color("red"), "No ip for device\n", color("reset");
+      exit(42);
+    }
+
+    $programCommand = "curl 'http://$realIP/u2' -F 'name=\@$buildDir/sonoff.ino.bin'";
+  }
   print "$programCommand\n";
   my $result = `$programCommand`;
 

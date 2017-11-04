@@ -45,3 +45,6 @@ xxx	SONOFF_BASIC	10.13.0.202	5C:CF:7F:BD:72:AE	none	1	%prefix%/i3/inside/%topic%
 02	SONOFF_SV	10.13.0.231	5C:CF:7F:1B:D4:60	accent/chandelier	0	%prefix%/i3/inside/%topic%/	chandelier id	accent/chandelier-id
 01	SONOFF_SV	10.13.0.246	5C:CF:7F:1C:37:3E	accent/chandelier	0	%prefix%/i3/inside/%topic%/	chandelier id	accent/chandelier-id
 xxx	SONOFF_TOUCH	10.13.0.208	60:01:94:86:7C:5B	none	0	%prefix%/i3/inside/%topic%/	media lab lights	media-lab/lights
+xxx	SONOFF_TH	10.13.0.188	2C:3A:E8:08:03:AF	none	1	%prefix%/i3/inside/%topic%/	cnc vent fan	cnc/vent
+xxx	SONOFF_TH	10.13.0.176	5C:CF:7F:42:91:92	none	1	%prefix%/i3/inside/%topic%/	cnc large light	cnc/light
+xxx	SONOFF_TH	10.13.0.216	5C:CF:7F:42:93:CF	none	1	%prefix%/i3/inside/%topic%/	vent fan over sink	commons/south-vent
