@@ -124,7 +124,7 @@ while (<>) {
   }
 
   my $programCommand = "curl 'http://$ip/u2' -F 'name=\@$buildDir/sonoff.ino.bin'";
-  if(0) {
+  if($ip eq "x") {
     #get ip
     #
     my $realIP = `grep "$mac" hosts | cut -d' ' -f2`;
@@ -136,6 +136,10 @@ while (<>) {
     }
 
     $programCommand = "curl 'http://$realIP/u2' -F 'name=\@$buildDir/sonoff.ino.bin'";
+    print "found ip from other file: $realIP\n";
+
+  } else {
+    print "ip from tsv: $ip\n";
   }
   print "$programCommand\n";
   my $result = `$programCommand`;
