@@ -1,5 +1,7 @@
 name	ip	mac	fqbn
-air-compressor	x	2C:3A:E8:1D:2B:50	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
+
+led-matrix	10.13.0.131	5C:CF:7F:0C:28:C8	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
+air-compressor	10.13.0.142	2C:3A:E8:1D:2B:50	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
 glass-door	x	5C:CF:7F:04:E3:DD	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
 front-door-indicator	x	5C:CF:7F:04:E0:9A	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
 machine-shop-motion-sensor	10.13.0.155	5C:CF:7F:84:AE:34	esp8266:esp8266:generic:CpuFrequency=80,FlashFreq=40,FlashMode=dout,FlashSize=1M0
