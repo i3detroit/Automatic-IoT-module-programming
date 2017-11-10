@@ -2,15 +2,18 @@
 use strict;
 use warnings;
 use Term::ANSIColor;
+use Switch;
 
 my $arduinoDir = "/home/mark/projects/esp/esp-arduino";
 
 my $buildDir = "/tmp/custom_arduino_build";
 my $cacheDir = "/tmp/custom_arduino_cache";
+my $tempCodeDir = "/tmp/tempCodeDir";
 
 
 `mkdir $buildDir`;
 `mkdir $cacheDir`;
+`mkdir $tempCodeDir`;
 
 sub buildCommand {
   my ($fqbn, $ino) = @_;
@@ -43,12 +46,27 @@ EOF
 <>;
 while (<>) {
   chomp;             # remove newline
-  my ($name, $ip, $mac, $fqbn) = split(/\t/,$_);
+  my ($name, $type, $ip, $mac, $fqbn, $topic) = split(/\t/,$_);
 
-  my $codeDir = "/home/mark/projects/esp/custom-mqtt-programs/$name";
-  print "Modifying sonoff directory for '$name'\n";
+  my $buildCommand;
+  switch($type) {
+    case "basic" {
+      my $codeDir = "/home/mark/projects/esp/custom-mqtt-programs/$name";
+      print "building '$name'\n";
 
-  my $buildCommand = buildCommand($fqbn, "$codeDir/$name.ino");
+      $buildCommand = buildCommand($fqbn, "$codeDir/$name.ino");
+    }
+    case "single-topic-button" {
+      print "Modifying temp code dir directory for '$name'\n";
+      `rsync -avhI --delete --progress -r /home/mark/projects/esp/custom-mqtt-programs/$name/* $tempCodeDir`;
+
+      $buildCommand = buildCommand($fqbn, "$tempCodeDir/$name.ino");
+    }
+    else {
+      print color("red"), "unknown type '$type'\n", color("reset");
+      exit(1);
+    }
+  }
   print "$buildCommand\n";
   `$buildCommand`;
   if($? != 0) {
