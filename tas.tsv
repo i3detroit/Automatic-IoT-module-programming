@@ -50,6 +50,6 @@ xxx	SONOFF_TH	10.13.0.176	5C:CF:7F:42:91:92	none	1	%prefix%/i3/inside/%topic%/	c
 xxx	SONOFF_TH	10.13.0.216	5C:CF:7F:42:93:CF	none	1	%prefix%/i3/inside/%topic%/	vent fan over sink	commons/south-vent
 xxx	SONOFF_TOUCH	10.13.0.194	F0:9F:C2:24:30:D7	none	0	%prefix%/i3/inside/%topic%/	commons ceiling fan	commons/east-ceiling-fans
 xxx	SONOFF_TOUCH	x	60:01:94:86:BB:C0	none	0	%prefix%/i3/inside/%topic%/	laser ceiling fan	laser-zone/ceiling-fan
-xxx	TRAFFIC_LIGHT 	x 	18:FE:34:FA:3C:8E 	none	0	%prefix%/i3/inside/%topic%/	traffic light	commons/traffic-light
+xxx	TRAFFIC_LIGHT 	x 	18:FE:34:FA:3C:8E 	none	0	%prefix%/i3/inside/%topic%/	traffic light	commons/traffic-light	mosquitto_pub -t 'cmnd/i3/inside/commons/traffic-light/GPIO14' -m '3'
 xxx	SONOFF_BASIC	x	5C:CF:7F:BD:5E:15	none	0	%prefix%/i3/inside/%topic%/	snapple vending light	commons/snapple-vending-light
 xxx	SONOFF_BASIC	x	5C:CF:7F:1B:CF:DC	none	0	%prefix%/i3/inside/%topic%/	fablab vent fan	fablab/vent
