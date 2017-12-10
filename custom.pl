@@ -16,8 +16,12 @@ my $tempCodeDir = "/tmp/tempCodeDir";
 `mkdir $tempCodeDir`;
 
 sub buildCommand {
-  my ($fqbn, $ino) = @_;
+  my ($fqbn, $ino, $buildFlags) = @_;
   #my $fqbn = "esp8266:esp8266:$device:CpuFrequency=80,FlashFreq=40,FlashMode=dout,FlashSize=$flash";
+  my $optionalPrefsBuildFlags = "";
+  if($buildFlags) {
+    $optionalPrefsBuildFlags = "-prefs=build.extra_flags=\"$buildFlags\"";
+  }
   return <<EOF;
   $arduinoDir/arduino-builder \\
     -compile \\
@@ -34,6 +38,7 @@ sub buildCommand {
     -build-path $buildDir \\
     -warnings=none \\
     -build-cache $cacheDir \\
+    $optionalPrefsBuildFlags \\
     -prefs=build.warn_data_percentage=75 \\
     -prefs=runtime.tools.mkspiffs.path=$arduinoDir/portable/packages/esp8266/tools/mkspiffs/0.1.2 \\
     -prefs=runtime.tools.esptool.path=$arduinoDir/portable/packages/esp8266/tools/esptool/0.4.9 \\
@@ -46,27 +51,27 @@ EOF
 <>;
 while (<>) {
   chomp;             # remove newline
-  my ($name, $type, $ip, $mac, $fqbn, $topic) = split(/\t/,$_);
+  my ($name, $type, $ip, $mac, $fqbn, $buildFlags) = split(/\t/,$_);
+
+  if( ! length $name > 0) {
+    print color("red"), "Hit a blank line\n", color("reset");
+    exit(1);
+  }
+
 
   my $buildCommand;
-  switch($type) {
-    case "basic" {
-      my $codeDir = "/home/mark/projects/esp/custom-mqtt-programs/$name";
-      print "building '$name'\n";
+  if($type eq "unique") {
+    print "building '$name'\n";
+    my $codeDir = "/home/mark/projects/esp/custom-mqtt-programs/$name";
 
-      $buildCommand = buildCommand($fqbn, "$codeDir/$name.ino");
-    }
-    case "single-topic-button" {
-      print "Modifying temp code dir directory for '$name'\n";
-      `rsync -avhI --delete --progress -r /home/mark/projects/esp/custom-mqtt-programs/$name/* $tempCodeDir`;
+    $buildCommand = buildCommand($fqbn, "$codeDir/$name.ino", $buildFlags);
+  } else {
+    print "building '$name' with '$type' directory\n";
+    my $codeDir = "/home/mark/projects/esp/custom-mqtt-programs/$type";
 
-      $buildCommand = buildCommand($fqbn, "$tempCodeDir/$name.ino");
-    }
-    else {
-      print color("red"), "unknown type '$type'\n", color("reset");
-      exit(1);
-    }
+    $buildCommand = buildCommand($fqbn, "$codeDir/$type.ino", $buildFlags);
   }
+
   print "$buildCommand\n";
   `$buildCommand`;
   if($? != 0) {
@@ -91,7 +96,12 @@ while (<>) {
   } else {
     print "ip from tsv: $ip\n";
   }
-  my $programCommand = "python $arduinoDir/portable/packages/esp8266/hardware/esp8266/2.3.0/tools/espota.py -i $ip -f $buildDir/$name.ino.bin";
+  my $programCommand;
+  if($type eq "unique") {
+    $programCommand = "python $arduinoDir/portable/packages/esp8266/hardware/esp8266/2.3.0/tools/espota.py -i $ip -f $buildDir/$name.ino.bin";
+  } else {
+    $programCommand = "python $arduinoDir/portable/packages/esp8266/hardware/esp8266/2.3.0/tools/espota.py -i $ip -f $buildDir/$type.ino.bin";
+  }
   print "$programCommand\n";
   my $result = `$programCommand`;
 
