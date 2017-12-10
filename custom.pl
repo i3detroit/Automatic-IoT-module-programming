@@ -51,7 +51,7 @@ EOF
 <>;
 while (<>) {
   chomp;             # remove newline
-  my ($name, $type, $ip, $mac, $fqbn, $buildFlags) = split(/\t/,$_);
+  my ($name, $type, $ip, $mac, $fqbn, $topic, $buildFlags) = split(/\t/,$_);
 
   if( ! length $name > 0) {
     print color("red"), "Hit a blank line\n", color("reset");
@@ -68,6 +68,8 @@ while (<>) {
   } else {
     print "building '$name' with '$type' directory\n";
     my $codeDir = "/home/mark/projects/esp/custom-mqtt-programs/$type";
+
+    $buildFlags = "-DNAME=\\\"$name\\\" -DTOPIC=\\\"$topic\\\" $buildFlags";
 
     $buildCommand = buildCommand($fqbn, "$codeDir/$type.ino", $buildFlags);
   }
