@@ -3,7 +3,7 @@ id	module	ip	mac	MQTT_GRPTOPIC	APP_POWERON_STATE	MQTT_FULLTPIC	FRIENDLY_NAME	MQT
 002	SONOFF_BASIC	x	5C:CF:7F:1B:CF:BC	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 003	SONOFF_BASIC	x	5C:CF:7F:1B:CF:FA	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 004	SONOFF_BASIC	x	5C:CF:7F:1C:7B:CB	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-005	SONOFF_BASIC	x	5C:CF:7F:1B:EF:5E	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
+005	SONOFF_BASIC	x	5C:CF:7F:1B:EF:5E	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 006	SONOFF_BASIC	x	5C:CF:7F:1B:EA:25	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 007	SONOFF_BASIC	x	5C:CF:7F:1B:DF:BF	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 008	SONOFF_BASIC	x	60:01:94:00:53:B3	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id	electrodragon
@@ -36,6 +36,7 @@ id	module	ip	mac	MQTT_GRPTOPIC	APP_POWERON_STATE	MQTT_FULLTPIC	FRIENDLY_NAME	MQT
 035	SONOFF_BASIC	x	2C:3A:E8:07:AC:81	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 036	SONOFF_BASIC	x	2C:3A:E8:11:6E:CC	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 037	SONOFF_BASIC	x	5C:CF:7F:B4:D7:C6	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
+038	SONOFF_BN	x	60:01:94:84:E3:DA	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 xxx	SONOFF_BASIC	x	5C:CF:7F:B4:DA:79	none	1	%prefix%/i3/inside/%topic%/	classroom sign	classroom/sign
 xxx	SONOFF_BASIC	x	2C:3A:E8:07:AC:86	none	0	%prefix%/i3/inside/%topic%/	disco ball	commons/disco
 xxx	SONOFF_TOUCH	x	60:01:94:86:BD:3D	none	0	%prefix%/i3/inside/%topic%/	large bathroom light	large-bathroom/light
