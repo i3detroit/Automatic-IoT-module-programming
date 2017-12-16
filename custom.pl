@@ -51,13 +51,15 @@ EOF
 <>;
 while (<>) {
   chomp;             # remove newline
-  my ($name, $type, $ip, $mac, $fqbn, $topic, $buildFlags) = split(/\t/,$_);
+  my ($id, $name, $type, $ip, $mac, $fqbn, $topic, $buildFlags) = split(/\t/,$_);
 
   if( ! length $name > 0) {
     print color("red"), "Hit a blank line\n", color("reset");
     exit(1);
   }
 
+  $name =~ s/ID/$id/;
+  $topic =~ s/ID/$id/;
 
   my $buildCommand;
   if($type eq "unique") {

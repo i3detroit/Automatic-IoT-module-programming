@@ -1,21 +1,25 @@
-name	type	ip	mac	fqbn topic
+ID	name	type	ip	mac	fqbn topic
 
+x	machine-shop-motion-sensor	motion-sensor	10.13.0.155	5C:CF:7F:84:AE:34	esp8266:esp8266:generic:CpuFrequency=80,FlashFreq=40,FlashMode=dout,FlashSize=1M0	i3/inside/machine-shop/motion-sensor
+x	large-bathroom-motion-sensor	motion-sensor	10.13.0.187	EC:FA:BC:0E:B6:D1	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/large-bathroom/motion-sensor
+x	small-bathroom-motion-sensor	motion-sensor	10.13.0.161	EC:FA:BC:0E:A7:58	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/small-bathroom/motion-sensor
 
-machine-shop-motion-sensor	motion-sensor	10.13.0.155	5C:CF:7F:84:AE:34	esp8266:esp8266:generic:CpuFrequency=80,FlashFreq=40,FlashMode=dout,FlashSize=1M0	i3/inside/machine-shop/motion-sensor
-large-bathroom-motion-sensor	motion-sensor	10.13.0.187	EC:FA:BC:0E:B6:D1	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/large-bathroom/motion-sensor
-small-bathroom-motion-sensor	motion-sensor	10.13.0.161	EC:FA:BC:0E:A7:58	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/small-bathroom/motion-sensor
+x	machine-shop-light-switches-west	machine-shop-light-switches	10.13.0.183	2C:3A:E8:1D:2A:26	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/machine-shop/light-switches-west
+x	machine-shop-light-switches-south	machine-shop-light-switches	10.13.0.110	2C:3A:E8:1D:2B:3A	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/machine-shop/light-switches-south
 
-machine-shop-light-switches-west	machine-shop-light-switches	10.13.0.183	2C:3A:E8:1D:2A:26	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/machine-shop/light-switches-west
-machine-shop-light-switches-south	machine-shop-light-switches	10.13.0.110	2C:3A:E8:1D:2B:3A	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/machine-shop/light-switches-south
+### DISCO BUTTON HAS DIFFERENT PINS
+x	disco-button	single-topic-button	10.13.0.168	5C:CF:7F:FA:42:D6	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/commons/disco-button	-DCONTROL_TOPIC=\"i3/inside/commons/disco\"
 
-disco-button	single-topic-button	10.13.0.168	5C:CF:7F:FA:42:D6	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/commons/disco-button	-DCONTROL_TOPIC=\"i3/inside/commons/disco\"
+x	commons-light-switches	unique	10.13.0.148	18:FE:34:FA:3E:1F	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
+x	air-compressor	unique	10.13.0.142	2C:3A:E8:1D:2B:50	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
+x	glass-door	unique	x	5C:CF:7F:04:E3:DD	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
+x	led-matrix	unique	10.13.0.131	5C:CF:7F:0C:28:C8	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
+x	front-door-indicator	unique	x	5C:CF:7F:04:E0:9A	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
 
-commons-light-switches	unique	10.13.0.148	18:FE:34:FA:3E:1F	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
-air-compressor	unique	10.13.0.142	2C:3A:E8:1D:2B:50	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
-glass-door	unique	x	5C:CF:7F:04:E3:DD	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
-led-matrix	unique	10.13.0.131	5C:CF:7F:0C:28:C8	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
-front-door-indicator	unique	x	5C:CF:7F:04:E0:9A	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
+x	commons-ground-sensor-cluster	atmosphere-sensor-cluster	10.13.0.203	5c:cf:7f:63:3c:24	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/commons/ground-sensor-cluster
+x	commons-ceiling-sensor-cluster	atmosphere-sensor-cluster	10.13.0.184	ec:fa:bc:0e:a6:bc	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/commons/ceiling-sensor-cluster
+x	fablab-sensor-cluster	atmosphere-sensor-cluster	10.13.0.136	5c:cf:7f:62:d2:b5	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/fablab/sensor-cluster
 
-commons-ground-sensor-cluster	atmosphere-sensor-cluster	10.13.0.203	5c:cf:7f:63:3c:24	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/commons/ground-sensor-cluster
-commons-ceiling-sensor-cluster	atmosphere-sensor-cluster	10.13.0.184	ec:fa:bc:0e:a6:bc	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/commons/ceiling-sensor-cluster
-fablab-sensor-cluster	atmosphere-sensor-cluster	10.13.0.136	5c:cf:7f:62:d2:b5	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/fablab/sensor-cluster
+001	air-compressor-request-ID	single-topic-button	10.13.0.235	ec:fa:bc:0e:ab:d4	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/air-compressor-request-ID	-DCONTROL_TOPIC=\"i3/inside/infrastructure/air-compressor\"
+002	air-compressor-request-ID	single-topic-button	10.13.0.238	2c:3a:e8:32:8c:d6	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/air-compressor-request-ID	-DCONTROL_TOPIC=\"i3/inside/infrastructure/air-compressor\"
+003	air-compressor-request-ID	single-topic-button	10.13.0.158	ec:fa:bc:0e:ab:8a	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/air-compressor-request-ID	-DCONTROL_TOPIC=\"i3/inside/infrastructure/air-compressor\"
