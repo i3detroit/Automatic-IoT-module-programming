@@ -1,5 +1,6 @@
 ID	name	type	ip	mac	fqbn topic
 
+
 x	machine-shop-motion-sensor	motion-sensor	10.13.0.155	5C:CF:7F:84:AE:34	esp8266:esp8266:generic:CpuFrequency=80,FlashFreq=40,FlashMode=dout,FlashSize=1M0	i3/inside/machine-shop/motion-sensor
 x	large-bathroom-motion-sensor	motion-sensor	10.13.0.187	EC:FA:BC:0E:B6:D1	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/large-bathroom/motion-sensor
 x	small-bathroom-motion-sensor	motion-sensor	10.13.0.161	EC:FA:BC:0E:A7:58	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/small-bathroom/motion-sensor
@@ -23,3 +24,6 @@ x	fablab-sensor-cluster	atmosphere-sensor-cluster	10.13.0.136	5c:cf:7f:62:d2:b5	
 001	air-compressor-request-ID	single-topic-button	10.13.0.235	ec:fa:bc:0e:ab:d4	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/air-compressor-request-ID	-DCONTROL_TOPIC=\"i3/inside/infrastructure/air-compressor\"
 002	air-compressor-request-ID	single-topic-button	10.13.0.238	2c:3a:e8:32:8c:d6	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/air-compressor-request-ID	-DCONTROL_TOPIC=\"i3/inside/infrastructure/air-compressor\"
 003	air-compressor-request-ID	single-topic-button	10.13.0.158	ec:fa:bc:0e:ab:8a	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/air-compressor-request-ID	-DCONTROL_TOPIC=\"i3/inside/infrastructure/air-compressor\"
+
+001	middle-east-light-switches-south	middle-east-light-switches	10.13.0.192 	2C:3A:E8:1D:2A:32 	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/commons/middle-east-light-switches-south
+002	middle-east-light-switches-north	middle-east-light-switches	10.13.0.208	5c:cf:7f:FA:43:27	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/commons/middle-east-light-switches-north
