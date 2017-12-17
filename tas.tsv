@@ -59,3 +59,5 @@ xxx	SONOFF_BASIC	10.13.0.126	5C:CF:7F:BD:86:A1	none	0	%prefix%/i3/inside/%topic%
 
 xxx	SONOFF_BASIC	x	5C:CF:7F:BD:5E:15	none	0	%prefix%/i3/inside/%topic%/	snapple vending light	commons/snapple-vending-light
 xxx	SONOFF_POW	10.13.0.160	2C:3A:E8:26:57:B4	none	1	%prefix%/i3/inside/%topic%/	snapple vending compressor	commons/snapple-vending-compressor
+
+xxx	SONOFF_BRIDGE	x	60:01:94:8F:34:3D	none	0	%prefix%/i3/inside/%topic%/	433 rf reciever	infrastructure/433-rf-reciever

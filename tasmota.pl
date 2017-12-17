@@ -59,6 +59,11 @@ while (<>) {
   chomp;             # remove newline
   (my $id, my $module, my $ip, my $mac, my $MQTT_GRPTOPIC, my $APP_POWERON_STATE, my $MQTT_FULLTOPIC, my $FRIENDLY_NAME, my $MQTT_TOPIC) = split(/\t/,$_);
 
+  if( ! length $MQTT_TOPIC > 0) {
+    print color("red"), "Hit a blank line\n", color("reset");
+    exit(1);
+  }
+
   $FRIENDLY_NAME =~ s/id/$id/;
   $MQTT_TOPIC =~ s/id/$id/;
 
@@ -112,7 +117,7 @@ while (<>) {
   #SONOFF_TOUCH: esp8285
   #everything else: generic
   my $device = 'generic';
-  if(grep( /^$module$/, ('SONOFF_TOUCH', 'SONOFF_4CH') ) ) {
+  if(grep( /^$module$/, ('SONOFF_TOUCH', 'SONOFF_4CH', 'SONOFF_BRIDGE') ) ) {
     $device = 'esp8285';
   }
   my $buildCommand = buildCommand($device, '1M0');
