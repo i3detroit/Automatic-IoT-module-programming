@@ -37,7 +37,7 @@ id	module	ip	mac	MQTT_GRPTOPIC	APP_POWERON_STATE	MQTT_FULLTPIC	FRIENDLY_NAME	MQT
 036	SONOFF_BASIC	x	2C:3A:E8:11:6E:CC	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 037	SONOFF_BASIC	x	5C:CF:7F:B4:D7:C6	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 038	SONOFF_BN	x	60:01:94:84:E3:DA	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-039	SONOFF_BN	10.13.0.195	60:01:94:84:93:E3	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
+039	SONOFF_BN	x	60:01:94:84:93:E3	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 xxx	SONOFF_BASIC	x	5C:CF:7F:B4:DA:79	none	1	%prefix%/i3/inside/%topic%/	classroom sign	classroom/sign
 xxx	SONOFF_BASIC	x	2C:3A:E8:07:AC:86	none	0	%prefix%/i3/inside/%topic%/	disco ball	commons/disco
 xxx	SONOFF_TOUCH	x	60:01:94:86:BD:3D	none	0	%prefix%/i3/inside/%topic%/	large bathroom light	large-bathroom/light
@@ -47,9 +47,6 @@ xxx	SONOFF_BASIC	x	5C:CF:7F:BD:72:AE	none	1	%prefix%/i3/inside/%topic%/	compress
 02	SONOFF_SV	x	5C:CF:7F:1B:D4:60	accent/chandelier	0	%prefix%/i3/inside/%topic%/	chandelier id	accent/chandelier-id
 01	SONOFF_SV	x	5C:CF:7F:1C:37:3E	accent/chandelier	0	%prefix%/i3/inside/%topic%/	chandelier id	accent/chandelier-id
 xxx	SONOFF_TOUCH	x	60:01:94:86:7C:5B	none	0	%prefix%/i3/inside/%topic%/	media lab lights	media-lab/lights
-xxx	SONOFF_TH	10.13.0.188	2C:3A:E8:08:03:AF	none	1	%prefix%/i3/inside/%topic%/	cnc vent fan	cnc/vent
-xxx	SONOFF_TH	10.13.0.176	5C:CF:7F:42:91:92	none	1	%prefix%/i3/inside/%topic%/	cnc large light	cnc/light
-xxx	SONOFF_TH	10.13.0.216	5C:CF:7F:42:93:CF	none	1	%prefix%/i3/inside/%topic%/	vent fan over sink	commons/south-vent
 xxx	SONOFF_TOUCH	10.13.0.194	F0:9F:C2:24:30:D7	none	0	%prefix%/i3/inside/%topic%/	commons ceiling fan	commons/east-ceiling-fans
 xxx	SONOFF_TOUCH	x	60:01:94:86:BB:C0	none	0	%prefix%/i3/inside/%topic%/	laser ceiling fan	laser-zone/ceiling-fan
 xxx	TRAFFIC_LIGHT 	x 	18:FE:34:FA:3C:8E 	none	0	%prefix%/i3/inside/%topic%/	traffic light	commons/traffic-light	mosquitto_pub -t 'cmnd/i3/inside/commons/traffic-light/GPIO14' -m '3'
@@ -61,3 +58,10 @@ xxx	SONOFF_BASIC	x	5C:CF:7F:BD:5E:15	none	0	%prefix%/i3/inside/%topic%/	snapple 
 xxx	SONOFF_POW	10.13.0.160	2C:3A:E8:26:57:B4	none	1	%prefix%/i3/inside/%topic%/	snapple vending compressor	commons/snapple-vending-compressor
 
 xxx	SONOFF_BRIDGE	x	60:01:94:8F:34:3D	none	0	%prefix%/i3/inside/%topic%/	433 rf reciever	infrastructure/433-rf-reciever
+
+xxx	SONOFF_TH	x	2C:3A:E8:08:03:AF	none	0	%prefix%/i3/inside/%topic%/	cnc vent fan	cnc/vent	# NEEDS PROGRAMMING
+xxx	SONOFF_TH	x	5C:CF:7F:42:91:92	none	0	%prefix%/i3/inside/%topic%/	cnc large light	cnc/light	# NEEDS PROGRAMMING
+xxx	SONOFF_TH	x	5C:CF:7F:42:93:CF	none	0	%prefix%/i3/inside/%topic%/	vent fan over sink	commons/south-vent	# NEEDS PROGRAMMING
+mosquitto_pub -t "cmnd/i3/inside/cnc/light/GPIO4" -m "9"
+mosquitto_pub -t "cmnd/i3/inside/cnc/light/GPIO14" -m "29"
+mosquitto_pub -t "cmnd/i3/inside/cnc/light/switchmode1" -m "3"
