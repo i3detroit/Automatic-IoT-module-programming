@@ -47,7 +47,7 @@ xxx	SONOFF_BASIC	x	5C:CF:7F:BD:72:AE	none	1	%prefix%/i3/inside/%topic%/	compress
 02	SONOFF_SV	x	5C:CF:7F:1B:D4:60	accent/chandelier	0	%prefix%/i3/inside/%topic%/	chandelier id	accent/chandelier-id
 01	SONOFF_SV	x	5C:CF:7F:1C:37:3E	accent/chandelier	0	%prefix%/i3/inside/%topic%/	chandelier id	accent/chandelier-id
 xxx	SONOFF_TOUCH	x	60:01:94:86:7C:5B	none	0	%prefix%/i3/inside/%topic%/	media lab lights	media-lab/lights
-xxx	SONOFF_TOUCH	10.13.0.194	F0:9F:C2:24:30:D7	none	0	%prefix%/i3/inside/%topic%/	commons ceiling fan	commons/east-ceiling-fans
+xxx	SONOFF_TOUCH	10.13.0.194	F0:9F:C2:24:30:D7	none	0	%prefix%/i3/inside/%topic%/	commons ceiling fan	commons/ceiling-fans
 xxx	SONOFF_TOUCH	x	60:01:94:86:BB:C0	none	0	%prefix%/i3/inside/%topic%/	laser ceiling fan	laser-zone/ceiling-fan
 xxx	SONOFF_SV	x	5C:CF:7F:1C:42:64	none	0	%prefix%/i3/inside/%topic%/	laser vent fan	laser-zone/vent-fan
 xxx	TRAFFIC_LIGHT 	x 	18:FE:34:FA:3C:8E 	none	0	%prefix%/i3/inside/%topic%/	traffic light	commons/traffic-light	mosquitto_pub -t 'cmnd/i3/inside/commons/traffic-light/GPIO14' -m '3'
