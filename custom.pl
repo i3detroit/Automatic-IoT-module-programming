@@ -86,8 +86,10 @@ while (<>) {
 
   if($ip eq "x") {
     #get ip
-    #
-    $ip = `grep "$mac" hosts | cut -d' ' -f2`;
+    my $cmd = "grep \"$mac\" hosts | cut -d' ' -f2";
+    print $cmd . "\n";
+    $ip = `$cmd`;
+
     chomp $ip;
 
     if($ip eq "") {

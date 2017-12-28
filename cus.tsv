@@ -2,12 +2,9 @@ ID	name	type	ip	mac	fqbn topic
 
 #to add
 16 segment
-weld zone buttons
 laser timer things x2
 fab lab vent
 
-
-#old mqtt-wrapper
 
 x	machine-shop-motion-sensor	motion-sensor	x	5C:CF:7F:84:AE:34	esp8266:esp8266:generic:CpuFrequency=80,FlashFreq=40,FlashMode=dout,FlashSize=1M0	i3/inside/machine-shop/motion-sensor
 x	large-bathroom-motion-sensor	motion-sensor	x	EC:FA:BC:0E:B6:D1	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/large-bathroom/motion-sensor
@@ -20,12 +17,11 @@ x	commons-light-switches	unique	x	18:FE:34:FA:3E:1F	esp8266:esp8266:nodemcuv2:Cp
 x	air-compressor	unique	x	2C:3A:E8:1D:2B:50	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
 x	glass-door	unique	x	5C:CF:7F:04:E3:DD	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
 x	led-matrix	unique	x	5C:CF:7F:0C:28:C8	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
-x	front-door-funnel	unique	10.13.0.196	5c:cf:7f:fa:44:67	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
-x	front-door-indicator	unique	x	5C:CF:7F:04:E0:9A	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
-x	middle-east-light-switches-south	middle-east-light-switches	x 	2C:3A:E8:1D:2A:32 	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/commons/middle-east-light-switches-south
+x	middle-east-light-switches-south	middle-east-light-switches	x	2C:3A:E8:1D:2A:32	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/commons/middle-east-light-switches-south
 x	middle-east-light-switches-north	middle-east-light-switches	x	5C:CF:7F:FA:43:27	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/commons/middle-east-light-switches-north
 
-#new mqtt-wrapper
+x	front-door-funnel	unique	10.13.0.196	5c:cf:7f:fa:44:67	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
+x	front-door-indicator	unique	x	5C:CF:7F:04:E0:9A	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
 x	disco-button	multi-topic-button	x	5C:CF:7F:FA:42:D6	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/commons/disco-button	-DTOPIC_0_TOPIC=\"i3/inside/commons/disco\"
 
 x	commons-ground-sensor-cluster	atmosphere-sensor-cluster	x	5C:CF:7F:63:3C:24	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/commons/ground-sensor-cluster
