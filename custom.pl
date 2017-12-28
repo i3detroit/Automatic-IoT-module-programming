@@ -62,6 +62,7 @@ while (<>) {
   $topic =~ s/ID/$id/;
 
   my $buildCommand;
+  $buildFlags = "-DWIFI_SSID=\\\"i3detroit-iot\\\" -DWIFI_PASSWORD=\\\"securityrisk\\\" $buildFlags";
   if($type eq "unique") {
     print "building '$name'\n";
     my $codeDir = "/home/mark/projects/esp/custom-mqtt-programs/$name";
@@ -83,7 +84,6 @@ while (<>) {
     exit(1);
   }
 
-
   if($ip eq "x") {
     #get ip
     #
@@ -98,7 +98,7 @@ while (<>) {
     print "found ip from other file: '$ip'\n";
 
   } else {
-    print "ip from tsv: $ip\n";
+    print "ip from tsv: '$ip'\n";
   }
   my $programCommand;
   if($type eq "unique") {
