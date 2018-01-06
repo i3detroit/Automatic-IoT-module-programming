@@ -63,9 +63,9 @@ xxx	SONOFF_POW	10.13.0.160	2C:3A:E8:26:57:B4	none	1	%prefix%/i3/inside/%topic%/	
 
 xxx	SONOFF_BRIDGE	x	60:01:94:8F:34:3D	none	0	%prefix%/i3/inside/%topic%/	433 rf reciever	infrastructure/433-rf-reciever
 
-xxx	SONOFF_TH	x	2C:3A:E8:08:03:AF	none	0	%prefix%/i3/inside/%topic%/	cnc vent fan	cnc/vent	# NEEDS PROGRAMMING
-xxx	SONOFF_TH	x	5C:CF:7F:42:91:92	none	0	%prefix%/i3/inside/%topic%/	cnc large light	cnc/light	# NEEDS PROGRAMMING
-xxx	SONOFF_TH	x	5C:CF:7F:42:93:CF	none	0	%prefix%/i3/inside/%topic%/	vent fan over sink	commons/south-vent	# NEEDS PROGRAMMING
+xxx	SONOFF_TH	x	2C:3A:E8:08:03:AF	none	0	%prefix%/i3/inside/%topic%/	cnc vent fan	cnc/vent
+xxx	SONOFF_TH	x	5C:CF:7F:42:91:92	none	0	%prefix%/i3/inside/%topic%/	cnc large light	cnc/light
+xxx	SONOFF_TH	x	5C:CF:7F:42:93:CF	none	0	%prefix%/i3/inside/%topic%/	vent fan over sink	commons/south-vent
 mosquitto_pub -t "cmnd/i3/inside/cnc/light/GPIO4" -m "9"
 mosquitto_pub -t "cmnd/i3/inside/cnc/light/GPIO14" -m "29"
 mosquitto_pub -t "cmnd/i3/inside/cnc/light/switchmode1" -m "3"
