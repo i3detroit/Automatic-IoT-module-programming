@@ -25,7 +25,7 @@ id	module	ip	mac	MQTT_GRPTOPIC	APP_POWERON_STATE	MQTT_FULLTPIC	FRIENDLY_NAME	MQT
 024	SONOFF_BASIC	x	5C:CF:7F:BD:72:B1	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 025	SONOFF_BASIC	x	5C:CF:7F:BB:04:5F	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 026	SONOFF_BASIC	x	2C:3A:E8:0F:4B:18	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-027	SONOFF_BASIC	x	5C:CF:7F:BB:06:C2	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
+027	SONOFF_BN	x	60:01:94:8F:A7:30	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 028	SONOFF_BASIC	x	5C:CF:7F:BD:86:A2	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 029	SONOFF_BASIC	x	5C:CF:7F:BD:85:BC	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 030	SONOFF_BASIC	x	5C:CF:7F:BB:04:61	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
@@ -38,6 +38,7 @@ id	module	ip	mac	MQTT_GRPTOPIC	APP_POWERON_STATE	MQTT_FULLTPIC	FRIENDLY_NAME	MQT
 037	SONOFF_BASIC	x	5C:CF:7F:B4:D7:C6	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 038	SONOFF_BN	x	60:01:94:84:E3:DA	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 039	SONOFF_BN	x	60:01:94:84:93:E3	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
+040	SONOFF_BN	x	60:01:94:8E:05:91	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 xxx	SONOFF_BASIC	x	5C:CF:7F:B4:DA:79	none	1	%prefix%/i3/inside/%topic%/	classroom sign	classroom/sign
 xxx	SONOFF_BASIC	x	2C:3A:E8:07:AC:86	none	0	%prefix%/i3/inside/%topic%/	disco ball	commons/disco
 xxx	SONOFF_TOUCH	x	60:01:94:86:BD:3D	none	0	%prefix%/i3/inside/%topic%/	large bathroom light	large-bathroom/light
@@ -54,6 +55,8 @@ xxx	TRAFFIC_LIGHT 	x 	18:FE:34:FA:3C:8E 	none	0	%prefix%/i3/inside/%topic%/	traf
 xxx	SONOFF_BASIC	x	5C:CF:7F:1B:CF:DC	none	0	%prefix%/i3/inside/%topic%/	fablab vent fan	fablab/vent
 xxx	SONOFF_BASIC	x	2C:3A:E8:07:B2:B6	none	0	%prefix%/i3/inside/%topic%/	machine shop ceiling fan	machine-shop/ceiling-fan
 xxx	SONOFF_BASIC	10.13.0.126	5C:CF:7F:BD:86:A1	none	0	%prefix%/i3/inside/%topic%/	Paint box vent fan	commons/paint-box
+
+xxx	SONOFF_BASIC	x	5C:CF:7F:BB:06:C2	none	1	%prefix%/i3/inside/%topic%/	commons spotlights	commons/accent/spotlights
 
 xxx	SONOFF_BASIC	x	5C:CF:7F:BD:5E:15	none	0	%prefix%/i3/inside/%topic%/	snapple vending light	commons/snapple-vending-light
 xxx	SONOFF_POW	10.13.0.160	2C:3A:E8:26:57:B4	none	1	%prefix%/i3/inside/%topic%/	snapple vending compressor	commons/snapple-vending-compressor
