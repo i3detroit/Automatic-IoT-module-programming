@@ -3,9 +3,9 @@ use strict;
 use warnings;
 use Term::ANSIColor;
 
-my $sonoffSrcDir = "/home/mark/projects/esp/Sonoff-Tasmota.mod/sonoff";
+my $sonoffSrcDir = "../Sonoff-Tasmota.mod/sonoff";
+my $arduinoDir = "../tasmota-light-arduino";
 my $codeDir = "/tmp/sonoff";
-my $arduinoDir = "/home/mark/projects/esp/tasmota-light-arduino";
 
 my $buildDir = "/tmp/autoSonoff_arduino_build";
 my $cacheDir = "/tmp/autoSonoff_arduino_cache";

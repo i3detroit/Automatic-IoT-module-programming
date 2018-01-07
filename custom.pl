@@ -4,7 +4,7 @@ use warnings;
 use Term::ANSIColor;
 use Switch;
 
-my $arduinoDir = "/home/mark/projects/esp/esp-arduino";
+my $arduinoDir = "../esp-arduino";
 
 my $buildDir = "/tmp/custom_arduino_build";
 my $cacheDir = "/tmp/custom_arduino_cache";
@@ -65,12 +65,12 @@ while (<>) {
   $buildFlags = "-DWIFI_SSID=\\\"i3detroit-iot\\\" -DWIFI_PASSWORD=\\\"securityrisk\\\" $buildFlags";
   if($type eq "unique") {
     print "building '$name'\n";
-    my $codeDir = "/home/mark/projects/esp/custom-mqtt-programs/$name";
+    my $codeDir = "/../custom-mqtt-programs/$name";
 
     $buildCommand = buildCommand($fqbn, "$codeDir/$name.ino", $buildFlags);
   } else {
     print "building '$name' with '$type' directory\n";
-    my $codeDir = "/home/mark/projects/esp/custom-mqtt-programs/$type";
+    my $codeDir = "../custom-mqtt-programs/$type";
 
     $buildFlags = "-DNAME=\\\"$name\\\" -DTOPIC=\\\"$topic\\\" $buildFlags";
 
