@@ -65,7 +65,7 @@ while (<>) {
   $buildFlags = "-DWIFI_SSID=\\\"i3detroit-iot\\\" -DWIFI_PASSWORD=\\\"securityrisk\\\" $buildFlags";
   if($type eq "unique") {
     print "building '$name'\n";
-    my $codeDir = "/../custom-mqtt-programs/$name";
+    my $codeDir = "../custom-mqtt-programs/$name";
 
     $buildCommand = buildCommand($fqbn, "$codeDir/$name.ino", $buildFlags);
   } else {
