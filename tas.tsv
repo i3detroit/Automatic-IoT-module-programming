@@ -63,8 +63,8 @@ xxx	SONOFF_POW	10.13.0.160	2C:3A:E8:26:57:B4	none	1	%prefix%/i3/inside/%topic%/	
 
 xxx	SONOFF_BRIDGE	x	60:01:94:8F:34:3D	none	0	%prefix%/i3/inside/%topic%/	433 rf reciever	infrastructure/433-rf-reciever
 
-xxx	SONOFF_BASIC	x	5C:CF:7F:72:53:39	none	1	%prefix%/i3/inside/%topic%/	wolverine chiller	laser-zone/wolverine-chiller
-xxx	SONOFF_BASIC	x	5C:CF:7F:72:5E:75	none	1	%prefix%/i3/inside/%topic%/	bumblebee chiller	laser-zone/bumblebee-chiller
+xxx	SONOFF_BASIC	x	5C:CF:7F:72:53:39	none	0	%prefix%/i3/inside/%topic%/	wolverine chiller	laser-zone/wolverine/chiller
+xxx	SONOFF_BASIC	x	5C:CF:7F:72:5E:75	none	0	%prefix%/i3/inside/%topic%/	bumblebee chiller	laser-zone/bumblebee/chiller
 
 #these three have the custom commands
 xxx	SONOFF_TH	x	2C:3A:E8:08:03:AF	none	0	%prefix%/i3/inside/%topic%/	cnc vent fan	cnc/vent
