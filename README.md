@@ -1,5 +1,7 @@
 # Autoprogramming a bunch of sonoffs
 
+Setup: on McClellan, copy /home/mtfurlan/projects/esp to your home directory. Or clone the repo and copy /home/mtfurlan/esp/Sonoff-Tasmota.mod and /home/mtfurlan/esp/tasmota-light-arduino
+
 Find the list you hate
 ```
 sudo nmap -sP 10.13.0.0-255 | grep -v "Host" | tail -n +3 | tr '\n' ' ' | sed 's|Nmap|\nNmap|g' |  grep "MAC Address" | perl -pe 's/.*report for (?:([^ ]*) \()?((?:[0-9]{1,3}\.?){4})\)? MAC Address: ([A-Z0-9:]*).*/$1 $2 $3/'
