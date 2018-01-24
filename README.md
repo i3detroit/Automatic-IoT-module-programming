@@ -44,3 +44,10 @@ sudo nmap -sP 10.13.0.0-255 | grep -v "Host" | tail -n +3 | tr '\n' ' ' | sed 's
 * `USE_IR_REMOTE`
 * `USE_WS2812`
 * `USE_WS2812_CTYPE`
+
+## host_hosts.c
+This is for running on a linux host somewhere in the iot subnet.
+
+It will run a webserver that will run the above command to generate the hosts file.
+
+`curl map_pi:5000` will get the hosts
