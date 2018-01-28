@@ -69,7 +69,8 @@ xxx	SONOFF_BASIC	x	5C:CF:7F:72:5E:75	none	0	%prefix%/i3/inside/%topic%/	bumblebe
 xxx	SONOFF_TOUCH	x	60:01:94:86:C6:05	none	0	%prefix%/i3/inside/%topic%/	hallway west lightswitch	hallway/lightswitch-west
 xxx	SONOFF_TOUCH	10.13.107.150	60:01:94:86:76:F6	none	0	%prefix%/i3/inside/%topic%/	elab light	elab/light
 xxx	SONOFF_TOUCH	10.13.107.239	60:01:94:86:BB:84	none	0	%prefix%/i3/inside/%topic%/	craftroom light	craftroom/light
-xxx	SONOFF_TOUCH	x	60:01:94:86:C7:3B	none	0	%prefix%/i3/inside/%topic%/	hallway east light	hallway/light
+xxx	SONOFF_TOUCH	x	60:01:94:86:C7:3B	none	0	%prefix%/i3/inside/%topic%/	hallway east lightswitch	hallway/lightswitch-east
+xxx	SONOFF_TOUCH	x	60:01:94:86:BB:D9	none	0	%prefix%/i3/inside/%topic%/	small bathroom light	small-bathroom/light
 
 #these three have the custom commands
 xxx	SONOFF_TH	x	2C:3A:E8:08:03:AF	none	0	%prefix%/i3/inside/%topic%/	cnc vent fan	cnc/vent
