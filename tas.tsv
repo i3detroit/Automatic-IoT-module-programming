@@ -66,8 +66,8 @@ xxx	SONOFF_BRIDGE	x	60:01:94:8F:34:3D	none	0	%prefix%/i3/inside/%topic%/	433 rf 
 xxx	SONOFF_BASIC	x	5C:CF:7F:72:53:39	none	0	%prefix%/i3/inside/%topic%/	wolverine chiller	laser-zone/wolverine/chiller
 xxx	SONOFF_BASIC	x	5C:CF:7F:72:5E:75	none	0	%prefix%/i3/inside/%topic%/	bumblebee chiller	laser-zone/bumblebee/chiller
 
-xxx	SONOFF_POW	10.13.107.223	EC:FA:BC:00:A0:DC	none	0	%prefix%/i3/inside/%topic%/	wolverine	laser-zone/wolverine
-xxx	SONOFF_POW	10.13.107.245	EC:FA:BC:00:99:36	none	0	%prefix%/i3/inside/%topic%/	bumblebee	laser-zone/bumblebee
+xxx	SONOFF_POW	10.13.107.223	EC:FA:BC:00:A0:DC	none	0	%prefix%/i3/inside/%topic%/	wolverine	laser-zone/wolverine/laser
+xxx	SONOFF_POW	10.13.107.245	EC:FA:BC:00:99:36	none	0	%prefix%/i3/inside/%topic%/	bumblebee	laser-zone/bumblebee/laser
 
 xxx	SONOFF_TOUCH	x	60:01:94:86:C6:05	none	0	%prefix%/i3/inside/%topic%/	hallway west lightswitch	hallway/lightswitch-west
 # mosquitto_pub -t "cmnd/i3/inside/hallway/lightswitch-west/buttontopic" -m "hallway/light"
