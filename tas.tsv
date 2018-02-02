@@ -34,8 +34,8 @@ id	module	ip	mac	MQTT_GRPTOPIC	APP_POWERON_STATE	MQTT_FULLTPIC	FRIENDLY_NAME	MQT
 033	SONOFF_BASIC	10.13.107.168	5C:CF:7F:B4:D3:7F	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 034	SONOFF_BASIC	10.13.107.198	5C:CF:7F:BD:75:B6	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 035	SONOFF_BASIC	10.13.107.126	2C:3A:E8:07:AC:81	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-036	SONOFF_BASIC	10.13.107.212	2C:3A:E8:11:6E:CC	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-037	SONOFF_BASIC	10.13.107.230	5C:CF:7F:B4:D7:C6	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
+036	SONOFF_BASIC	10.13.107.212	2C:3A:E8:11:6E:CC	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id	use SetOption13 ON and SetOption32 100
+037	SONOFF_BASIC	10.13.107.230	5C:CF:7F:B4:D7:C6	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id	use SetOption13 ON and SetOption32 100
 038	SONOFF_BN	10.13.107.124	60:01:94:84:E3:DA	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 039	SONOFF_BN	10.13.107.112	60:01:94:84:93:E3	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
 040	SONOFF_BN	10.13.107.187	60:01:94:8E:05:91	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
