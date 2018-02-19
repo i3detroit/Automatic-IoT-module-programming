@@ -1,52 +1,52 @@
 id	module	ip	mac	MQTT_GRPTOPIC	APP_POWERON_STATE	MQTT_FULLTPIC	FRIENDLY_NAME	MQTT_TOPIC	comments
-001	SONOFF_BASIC	10.13.107.133	5C:CF:7F:1B:D4:CA	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-002	SONOFF_BASIC	10.13.107.78	5C:CF:7F:1B:CF:BC	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-003	SONOFF_BASIC	10.13.107.104	5C:CF:7F:1B:CF:FA	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-004	SONOFF_BASIC	10.13.107.177	5C:CF:7F:1C:7B:CB	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-005	SONOFF_BASIC	10.13.107.244	5C:CF:7F:1B:EF:5E	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-006	SONOFF_BASIC	10.13.107.240	5C:CF:7F:1B:EA:25	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-007	SONOFF_BASIC	10.13.107.193	5C:CF:7F:1B:DF:BF	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-008	SONOFF_BASIC	10.13.107.154	60:01:94:00:53:B3	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id	electrodragon
-009	SONOFF_BASIC	10.13.107.184	60:01:94:00:58:18	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id	electrodragon
-010	SONOFF_BASIC	10.13.107.130	60:01:94:00:BB:79	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id	electrodragon
-011	SONOFF_BASIC	10.13.107.98	5C:CF:7F:1C:B3:6E	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-012	ABZMAN_OUTLET	10.13.107.237	38:2B:78:01:8B:0A	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id	unmodified ct-065w eco plug
-013	ABZMAN_OUTLET	10.13.107.144	38:2B:78:01:88:A5	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id	unmodified ct-065w eco plug
-014	ABZMAN_OUTLET	10.13.107.122	38:2B:78:01:84:90	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id	modified ct-065w eco plug
-015	ABZMAN_OUTLET	10.13.107.84	5C:CF:7F:04:E6:2C	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id	modified and broken ct-065w eco plug; Has an esp-12 module instead of default because the magic smoke left, and the voltage current sense was cut.
-016	SONOFF_BASIC	10.13.107.129	60:01:94:00:5B:98	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id	electrodragon; programming via pin header does not work
-017	ABZMAN_OUTLET	10.13.107.127	38:2B:78:01:8B:92	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id	modified ct-065w eco plug
-018	SONOFF_BASIC	10.13.107.201	60:01:94:00:54:2B	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id	electrodragon
-019	SONOFF_BASIC	10.13.107.178	2C:3A:E8:11:60:89	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-020	SONOFF_BASIC	10.13.107.128	2C:3A:E8:07:AC:83	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-021	SONOFF_BASIC	10.13.107.141	5C:CF:7F:BB:06:BC	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-022	SONOFF_BASIC	10.13.107.172	5C:CF:7F:B4:D3:83	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-023	SONOFF_BASIC	10.13.107.235	5C:CF:7F:BD:86:9A	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-024	SONOFF_BASIC	10.13.107.210	5C:CF:7F:BD:72:B1	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-025	SONOFF_BASIC	10.13.107.13	5C:CF:7F:BB:04:5F	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-026	SONOFF_BASIC	10.13.107.158	2C:3A:E8:0F:4B:18	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-027	SONOFF_BN	10.13.107.113	60:01:94:8F:A7:30	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-028	SONOFF_BASIC	10.13.107.243	5C:CF:7F:BD:86:A2	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-029	SONOFF_BASIC	10.13.107.42	5C:CF:7F:BD:85:BC	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-030	SONOFF_BASIC	10.13.107.216	5C:CF:7F:BB:04:61	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-031	SONOFF_BASIC	10.13.107.105	2C:3A:E8:11:99:19	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-032	SONOFF_BASIC	10.13.107.148	5C:CF:7F:BB:06:C3	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-033	SONOFF_BASIC	10.13.107.168	5C:CF:7F:B4:D3:7F	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-034	SONOFF_BASIC	10.13.107.198	5C:CF:7F:BD:75:B6	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-035	SONOFF_BASIC	10.13.107.126	2C:3A:E8:07:AC:81	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-036	SONOFF_BASIC	10.13.107.212	2C:3A:E8:11:6E:CC	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id	use SetOption13 ON and SetOption32 100
-037	SONOFF_BASIC	10.13.107.230	5C:CF:7F:B4:D7:C6	lights/east	1	%prefix%/i3/inside/%topic%/	light id	lights/id	use SetOption13 ON and SetOption32 100
-038	SONOFF_BN	10.13.107.124	60:01:94:84:E3:DA	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-039	SONOFF_BN	10.13.107.112	60:01:94:84:93:E3	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
-040	SONOFF_BN	10.13.107.187	60:01:94:8E:05:91	lights/emergency	1	%prefix%/i3/inside/%topic%/	light id	lights/id
+001	SONOFF_BASIC	10.13.107.133	5C:CF:7F:1B:D4:CA	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+002	SONOFF_BASIC	10.13.107.78	5C:CF:7F:1B:CF:BC	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+003	SONOFF_BASIC	10.13.107.104	5C:CF:7F:1B:CF:FA	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+004	SONOFF_BASIC	10.13.107.177	5C:CF:7F:1C:7B:CB	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+005	SONOFF_BASIC	10.13.107.244	5C:CF:7F:1B:EF:5E	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+006	SONOFF_BASIC	10.13.107.240	5C:CF:7F:1B:EA:25	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+007	SONOFF_BASIC	10.13.107.193	5C:CF:7F:1B:DF:BF	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+008	SONOFF_BASIC	10.13.107.154	60:01:94:00:53:B3	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%	electrodragon
+009	SONOFF_BASIC	10.13.107.184	60:01:94:00:58:18	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%	electrodragon
+010	SONOFF_BASIC	10.13.107.130	60:01:94:00:BB:79	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%	electrodragon
+011	SONOFF_BASIC	10.13.107.98	5C:CF:7F:1C:B3:6E	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+012	ABZMAN_OUTLET	10.13.107.237	38:2B:78:01:8B:0A	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%	unmodified ct-065w eco plug
+013	ABZMAN_OUTLET	10.13.107.144	38:2B:78:01:88:A5	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%	unmodified ct-065w eco plug
+014	ABZMAN_OUTLET	10.13.107.122	38:2B:78:01:84:90	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%	modified ct-065w eco plug
+015	ABZMAN_OUTLET	10.13.107.84	5C:CF:7F:04:E6:2C	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%	modified and broken ct-065w eco plug; Has an esp-12 module instead of default because the magic smoke left, and the voltage current sense was cut.
+016	SONOFF_BASIC	10.13.107.129	60:01:94:00:5B:98	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%	electrodragon; programming via pin header does not work
+017	ABZMAN_OUTLET	10.13.107.127	38:2B:78:01:8B:92	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%	modified ct-065w eco plug
+018	SONOFF_BASIC	10.13.107.201	60:01:94:00:54:2B	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%	electrodragon
+019	SONOFF_BASIC	10.13.107.178	2C:3A:E8:11:60:89	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+020	SONOFF_BASIC	10.13.107.128	2C:3A:E8:07:AC:83	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+021	SONOFF_BASIC	10.13.107.141	5C:CF:7F:BB:06:BC	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+022	SONOFF_BASIC	10.13.107.172	5C:CF:7F:B4:D3:83	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+023	SONOFF_BASIC	10.13.107.235	5C:CF:7F:BD:86:9A	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+024	SONOFF_BASIC	10.13.107.210	5C:CF:7F:BD:72:B1	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+025	SONOFF_BASIC	10.13.107.13	5C:CF:7F:BB:04:5F	lights/emergency	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+026	SONOFF_BASIC	10.13.107.158	2C:3A:E8:0F:4B:18	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+027	SONOFF_BN	10.13.107.113	60:01:94:8F:A7:30	lights/emergency	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+028	SONOFF_BASIC	10.13.107.243	5C:CF:7F:BD:86:A2	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+029	SONOFF_BASIC	10.13.107.42	5C:CF:7F:BD:85:BC	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+030	SONOFF_BASIC	10.13.107.216	5C:CF:7F:BB:04:61	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+031	SONOFF_BASIC	10.13.107.105	2C:3A:E8:11:99:19	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+032	SONOFF_BASIC	10.13.107.148	5C:CF:7F:BB:06:C3	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+033	SONOFF_BASIC	10.13.107.168	5C:CF:7F:B4:D3:7F	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+034	SONOFF_BASIC	10.13.107.198	5C:CF:7F:BD:75:B6	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+035	SONOFF_BASIC	10.13.107.126	2C:3A:E8:07:AC:81	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+036	SONOFF_BASIC	10.13.107.212	2C:3A:E8:11:6E:CC	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%	use SetOption13 ON and SetOption32 100
+037	SONOFF_BASIC	10.13.107.230	5C:CF:7F:B4:D7:C6	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%	use SetOption13 ON and SetOption32 100
+038	SONOFF_BN	10.13.107.124	60:01:94:84:E3:DA	lights/emergency	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+039	SONOFF_BN	10.13.107.112	60:01:94:84:93:E3	lights/emergency	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+040	SONOFF_BN	10.13.107.187	60:01:94:8E:05:91	lights/emergency	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
 xxx	SONOFF_BASIC	x	5C:CF:7F:B4:DA:79	none	1	%prefix%/i3/inside/%topic%/	classroom sign	classroom/sign
 xxx	SONOFF_BASIC	x	2C:3A:E8:07:AC:86	none	0	%prefix%/i3/inside/%topic%/	disco ball	commons/disco
 xxx	SONOFF_TOUCH	x	60:01:94:86:BD:3D	none	0	%prefix%/i3/inside/%topic%/	large bathroom light	large-bathroom/light
 xxx	SONOFF_TOUCH	x	60:01:94:86:C9:FC	none	0	%prefix%/i3/inside/%topic%/	large bathroom vent fan	large-bathroom/vent
 xxx	SONOFF_POW	x	5C:CF:7F:92:2C:CB	none	0	%prefix%/i3/inside/%topic%/	fablab chiller	fablab/chiller
 xxx	SONOFF_BASIC	x	5C:CF:7F:BD:72:AE	none	1	%prefix%/i3/inside/%topic%/	compressor valve	infrastructure/compressor-valve
-02	SONOFF_SV	x	5C:CF:7F:1B:D4:60	accent/chandelier	0	%prefix%/i3/inside/%topic%/	chandelier id	accent/chandelier-id
-01	SONOFF_SV	x	5C:CF:7F:1C:37:3E	accent/chandelier	0	%prefix%/i3/inside/%topic%/	chandelier id	accent/chandelier-id
+02	SONOFF_SV	x	5C:CF:7F:1B:D4:60	accent/chandelier	0	%prefix%/i3/inside/%topic%/	chandelier %id%	accent/chandelier-%id%
+01	SONOFF_SV	x	5C:CF:7F:1C:37:3E	accent/chandelier	0	%prefix%/i3/inside/%topic%/	chandelier %id%	accent/chandelier-%id%
 xxx	SONOFF_TOUCH	x	60:01:94:86:7C:5B	none	0	%prefix%/i3/inside/%topic%/	media lab lights	media-lab/lights
 xxx	SONOFF_TOUCH	10.13.0.194	F0:9F:C2:24:30:D7	none	0	%prefix%/i3/inside/%topic%/	commons ceiling fan	commons/ceiling-fans
 xxx	SONOFF_TOUCH	x	60:01:94:86:BB:C0	none	0	%prefix%/i3/inside/%topic%/	laser ceiling fan	laser-zone/ceiling-fan
@@ -88,3 +88,10 @@ xxx	SONOFF_TH	x	5C:CF:7F:42:93:CF	none	0	%prefix%/i3/inside/%topic%/	vent fan ov
 mosquitto_pub -t "cmnd/i3/inside/cnc/light/GPIO4" -m "9"
 mosquitto_pub -t "cmnd/i3/inside/cnc/light/GPIO14" -m "29"
 mosquitto_pub -t "cmnd/i3/inside/cnc/light/switchmode1" -m "3"
+
+xxx	SONOFF_TOUCH	10.13.107.164	60:01:94:86:BA:F3	none	0	%prefix%/i3/inside/%topic%/	classroom lightswitch	classroom/lightswitch-east
+# mosquitto_pub -t "cmnd/i3/inside/classroom/lightswitch-east/buttontopic" -m "classroom/lights-east"
+
+xxx	SONOFF_TOUCH	10.13.107.197	60:01:94:86:C9:D1	none	0	%prefix%/i3/inside/%topic%/	dooridor	dooridor/lights
+xxx	SONOFF_TOUCH	10.13.107.173	60:01:94:86:75:CF	none	0	%prefix%/i3/inside/%topic%/	classroom light	classroom/lights-west
+xxx	SONOFF_TOUCH	10.13.107.175	60:01:94:86:C8:7F	none	0	%prefix%/i3/inside/%topic%/	classroom light	classroom/lights-east

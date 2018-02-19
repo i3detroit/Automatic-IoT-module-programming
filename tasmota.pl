@@ -64,8 +64,8 @@ while (<>) {
     exit(1);
   }
 
-  $FRIENDLY_NAME =~ s/id/$id/;
-  $MQTT_TOPIC =~ s/id/$id/;
+  $FRIENDLY_NAME =~ s/%id%/$id/;
+  $MQTT_TOPIC =~ s/%id%/$id/;
 
   print "Modifying sonoff directory for '$FRIENDLY_NAME'\n";
   #device specific not in user_config_override.h
