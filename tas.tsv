@@ -71,6 +71,9 @@ xxx	SONOFF_TOUCH	10.13.107.197	60:01:94:86:C9:D1	none	0	%prefix%/i3/inside/%topi
 xxx	SONOFF_TOUCH	10.13.107.173	60:01:94:86:75:CF	none	0	%prefix%/i3/inside/%topic%/	classroom light	classroom/lights-west
 xxx	SONOFF_TOUCH	10.13.107.175	60:01:94:86:C8:7F	none	0	%prefix%/i3/inside/%topic%/	classroom light	classroom/lights-east
 xxx	SONOFF_POW	10.13.107.242	2C:3A:E8:3B:A8:5A	none	1	%prefix%/i3/inside/%topic%/	genie charging	commons/genie-charging
+xxx	SONOFF_TOUCH	10.13.107.82	60:01:94:9D:8F:11	none	0	%prefix%/i3/inside/%topic%/	small bathroom vent fan	small-bathroom/vent
+xxx	SONOFF_TOUCH	10.13.107.118	60:01:94:9D:91:B5	none	0	%prefix%/i3/inside/%topic%/	small bathroom shower light	small-bathroom/shower-light
+xxx	SONOFF_BASIC	10.13.107.162	DC:4F:22:0C:5F:97	none	0	%prefix%/i3/inside/%topic%/	commons siren	commons/siren
 
 xxx	SONOFF_POW	10.13.107.223	EC:FA:BC:00:A0:DC	none	0	%prefix%/i3/inside/%topic%/	wolverine	laser-zone/wolverine/laser
 xxx	SONOFF_POW	10.13.107.245	EC:FA:BC:00:99:36	none	0	%prefix%/i3/inside/%topic%/	bumblebee	laser-zone/bumblebee/laser
@@ -92,6 +95,14 @@ mosquitto_pub -t "cmnd/i3/inside/cnc/light/switchmode1" -m "3"
 
 xxx	SONOFF_TOUCH	10.13.107.164	60:01:94:86:BA:F3	none	0	%prefix%/i3/inside/%topic%/	classroom lightswitch	classroom/lightswitch-east
 # mosquitto_pub -t "cmnd/i3/inside/classroom/lightswitch-east/buttontopic" -m "classroom/lights-east"
+
+
+xxx	MAGICHOME	10.13.107.115	60:01:94:A0:04:52	none	0	%prefix%/i3/inside/%topic%/	elab accent arch south	elab/accent/arch-south
+mosquitto_pub -t "cmnd/i3/inside/elab/accent/arch-south/GPIO4" -m "47"
+mosquitto_pub -t "cmnd/i3/inside/elab/accent/arch-south/GPIO13" -m "36"
+xxx	MAGICHOME	10.13.107.138	60:01:94:96:D4:7A	none	0	%prefix%/i3/inside/%topic%/	elab accent arch north	elab/accent/arch-north
+mosquitto_pub -t "cmnd/i3/inside/elab/accent/arch-north/GPIO4" -m "47"
+mosquitto_pub -t "cmnd/i3/inside/elab/accent/arch-north/GPIO13" -m "36"
 
 #UNABLE TO OTA:
 xxx	SONOFF_4CH	10.13.0.104	60:01:94:83:7F:44	none	0	%prefix%/i3/inside/%topic%/	commons notification lights	commons/notification-lights
