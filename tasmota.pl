@@ -70,8 +70,8 @@ while (<>) {
   print "Modifying sonoff directory for '$FRIENDLY_NAME'\n";
   #device specific not in user_config_override.h
   (my $hostname = $MQTT_TOPIC) =~ s/\//-/g;
-  `sed -i 's/#define WIFI_HOSTNAME.*/#define WIFI_HOSTNAME "$hostname"/' $codeDir/sonoff.ino`;
-  `sed -i 's/#define MODULE.*/#define MODULE $module/' $codeDir/sonoff.ino`;
+  `sed -i 's/#define WIFI_HOSTNAME.*/#define WIFI_HOSTNAME "$hostname"/' $codeDir/sonoff.h`;
+  `sed -i 's/#define MODULE.*/#define MODULE $module/' $codeDir/sonoff.h`;
 
   my $filename = "$codeDir/user_config_override.h";
   open(my $fh, '>', $filename) or die "Could not open file '$filename' $!";
