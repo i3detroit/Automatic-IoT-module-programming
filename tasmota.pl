@@ -117,7 +117,7 @@ while (<>) {
   #SONOFF_TOUCH: esp8285
   #everything else: generic
   my $device = 'generic';
-  if(grep( /^$module$/, ('SONOFF_TOUCH', 'SONOFF_4CH', 'SONOFF_BRIDGE') ) ) {
+  if(grep( /^$module$/, ('SONOFF_TOUCH', 'SONOFF_4CH', 'SONOFF_BRIDGE', 'MAGICHOME23', 'MAGICHOME') ) ) {
     $device = 'esp8285';
   }
   my $buildCommand = buildCommand($device, '1M0');
