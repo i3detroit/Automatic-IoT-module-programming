@@ -14,7 +14,7 @@ x	led-matrix	unique	x	5C:CF:7F:0C:28:C8	esp8266:esp8266:nodemcuv2:CpuFrequency=8
 x	middle-east-light-switches-south	middle-east-light-switches	x	2C:3A:E8:1D:2A:32	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/commons/middle-east-light-switches-south
 x	middle-east-light-switches-north	middle-east-light-switches	x	5C:CF:7F:FA:43:27	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/commons/middle-east-light-switches-north
 x	front-door-funnel	unique	x	5C:CF:7F:FA:44:67	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
-x	front-door-indicator	unique	x	5C:CF:7F:04:E0:9A	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
+x	front-door-indicator	unique	10.13.107.208	5C:CF:7F:04:E0:9A	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
 x	disco-button	multi-topic-button	x	5C:CF:7F:FA:42:D6	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/commons/disco-button	-DTOPIC_0_TOPIC=\"i3/inside/commons/disco\"
 x	commons-ground-sensor-cluster	atmosphere-sensor-cluster	x	5C:CF:7F:63:3C:24	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/commons/ground-sensor-cluster
 x	commons-ceiling-sensor-cluster	atmosphere-sensor-cluster	x	EC:FA:BC:0E:A6:BC	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/commons/ceiling-sensor-cluster

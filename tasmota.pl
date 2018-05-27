@@ -14,7 +14,7 @@ my $cacheDir = "/tmp/autoSonoff_arduino_cache";
 #TODO: if file named 'hosts' older than XXX run command from readme
 #sudo nmap -sP 10.13.0.0-255 | grep -v "Host" | tail -n +3 | tr '\n' ' ' | sed 's|Nmap|\nNmap|g' |  grep "MAC Address" | perl -pe 's/.*report for (?:([^ ]*) \()?((?:[0-9]{1,3}\.?){4})\)? MAC Address: ([A-Z0-9:]*).*/$1 $2 $3/'
 
-`rsync -avhI --delete --progress -r $sonoffSrcDir/* $codeDir`;
+`rsync -avhI --delete --progress -r $sonoffSrcDir/ $codeDir`;
 `mkdir $buildDir`;
 `mkdir $cacheDir`;
 
