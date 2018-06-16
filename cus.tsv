@@ -16,9 +16,9 @@ x	middle-east-light-switches-north	middle-east-light-switches	x	5C:CF:7F:FA:43:2
 x	front-door-funnel	unique	x	5C:CF:7F:FA:44:67	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
 x	front-door-indicator	unique	10.13.107.208	5C:CF:7F:04:E0:9A	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M
 x	disco-button	multi-topic-button	x	5C:CF:7F:FA:42:D6	esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M1M	i3/inside/commons/disco-button	-DTOPIC_0_TOPIC=\"i3/inside/commons/disco\"
-x	commons-ground-sensor-cluster	atmosphere-sensor-cluster	x	5C:CF:7F:63:3C:24	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/commons/ground-sensor-cluster
-x	commons-ceiling-sensor-cluster	atmosphere-sensor-cluster	x	EC:FA:BC:0E:A6:BC	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/commons/ceiling-sensor-cluster
-x	fablab-sensor-cluster	atmosphere-sensor-cluster	x	5C:CF:7F:62:D2:B5	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/fablab/sensor-cluster
+x	commons-ground-sensor-cluster	atmosphere-sensor-cluster	10.13.107.59	68:C6:3A:D6:3A:92	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/commons/ground-sensor-cluster
+x	commons-ceiling-sensor-cluster	atmosphere-sensor-cluster	10.13.107.134	68:C6:3A:D6:3D:9A	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/commons/ceiling-sensor-cluster
+x	fablab-sensor-cluster	atmosphere-sensor-cluster	10.13.107.222	B4:E6:2D:3B:18:78	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/fablab/sensor-cluster
 001	air-compressor-request-ID	multi-topic-button	x	EC:FA:BC:0E:AB:D4	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/air-compressor-request-ID	-DTOPIC_0_TOPIC=\"i3/inside/infrastructure/air-compressor\"
 002	air-compressor-request-ID	multi-topic-button	x	2C:3A:E8:32:8C:D6	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/air-compressor-request-ID	-DTOPIC_0_TOPIC=\"i3/inside/infrastructure/air-compressor\"
 003	air-compressor-request-ID	multi-topic-button	x	EC:FA:BC:0E:AB:8A	esp8266:esp8266:d1_mini:CpuFrequency=80,UploadSpeed=921600,FlashSize=4M1M	i3/inside/air-compressor-request-ID	-DTOPIC_0_TOPIC=\"i3/inside/infrastructure/air-compressor\"
