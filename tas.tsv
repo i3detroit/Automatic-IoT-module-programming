@@ -4,8 +4,8 @@ id	module	ip	mac	MQTT_GRPTOPIC	APP_POWERON_STATE	MQTT_FULLTPIC	FRIENDLY_NAME	MQT
 002	SONOFF_BASIC	10.13.107.78	5C:CF:7F:1B:CF:BC	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
 003	SONOFF_BASIC	10.13.107.104	5C:CF:7F:1B:CF:FA	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
 004	SONOFF_BASIC	10.13.107.177	5C:CF:7F:1C:7B:CB	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
-005	SONOFF_BASIC	10.13.107.244	5C:CF:7F:1B:EF:5E	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
-006	SONOFF_BASIC	10.13.107.240	5C:CF:7F:1B:EA:25	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+005	SONOFF_BASIC	10.13.107.117	84:F3:EB:49:75:C1	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
+006	SONOFF_BASIC	10.13.107.135	68:C6:3A:CD:C0:1F	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
 007	SONOFF_BASIC	10.13.107.193	5C:CF:7F:1B:DF:BF	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
 008	SONOFF_BASIC	10.13.107.154	60:01:94:00:53:B3	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%	electrodragon
 009	SONOFF_BASIC	10.13.107.184	60:01:94:00:58:18	lights/east	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%	electrodragon
