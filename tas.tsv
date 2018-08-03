@@ -40,33 +40,33 @@ id	module	ip	mac	MQTT_GRPTOPIC	APP_POWERON_STATE	MQTT_FULLTPIC	FRIENDLY_NAME	MQT
 038	SONOFF_BN	10.13.107.124	60:01:94:84:E3:DA	lights/emergency	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
 039	SONOFF_BN	10.13.107.112	60:01:94:84:93:E3	lights/emergency	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
 040	SONOFF_BN	10.13.107.187	60:01:94:8E:05:91	lights/emergency	1	%prefix%/i3/inside/%topic%/	light %id%	lights/%id%
-xxx	SONOFF_BASIC	x	5C:CF:7F:B4:DA:79	none	1	%prefix%/i3/inside/%topic%/	classroom sign	classroom/sign
-xxx	SONOFF_BASIC	x	2C:3A:E8:07:AC:86	none	0	%prefix%/i3/inside/%topic%/	disco ball	commons/disco
-xxx	SONOFF_TOUCH	x	60:01:94:86:BD:3D	none	0	%prefix%/i3/inside/%topic%/	large bathroom light	large-bathroom/light
-xxx	SONOFF_TOUCH	x	60:01:94:86:C9:FC	none	0	%prefix%/i3/inside/%topic%/	large bathroom vent fan	large-bathroom/vent
-xxx	SONOFF_POW	x	5C:CF:7F:92:2C:CB	none	0	%prefix%/i3/inside/%topic%/	fablab chiller	fablab/chiller
-xxx	SONOFF_BASIC	x	5C:CF:7F:BD:72:AE	none	1	%prefix%/i3/inside/%topic%/	compressor valve	infrastructure/compressor-valve
-02	SONOFF_SV	x	5C:CF:7F:1B:D4:60	accent/chandelier	0	%prefix%/i3/inside/%topic%/	chandelier %id%	accent/chandelier-%id%
-01	SONOFF_SV	x	5C:CF:7F:1C:37:3E	accent/chandelier	0	%prefix%/i3/inside/%topic%/	chandelier %id%	accent/chandelier-%id%
-xxx	SONOFF_TOUCH	x	60:01:94:86:7C:5B	none	0	%prefix%/i3/inside/%topic%/	media lab lights	media-lab/lights
-xxx	SONOFF_TOUCH	10.13.0.194	F0:9F:C2:24:30:D7	none	0	%prefix%/i3/inside/%topic%/	commons ceiling fan	commons/ceiling-fans
-xxx	SONOFF_TOUCH	x	60:01:94:86:BB:C0	none	0	%prefix%/i3/inside/%topic%/	laser ceiling fan	laser-zone/ceiling-fan
-xxx	SONOFF_SV	x	5C:CF:7F:1C:42:64	none	0	%prefix%/i3/inside/%topic%/	laser vent fan	laser-zone/vent-fan
-xxx	TRAFFIC_LIGHT 	x 	18:FE:34:FA:3C:8E 	none	0	%prefix%/i3/inside/%topic%/	traffic light	commons/traffic-light	mosquitto_pub -t 'cmnd/i3/inside/commons/traffic-light/GPIO14' -m '3'
-xxx	SONOFF_BASIC	x	5C:CF:7F:1B:CF:DC	none	0	%prefix%/i3/inside/%topic%/	fablab vent fan	fablab/vent
-xxx	SONOFF_BASIC	x	2C:3A:E8:07:B2:B6	none	0	%prefix%/i3/inside/%topic%/	machine shop ceiling fan	machine-shop/ceiling-fan
-xxx	SONOFF_BASIC	10.13.0.126	5C:CF:7F:BD:86:A1	none	0	%prefix%/i3/inside/%topic%/	Paint box vent fan	commons/paint-box
-xxx	SONOFF_BASIC	x	5C:CF:7F:BB:06:C2	none	1	%prefix%/i3/inside/%topic%/	commons spotlights	commons/accent/disco-spotlights
-xxx	SONOFF_BASIC	x	5C:CF:7F:BD:5E:15	none	1	%prefix%/i3/inside/%topic%/	snapple vending light	commons/snapple-vending-light
-xxx	SONOFF_POW	10.13.0.160	2C:3A:E8:26:57:B4	none	1	%prefix%/i3/inside/%topic%/	snapple vending compressor	commons/snapple-vending-compressor
-xxx	SONOFF_BRIDGE	x	60:01:94:8F:34:3D	none	0	%prefix%/i3/inside/%topic%/	433 rf reciever	infrastructure/433-rf-reciever
-xxx	SONOFF_BASIC	x	5C:CF:7F:72:53:39	none	0	%prefix%/i3/inside/%topic%/	wolverine chiller	laser-zone/wolverine/chiller
-xxx	SONOFF_BASIC	x	5C:CF:7F:72:5E:75	none	0	%prefix%/i3/inside/%topic%/	bumblebee chiller	laser-zone/bumblebee/chiller
-xxx	SONOFF_BASIC	10.13.107.82	5C:CF:7F:72:96:3E	none	0	%prefix%/i3/inside/%topic%/	h structure workbench lights	tool-crib/workbench-lights
-xxx	SONOFF_TOUCH	x	60:01:94:86:C7:3B	none	0	%prefix%/i3/inside/%topic%/	hallway light	hallway/light
+xxx	SONOFF_BASIC	10.13.107.73	5C:CF:7F:B4:DA:79	none	1	%prefix%/i3/inside/%topic%/	classroom sign	classroom/sign
+xxx	SONOFF_BASIC	10.13.107.131	2C:3A:E8:07:AC:86	none	0	%prefix%/i3/inside/%topic%/	disco ball	commons/disco
+xxx	SONOFF_TOUCH	10.3.107.183	60:01:94:86:BD:3D	none	0	%prefix%/i3/inside/%topic%/	large bathroom light	large-bathroom/light
+xxx	SONOFF_TOUCH	10.13.107.116	60:01:94:86:C9:FC	none	0	%prefix%/i3/inside/%topic%/	large bathroom vent fan	large-bathroom/vent
+xxx	SONOFF_POW	10.13.107.77	5C:CF:7F:92:2C:CB	none	0	%prefix%/i3/inside/%topic%/	fablab chiller	fablab/chiller
+xxx	SONOFF_BASIC	10.13.107.195	5C:CF:7F:BD:72:AE	none	1	%prefix%/i3/inside/%topic%/	compressor valve	infrastructure/compressor-valve
+02	SONOFF_SV	10.13.107.27	5C:CF:7F:1B:D4:60	accent/chandelier	0	%prefix%/i3/inside/%topic%/	chandelier %id%	accent/chandelier-%id%
+01	SONOFF_SV	10.13.107.74	5C:CF:7F:1C:37:3E	accent/chandelier	0	%prefix%/i3/inside/%topic%/	chandelier %id%	accent/chandelier-%id%
+xxx	SONOFF_TOUCH	10.13.107.196	60:01:94:86:7C:5B	none	0	%prefix%/i3/inside/%topic%/	media lab lights	media-lab/lights
+xxx	SONOFF_TOUCH	10.13.107.108	F0:9F:C2:24:30:D7	none	0	%prefix%/i3/inside/%topic%/	commons ceiling fan	commons/ceiling-fans
+xxx	SONOFF_TOUCH	10.13.107.52	60:01:94:86:BB:C0	none	0	%prefix%/i3/inside/%topic%/	laser ceiling fan	laser-zone/ceiling-fan
+xxx	SONOFF_SV	10.13.107.121	5C:CF:7F:1C:42:64	none	0	%prefix%/i3/inside/%topic%/	laser vent fan	laser-zone/vent-fan
+xxx	TRAFFIC_LIGHT 10.13.107.56  18:FE:34:FA:3C:8E 	none	0	%prefix%/i3/inside/%topic%/	traffic light	commons/traffic-light	mosquitto_pub -t 'cmnd/i3/inside/commons/traffic-light/GPIO14' -m '3'
+xxx	SONOFF_BASIC	10.13.107.110	5C:CF:7F:1B:CF:DC	none	0	%prefix%/i3/inside/%topic%/	fablab vent fan	fablab/vent
+xxx	SONOFF_BASIC	10.13.107.137	2C:3A:E8:07:B2:B6	none	0	%prefix%/i3/inside/%topic%/	machine shop ceiling fan	machine-shop/ceiling-fan
+xxx	SONOFF_BASIC	10.13.107.199	5C:CF:7F:BD:86:A1	none	0	%prefix%/i3/inside/%topic%/	Paint box vent fan	commons/paint-box
+xxx	SONOFF_BASIC	10.13.107.236	5C:CF:7F:BB:06:C2	none	1	%prefix%/i3/inside/%topic%/	commons spotlights	commons/accent/disco-spotlights
+xxx	SONOFF_BASIC	10.13.107.49	5C:CF:7F:BD:5E:15	none	1	%prefix%/i3/inside/%topic%/	snapple vending light	commons/snapple-vending-light
+xxx	SONOFF_POW	10.13.107.125	2C:3A:E8:26:57:B4	none	1	%prefix%/i3/inside/%topic%/	snapple vending compressor	commons/snapple-vending-compressor
+xxx	SONOFF_BRIDGE	10.13.107.136	60:01:94:8F:34:3D	none	0	%prefix%/i3/inside/%topic%/	433 rf reciever	infrastructure/433-rf-reciever
+xxx	SONOFF_BASIC	10.13.107.231	5C:CF:7F:72:53:39	none	0	%prefix%/i3/inside/%topic%/	wolverine chiller	laser-zone/wolverine/chiller
+xxx	SONOFF_BASIC	10.13.107.114	5C:CF:7F:72:5E:75	none	0	%prefix%/i3/inside/%topic%/	bumblebee chiller	laser-zone/bumblebee/chiller
+xxx	SONOFF_BASIC	10.13.107.83	5C:CF:7F:72:96:3E	none	0	%prefix%/i3/inside/%topic%/	h structure workbench lights	tool-crib/workbench-lights
+xxx	SONOFF_TOUCH	10.13.107.167	60:01:94:86:C7:3B	none	0	%prefix%/i3/inside/%topic%/	hallway light	hallway/light
 xxx	SONOFF_TOUCH	10.13.107.150	60:01:94:86:76:F6	none	0	%prefix%/i3/inside/%topic%/	elab light	elab/light
 xxx	SONOFF_TOUCH	10.13.107.239	60:01:94:86:BB:84	none	0	%prefix%/i3/inside/%topic%/	craftroom light	craftroom/light
-xxx	SONOFF_TOUCH	x	60:01:94:86:BB:D9	none	0	%prefix%/i3/inside/%topic%/	small bathroom light	small-bathroom/light
+xxx	SONOFF_TOUCH	10.13.107.79	60:01:94:86:BB:D9	none	0	%prefix%/i3/inside/%topic%/	small bathroom light	small-bathroom/light
 xxx	SONOFF_TOUCH	10.13.107.197	60:01:94:86:C9:D1	none	0	%prefix%/i3/inside/%topic%/	dooridor	dooridor/lights
 xxx	SONOFF_TOUCH	10.13.107.173	60:01:94:86:75:CF	none	0	%prefix%/i3/inside/%topic%/	classroom light	classroom/lights-west
 xxx	SONOFF_TOUCH	10.13.107.175	60:01:94:86:C8:7F	none	0	%prefix%/i3/inside/%topic%/	classroom light	classroom/lights-east
@@ -82,13 +82,13 @@ mosquitto_pub -t "cmnd/i3/inside/laser-zone/bumblebee/laser/SetOption32" -m "100
 mosquitto_pub -t "cmnd/i3/inside/laser-zone/wolverine/laser/SetOption13" -m "ON"
 mosquitto_pub -t "cmnd/i3/inside/laser-zone/wolverine/laser/SetOption32" -m "100"
 
-xxx	SONOFF_TOUCH	x	60:01:94:86:C6:05	none	0	%prefix%/i3/inside/%topic%/	hallway west lightswitch	hallway/lightswitch-west
+xxx	SONOFF_TOUCH	10.13.107.174	60:01:94:86:C6:05	none	0	%prefix%/i3/inside/%topic%/	hallway west lightswitch	hallway/lightswitch-west
 mosquitto_pub -t "cmnd/i3/inside/hallway/lightswitch-west/buttontopic" -m "hallway/light"
 
 #these three have the custom commands
-xxx	SONOFF_TH	x	2C:3A:E8:08:03:AF	none	0	%prefix%/i3/inside/%topic%/	cnc vent fan	cnc/vent
-xxx	SONOFF_TH	x	5C:CF:7F:42:91:92	none	0	%prefix%/i3/inside/%topic%/	cnc large light	cnc/light
-xxx	SONOFF_TH	x	5C:CF:7F:42:93:CF	none	0	%prefix%/i3/inside/%topic%/	vent fan over sink	commons/south-vent
+xxx	SONOFF_TH	10.13.107.132	2C:3A:E8:08:03:AF	none	0	%prefix%/i3/inside/%topic%/	cnc vent fan	cnc/vent
+xxx	SONOFF_TH	10.13.107.75	5C:CF:7F:42:91:92	none	0	%prefix%/i3/inside/%topic%/	cnc large light	cnc/light
+xxx	SONOFF_TH	10.13.107.12	5C:CF:7F:42:93:CF	none	0	%prefix%/i3/inside/%topic%/	vent fan over sink	commons/south-vent
 mosquitto_pub -t "cmnd/i3/inside/cnc/light/GPIO4" -m "9"
 mosquitto_pub -t "cmnd/i3/inside/cnc/light/GPIO14" -m "29"
 mosquitto_pub -t "cmnd/i3/inside/cnc/light/switchmode1" -m "3"
@@ -107,4 +107,4 @@ mosquitto_pub -t "cmnd/i3/inside/elab/accent/arch-north/GPIO13" -m "36"
 mosquitto_pub -t "cmnd/i3/inside/elab/accent/arch-north/SetOption15" -m "1"
 
 #UNABLE TO OTA:
-xxx	SONOFF_4CH	10.13.0.104	60:01:94:83:7F:44	none	0	%prefix%/i3/inside/%topic%/	commons notification lights	commons/notification-lights
+xxx	SONOFF_4CH	10.13.107.88	60:01:94:83:7F:44	none	0	%prefix%/i3/inside/%topic%/	commons notification lights	commons/notification-lights
