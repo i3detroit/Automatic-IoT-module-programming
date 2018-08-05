@@ -957,7 +957,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
     - topic: "cmnd/i3/inside/commons/traffic-light/GPIO14"
       payload: "2"
 
@@ -1358,7 +1358,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
     - topic: "cmnd/i3/inside/laser-zone/bumblebee/laser/SetOption13"
       payload: "ON"
     - topic: "cmnd/i3/inside/laser-zone/bumblebee/laser/SetOption32"
@@ -1379,7 +1379,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
     - topic: "cmnd/i3/inside/hallway/lightswitch-west/buttontopic"
       payload: "hallway/light"
 
@@ -1398,7 +1398,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
     - topic: "cmnd/i3/inside/cnc/vent/GPIO4"
       payload: "9"
     - topic: "cmnd/i3/inside/cnc/vent/GPIO14"
@@ -1421,7 +1421,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
     - topic: "cmnd/i3/inside/cnc/light/GPIO4"
       payload: "9"
     - topic: "cmnd/i3/inside/cnc/light/GPIO14"
@@ -1444,7 +1444,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
     - topic: "cmnd/i3/inside/commons/south-vent/GPIO4"
       payload: "9"
     - topic: "cmnd/i3/inside/commons/south-vent/GPIO14"
@@ -1467,7 +1467,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
     - topic: "cmnd/i3/inside/classroom/lightswitch-east/buttontopic"
       payload: "classroom/lights-east"
 
