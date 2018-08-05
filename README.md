@@ -1,53 +1,50 @@
-# Autoprogramming a bunch of sonoffs
+# A script for autoprogramming a bunch of sonoffs
 
-Setup: on McClellan, copy /home/mtfurlan/projects/esp to your home directory. Or clone the repo and copy /home/mtfurlan/esp/Sonoff-Tasmota.mod and /home/mtfurlan/esp/tasmota-light-arduino
+Setup: On McClellan, copy /home/mkfink/pio to your home directory. Or clone the repo and copy /home/mkfink/pio/Sonoff-Tasmota alongside it. This uses a slightly modified version of Sonoff-Tasmota, changes detailed below. /home/mkfink/pio contains a python venv specifically set up to run with this script and PlatformIO. platformio.ini and user_config_override.h are provided here as examples, but they should also be in the correct place.
 
-Find the list you hate
-```
-sudo nmap -sP 10.13.0.0-255 | grep -v "Host" | tail -n +3 | tr '\n' ' ' | sed 's|Nmap|\nNmap|g' |  grep "MAC Address" | perl -pe 's/.*report for (?:([^ ]*) \()?((?:[0-9]{1,3}\.?){4})\)? MAC Address: ([A-Z0-9:]*).*/$1 $2 $3/'
-```
+Device specific information is located in tasmota.yaml. Modules are flashed based on IP. All tasmota devices should have static IPs when on the IoT VLAN (10.13.107.x). Use mqtt_query_ip.py to verify all device IPs, in case some devices have have failed over to the normal LAN.
 
-## Tasmota settings to change per device
-* `MODULE` in `sonoff.ino` Can't be done in `user_config_override.h`, is defined after that's included.
-* `CFG_HOLDER` Needs to be incremented or changed each program. If same, flash is not updated
+Copy the devices you want to flash to flash.yaml and run autoflash.py. Script will compile and OTA flash the device. If any post-flash commands are defined, it will watch MQTT for the device to come back online after flashing and then run the post-flash commands. Then it will move on to the next device.
+
+## Tasmota settings which are changed - set in user_config_override.h
+* `CFG_HOLDER`
+* `MODULE`
+* `MQTT_GRPTOPIC`
 * `MQTT_FULLTOPIC`
 * `MQTT_TOPIC`
-* `MQTT_GRPTOPIC`
 * `FRIENDLY_NAME`
-* `APP_POWERON_STATE` [PowerOnState] Power On Relay state (0 = Off, 1 = On, 2 = Toggle Saved state, 3 = Saved state)
-* `WIFI_HOSTNAME` in sonoff.ino. Cannot contain `%`, or it will try to be passed the topic and the chip ID by `snprintf`. Set to `MQTT_TOPIC`, but replace / with -
+* `APP_POWERON_STATE`
+* Extra tasmota settings like sensors
 
-## same for all
-* `SAVE_STATE` [SetOption0] Save changed power state to Flash (0 = disable, 1 = enable)
+### Based on device location (i3, mike's house, mark's house, etc.)
+* `MQTT_HOST`
 * `STA_SSID1`
 * `STA_PASS1`
 * `STA_SSID2`
 * `STA_PASS2`
-* `WIFI_CONFIG_TOOL` `(WIFI_RESTART, WIFI_SMARTCONFIG, WIFI_MANAGER, WIFI_WPSCONFIG, WIFI_RETRY)`, set to `WIFI_RETRY` to not bounce device on wifi fail. Lights were flickering.
 * `MQTT_HOST`
-* `MQTT_USER`
-* `MQTT_PASS`
-* `TIME_DST` `Second, Sun, Mar, 2, -240`
-* `TIME_STD` `First, Sun, Nov, 2, -300`
-* `APP_TIMEZONE` `99`
+* `NTP_SERVER1` "10.13.0.1" or "nl.pool.ntp.org"
 
-
-
+## same for all - changed in user_config.h
+* `SAVE_STATE` set to 0
+* `WIFI_CONFIG_TOOL` set to `WIFI_RETRY` to not bounce device on wifi fail. Lights were flickering.
+* `MQTT_USER`              ''
+* `MQTT_PASS`              ''
+* `TIME_DST_HEMISPHERE`    North
+* `TIME_DST_WEEK`          Second
+* `TIME_DST_DAY`           Sun
+* `TIME_DST_MONTH`         Mar
+* `TIME_DST_HOUR`          2
+* `TIME_DST_OFFSET`        -240
+* `TIME_STD_HEMISPHERE`    North
+* `TIME_STD_WEEK`          First
+* `TIME_STD_DAY`           Sun
+* `TIME_STD_MONTH`         Nov
+* `TIME_STD_HOUR`          3
+* `TIME_STD_OFFSET`        -300
+* `LATITUDE`               42.453725
+* `LONGITUDE`              -83.113690
+* `APP_TIMEZONE`           99
 
 ### Undefine
-* `MQTT_HOST_DISCOVERY`
-* `USE_I2C`
-* `USE_BH1750`
-* `USE_BMP`
-* `USE_HTU`
-* `USE_SHT`
-* `USE_IR_REMOTE`
-* `USE_WS2812`
-* `USE_WS2812_CTYPE`
-
-## host_hosts.c
-This is for running on a linux host somewhere in the iot subnet.
-
-It will run a webserver that will run the above command to generate the hosts file.
-
-`curl map_pi:5000` will get the hosts
+* Almost all of the extra options. Enable per device based on tasmota.yaml.
