@@ -87,7 +87,9 @@ passed = []
 # randomize the thing that tells tasmota to update the whole device config
 cfg_holder = str(randint(1, 32000))
 
+counter = 0
 for dev in devicelist:
+    counter += 1
     device_name = dev['name']
     devtype = dev['hardware']['type']
     site = dev['hardware']['site']
@@ -112,7 +114,8 @@ for dev in devicelist:
     device_name = re.sub(" ", "_", device_name)
 
     # Set the terminal title so you know what device is building
-    sys.stdout.write("\x1b]2;{}\x07".format(device_name))
+    sys.stdout.write("\x1b]2;({}/{}) - {}\x07".format(counter, len(devicelist), device_name))
+    print("({}/{}) - processing{})".format(counter, len(devicelist), device_name))
 
     # generate topic of form 'tele/%device_topic%/INFO2'
     subscribe_topic = re.sub('%topic%', topic,
