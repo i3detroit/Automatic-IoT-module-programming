@@ -24,7 +24,7 @@ def site_pick(site):
 #define STA_SSID2 "i3detroit"
 #define STA_PASS2 ""
 #define MQTT_HOST "{}"
-#define NTP_SERVER1 "10.13.0.1"      
+#define NTP_SERVER1 "10.13.0.1"
 #define SITE "i3"'''.format(mqtt_host)
     elif site == 'mike':
         mqtt_host = "{}"
@@ -32,7 +32,7 @@ def site_pick(site):
 #define STA_PASS1 "VolleyBall19APotassium514Larsen974"
 #define STA_SSID2 "i3detroit"
 #define STA_PASS2 ""
-#define MQTT_HOST "192.168.1.107"   
+#define MQTT_HOST "192.168.1.107"
 #define NTP_SERVER1 "nl.pool.ntp.org"
 #define SITE "MIKE"'''.format(mqtt_host)
     if site == 'mark':
@@ -54,8 +54,9 @@ tasmotadir = "/home/mkfink/pio/Sonoff-Tasmota"
 
 dev_defs = "flash.yaml"
 os.chdir(autoflashdir)
+# read in the devices yaml file and sort it by module for more efficient building
 with open(dev_defs, "r") as yamlfile:
-    devicelist = yaml.load(yamlfile)
+    devicelist = sorted(yaml.load(yamlfile), key=lambda k: k['hardware']['module'])
 
 os.chdir(tasmotadir)
 defs_fn = "sonoff/user_config_override.h"
