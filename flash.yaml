@@ -1,0 +1,22 @@
+- name: cnc large light
+  hardware:
+    type: tasmota
+    site: i3
+    module: SONOFF_TH
+    board: esp01_1m
+    ip_addr: 10.13.107.75
+    mac_addr: 5C:CF:7F:42:91:92
+  mqtt:
+    group_topic: none
+    base_topic: i3/inside
+    topic: cnc/light
+  tasmota:
+    poweron_state: 0
+  build_flags:
+  commands: 
+    - topic: "cmnd/i3/inside/cnc/light/GPIO4"
+      payload: "9"
+    - topic: "cmnd/i3/inside/cnc/light/GPIO14"
+      payload: "56"
+    - topic: "cmnd/i3/inside/cnc/light/switchmode1"
+      payload: "3"
