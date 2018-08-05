@@ -1,4 +1,5 @@
 import os
+import sys
 from subprocess import call
 from random import randint
 import yaml
@@ -64,7 +65,7 @@ blank_defines = '''//{} generated on {}
 #define _USER_CONFIG_OVERRIDE_H_
 
 // force the compiler to show a warning to confirm that this file is inlcuded
-#warning **** user_config_override.h: Using Settings from this File ****
+//#warning **** user_config_override.h: Using Settings from this File ****
 
 #define CFG_HOLDER {}
 #define MODULE {}
@@ -108,6 +109,9 @@ for dev in devicelist:
         topic = re.sub("%id%", dev['id'], topic)
         friendly_name = re.sub("%id%", dev['id'], friendly_name)
     device_name = re.sub(" ", "_", device_name)
+
+    # Set the terminal title so you know what device is building
+    sys.stdout.write("\x1b]2;{}\x07".format(device_name))
 
     # generate topic of form 'tele/%device_topic%/INFO2'
     subscribe_topic = re.sub('%topic%', topic,
@@ -165,6 +169,7 @@ for dev in devicelist:
 if len(failed) > 0:
     with open("error.log", "w") as errorlog:
         errorlog.write(str(datetime.datetime.now()))
+        errorlog.write("\nDevices did not flash:\n")
         errorlog.write("\n".join(failed))
 with open("flashed.log", "w") as flashlog:
     flashlog.write(str(datetime.datetime.now()))
