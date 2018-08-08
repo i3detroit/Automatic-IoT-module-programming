@@ -41,7 +41,7 @@ sub buildCommand {
     $optionalPrefsBuildFlags \\
     -prefs=build.warn_data_percentage=75 \\
     -prefs=runtime.tools.mkspiffs.path=$arduinoDir/portable/packages/esp8266/tools/mkspiffs/0.1.2 \\
-    -prefs=runtime.tools.esptool.path=$arduinoDir/portable/packages/esp8266/tools/esptool/0.4.9 \\
+    -prefs=runtime.tools.esptool.path=$arduinoDir/portable/packages/esp8266/tools/esptool/0.4.13 \\
     -prefs=runtime.tools.xtensa-lx106-elf-gcc.path=$arduinoDir/portable/packages/esp8266/tools/xtensa-lx106-elf-gcc/1.20.0-26-gb404fb9-2 \\
     -verbose \\
     $ino
@@ -104,9 +104,9 @@ while (<>) {
   }
   my $programCommand;
   if($type eq "unique") {
-    $programCommand = "python $arduinoDir/portable/packages/esp8266/hardware/esp8266/2.3.0/tools/espota.py -i $ip -f $buildDir/$name.ino.bin";
+    $programCommand = "python $arduinoDir/portable/packages/esp8266/hardware/esp8266/2.4.1/tools/espota.py -i $ip -f $buildDir/$name.ino.bin";
   } else {
-    $programCommand = "python $arduinoDir/portable/packages/esp8266/hardware/esp8266/2.3.0/tools/espota.py -i $ip -f $buildDir/$type.ino.bin";
+    $programCommand = "python $arduinoDir/portable/packages/esp8266/hardware/esp8266/2.4.1/tools/espota.py -i $ip -f $buildDir/$type.ino.bin";
   }
   print "$programCommand\n";
   my $result = `$programCommand`;
