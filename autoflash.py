@@ -29,13 +29,13 @@ def site_pick(site):
     elif site == 'mike':
         mqtt_host = "{}"
         site_info = '''#define STA_SSID1 "Pleiades"
-#define STA_PASS1 "VolleyBall19APotassium514Larsen974"
+#define STA_PASS1 "Volleyball19APotassium514Larsen974"
 #define STA_SSID2 "i3detroit"
 #define STA_PASS2 ""
 #define MQTT_HOST "192.168.1.107"
 #define NTP_SERVER1 "nl.pool.ntp.org"
 #define SITE "MIKE"'''.format(mqtt_host)
-    if site == 'mark':
+    elif site == 'mark':
         mqtt_host = "{}"
         site_info = '''#define STA_SSID1 "node42"
 #define STA_PASS1 "we do what we must, because we can"
@@ -95,10 +95,11 @@ for dev in devicelist:
     site = dev['hardware']['site']
     module = dev['hardware']['module']
     board = dev['hardware']['board']
-
-    ip_addr = dev['hardware']['ip_addr']
-    mac_addr = dev['hardware']['mac_addr']
-
+    try:
+        ip_addr = dev['hardware']['ip_addr']
+        mac_addr = dev['hardware']['mac_addr']
+    except ValueError:
+        pass
     group_topic = dev['mqtt']['group_topic']
     full_topic = '%prefix%/{}/%topic%/'.format(dev['mqtt']['base_topic'])
     topic = dev['mqtt']['topic']
