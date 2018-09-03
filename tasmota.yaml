@@ -357,7 +357,7 @@
     site: i3
     module: SONOFF_BASIC
     board: esp01_1m
-    ip_addr: 10.13.107.128
+    ip_addr: 10.13.107.252
     mac_addr: 2C:3A:E8:07:AC:83
   mqtt:
     group_topic: lights/east
