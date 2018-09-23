@@ -1568,3 +1568,20 @@
 #     poweron_state: 0
 #   build_flags:
 #   commands: 
+
+- name: chinesium laser
+  hardware:
+    type: tasmota
+    site: i3
+    module: SONOFF_POW
+    board: esp01_1m
+    ip_addr: 10.13.107.86
+    mac_addr: dc:4f:22:37:4c:24
+  mqtt:
+    group_topic: none
+    base_topic: i3/inside
+    topic: fablab/chinesium-laser
+  tasmota:
+    poweron_state: 0
+  build_flags:
+  commands:
