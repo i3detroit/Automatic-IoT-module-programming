@@ -10,6 +10,10 @@ import paho.mqtt.client as mqtt
 
 loop_time, wait_time = 1.0, 1.0
 
+RED = '\033[1;31m'
+GREEN = '\033[1;32m'
+NOCOLOR = '\033[0m'
+
 def on_message(mqclient, userdata, msg):
     # The callback for when a PUBLISH message is received from the server.
     global ip_addr
@@ -32,6 +36,7 @@ def mqtt_ip_query(cmnd_topic, stat_topic, mqtt_host):
     return ip_addr, mac_addr
 
 def mqtt_list_ips(yamlf, mqtt_host):
+    color=NOCOLOR
     global ip_addr, mac_addr
     found, not_found = 0, 0
     with open(yamlf, 'r') as yamlfile:
@@ -51,12 +56,15 @@ def mqtt_list_ips(yamlf, mqtt_host):
         ip_addr, mac_addr = '', ''
         ip_addr, mac_addr = mqtt_ip_query(cmnd_topic, stat_topic, mqtt_host)
 
-        if ip_addr and mac_addr:
+        if '10.13.107' not in ip_addr:
             found += 1
+            output = (RED + dev_name + '\t' + ip_addr).expandtabs(37) + NOCOLOR + '\t' + mac_addr
+        elif ip_addr and mac_addr:
+            found += 1
+            output = (dev_name + '\t' + GREEN + ip_addr).expandtabs(30) + '\t' + NOCOLOR + mac_addr
         else:
             not_found += 1
-
-        output = (dev_name + '\t' + ip_addr).expandtabs(30) + '\t' + mac_addr
+            output = RED + dev_name + NOCOLOR
         print(output)
         logf.write(output + '\n')
     logf.close()
