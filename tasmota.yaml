@@ -1012,23 +1012,6 @@
   build_flags:
   commands: 
 
-- name: snapple vending light
-  hardware:
-    type: tasmota
-    site: i3
-    module: SONOFF_BASIC
-    board: esp01_1m
-    ip_addr: 10.13.107.49
-    mac_addr: 5C:CF:7F:BD:5E:15
-  mqtt:
-    group_topic: none
-    base_topic: i3/inside
-    topic: commons/snapple-vending-light
-  tasmota:
-    poweron_state: 1
-  build_flags:
-  commands: 
-
 - name: snapple vending compressor
   hardware:
     type: tasmota
@@ -1581,6 +1564,78 @@
     group_topic: none
     base_topic: i3/inside
     topic: fablab/chinesium-laser
+  tasmota:
+    poweron_state: 0
+  build_flags:
+  commands:
+
+- name: OLD snapple vending light
+  hardware:
+    type: tasmota
+    site: i3
+    module: SONOFF_BASIC
+    board: esp01_1m
+    ip_addr: 10.13.107.49
+    mac_addr: 5C:CF:7F:BD:5E:15
+  mqtt:
+    group_topic: none
+    base_topic: i3/inside
+    topic: program-me
+  tasmota:
+    poweron_state: 1
+  build_flags:
+  commands: 
+
+- name: snapple vending rgb
+  hardware:
+    type: tasmota
+    site: i3
+    module: MAGICHOME23
+    board: esp01_1m
+    ip_addr: 10.13.107.106
+    mac_addr: dc:4f:22:c2:7c:95
+  mqtt:
+    group_topic: none
+    base_topic: i3/inside
+    topic: commons/snapple-vending-light
+  tasmota:
+    poweron_state: 1
+  build_flags:
+  commands:
+    - topic: "cmnd/i3/inside/elab/accent/arch-south/GPIO4"
+      payload: "51"
+    - topic: "cmnd/i3/inside/elab/accent/arch-south/SetOption15"
+      payload: "1"
+
+- name: swirly-lights-01
+  hardware:
+    type: tasmota
+    site: i3
+    module: SONOFF_BASIC
+    board: esp01_1m
+    ip_addr: 10.13.107.49
+    mac_addr: 5c:cf:7f:bd:5e:15
+  mqtt:
+    group_topic: accent/swirly-lights-01
+    base_topic: i3/inside
+    topic: commons/accent/swirly-lights-01
+  tasmota:
+    poweron_state: 0
+  build_flags:
+  commands:
+
+- name: swirly-lights-02
+  hardware:
+    type: tasmota
+    site: i3
+    module: SONOFF_BASIC
+    board: esp01_1m
+    ip_addr: 10.13.107.24
+    mac_addr: 84:f3:eb:a7:11:3c
+  mqtt:
+    group_topic: accent/swirly-lights-02
+    base_topic: i3/inside
+    topic: commons/accent/swirly-lights-02
   tasmota:
     poweron_state: 0
   build_flags:
