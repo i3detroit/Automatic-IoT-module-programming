@@ -14,7 +14,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '002'
   name: light %id%
@@ -32,7 +32,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '003'
   name: light %id%
@@ -50,7 +50,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '004'
   name: light %id%
@@ -68,7 +68,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '005'
   name: light %id%
@@ -86,7 +86,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '006'
   name: light %id%
@@ -104,7 +104,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '007'
   name: light %id%
@@ -122,7 +122,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '008'
   name: light %id%
@@ -197,7 +197,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '012'
   name: light %id%
@@ -348,7 +348,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '020'
   name: light %id%
@@ -366,7 +366,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '021'
   name: light %id%
@@ -384,7 +384,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '022'
   name: light %id%
@@ -402,7 +402,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '023'
   name: light %id%
@@ -420,7 +420,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '024'
   name: light %id%
@@ -438,7 +438,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '025'
   name: light %id%
@@ -456,7 +456,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '026'
   name: light %id%
@@ -474,7 +474,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '027'
   name: light %id%
@@ -492,7 +492,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '028'
   name: light %id%
@@ -510,7 +510,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '029'
   name: light %id%
@@ -528,7 +528,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '030'
   name: light %id%
@@ -546,7 +546,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '031'
   name: light %id%
@@ -564,7 +564,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '032'
   name: light %id%
@@ -582,7 +582,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '033'
   name: light %id%
@@ -600,7 +600,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '034'
   name: light %id%
@@ -618,7 +618,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '035'
   name: light %id%
@@ -636,7 +636,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '036'
   name: light %id%
@@ -657,7 +657,7 @@
   commands:
     - topic: "cmnd/i3/inside/lights/036/SetOption13"
       payload: 'ON'
-    - topic: "cmnd/i3/inside/lights/036/SetOption32" 
+    - topic: "cmnd/i3/inside/lights/036/SetOption32"
       payload: "100"
 
 - id: '037'
@@ -698,7 +698,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '039'
   name: light %id%
@@ -716,7 +716,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '040'
   name: light %id%
@@ -734,7 +734,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - name: classroom sign
   hardware:
@@ -751,7 +751,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - name: disco ball
   hardware:
@@ -768,7 +768,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: large bathroom light
   hardware:
@@ -785,7 +785,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: large bathroom vent fan
   hardware:
@@ -802,7 +802,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: compressor valve
   hardware:
@@ -819,7 +819,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - id: '02'
   name: chandelier %id%
@@ -837,7 +837,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - id: '01'
   name: chandelier %id%
@@ -855,7 +855,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: media lab lights
   hardware:
@@ -872,7 +872,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: commons ceiling fan
   hardware:
@@ -889,7 +889,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: laser ceiling fan
   hardware:
@@ -906,7 +906,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: laser vent fan
   hardware:
@@ -923,7 +923,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: traffic light
   hardware:
@@ -959,7 +959,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: machine shop ceiling fan
   hardware:
@@ -976,7 +976,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: Paint box vent fan
   hardware:
@@ -993,7 +993,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: disco-spotlights
   hardware:
@@ -1010,7 +1010,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - name: snapple vending compressor
   hardware:
@@ -1065,7 +1065,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: bumblebee chiller
   hardware:
@@ -1082,7 +1082,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: fablab chiller
   hardware:
@@ -1116,7 +1116,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: hallway light
   hardware:
@@ -1133,7 +1133,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: elab light
   hardware:
@@ -1150,7 +1150,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: craftroom light
   hardware:
@@ -1167,7 +1167,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: small bathroom light
   hardware:
@@ -1184,7 +1184,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: dooridor light
   hardware:
@@ -1201,7 +1201,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: classroom light west
   hardware:
@@ -1218,7 +1218,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: classroom light east
   hardware:
@@ -1235,7 +1235,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: genie charging
   hardware:
@@ -1252,7 +1252,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - name: small bathroom vent fan
   hardware:
@@ -1269,7 +1269,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: small bathroom shower light
   hardware:
@@ -1286,7 +1286,7 @@
   tasmota:
     poweron_state: 0
   build_flags:
-  commands: 
+  commands:
 
 - name: commons siren
   hardware:
@@ -1324,7 +1324,7 @@
     - topic: "cmnd/i3/inside/laser-zone/wolverine/laser/SetOption13"
       payload: "ON"
     - topic: "cmnd/i3/inside/laser-zone/wolverine/laser/SetOption32"
-      payload: "100" 
+      payload: "100"
 
 - name: bumblebee
   hardware:
@@ -1550,7 +1550,7 @@
 #   tasmota:
 #     poweron_state: 0
 #   build_flags:
-#   commands: 
+#   commands:
 
 - name: chinesium laser
   hardware:
@@ -1584,7 +1584,7 @@
   tasmota:
     poweron_state: 1
   build_flags:
-  commands: 
+  commands:
 
 - name: snapple vending rgb
   hardware:

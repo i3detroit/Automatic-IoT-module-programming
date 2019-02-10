@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 import sys
 from subprocess import call
@@ -21,36 +22,36 @@ def site_pick(site):
         mqtt_host = "10.13.0.22"
         site_info = '''#define STA_SSID1 "i3detroit-iot"
 #define STA_PASS1 "securityrisk"
-#define STA_SSID2 "i3detroit"
-#define STA_PASS2 ""
 #define MQTT_HOST "{}"
 #define NTP_SERVER1 "10.13.0.1"
+#define LATITUDE 42.453725
+#define LONGITUDE -83.113690
 #define SITE "i3"'''.format(mqtt_host)
     elif site == 'mike':
         mqtt_host = "{}"
         site_info = '''#define STA_SSID1 "Pleiades"
 #define STA_PASS1 "Volleyball19APotassium514Larsen974"
-#define STA_SSID2 "i3detroit"
-#define STA_PASS2 ""
 #define MQTT_HOST "192.168.1.107"
 #define NTP_SERVER1 "nl.pool.ntp.org"
+#define LATITUDE 42.453725
+#define LONGITUDE -83.113690
 #define SITE "MIKE"'''.format(mqtt_host)
     elif site == 'mark':
         mqtt_host = "{}"
         site_info = '''#define STA_SSID1 "node42"
 #define STA_PASS1 "we do what we must, because we can"
-#define STA_SSID2 "i3detroit"
-#define STA_PASS2 ""
 #define MQTT_HOST "192.168.1.4"
 #define NTP_SERVER1 "nl.pool.ntp.org"
+#define LATITUDE 42.453725
+#define LONGITUDE -83.113690
 #define SITE "MARK"'''.format(mqtt_host)
     return mqtt_host, site_info
 
 
 mqclient = mqtt.Client(clean_session=True, client_id="autoflasher")
 
-autoflashdir = "/home/mkfink/pio/autoflash"
-tasmotadir = "/home/mkfink/pio/Sonoff-Tasmota"
+autoflashdir = os.path.dirname(os.path.abspath(__file__))
+tasmotadir = "/home/mtfurlan/projects/esp/Sonoff-Tasmota.mod"
 
 dev_defs = "flash.yaml"
 os.chdir(autoflashdir)
@@ -61,24 +62,7 @@ with open(dev_defs, "r") as yamlfile:
 os.chdir(tasmotadir)
 defs_fn = "sonoff/user_config_override.h"
 
-blank_defines = '''//{} generated on {}
-#ifndef _USER_CONFIG_OVERRIDE_H_
-#define _USER_CONFIG_OVERRIDE_H_
-
-// force the compiler to show a warning to confirm that this file is inlcuded
-//#warning **** user_config_override.h: Using Settings from this File ****
-
-#define CFG_HOLDER {}
-#define MODULE {}
-#define MQTT_GRPTOPIC "{}"
-#define MQTT_FULLTOPIC "{}"
-#define MQTT_TOPIC "{}"
-#define FRIENDLY_NAME "{}"
-#define APP_POWERON_STATE {}
-{}
-{}
-#endif  // _USER_CONFIG_OVERRIDE_H_
-'''
+blank_defines = open('{}/blank_defines.h'.format(autoflashdir)).read();
 
 # lists to store devices that fail or succeed at flashing
 failed = []
@@ -116,7 +100,7 @@ for dev in devicelist:
 
     # Set the terminal title so you know what device is building
     sys.stdout.write("\x1b]2;({}/{}) - {}\x07".format(counter, len(devicelist), device_name))
-    print("({}/{}) - processing{})".format(counter, len(devicelist), device_name))
+    print("({}/{}) - processing {})".format(counter, len(devicelist), device_name))
 
     # generate topic of form 'tele/%device_topic%/INFO2'
     subscribe_topic = re.sub('%topic%', topic,
@@ -139,7 +123,8 @@ for dev in devicelist:
     with open(defs_fn, "w") as defs_file:
         defs_file.write(defines_text)
 
-    pio_call = "platformio run -e sonoff --upload-port {}/u2".format(ip_addr)
+    pio_call = "platformio run -e sonoff -t upload --upload-port {}/u2".format(ip_addr)
+    print "pio call: {}".format(pio_call);
     flash_result = call(pio_call, shell=True)
 
     if flash_result == 0:
