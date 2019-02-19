@@ -51,7 +51,7 @@ def site_pick(site):
 mqclient = mqtt.Client(clean_session=True, client_id="autoflasher")
 
 autoflashdir = os.path.dirname(os.path.abspath(__file__))
-tasmotadir = "/home/mtfurlan/projects/esp/Sonoff-Tasmota.mod"
+tasmotadir = "../Sonoff-Tasmota"
 
 dev_defs = "flash.yaml"
 os.chdir(autoflashdir)
