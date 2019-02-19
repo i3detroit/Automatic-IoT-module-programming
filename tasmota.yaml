@@ -1012,26 +1012,6 @@
   build_flags:
   commands:
 
-- name: snapple vending compressor
-  hardware:
-    type: tasmota
-    site: i3
-    module: SONOFF_POW
-    board: esp01_1m
-    ip_addr: 10.13.107.125
-    mac_addr: 2C:3A:E8:26:57:B4
-  mqtt:
-    group_topic: none
-    base_topic: i3/inside
-    topic: commons/snapple-vending-compress
-  tasmota:
-    poweron_state: 1
-  build_flags:
-    - USE_DS18x20
-  commands:
-    - topic: "cmnd/i3/inside/commons/snapple-vending-compress/gpio3"
-      payload: "4"
-
 - name: 433 rf reciever
   hardware:
     type: tasmota
