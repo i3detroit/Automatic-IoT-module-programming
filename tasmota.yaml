@@ -655,9 +655,9 @@
     poweron_state: 1
   build_flags:
   commands:
-    - topic: "cmnd/i3/inside/lights/036/SetOption13"
+    - command: "SetOption13"
       payload: 'ON'
-    - topic: "cmnd/i3/inside/lights/036/SetOption32"
+    - command: "SetOption32"
       payload: "100"
 
 - id: '037'
@@ -677,9 +677,9 @@
     poweron_state: 1
   build_flags:
   commands:
-    - topic: "cmnd/i3/inside/lights/037/SetOption13"
+    - command: "SetOption13"
       payload: 'ON'
-    - topic: "cmnd/i3/inside/lights/037/SetOption32"
+    - command: "SetOption32"
       payload: "100"
 
 - id: '038'
@@ -941,7 +941,7 @@
     poweron_state: 0
   build_flags:
   commands:
-    - topic: "cmnd/i3/inside/commons/traffic-light/GPIO14"
+    - command: "GPIO14"
       payload: "2"
 
 - name: fablab vent fan
@@ -1301,9 +1301,9 @@
     poweron_state: 0
   build_flags:
   commands:
-    - topic: "cmnd/i3/inside/laser-zone/wolverine/laser/SetOption13"
+    - command: "SetOption13"
       payload: "ON"
-    - topic: "cmnd/i3/inside/laser-zone/wolverine/laser/SetOption32"
+    - command: "SetOption32"
       payload: "100"
 
 - name: bumblebee
@@ -1322,9 +1322,9 @@
     poweron_state: 0
   build_flags:
   commands:
-    - topic: "cmnd/i3/inside/laser-zone/bumblebee/laser/SetOption13"
+    - command: "SetOption13"
       payload: "ON"
-    - topic: "cmnd/i3/inside/laser-zone/bumblebee/laser/SetOption32"
+    - command: "SetOption32"
       payload: "100"
 
 - name: hallway west lightswitch
@@ -1343,7 +1343,7 @@
     poweron_state: 0
   build_flags:
   commands:
-    - topic: "cmnd/i3/inside/hallway/lightswitch-west/buttontopic"
+    - command: "buttontopic"
       payload: "hallway/light"
 
 - name: cnc vent fan
@@ -1362,11 +1362,11 @@
     poweron_state: 0
   build_flags:
   commands:
-    - topic: "cmnd/i3/inside/cnc/vent/GPIO4"
+    - command: "GPIO4"
       payload: "9"
-    - topic: "cmnd/i3/inside/cnc/vent/GPIO14"
+    - command: "GPIO14"
       payload: "56"
-    - topic: "cmnd/i3/inside/cnc/vent/switchmode1"
+    - command: "switchmode1"
       payload: "3"
 
 - name: cnc large light
@@ -1385,11 +1385,11 @@
     poweron_state: 0
   build_flags:
   commands:
-    - topic: "cmnd/i3/inside/cnc/light/GPIO4"
+    - command: "GPIO4"
       payload: "9"
-    - topic: "cmnd/i3/inside/cnc/light/GPIO14"
+    - command: "GPIO14"
       payload: "56"
-    - topic: "cmnd/i3/inside/cnc/light/switchmode1"
+    - command: "switchmode1"
       payload: "3"
 
 - name: vent fan over sink
@@ -1408,11 +1408,11 @@
     poweron_state: 0
   build_flags:
   commands:
-    - topic: "cmnd/i3/inside/commons/south-vent/GPIO4"
+    - command: "GPIO4"
       payload: "9"
-    - topic: "cmnd/i3/inside/commons/south-vent/GPIO14"
+    - command: "GPIO14"
       payload: "56"
-    - topic: "cmnd/i3/inside/commons/south-vent/switchmode1"
+    - command: "switchmode1"
       payload: "3"
 
 - name: classroom lightswitch east
@@ -1431,7 +1431,7 @@
     poweron_state: 0
   build_flags:
   commands:
-    - topic: "cmnd/i3/inside/classroom/lightswitch-east/buttontopic"
+    - command: "buttontopic"
       payload: "classroom/lights-east"
 
 - name: elab accent arch south
@@ -1452,9 +1452,9 @@
     - USE_IR_REMOTE
     - USE_IR_RECEIVE
   commands:
-    - topic: "cmnd/i3/inside/elab/accent/arch-south/GPIO4"
+    - command: "GPIO4"
       payload: "51"
-    - topic: "cmnd/i3/inside/elab/accent/arch-south/SetOption15"
+    - command: "SetOption15"
       payload: "1"
 
 - name: elab accent arch north
@@ -1475,9 +1475,9 @@
     - USE_IR_REMOTE
     - USE_IR_RECEIVE
   commands:
-    - topic: "cmnd/i3/inside/elab/accent/arch-north/GPIO4"
+    - command: "GPIO4"
       payload: "51"
-    - topic: "cmnd/i3/inside/elab/accent/arch-north/SetOption15"
+    - command: "SetOption15"
       payload: "1"
 
 - name: lanterns
@@ -1582,9 +1582,9 @@
     poweron_state: 1
   build_flags:
   commands:
-    - topic: "cmnd/i3/inside/elab/accent/arch-south/GPIO4"
+    - command: "GPIO4"
       payload: "51"
-    - topic: "cmnd/i3/inside/elab/accent/arch-south/SetOption15"
+    - command: "SetOption15"
       payload: "1"
 
 - name: swirly-lights-01
@@ -1641,10 +1641,12 @@
     - USE_BMP
     - USE_BH1750
   commands:
-    - topic: "cmnd/i3/inside/sensors/cluster-006/GPIO4"
+    - command: "GPIO4"
       payload: "6"
-    - topic: "cmnd/i3/inside/sensors/cluster-006/GPIO5"
+    - command: "GPIO5"
       payload: "5"
+    - command: "teleperiod"
+      payload: "60"
 
 - id: '007'
   name: sensor cluster %id%
@@ -1666,7 +1668,9 @@
     - USE_BMP
     - USE_BH1750
   commands:
-    - topic: "cmnd/i3/inside/sensors/cluster-007/GPIO4"
+    - command: "GPIO4"
       payload: "6"
-    - topic: "cmnd/i3/inside/sensors/cluster-007/GPIO5"
+    - command: "GPIO5"
       payload: "5"
+    - command: "teleperiod"
+      payload: "60"

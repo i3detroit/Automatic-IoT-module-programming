@@ -102,7 +102,7 @@ for dev in devicelist:
     sys.stdout.write("\x1b]2;({}/{}) - {}\x07".format(counter, len(devicelist), device_name))
     print("({}/{}) - processing {})".format(counter, len(devicelist), device_name))
 
-    # generate topic of form 'tele/%device_topic%/INFO2'
+    # generate topic of form tele/%device_topic%/INFO2
     subscribe_topic = re.sub('%topic%', topic,
                              re.sub('%prefix%', 'tele', full_topic)) + 'INFO2'
 
@@ -124,7 +124,7 @@ for dev in devicelist:
         defs_file.write(defines_text)
 
     pio_call = "platformio run -e sonoff -t upload --upload-port {}/u2".format(ip_addr)
-    print "pio call: {}".format(pio_call);
+    print("pio call: {}".format(pio_call))
     flash_result = call(pio_call, shell=True)
 
     if flash_result == 0:
@@ -143,10 +143,14 @@ for dev in devicelist:
             mqclient.subscribe(subscribe_topic)
             while waiting and (datetime.datetime.now() - starttime).total_seconds() < 45:
                 mqclient.loop(timeout=1.0)
+            # publish a list of commands with the Backlog command
+            # see https://github.com/arendst/Sonoff-Tasmota/wiki/Commands#using-backlog
+            command_topic = re.sub('%topic%', topic,
+                                     re.sub('%prefix%', 'cmnd', full_topic)) + 'Backlog'
+            # join all commands with semicolons
+            payload = '; '.join(c['command']+' '+ c['payload'] for c in commands)
             print("Publishing commands...")
-            for c in commands:
-                mqclient.publish(c['topic'], payload=c['payload'])
-                print(c['topic'] + " " + c['payload'])
+            mqclient.publish(command_topic, payload=payload)
             mqclient.loop(timeout=1.0)
             mqclient.disconnect()
         print(device_name + " done")
