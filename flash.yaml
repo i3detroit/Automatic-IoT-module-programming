@@ -1,16 +1,24 @@
-- name: elab light
+- id: '006'
+  name: sensor cluster %id%
   hardware:
     type: tasmota
     site: i3
-    module: SONOFF_TOUCH
+    module: WEMOS
     board: esp01_1m
-    ip_addr: 10.13.107.150
-    mac_addr: 60:01:94:86:76:F6
+    ip_addr: 10.13.107.100
+    mac_addr: b4:e6:2d:3b:14:f4
   mqtt:
     group_topic: none
     base_topic: i3/inside
-    topic: elab/light
+    topic: sensors/cluster-%id%
   tasmota:
-    poweron_state: 0
+    poweron_state: 1
   build_flags:
+    - USE_I2C
+    - USE_BMP
+    - USE_BH1750
   commands:
+    - topic: "cmnd/i3/inside/sensors/cluster-006/GPIO4"
+      payload: "6"
+    - topic: "cmnd/i3/inside/sensors/cluster-006/GPIO5"
+      payload: "5"
