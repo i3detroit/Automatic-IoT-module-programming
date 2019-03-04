@@ -8,6 +8,11 @@ import re
 import paho.mqtt.client as mqtt
 import datetime
 
+autoflashdir = os.path.dirname(os.path.abspath(__file__))
+dev_defs = "flash.yaml"
+site_defs = "sites.yaml"
+tasmotadir = "../Sonoff-Tasmota"
+tas_defs = tasmotadir + "/sonoff/user_config_override.h"
 
 def on_message(mqclient, obj, msg):
     global waiting
@@ -15,54 +20,42 @@ def on_message(mqclient, obj, msg):
     waiting = False
 
 
-def site_pick(site):
-    mqtt_host = ''
-    site_info = ''
-    if site == 'i3':
-        mqtt_host = "10.13.0.22"
-        site_info = '''#define STA_SSID1 "i3detroit-iot"
-#define STA_PASS1 "securityrisk"
-#define MQTT_HOST "{}"
-#define NTP_SERVER1 "10.13.0.1"
-#define LATITUDE 42.453725
-#define LONGITUDE -83.113690
-#define SITE "i3"'''.format(mqtt_host)
-    elif site == 'mike':
-        mqtt_host = "{}"
-        site_info = '''#define STA_SSID1 "Pleiades"
-#define STA_PASS1 "Volleyball19APotassium514Larsen974"
-#define MQTT_HOST "192.168.1.107"
-#define NTP_SERVER1 "nl.pool.ntp.org"
-#define LATITUDE 42.453725
-#define LONGITUDE -83.113690
-#define SITE "MIKE"'''.format(mqtt_host)
-    elif site == 'mark':
-        mqtt_host = "{}"
-        site_info = '''#define STA_SSID1 "node42"
-#define STA_PASS1 "we do what we must, because we can"
-#define MQTT_HOST "192.168.1.4"
-#define NTP_SERVER1 "nl.pool.ntp.org"
-#define LATITUDE 42.453725
-#define LONGITUDE -83.113690
-#define SITE "MARK"'''.format(mqtt_host)
-    return mqtt_host, site_info
+def site_pick(sitename, site_defs=site_defs):
+    with open(site_defs, "r") as siteyaml:
+        siteslist = sorted(yaml.load(siteyaml))
+
+    site = next((s for s in siteslist if s['name'] == sitename), None)
+
+    if not site:
+        print("Error: Site not found in" + site_defs)
+        exit()
+    if not site['wifi_ssid']:
+        print("Error: No wifi_ssid defined for site " + site["name"])
+        exit()
+    site_info = ('#define MQTT_HOST "{}"\n#define SITE "{}"\n'
+                 '#define STA_SSID1 "{}"\n#define STA_PASS1 "{}"').format(
+                 site["mqtt_host"], site["name"],
+                 site["wifi_ssid"], site["wifi_pass"])
+    if 'wifi_ssid_alt' in site and 'wifi_pass_alt' in site:
+        site_info = site_info + '\n#define STA_SSID1 "{}"\n#define STA_PASS1 "{}"'.format(
+            site["wifi_ssid_alt"], site["wifi_pass_alt"])
+    if 'ntp' in site:
+        site_info = site_info + '\n#define NTP_SERVER1 "{}"'.format(site["ntp"])
+    if "latitude" in site and "longitude" in site:
+        site_info = site_info + '\n#define LATITUDE {}\n#define LONGITUDE {}'.format(
+            site["latitude"], site["longitude"])
+    return site["mqtt_host"], site_info
 
 
 mqclient = mqtt.Client(clean_session=True, client_id="autoflasher")
 
-autoflashdir = os.path.dirname(os.path.abspath(__file__))
-tasmotadir = "../Sonoff-Tasmota"
-
-dev_defs = "flash.yaml"
 os.chdir(autoflashdir)
 # read in the devices yaml file and sort it by module for more efficient building
 with open(dev_defs, "r") as yamlfile:
     devicelist = sorted(yaml.load(yamlfile), key=lambda k: k['hardware']['module'])
 
-os.chdir(tasmotadir)
-defs_fn = "sonoff/user_config_override.h"
-
-blank_defines = open('{}/blank_defines.h'.format(autoflashdir)).read();
+with open(autoflashdir + '/blank_defines.h','r') as f:
+    blank_defines = f.read()
 
 # lists to store devices that fail or succeed at flashing
 failed = []
@@ -70,9 +63,9 @@ passed = []
 
 # randomize the thing that tells tasmota to update the whole device config
 cfg_holder = str(randint(1, 32000))
-
 counter = 0
 for dev in devicelist:
+    os.chdir(autoflashdir)
     counter += 1
     device_name = dev['name']
     devtype = dev['hardware']['type']
@@ -120,9 +113,9 @@ for dev in devicelist:
                                         cfg_holder, module, group_topic, full_topic,
                                         topic, friendly_name, poweron_state,
                                         site_info, build_flags_text)
-    with open(defs_fn, "w") as defs_file:
+    with open(tas_defs, "w") as defs_file:
         defs_file.write(defines_text)
-
+    os.chdir(tasmotadir)
     pio_call = "platformio run -e sonoff -t upload --upload-port {}/u2".format(ip_addr)
     print("pio call: {}".format(pio_call))
     flash_result = call(pio_call, shell=True)
@@ -130,6 +123,7 @@ for dev in devicelist:
     if flash_result == 0:
         print("Build and upload success with result code " + str(flash_result))
         passed.append(device_name)
+
         # After flashing, if there are post flash commands,
         # wait until the device comes online and then send the commands
         if commands is not None:
@@ -153,7 +147,8 @@ for dev in devicelist:
             mqclient.publish(command_topic, payload=payload)
             mqclient.loop(timeout=1.0)
             mqclient.disconnect()
-        print(device_name + " done")
+
+        print(device_name + " done\n")
     # if build or upload failed, stop processing this device and move on
     else:
         print("Build or upload failure for " + device_name +
@@ -170,6 +165,5 @@ with open("flashed.log", "w") as flashlog:
     flashlog.write("\nDevices successfully flashed:\n")
     flashlog.write("\n".join(passed))
 
-# client.disconnect()
 print("Done with all devices. " + str(len(passed)) + " devices passed. " +
       str(len(failed)) + " errors detected")
