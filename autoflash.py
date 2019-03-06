@@ -8,11 +8,21 @@ import re
 import paho.mqtt.client as mqtt
 import datetime
 
-autoflashdir = os.path.dirname(os.path.abspath(__file__))
+# settings
 dev_defs = "flash.yaml"
 site_defs = "sites.yaml"
-tasmotadir = "../Sonoff-Tasmota"
-tas_defs = tasmotadir + "/sonoff/user_config_override.h"
+tasmotadir = "../Sonoff-Tasmota.original"
+flash_mode = "serial"
+#flash_mode = "wifi"
+
+# hardcodings
+autoflashdir = os.path.dirname(os.path.abspath(__file__))
+user_config_override = "./sonoff/user_config_override.h" #hardcoded from tasmota dir
+waiting = True#fuck you globals
+
+
+os.chdir(tasmotadir)
+call("sed -i 's/build_flags *= ${core_active.build_flags}/build_flags = ${core_active.build_flags} -DUSE_CONFIG_OVERRIDE/' platformio.ini", shell=True);
 
 def on_message(mqclient, obj, msg):
     global waiting
@@ -21,7 +31,7 @@ def on_message(mqclient, obj, msg):
 
 
 def site_pick(sitename, site_defs=site_defs):
-    with open(site_defs, "r") as siteyaml:
+    with open(autoflashdir + "/" + site_defs, "r") as siteyaml:
         siteslist = sorted(yaml.load(siteyaml))
 
     site = next((s for s in siteslist if s['name'] == sitename), None)
@@ -46,12 +56,10 @@ def site_pick(sitename, site_defs=site_defs):
             site["latitude"], site["longitude"])
     return site["mqtt_host"], site_info
 
-
 mqclient = mqtt.Client(clean_session=True, client_id="autoflasher")
 
-os.chdir(autoflashdir)
 # read in the devices yaml file and sort it by module for more efficient building
-with open(dev_defs, "r") as yamlfile:
+with open(autoflashdir + "/" + dev_defs, "r") as yamlfile:
     devicelist = sorted(yaml.load(yamlfile), key=lambda k: k['hardware']['module'])
 
 with open(autoflashdir + '/blank_defines.h','r') as f:
@@ -61,11 +69,11 @@ with open(autoflashdir + '/blank_defines.h','r') as f:
 failed = []
 passed = []
 
+
 # randomize the thing that tells tasmota to update the whole device config
 cfg_holder = str(randint(1, 32000))
 counter = 0
 for dev in devicelist:
-    os.chdir(autoflashdir)
     counter += 1
     device_name = dev['name']
     devtype = dev['hardware']['type']
@@ -113,16 +121,25 @@ for dev in devicelist:
                                         cfg_holder, module, group_topic, full_topic,
                                         topic, friendly_name, poweron_state,
                                         site_info, build_flags_text)
-    with open(tas_defs, "w") as defs_file:
+    with open(user_config_override, "w") as defs_file:
         defs_file.write(defines_text)
-    os.chdir(tasmotadir)
-    pio_call = "platformio run -e sonoff -t upload --upload-port {}/u2".format(ip_addr)
+
+
+    # somehow flash shit
+    if(flash_mode == "serial"):
+        port="/dev/ttyUSB0";
+        call("sed -i 's/;env_default = sonoff$/env_default = sonoff/; s/^upload_port  .*/upload_port  = \/dev\/ttyUSB0/; s/^extra_scripts  .*/extra_scripts  = pio\/strip-floats.py/' platformio.ini", shell=True);
+    if(flash_mode == "wifi"):
+        print "foo";
+        port="{}/u2".format(ip_addr);
+        call("sed -i 's/;env_default = sonoff$/env_default = sonoff/; s/^upload_port  .*/upload_port  = \/dev\/ttyUSB0/; s/^extra_scripts  .*/extra_scripts  = pio\/strip-floats.py, pio\/http-uploader.py/' platformio.ini", shell=True);
+
+    pio_call = "platformio run -e sonoff -t upload --upload-port {}".format(port)
     print("pio call: {}".format(pio_call))
     flash_result = call(pio_call, shell=True)
 
     if flash_result == 0:
-        print("Build and upload success with result code " + str(flash_result))
-        passed.append(device_name)
+        #TODO: check if it comes online even if no commands
 
         # After flashing, if there are post flash commands,
         # wait until the device comes online and then send the commands
@@ -137,16 +154,26 @@ for dev in devicelist:
             mqclient.subscribe(subscribe_topic)
             while waiting and (datetime.datetime.now() - starttime).total_seconds() < 45:
                 mqclient.loop(timeout=1.0)
-            # publish a list of commands with the Backlog command
-            # see https://github.com/arendst/Sonoff-Tasmota/wiki/Commands#using-backlog
-            command_topic = re.sub('%topic%', topic,
-                                     re.sub('%prefix%', 'cmnd', full_topic)) + 'Backlog'
-            # join all commands with semicolons
-            payload = '; '.join(c['command']+' '+ c['payload'] for c in commands)
-            print("Publishing commands...")
-            mqclient.publish(command_topic, payload=payload)
-            mqclient.loop(timeout=1.0)
-            mqclient.disconnect()
+            if waiting:
+                print("device " + device_name + " failed to come online");
+                failed.append(device_name)
+            else:
+                # publish a list of commands with the Backlog command
+                # see https://github.com/arendst/Sonoff-Tasmota/wiki/Commands#using-backlog
+                command_topic = re.sub('%topic%', topic,
+                                         re.sub('%prefix%', 'cmnd', full_topic)) + 'Backlog'
+                # join all commands with semicolons
+                payload = '; '.join(c['command']+' '+ c['payload'] for c in commands)
+                print("Publishing commands...")
+                mqclient.publish(command_topic, payload=payload)
+                mqclient.loop(timeout=1.0)
+                mqclient.disconnect()
+                print("Build and upload success with result code " + str(flash_result))
+                passed.append(device_name)
+        else:
+            print("Build and upload success with result code " + str(flash_result))
+            passed.append(device_name)
+
 
         print(device_name + " done\n")
     # if build or upload failed, stop processing this device and move on
@@ -156,11 +183,11 @@ for dev in devicelist:
         failed.append(device_name)
 
 if len(failed) > 0:
-    with open("error.log", "w") as errorlog:
+    with open(autoflashdir + "/error.log", "w") as errorlog:
         errorlog.write(str(datetime.datetime.now()))
         errorlog.write("\nDevices did not flash:\n")
         errorlog.write("\n".join(failed))
-with open("flashed.log", "w") as flashlog:
+with open(autoflashdir + "/flashed.log", "w") as flashlog:
     flashlog.write(str(datetime.datetime.now()))
     flashlog.write("\nDevices successfully flashed:\n")
     flashlog.write("\n".join(passed))

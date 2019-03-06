@@ -1,26 +1,19 @@
-- id: '007'
-  name: sensor cluster %id%
+- id: '001'
+  name: basement light %id%
   hardware:
     type: tasmota
     site: i3
-    module: WEMOS
+    module: SONOFF_BASIC
     board: esp01_1m
-    ip_addr: 10.13.107.206
-    mac_addr: 5c:cf:7f:63:38:cd
+    ip_addr: 10.13.107.22
+    mac_addr: foo
   mqtt:
-    group_topic: none
-    base_topic: i3/inside
-    topic: sensors/cluster-%id%
+    group_topic: lights/basement
+    base_topic: mark/basement
+    topic: lights/%id%
   tasmota:
     poweron_state: 1
   build_flags:
-    - USE_I2C
-    - USE_BMP
-    - USE_BH1750
   commands:
-    - command: "GPIO4"
-      payload: "6"
-    - command: "GPIO5"
+    - command: "STATUS"
       payload: "5"
-    - command: "teleperiod"
-      payload: "60"

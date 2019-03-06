@@ -2,6 +2,10 @@
 
 Setup:
 
+```
+pip install -r requirements.txt
+```
+
 This requires git@github.com:i3detroit/Sonoff-Tasmota.git on branch `newi3` right now, will probably be `i3` soon.
 It needs a hardcoded path in autoflash.py, this will be changed.
 
