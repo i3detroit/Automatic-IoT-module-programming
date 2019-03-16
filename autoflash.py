@@ -13,7 +13,7 @@ import datetime
 dev_defs = "flash.yaml"
 site_defs = "sites.json"
 tasmotadir = "../Sonoff-Tasmota.original"
-pauseBeforeFlash = True;
+pauseBeforeFlash = True
 flash_mode = "serial"
 #flash_mode = "wifi"
 
@@ -21,17 +21,17 @@ flash_mode = "serial"
 autoflashdir = os.path.dirname(os.path.abspath(__file__))
 user_config_override = "./sonoff/user_config_override.h" #hardcoded from tasmota dir
 
-global waiting;
 waiting = True
 
 
 def on_message(mqclient, obj, msg):
+    global waiting
     print("Device is back online after reboot.")
     waiting = False
 
 
 def site_pick(siteName, siteConfig):
-    site = siteConfig[siteName];
+    site = siteConfig[siteName]
 
     if not site:
         print("Error: Site not found in" + site_defs)
@@ -54,12 +54,13 @@ def site_pick(siteName, siteConfig):
     return site["mqtt_host"], site_info
 
 def startFlashing():
+    global waiting
     # populate siteConfig
     with open(autoflashdir + "/" + site_defs, "r") as f:
         siteConfig = json.load(f)
 
     os.chdir(tasmotadir)
-    call("sed -i 's/build_flags *= ${core_active.build_flags}/build_flags = ${core_active.build_flags} -DUSE_CONFIG_OVERRIDE/' platformio.ini", shell=True);
+    call("sed -i 's/build_flags *= ${core_active.build_flags}$/build_flags = ${core_active.build_flags} -DUSE_CONFIG_OVERRIDE/' platformio.ini", shell=True)
 
     mqclient = mqtt.Client(clean_session=True, client_id="autoflasher")
 
@@ -105,7 +106,7 @@ def startFlashing():
         device_name = re.sub(" ", "_", device_name)
 
         # Set the terminal title so you know what device is building
-        sys.stdout.write("\x1b]2;({}/{}) - {}\x07".format(counter, len(devicelist), device_name))
+        sys.stdout.write("\x1b]2({}/{}) - {}\x07".format(counter, len(devicelist), device_name))
         print("({}/{}) - processing {})".format(counter, len(devicelist), device_name))
 
         # generate topic of form tele/%device_topic%/INFO2
@@ -132,18 +133,18 @@ def startFlashing():
 
         # somehow flash shit
         if(flash_mode == "serial"):
-            port="/dev/ttyUSB0";
-            call("sed -i 's/;env_default = sonoff$/env_default = sonoff/; s/^upload_port  .*/upload_port  = \/dev\/ttyUSB0/; s/^extra_scripts  .*/extra_scripts  = pio\/strip-floats.py/' platformio.ini", shell=True);
+            port="/dev/ttyUSB0"
+            call("sed -i 's/env_default = sonoff$/env_default = sonoff/; s/^upload_port  .*/upload_port  = \/dev\/ttyUSB0/; s/^extra_scripts  .*/extra_scripts  = pio\/strip-floats.py/' platformio.ini", shell=True);
         elif(flash_mode == "wifi"):
-            port="{}/u2".format(ip_addr);
-            call("sed -i 's/;env_default = sonoff$/env_default = sonoff/; s/^upload_port  .*/upload_port  = \/dev\/ttyUSB0/; s/^extra_scripts  .*/extra_scripts  = pio\/strip-floats.py, pio\/http-uploader.py/' platformio.ini", shell=True);
+            port="{}/u2".format(ip_addr)
+            call("sed -i 's/env_default = sonoff$/env_default = sonoff/; s/^upload_port  .*/upload_port  = \/dev\/ttyUSB0/; s/^extra_scripts  .*/extra_scripts  = pio\/strip-floats.py, pio\/http-uploader.py/' platformio.ini", shell=True);
         else:
-            print("no flash mode set, try again?");
-            sys.exit(1);
+            print("no flash mode set, try again?")
+            sys.exit(1)
 
 
         if(pauseBeforeFlash):
-            os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing...\'"');
+            os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing...\'"')
 
         pio_call = "platformio run -e sonoff -t upload --upload-port {}".format(port)
         print("pio call: {}".format(pio_call))
@@ -166,7 +167,7 @@ def startFlashing():
                 while waiting and (datetime.datetime.now() - starttime).total_seconds() < 45:
                     mqclient.loop(timeout=1.0)
                 if waiting:
-                    print("device " + device_name + " failed to come online");
+                    print("device " + device_name + " failed to come online")
                     failed.append(device_name)
                 else:
                     # publish a list of commands with the Backlog command
@@ -174,7 +175,7 @@ def startFlashing():
                     command_topic = re.sub('%topic%', topic,
                                              re.sub('%prefix%', 'cmnd', full_topic)) + 'Backlog'
                     # join all commands with semicolons
-                    payload = '; '.join(c['command']+' '+ c['payload'] for c in commands)
+                    payload = ' '.join(c['command']+' '+ c['payload'] for c in commands)
                     print("Publishing commands...")
                     mqclient.publish(command_topic, payload=payload)
                     mqclient.loop(timeout=1.0)
@@ -209,4 +210,4 @@ def startFlashing():
 
 
 if __name__ == "__main__":
-    startFlashing();
+    startFlashing()
