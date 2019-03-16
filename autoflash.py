@@ -16,18 +16,29 @@ tasmotadir = "../Sonoff-Tasmota.original"
 pauseBeforeFlash = True
 flash_mode = "serial"
 #flash_mode = "wifi"
+onlineCheck = True
 
 # hardcodings
 autoflashdir = os.path.dirname(os.path.abspath(__file__))
 user_config_override = "./sonoff/user_config_override.h" #hardcoded from tasmota dir
 
 waiting = True
+status5Waiting = True
 
 
-def on_message(mqclient, obj, msg):
+def on_message(mqclient, userdata, msg):
     global waiting
-    print("Device is back online after reboot.")
-    waiting = False
+    global status5Waiting
+    if(msg.topic.endswith('INFO2')):
+        print("Device is back online after reboot.")
+        waiting = False
+    elif (msg.topic.endswith('STATUS5')):
+        status = json.loads(msg.payload);
+        print(status['StatusNET']['IPAddress']);
+        print(status['StatusNET']['Mac']);
+        status5Waiting = False
+    #else:
+        #print("%s %s" % (msg.topic, msg.payload))
 
 
 def site_pick(siteName, siteConfig):
@@ -53,8 +64,63 @@ def site_pick(siteName, siteConfig):
             site["latitude"], site["longitude"])
     return site["mqtt_host"], site_info
 
-def startFlashing():
+# returns bool success, err message
+def handleMQTT(mqclient, device_name, commands, mqtt_host, topic, full_topic, onlineCheck):
     global waiting
+    global status5Waiting
+
+    # generate topic of form tele/%device_topic%/INFO2
+    subscribe_topic = re.sub('%topic%', topic,
+                             re.sub('%prefix%', '+', full_topic)) + '+'
+
+    print("Watching for " + subscribe_topic)
+    print("Waiting for " + device_name + " to reboot...")
+    waiting = True
+    mqclient.reinitialise()
+    mqclient.on_message = on_message
+    mqclient.connect(mqtt_host)
+    mqclient.subscribe(subscribe_topic)
+    starttime = datetime.datetime.now()
+    while waiting and (datetime.datetime.now() - starttime).total_seconds() < 45:
+        mqclient.loop(timeout=1.0)
+    if waiting: # it didn't come online
+        return False, "device " + device_name + " failed to come online in 45 seconds"
+    else: #it did come online
+        # publish a list of commands with the Backlog command
+        # see https://github.com/arendst/Sonoff-Tasmota/wiki/Commands#using-backlog
+        command_topic_base = re.sub('%topic%', topic,
+                re.sub('%prefix%', 'cmnd', full_topic))
+        print('it came online, trying to send commands');
+
+        if(onlineCheck):
+            print('sending status5 command');
+            statusCommand = command_topic_base + 'status'
+            mqclient.publish(statusCommand, payload='5')
+            mqclient.loop(timeout=1.0)
+            status5Waiting = True
+        else:
+            status5Waiting = False
+
+        if(commands is not None):
+            backlogCommand = command_topic_base + 'Backlog'
+            # join all commands with semicolons
+            payload = ' '.join(c['command']+' '+ c['payload'] for c in commands)
+            print("Publishing commands...")
+            mqclient.publish(backlogCommand, payload=payload)
+            mqclient.loop(timeout=1.0)
+
+        # wait for status 5 response
+        starttime = datetime.datetime.now()
+        while status5Waiting and (datetime.datetime.now() - starttime).total_seconds() < 10:
+            mqclient.loop(timeout=1.0)
+        if status5Waiting: # didn't see responses
+            print("device " + device_name + " failed to report status")
+
+        mqclient.disconnect()
+
+        return True, "Build, upload, came online success"
+
+def startFlashing():
     # populate siteConfig
     with open(autoflashdir + "/" + site_defs, "r") as f:
         siteConfig = json.load(f)
@@ -109,11 +175,6 @@ def startFlashing():
         sys.stdout.write("\x1b]2({}/{}) - {}\x07".format(counter, len(devicelist), device_name))
         print("({}/{}) - processing {})".format(counter, len(devicelist), device_name))
 
-        # generate topic of form tele/%device_topic%/INFO2
-        subscribe_topic = re.sub('%topic%', topic,
-                                 re.sub('%prefix%', 'tele', full_topic)) + 'INFO2'
-
-        commands = dev['commands']
 
         build_flags_text = ''
         if dev['build_flags'] is not None:
@@ -143,6 +204,7 @@ def startFlashing():
             sys.exit(1)
 
 
+        call("pio run -e sonoff", shell=True)
         if(pauseBeforeFlash):
             os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing...\'"')
 
@@ -155,33 +217,13 @@ def startFlashing():
 
             # After flashing, if there are post flash commands,
             # wait until the device comes online and then send the commands
-            if commands is not None:
-                print("Watching for " + subscribe_topic)
-                print("Waiting for " + device_name + " to reboot...")
-                starttime = datetime.datetime.now()
-                waiting = True
-                mqclient.reinitialise()
-                mqclient.on_message = on_message
-                mqclient.connect(mqtt_host)
-                mqclient.subscribe(subscribe_topic)
-                while waiting and (datetime.datetime.now() - starttime).total_seconds() < 45:
-                    mqclient.loop(timeout=1.0)
-                if waiting:
-                    print("device " + device_name + " failed to come online")
-                    failed.append(device_name)
-                else:
-                    # publish a list of commands with the Backlog command
-                    # see https://github.com/arendst/Sonoff-Tasmota/wiki/Commands#using-backlog
-                    command_topic = re.sub('%topic%', topic,
-                                             re.sub('%prefix%', 'cmnd', full_topic)) + 'Backlog'
-                    # join all commands with semicolons
-                    payload = ' '.join(c['command']+' '+ c['payload'] for c in commands)
-                    print("Publishing commands...")
-                    mqclient.publish(command_topic, payload=payload)
-                    mqclient.loop(timeout=1.0)
-                    mqclient.disconnect()
-                    print("Build and upload success with result code " + str(flash_result))
+            if dev['commands'] is not None or onlineCheck:
+                success, message = handleMQTT(mqclient, device_name, dev['commands'], mqtt_host, topic, full_topic, onlineCheck)
+                print(message)
+                if(success):
                     passed.append(device_name)
+                else:
+                    failed.append(device_name)
             else:
                 print("Build and upload success with result code " + str(flash_result))
                 passed.append(device_name)
@@ -210,4 +252,8 @@ def startFlashing():
 
 
 if __name__ == "__main__":
+    #mqclient = mqtt.Client(clean_session=True, client_id="autoflasher")
+    #success, message = handleMQTT(mqclient, 'devce_name', None, '10.13.0.22', 'lights/001', '%prefix%/mark/basement/%topic%/', True)
+    #print(success)
+    #print(message)
     startFlashing()

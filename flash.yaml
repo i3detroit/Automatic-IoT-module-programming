@@ -15,5 +15,3 @@
     poweron_state: 1
   build_flags:
   commands:
-    - command: "STATUS"
-      payload: "5"
