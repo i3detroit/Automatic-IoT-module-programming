@@ -13,6 +13,7 @@ import datetime
 dev_defs = "flash.yaml"
 site_defs = "sites.json"
 tasmotadir = "../Sonoff-Tasmota.original"
+pauseBeforeFlash = True;
 flash_mode = "serial"
 #flash_mode = "wifi"
 
@@ -30,7 +31,6 @@ def on_message(mqclient, obj, msg):
 
 
 def site_pick(siteName, siteConfig):
-    print(siteName);
     site = siteConfig[siteName];
 
     if not site:
@@ -141,6 +141,9 @@ def startFlashing():
             print("no flash mode set, try again?");
             sys.exit(1);
 
+
+        if(pauseBeforeFlash):
+            os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing...\'"');
 
         pio_call = "platformio run -e sonoff -t upload --upload-port {}".format(port)
         print("pio call: {}".format(pio_call))
