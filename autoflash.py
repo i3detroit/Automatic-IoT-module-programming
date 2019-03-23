@@ -125,8 +125,13 @@ def startFlashing():
     with open(autoflashdir + "/" + site_defs, "r") as f:
         siteConfig = json.load(f)
 
+    # check if platformio.ini is correct
+    correctPIO=autoflashdir + "/platformio.ini";
+    tasmotaPIO=tasmotadir + "/platformio.ini";
+    os.system("bash -c 'cmp --silent {} {} || cp {} {}'".format(correctPIO, tasmotaPIO, correctPIO, tasmotaPIO))
+
+
     os.chdir(tasmotadir)
-    call("sed -i 's/build_flags *= ${core_active.build_flags}$/build_flags = ${core_active.build_flags} -DUSE_CONFIG_OVERRIDE/' platformio.ini", shell=True)
 
     mqclient = mqtt.Client(clean_session=True, client_id="autoflasher")
 
@@ -195,20 +200,20 @@ def startFlashing():
         # somehow flash shit
         if(flash_mode == "serial"):
             port="/dev/ttyUSB0"
-            call("sed -i 's/env_default = sonoff$/env_default = sonoff/; s/^upload_port  .*/upload_port  = \/dev\/ttyUSB0/; s/^extra_scripts  .*/extra_scripts  = pio\/strip-floats.py/' platformio.ini", shell=True);
+            pioEnv="sonoff-serial"
         elif(flash_mode == "wifi"):
             port="{}/u2".format(ip_addr)
-            call("sed -i 's/env_default = sonoff$/env_default = sonoff/; s/^upload_port  .*/upload_port  = \/dev\/ttyUSB0/; s/^extra_scripts  .*/extra_scripts  = pio\/strip-floats.py, pio\/http-uploader.py/' platformio.ini", shell=True);
+            pioEnv="sonoff-wifi"
         else:
             print("no flash mode set, try again?")
             sys.exit(1)
 
 
-        call("pio run -e sonoff", shell=True)
+        call("pio run -e {}".format(pioEnv), shell=True)
         if(pauseBeforeFlash):
             os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing...\'"')
 
-        pio_call = "platformio run -e sonoff -t upload --upload-port {}".format(port)
+        pio_call = "platformio run -e {} -t upload --upload-port {}".format(pioEnv, port)
         print("pio call: {}".format(pio_call))
         flash_result = call(pio_call, shell=True)
 
