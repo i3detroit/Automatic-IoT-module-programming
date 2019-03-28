@@ -15,7 +15,7 @@ onlineCheck = True
 flash_mode = "serial"
 #flash_mode = "wifi"
 
-dev_defs = "flash.yaml"
+dev_defs = "flash.json"
 site_defs = "sites.json"
 tasmotadir = "../Sonoff-Tasmota.original"
 
@@ -139,8 +139,9 @@ def startFlashing():
     mqclient = mqtt.Client(clean_session=True, client_id="autoflasher")
 
     # read in the devices yaml file and sort it by module for more efficient building
-    with open(autoflashdir + "/" + dev_defs, "r") as yamlfile:
-        devicelist = sorted(yaml.load(yamlfile), key=lambda k: k['hardware']['module'])
+
+    with open(autoflashdir + "/" + dev_defs, "r") as f:
+        devicelist = json.load(f)
 
     with open(autoflashdir + '/blank_defines.h','r') as f:
         blank_defines = f.read()
