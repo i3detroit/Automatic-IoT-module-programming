@@ -10,13 +10,14 @@ import paho.mqtt.client as mqtt
 import datetime
 
 # settings
+pauseBeforeFlash = True
+onlineCheck = True
+flash_mode = "serial"
+#flash_mode = "wifi"
+
 dev_defs = "flash.yaml"
 site_defs = "sites.json"
 tasmotadir = "../Sonoff-Tasmota.original"
-pauseBeforeFlash = True
-flash_mode = "serial"
-#flash_mode = "wifi"
-onlineCheck = True
 
 # hardcodings
 autoflashdir = os.path.dirname(os.path.abspath(__file__))
@@ -34,8 +35,9 @@ def on_message(mqclient, userdata, msg):
         waiting = False
     elif (msg.topic.endswith('STATUS5')):
         status = json.loads(msg.payload);
-        print(status['StatusNET']['IPAddress']);
-        print(status['StatusNET']['Mac']);
+        #print(status['StatusNET']['IPAddress']);
+        #print(status['StatusNET']['Mac']);
+        print("{}, {}, {}".format(userdata, status['StatusNET']['IPAddress'], status['StatusNET']['Mac']));
         status5Waiting = False
     #else:
         #print("%s %s" % (msg.topic, msg.payload))
@@ -80,6 +82,7 @@ def handleMQTT(mqclient, device_name, commands, mqtt_host, topic, full_topic, on
     mqclient.on_message = on_message
     mqclient.connect(mqtt_host)
     mqclient.subscribe(subscribe_topic)
+    mqclient.user_data_set(device_name);
     starttime = datetime.datetime.now()
     while waiting and (datetime.datetime.now() - starttime).total_seconds() < 45:
         mqclient.loop(timeout=1.0)
