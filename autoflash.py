@@ -21,7 +21,8 @@ tasmotadir = "../Sonoff-Tasmota.original"
 
 # hardcodings
 autoflashdir = os.path.dirname(os.path.abspath(__file__))
-user_config_override = "./sonoff/user_config_override.h" #hardcoded from tasmota dir
+tasmotadir = autoflashdir + "/" + tasmotadir;
+user_config_override =  tasmotadir + "/sonoff/user_config_override.h" #hardcoded from tasmota dir
 
 waiting = True
 status5Waiting = True
@@ -122,39 +123,83 @@ def handleMQTT(mqclient, device_name, commands, mqtt_host, topic, full_topic, on
         mqclient.disconnect()
 
         return True, "Build, upload, came online success"
+def programTasmota(device_name, module, group_topic, full_topic, topic, friendly_name, site_info, build_flags, tasmota_config, tasmota_blank_defines):
+
+    # randomize the thing that tells tasmota to update the whole device config
+    cfg_holder = str(randint(1, 32000))
+
+    poweron_state = tasmota_config['poweron_state']
+
+    build_flags_text = ''
+    if build_flags is not None:
+        for flag in build_flags:
+            build_flags_text += "#define " + flag + "\n"
+    tasmota_defines = tasmota_blank_defines.format(device_name,
+                                        str(datetime.datetime.now()),
+                                        cfg_holder, module, group_topic, full_topic,
+                                        topic, friendly_name, poweron_state,
+                                        site_info, build_flags_text)
+    with open(user_config_override, "w") as defs_file:
+        defs_file.write(tasmota_defines)
+
+
+    # somehow flash shit
+    if(flash_mode == "serial"):
+        port="/dev/ttyUSB0"
+        pioEnv="sonoff-serial"
+    elif(flash_mode == "wifi"):
+        port="{}/u2".format(ip_addr)
+        pioEnv="sonoff-wifi"
+    else:
+        print("no flash mode set, try again?")
+        sys.exit(1)
+
+
+    os.chdir(tasmotadir)
+    call("pio run -e {}".format(pioEnv), shell=True)
+    if(pauseBeforeFlash):
+        os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing...\'"')
+
+    pio_call = "platformio run -e {} -t upload --upload-port {}".format(pioEnv, port)
+    print("pio call: {}".format(pio_call))
+    flash_result = call(pio_call, shell=True)
+    return flash_result;
 
 def startFlashing():
     # populate siteConfig
     with open(autoflashdir + "/" + site_defs, "r") as f:
         siteConfig = json.load(f)
 
-    # check if platformio.ini is correct
-    correctPIO=autoflashdir + "/platformio.ini";
-    tasmotaPIO=tasmotadir + "/platformio.ini";
-    os.system("bash -c 'cmp --silent {} {} || cp {} {}'".format(correctPIO, tasmotaPIO, correctPIO, tasmotaPIO))
 
-
-    os.chdir(tasmotadir)
 
     mqclient = mqtt.Client(clean_session=True, client_id="autoflasher")
 
     # read in the devices yaml file and sort it by module for more efficient building
-
     with open(autoflashdir + "/" + dev_defs, "r") as f:
-        devicelist = json.load(f)
+        deviceList = sorted(json.load(f), key=lambda k: k['hardware']['module'])
 
-    with open(autoflashdir + '/blank_defines.h','r') as f:
-        blank_defines = f.read()
+    someTasmota = any(filter(lambda dev: dev['hardware']['type'] == 'tasmota', deviceList))
+    if someTasmota:
+        print('some device is tasmota');
+
+        # check if platformio.ini is correct
+        correctPIO=autoflashdir + "/platformio.ini";
+        tasmotaPIO=tasmotadir + "/platformio.ini";
+        os.system("bash -c 'cmp --silent {} {} || cp {} {}'".format(correctPIO, tasmotaPIO, correctPIO, tasmotaPIO))
+
+        with open(autoflashdir + '/blank_defines.h','r') as f:
+            tasmota_blank_defines = f.read()
+    # end some device is tasmota
+
+
 
     # lists to store devices that fail or succeed at flashing
     failed = []
     passed = []
 
 
-    # randomize the thing that tells tasmota to update the whole device config
-    cfg_holder = str(randint(1, 32000))
     counter = 0
-    for dev in devicelist:
+    for dev in deviceList:
         counter += 1
         device_name = dev['name']
         devtype = dev['hardware']['type']
@@ -171,7 +216,6 @@ def startFlashing():
         topic = dev['mqtt']['topic']
 
         friendly_name = dev['name']
-        poweron_state = dev['tasmota']['poweron_state']
 
         # replace %id% with id number for devices with id
         if 'id' in dev:
@@ -181,45 +225,19 @@ def startFlashing():
         device_name = re.sub(" ", "_", device_name)
 
         # Set the terminal title so you know what device is building
-        sys.stdout.write("\x1b]2({}/{}) - {}\x07".format(counter, len(devicelist), device_name))
-        print("({}/{}) - processing {})".format(counter, len(devicelist), device_name))
+        sys.stdout.write("\x1b]2({}/{}) - {}\x07".format(counter, len(deviceList), device_name))
+        print("({}/{}) - processing {})".format(counter, len(deviceList), device_name))
 
-
-        build_flags_text = ''
-        if dev['build_flags'] is not None:
-            build_flags = dev['build_flags']
-            for flag in build_flags:
-                build_flags_text += "#define " + flag + "\n"
 
         mqtt_host, site_info = site_pick(site, siteConfig)
 
-        defines_text = blank_defines.format(device_name, str(datetime.datetime.now()),
-                                            cfg_holder, module, group_topic, full_topic,
-                                            topic, friendly_name, poweron_state,
-                                            site_info, build_flags_text)
-        with open(user_config_override, "w") as defs_file:
-            defs_file.write(defines_text)
 
-
-        # somehow flash shit
-        if(flash_mode == "serial"):
-            port="/dev/ttyUSB0"
-            pioEnv="sonoff-serial"
-        elif(flash_mode == "wifi"):
-            port="{}/u2".format(ip_addr)
-            pioEnv="sonoff-wifi"
+        flash_result = -1;
+        if 'tasmota' in dev:
+            flash_result = programTasmota(device_name, module, group_topic, full_topic, topic, friendly_name, site_info, dev['build_flags'], dev['tasmota'], tasmota_blank_defines)
         else:
-            print("no flash mode set, try again?")
-            sys.exit(1)
-
-
-        call("pio run -e {}".format(pioEnv), shell=True)
-        if(pauseBeforeFlash):
-            os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing...\'"')
-
-        pio_call = "platformio run -e {} -t upload --upload-port {}".format(pioEnv, port)
-        print("pio call: {}".format(pio_call))
-        flash_result = call(pio_call, shell=True)
+            print("device is not tasmota. Please write support for that");
+            sys.exit(501);
 
         if flash_result == 0:
             #TODO: check if it comes online even if no commands
