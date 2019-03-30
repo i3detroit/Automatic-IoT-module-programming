@@ -98,10 +98,10 @@ def handleMQTT(mqclient, device_name, commands, mqtt_host, topic, full_topic, on
 
         if(onlineCheck):
             print('sending status5 command');
+            status5Waiting = True
             statusCommand = command_topic_base + 'status'
             mqclient.publish(statusCommand, payload='5')
             mqclient.loop(timeout=1.0)
-            status5Waiting = True
         else:
             status5Waiting = False
 
@@ -118,7 +118,7 @@ def handleMQTT(mqclient, device_name, commands, mqtt_host, topic, full_topic, on
         while status5Waiting and (datetime.datetime.now() - starttime).total_seconds() < 10:
             mqclient.loop(timeout=1.0)
         if status5Waiting: # didn't see responses
-            print("device " + device_name + " failed to report status")
+            return False, "device " + device_name + " failed to report status"
 
         mqclient.disconnect()
 
