@@ -1,15 +1,36 @@
 [
     {
-        "id": "052",
-        "name": "basement light %id%",
+        "name": "thermostat-dev",
+        "software": "thermostat",
+        "site": "i3",
+        "hardware": {
+            "board": "d1_mini",
+            "ip_addr": null,
+            "mac_addr": null
+        },
+        "mqtt": {
+            "group_topic": null,
+            "base_topic": "i3/dev",
+            "topic": "thermostat"
+        },
+        "build_flags": null,
+        "commands": null
+    },
+    {
+        "name": "light %id%",
         "software": "tasmota",
         "site": "i3",
         "hardware": {
             "module": "SONOFF_BASIC",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.22",
-            "mac_addr": "foo"
+            "board": "esp01_1m"
         },
+        "ids": [
+            {
+                "id": "052",
+                "ip_addr": "10.13.107.190",
+                "mac_addr": "84:0D:8E:57:13:DE"
+            }
+        ],
         "mqtt": {
             "group_topic": "lights/west",
             "base_topic": "i3/inside",
