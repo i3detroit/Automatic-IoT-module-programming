@@ -18,11 +18,13 @@ flash_mode = "serial"
 dev_defs = "flash.json"
 site_defs = "sites.json"
 tasmotadir = "../Sonoff-Tasmota.original"
+arduinoDir = "../esp-arduino";
 
 # hardcodings
 autoflashdir = os.path.dirname(os.path.abspath(__file__))
 tasmotadir = autoflashdir + "/" + tasmotadir;
 user_config_override =  tasmotadir + "/sonoff/user_config_override.h" #hardcoded from tasmota dir
+buildDir = "/tmp/pio_custom_build";
 
 waiting = True
 status5Waiting = True
@@ -31,14 +33,20 @@ status5Waiting = True
 def on_message(mqclient, userdata, msg):
     global waiting
     global status5Waiting
-    if(msg.topic.endswith('INFO2')):
+    try:
+        status = json.loads(msg.payload);
+    except ValueError:
+        pass
+
+    if(waiting and msg.topic.endswith('INFO2')):
         print("Device is back online after reboot.")
         waiting = False
-    elif (msg.topic.endswith('STATUS5')):
-        status = json.loads(msg.payload);
-        #print(status['StatusNET']['IPAddress']);
-        #print(status['StatusNET']['Mac']);
-        print("{}, {}, {}".format(userdata, status['StatusNET']['IPAddress'], status['StatusNET']['Mac']));
+
+    if (status5Waiting and 'StatusNET' in status or ('Mac' in status and 'IPAddress' in status)):
+        if('StatusNET' in status):
+            print(f"{userdata}, {status['StatusNET']['IPAddress']}, {status['StatusNET']['Mac']}");
+        else:
+            print(f"{userdata}, {status['IPAddress']}, {status['Mac']}");
         status5Waiting = False
     #else:
         #print("%s %s" % (msg.topic, msg.payload))
@@ -46,6 +54,7 @@ def on_message(mqclient, userdata, msg):
 
 def site_pick(siteName, siteConfig):
     site = siteConfig[siteName]
+    site['site_name'] = siteName;
 
     if not site:
         print("Error: Site not found in" + site_defs)
@@ -53,59 +62,48 @@ def site_pick(siteName, siteConfig):
     if not site['wifi_ssid']:
         print("Error: No wifi_ssid defined for site " + site["name"])
         exit()
-    site_info = ('#define MQTT_HOST "{}"\n#define SITE "{}"\n'
-                 '#define STA_SSID1 "{}"\n#define STA_PASS1 "{}"').format(
-                 site["mqtt_host"], siteName,
-                 site["wifi_ssid"], site["wifi_pass"])
-    if 'wifi_ssid_alt' in site and 'wifi_pass_alt' in site:
-        site_info = site_info + '\n#define STA_SSID1 "{}"\n#define STA_PASS1 "{}"'.format(
-            site["wifi_ssid_alt"], site["wifi_pass_alt"])
-    if 'ntp' in site:
-        site_info = site_info + '\n#define NTP_SERVER1 "{}"'.format(site["ntp"])
-    if "latitude" in site and "longitude" in site:
-        site_info = site_info + '\n#define LATITUDE {}\n#define LONGITUDE {}'.format(
-            site["latitude"], site["longitude"])
-    return site["mqtt_host"], site_info
+    return site;
 
 # returns bool success, err message
-def handleMQTT(mqclient, device_name, commands, mqtt_host, topic, full_topic, onlineCheck):
+def handleMQTT(mqclient, dev, mqtt_host, onlineCheck):
     global waiting
     global status5Waiting
 
-    # generate topic of form tele/%device_topic%/INFO2
-    subscribe_topic = re.sub('%topic%', topic,
-                             re.sub('%prefix%', '+', full_topic)) + '+'
+    topic = f"{dev['mqtt']['base_topic']}/{dev['mqtt']['topic']}"
+    subscribe_topic = f"+/{topic}/+"
 
-    print("Watching for " + subscribe_topic)
-    print("Waiting for " + device_name + " to reboot...")
+    print(f"Watching for {subscribe_topic}")
+    print(f"Waiting for {dev['name']} to reboot...")
     waiting = True
+    status5Waiting = True
     mqclient.reinitialise()
     mqclient.on_message = on_message
     mqclient.connect(mqtt_host)
     mqclient.subscribe(subscribe_topic)
-    mqclient.user_data_set(device_name);
+    mqclient.user_data_set(dev['name']);
     starttime = datetime.datetime.now()
     while waiting and (datetime.datetime.now() - starttime).total_seconds() < 45:
         mqclient.loop(timeout=1.0)
     if waiting: # it didn't come online
-        return False, "device " + device_name + " failed to come online in 45 seconds"
+        return False, f"device {dev['name']} failed to come online in 45 seconds"
     else: #it did come online
-        # publish a list of commands with the Backlog command
-        # see https://github.com/arendst/Sonoff-Tasmota/wiki/Commands#using-backlog
-        command_topic_base = re.sub('%topic%', topic,
-                re.sub('%prefix%', 'cmnd', full_topic))
+        command_topic_base = f"cmnd/{topic}/"
         print('it came online, trying to send commands');
 
-        if(onlineCheck):
+        if(onlineCheck and status5Waiting):
             print('sending status5 command');
-            status5Waiting = True
             statusCommand = command_topic_base + 'status'
             mqclient.publish(statusCommand, payload='5')
             mqclient.loop(timeout=1.0)
         else:
             status5Waiting = False
 
-        if(commands is not None):
+        if(dev['commands'] is not None):
+            if(dev['software'] != 'tasmota'):
+                print('trying to send commands to non-tasmota device. Please code this');
+                sys.exit(1);
+            # publish a list of commands with the Backlog command
+            # see https://github.com/arendst/Sonoff-Tasmota/wiki/Commands#using-backlog
             backlogCommand = command_topic_base + 'Backlog'
             # join all commands with semicolons
             payload = ' '.join(c['command']+' '+ c['payload'] for c in commands)
@@ -118,26 +116,74 @@ def handleMQTT(mqclient, device_name, commands, mqtt_host, topic, full_topic, on
         while status5Waiting and (datetime.datetime.now() - starttime).total_seconds() < 10:
             mqclient.loop(timeout=1.0)
         if status5Waiting: # didn't see responses
-            return False, "device " + device_name + " failed to report status"
+            return False, f"device {dev['name']} failed to report status"
 
         mqclient.disconnect()
 
         return True, "Build, upload, came online success"
-def programTasmota(device_name, module, group_topic, full_topic, topic, friendly_name, site_info, build_flags, tasmota_config, tasmota_blank_defines):
+
+def programCustom(dev, site):
+    topic = f"{dev['mqtt']['base_topic']}/{dev['mqtt']['topic']}"
+    buildFlags = f"-DWIFI_SSID=\\\\\\\"{site['wifi_ssid']}\\\\\\\" -DWIFI_PASSWORD=\\\\\\\"{site['wifi_pass']}\\\\\\\" -DNAME=\\\\\\\"{dev['name']}\\\\\\\" -DTOPIC=\\\\\\\"{topic}\\\\\\\"";
+    print(buildFlags);
+    #TODO: add build flags if there are any
+    #if build_flags is not None:
+    #    for flag in build_flags:
+    #        buildFlags += "#define " + flag + "\n"
+    codeDir = f"../custom-mqtt-programs/{dev['software']}";
+
+
+    if(flash_mode == "serial"):
+        options="--project-option=\"targets=upload\" --project-option=\"upload_port=/dev/ttyUSB0\""
+    elif(flash_mode == "wifi"):
+        options="--project-option=\"targets=upload\" --project-option=\"upload_protocol=espota\" --project-option=\"upload_port=10.13.5.3\""
+
+    else:
+        print("no flash mode set, try again?")
+        sys.exit(1)
+
+    files=f"{codeDir}/thermostat.* {codeDir}/pins.h {codeDir}/doControl.* {codeDir}/i3Logo.h"
+
+    command = f"PLATFORMIO_LIB_DIR=/home/mark/projects/esp/lib pio ci --project-option=\"build_flags = {buildFlags} -Wno-overflow -Wno-narrowing\" --board {dev['hardware']['board']} {files} {options} --keep-build-dir --build-dir {buildDir}";
+    print(command);
+
+    if(pauseBeforeFlash):
+        os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing...\'"')
+    return call(command, shell=True)
+
+
+def programTasmota(dev, site, tasmota_blank_defines):
+    site_info = ('#define MQTT_HOST "{}"\n#define SITE "{}"\n'
+                 '#define STA_SSID1 "{}"\n#define STA_PASS1 "{}"').format(
+                 site["mqtt_host"], site['site_name'],
+                 site["wifi_ssid"], site["wifi_pass"])
+    if 'wifi_ssid_alt' in site and 'wifi_pass_alt' in site:
+        site_info = site_info + '\n#define STA_SSID1 "{}"\n#define STA_PASS1 "{}"'.format(
+            site["wifi_ssid_alt"], site["wifi_pass_alt"])
+    if 'ntp' in site:
+        site_info = site_info + '\n#define NTP_SERVER1 "{}"'.format(site["ntp"])
+    if "latitude" in site and "longitude" in site:
+        site_info = site_info + '\n#define LATITUDE {}\n#define LONGITUDE {}'.format(
+            site["latitude"], site["longitude"])
 
     # randomize the thing that tells tasmota to update the whole device config
     cfg_holder = str(randint(1, 32000))
 
-    poweron_state = tasmota_config['poweron_state']
+    poweron_state = dev['tasmota']['poweron_state']
+
+
+    full_topic = f"%prefix%/{dev['mqtt']['base_topic']}/%topic%/"
 
     build_flags_text = ''
-    if build_flags is not None:
-        for flag in build_flags:
+    if dev['build_flags'] is not None:
+        for flag in dev['build_flags']:
             build_flags_text += "#define " + flag + "\n"
+
+    device_name = re.sub(" ", "_", dev['name'])#apparently this might contain spaces?
     tasmota_defines = tasmota_blank_defines.format(device_name,
                                         str(datetime.datetime.now()),
-                                        cfg_holder, module, group_topic, full_topic,
-                                        topic, friendly_name, poweron_state,
+                                        cfg_holder, dev['hardware']['module'], dev['mqtt']['group_topic'], full_topic,
+                                        dev['mqtt']['topic'], dev['name'], poweron_state,
                                         site_info, build_flags_text)
     with open(user_config_override, "w") as defs_file:
         defs_file.write(tasmota_defines)
@@ -156,7 +202,10 @@ def programTasmota(device_name, module, group_topic, full_topic, topic, friendly
 
 
     os.chdir(tasmotadir)
-    call("pio run -e {}".format(pioEnv), shell=True)
+    build_result = call("pio run -e {}".format(pioEnv), shell=True)
+    if(build_result != 0):
+        print("failed to build");
+        return build_result;
     if(pauseBeforeFlash):
         os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing...\'"')
 
@@ -176,10 +225,9 @@ def startFlashing():
 
     # read in the devices yaml file and sort it by module for more efficient building
     with open(autoflashdir + "/" + dev_defs, "r") as f:
-        deviceList = sorted(json.load(f), key=lambda k: k['hardware']['module'])
+        deviceList = sorted(json.load(f), key=lambda k: k['hardware']['board'])
 
-    someTasmota = any(filter(lambda dev: dev['hardware']['type'] == 'tasmota', deviceList))
-    if someTasmota:
+    if any(filter(lambda dev: dev['software'] == 'tasmota', deviceList)):
         print('some device is tasmota');
 
         # check if platformio.ini is correct
@@ -191,6 +239,10 @@ def startFlashing():
             tasmota_blank_defines = f.read()
     # end some device is tasmota
 
+    if any(filter(lambda dev: dev['software'] != 'tasmota', deviceList)):
+        print('some device is not custom');
+        os.system(f"mkdir {buildDir}")
+
 
 
     # lists to store devices that fail or succeed at flashing
@@ -201,43 +253,32 @@ def startFlashing():
     counter = 0
     for dev in deviceList:
         counter += 1
-        device_name = dev['name']
-        devtype = dev['hardware']['type']
-        site = dev['hardware']['site']
-        module = dev['hardware']['module']
-        board = dev['hardware']['board']
         try:
             ip_addr = dev['hardware']['ip_addr']
             mac_addr = dev['hardware']['mac_addr']
         except ValueError:
             pass
-        group_topic = dev['mqtt']['group_topic']
-        full_topic = '%prefix%/{}/%topic%/'.format(dev['mqtt']['base_topic'])
-        topic = dev['mqtt']['topic']
 
-        friendly_name = dev['name']
 
         # replace %id% with id number for devices with id
         if 'id' in dev:
-            device_name = re.sub("%id%", dev['id'], device_name)
-            topic = re.sub("%id%", dev['id'], topic)
-            friendly_name = re.sub("%id%", dev['id'], friendly_name)
-        device_name = re.sub(" ", "_", device_name)
+            dev['name'] = re.sub("%id%", dev['id'], dev['name'])
+            dev['mqtt']['topic'] = re.sub("%id%", dev['id'], dev['mqtt']['topic'])
+
 
         # Set the terminal title so you know what device is building
-        sys.stdout.write("\x1b]2({}/{}) - {}\x07".format(counter, len(deviceList), device_name))
-        print("({}/{}) - processing {})".format(counter, len(deviceList), device_name))
+        sys.stdout.write("\x1b]2({}/{}) - {}\x07".format(counter, len(deviceList), dev['name']))
+        print("({}/{}) - processing {})".format(counter, len(deviceList), dev['name']))
 
 
-        mqtt_host, site_info = site_pick(site, siteConfig)
+        site = site_pick(dev['site'], siteConfig)
 
 
         flash_result = -1;
-        if 'tasmota' in dev:
-            flash_result = programTasmota(device_name, module, group_topic, full_topic, topic, friendly_name, site_info, dev['build_flags'], dev['tasmota'], tasmota_blank_defines)
+        if dev['software'] == 'tasmota':
+            flash_result = programTasmota(dev, site, tasmota_blank_defines)
         else:
-            print("device is not tasmota. Please write support for that");
-            sys.exit(501);
+            flash_result = programCustom(dev, site)
 
         if flash_result == 0:
             #TODO: check if it comes online even if no commands
@@ -245,23 +286,23 @@ def startFlashing():
             # After flashing, if there are post flash commands,
             # wait until the device comes online and then send the commands
             if dev['commands'] is not None or onlineCheck:
-                success, message = handleMQTT(mqclient, device_name, dev['commands'], mqtt_host, topic, full_topic, onlineCheck)
+                success, message = handleMQTT(mqclient, dev, site["mqtt_host"], onlineCheck)
                 print(message)
                 if(success):
-                    passed.append(device_name)
+                    passed.append(dev['name'])
                 else:
-                    failed.append(device_name)
+                    failed.append(dev['name'])
             else:
                 print("Build and upload success with result code " + str(flash_result))
-                passed.append(device_name)
+                passed.append(dev['name'])
 
 
-            print(device_name + " done\n")
+            print(dev['name'] + " done\n")
         # if build or upload failed, stop processing this device and move on
         else:
-            print("Build or upload failure for " + device_name +
+            print(f"Build or upload failure for {dev['name']}"
                   " with result code " + str(flash_result))
-            failed.append(device_name)
+            failed.append(dev['name'])
     #end device loop
 
     if len(failed) > 0:
@@ -279,8 +320,15 @@ def startFlashing():
 
 
 if __name__ == "__main__":
-    #mqclient = mqtt.Client(clean_session=True, client_id="autoflasher")
-    #success, message = handleMQTT(mqclient, 'devce_name', None, '10.13.0.22', 'lights/001', '%prefix%/mark/basement/%topic%/', True)
-    #print(success)
-    #print(message)
+    #mqclient = mqtt.Client(clean_session=True)
+    #dev = {
+    #        "name": "thermostat",
+    #        "mqtt": {
+    #            "base_topic": "i3/dev",
+    #            "topic": "thermostat"
+    #            },
+    #        "commands": None,
+    #        };
+    #success, message = handleMQTT(mqclient, dev, '10.13.0.22', onlineCheck)
+    #print(message);
     startFlashing()
