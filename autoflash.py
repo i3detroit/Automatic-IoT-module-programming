@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import sys
+from copy import deepcopy
 from subprocess import call
 from random import randint
 import json
@@ -53,7 +54,7 @@ def on_message(mqclient, userdata, msg):
                                                           ip=status['IPAddress'],
                                                           mac=status['Mac']);
         print(deviceStatus);
-        with open(logfile, 'a') as output:
+        with open(logfile, 'a+') as output:
                 output.write("{}\n".format(deviceStatus));
         status5Waiting = False
     #else:
@@ -169,7 +170,7 @@ def programCustom(dev, site):
     print(command);
 
     if(pauseBeforeFlash):
-        os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing...\'"')
+        os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing {name}...\'"'.format(name=dev['name']));
     return call(command, shell=True)
 
 
@@ -228,7 +229,7 @@ def programTasmota(dev, site, tasmota_blank_defines):
         print("failed to build");
         return build_result;
     if(pauseBeforeFlash):
-        os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing...\'"')
+        os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing {name}...\'"'.format(name=dev['name']));
 
     pio_call = "platformio run -e {} -t upload --upload-port {}".format(pioEnv, port)
     print("pio call: {}".format(pio_call))
@@ -320,7 +321,7 @@ def startFlashing():
     for dev in deviceList:
         if 'ids' in dev:
             for id in dev['ids']:
-                success, device, msg = programDevice(dev, siteConfig, tasmota_blank_defines, mqclient, id);
+                success, device, msg = programDevice(deepcopy(dev), siteConfig, tasmota_blank_defines, mqclient, id);
                 print(msg);
                 if success:
                     passed.append(device);
