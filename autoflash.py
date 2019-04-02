@@ -54,7 +54,7 @@ def on_message(mqclient, userdata, msg):
                                                           ip=status['IPAddress'],
                                                           mac=status['Mac']);
         print(deviceStatus);
-        with open(logfile, 'a+') as output:
+        with open(logfile, 'a') as output:
                 output.write("{}\n".format(deviceStatus));
         status5Waiting = False
     #else:
@@ -341,10 +341,12 @@ def startFlashing():
             errorlog.write(str(datetime.datetime.now()))
             errorlog.write("\nDevices did not flash:\n")
             errorlog.write("\n".join(failed))
+            errorlog.write("\n");
     with open(autoflashdir + "/flashed.log", "w") as flashlog:
         flashlog.write(str(datetime.datetime.now()))
         flashlog.write("\nDevices successfully flashed:\n")
         flashlog.write("\n".join(passed))
+        flashlog.write("\n");
 
     print("Done with all devices. " + str(len(passed)) + " devices passed. " +
           str(len(failed)) + " errors detected")
