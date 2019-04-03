@@ -54,7 +54,7 @@ def on_message(mqclient, userdata, msg):
                                                           ip=status['IPAddress'],
                                                           mac=status['Mac']);
         print(deviceStatus);
-        with open(logfile, 'a') as output:
+        with open(autoflashdir + "/" + logfile, 'a') as output:
                 output.write("{}\n".format(deviceStatus));
         status5Waiting = False
     #else:
@@ -244,8 +244,10 @@ def programDevice(dev, siteConfig, tasmota_blank_defines, mqclient, id=None):
     if id:
         dev['name'] = re.sub("%id%", id['id'], dev['name'])
         dev['mqtt']['topic'] = re.sub("%id%", id['id'], dev['mqtt']['topic'])
-        dev['hardware']['ip_addr'] = id['ip_addr'];
-        dev['hardware']['mac_addr'] = id['mac_addr'];
+        if 'ip_addr' in id:
+            dev['hardware']['ip_addr'] = id['ip_addr'];
+        if 'mac_addr' in id:
+            dev['hardware']['mac_addr'] = id['mac_addr'];
 
 
     # Set the terminal title so you know what device is building

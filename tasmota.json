@@ -270,6 +270,75 @@
         ]
     },
     {
+        "name": "light %id%",
+        "software": "tasmota",
+        "site": "i3",
+        "hardware": {
+            "module": "SONOFF_BASIC",
+            "board": "esp01_1m"
+        },
+        "ids": [
+            {
+                "id": "041",
+                "ip_addr": "10.13.107.159"
+            },
+            {
+                "id": "042",
+                "ip_addr": "10.13.107.107"
+            },
+            {
+                "id": "043",
+                "ip_addr": "10.13.107.50"
+            },
+            {
+                "id": "044",
+                "ip_addr": "10.13.107.93"
+            },
+            {
+                "id": "045",
+                "ip_addr": "10.13.107.191"
+            },
+            {
+                "id": "046",
+                "ip_addr": "10.13.107.226"
+            },
+            {
+                "id": "047",
+                "ip_addr": "10.13.107.157"
+            },
+            {
+                "id": "048",
+                "ip_addr": "10.13.107.185"
+            },
+            {
+                "id": "049",
+                "ip_addr": "10.13.107.165"
+            },
+            {
+                "id": "050",
+                "ip_addr": "10.13.107.192"
+            },
+            {
+                "id": "051",
+                "ip_addr": "10.13.107.226"
+            },
+            {
+                "id": "052",
+                "ip_addr": "10.13.107.190"
+            }
+        ],
+        "mqtt": {
+            "group_topic": "lights/west",
+            "base_topic": "i3/inside",
+            "topic": "lights/%id%"
+        },
+        "tasmota": {
+            "poweron_state": 1
+        },
+        "build_flags": null,
+        "commands": null
+    },
+    {
         "name": "chandelier %id%",
         "software": "tasmota",
         "site": "i3",

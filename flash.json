@@ -5,8 +5,7 @@
         "site": "i3",
         "hardware": {
             "board": "d1_mini",
-            "ip_addr": null,
-            "mac_addr": null
+            "ip_addr": null
         },
         "mqtt": {
             "group_topic": null,
@@ -27,18 +26,15 @@
         "ids": [
             {
                 "id": "052",
-                "ip_addr": "10.13.107.190",
-                "mac_addr": "84:0D:8E:57:13:DE"
+                "ip_addr": "10.13.107.190"
             },
             {
                 "id": "051",
-                "ip_addr": "10.13.107.226",
-                "mac_addr": "84:0D:8E:56:BC:89"
+                "ip_addr": "10.13.107.226"
             },
             {
                 "id": "050",
-                "ip_addr": "10.13.107.192",
-                "mac_addr": "84:0D:8E:57:13:E0"
+                "ip_addr": "10.13.107.192"
             }
         ],
         "mqtt": {
