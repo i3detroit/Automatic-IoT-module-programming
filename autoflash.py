@@ -84,6 +84,26 @@ def site_pick(siteName, siteConfig):
         exit()
     return site;
 
+
+def list_gpios():
+    lines=[]
+    append=False
+    with open(tasmotadir + "/sonoff/sonoff_template.h","r") as f:
+        for line in f:
+            if append==True:
+                split = line.split("//")[0]
+                subbed = re.sub("[\\s+,;}]","", split)
+                lines.append(subbed)
+            if "UserSelectablePins" in line:
+                append=True
+            if "}" in line:
+                append=False
+    gpios={}
+    for num, gpio in enumerate(lines):
+        gpios[gpio] = num
+    return(gpios)
+
+
 # returns bool success, err message
 def handleMQTT(mqclient, dev, mqtt_host, onlineCheck):
     global waiting
@@ -126,8 +146,14 @@ def handleMQTT(mqclient, dev, mqtt_host, onlineCheck):
             # publish a list of commands with the Backlog command
             # see https://github.com/arendst/Sonoff-Tasmota/wiki/Commands#using-backlog
             backlogCommand = command_topic_base + 'Backlog'
-            # join all commands with semicolons
-            payload = ' '.join(c['command']+' '+ c['payload'] for c in dev['commands'])
+            # join all commands with semicolons for backlog
+            commands = []
+            for c in dev['commands']:
+                if 'GPIO' in c['command'] and 'GPIO' in c['payload']:
+                    commands.append("{} {}".format(c['command'], list_gpios(c['payload'])))
+                else:
+                    commands.append("{} {}".format(c['command'], c['payload']))
+            payload = '; '.join(commands)
             print("Publishing commands...")
             mqclient.publish(backlogCommand, payload=payload)
             mqclient.loop(timeout=1.0)

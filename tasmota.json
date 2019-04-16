@@ -224,7 +224,7 @@
         "software": "tasmota",
         "site": "i3",
         "hardware": {
-            "module": "ABZMAN_OUTLET",
+            "module": "WEMOS",
             "board": "esp01_1m"
         },
         "mqtt": {
@@ -236,6 +236,20 @@
             "poweron_state": 1
         },
         "build_flags": null,
+        "commands": [
+            {
+                "command": "GPIO2",
+                "payload": "GPIO_LED1_INV"
+            },
+            {
+                "command": "GPIO13",
+                "payload": "GPIO_KEY1"
+            },
+            {
+                "command": "GPIO15",
+                "payload": "GPIO_REL1"
+            }
+        ],
         "ids": [
             {
                 "id": "012",
@@ -393,11 +407,11 @@
         "commands": [
             {
                 "command": "GPIO4",
-                "payload": "6"
+                "payload": "GPIO_I2C_SDA"
             },
             {
                 "command": "GPIO5",
-                "payload": "5"
+                "payload": "GPIO_I2C_SCL"
             },
             {
                 "command": "teleperiod",
@@ -537,7 +551,7 @@
         "software": "tasmota",
         "site": "i3",
         "hardware": {
-            "module": "TRAFFIC_LIGHT",
+            "module": "WEMOS",
             "board": "esp01_1m",
             "ip_addr": "10.13.107.56",
             "mac_addr": "18:FE:34:FA:3C:8E"
@@ -553,8 +567,32 @@
         "build_flags": null,
         "commands": [
             {
+                "command": "GPIO00",
+                "payload": "GPIO_KEY1"
+            },
+            {
+                "command": "GPIO04",
+                "payload": "GPIO_REL3_INV"
+            },
+            {
+                "command": "GPIO05",
+                "payload": "GPIO_REL2_INV"
+            },
+            {
+                "command": "GPIO12",
+                "payload": "GPIO_REL1_INV"
+            },
+            {
                 "command": "GPIO14",
-                "payload": "2"
+                "payload": "GPIO_DHT11"
+            },
+                        {
+                "command": "GPIO15",
+                "payload": "GPIO_REL4_INV"
+            },
+                        {
+                "command": "GPIO16",
+                "payload": "GPIO_LED1_INV"
             }
         ]
     },
@@ -1087,11 +1125,11 @@
         "commands": [
             {
                 "command": "GPIO4",
-                "payload": "9"
+                "payload": "GPIO_SWT1"
             },
             {
                 "command": "GPIO14",
-                "payload": "56"
+                "payload": "GPIO_LED1_INV"
             },
             {
                 "command": "switchmode1",
@@ -1121,11 +1159,11 @@
         "commands": [
             {
                 "command": "GPIO4",
-                "payload": "9"
+                "payload": "GPIO_SWT1"
             },
             {
                 "command": "GPIO14",
-                "payload": "56"
+                "payload": "GPIO_LED1_INV"
             },
             {
                 "command": "switchmode1",
@@ -1155,11 +1193,11 @@
         "commands": [
             {
                 "command": "GPIO4",
-                "payload": "9"
+                "payload": "GPIO_SWT1"
             },
             {
                 "command": "GPIO14",
-                "payload": "56"
+                "payload": "GPIO_LED1_INV"
             },
             {
                 "command": "switchmode1",
@@ -1198,7 +1236,7 @@
         "software": "tasmota",
         "site": "i3",
         "hardware": {
-            "module": "MAGICHOME23",
+            "module": "WEMOS",
             "board": "esp01_1m",
             "ip_addr": "10.13.107.115",
             "mac_addr": "60:01:94:A0:04:52"
@@ -1217,8 +1255,28 @@
         ],
         "commands": [
             {
+                "command": "GPIO02",
+                "payload": "GPIO_LED1_INV"
+            },
+            {
                 "command": "GPIO4",
-                "payload": "51"
+                "payload": "GPIO_IRRECV"
+            },
+            {
+                "command": "GPIO05",
+                "payload": "GPIO_PWM2"
+            },
+            {
+                "command": "GPIO12",
+                "payload": "GPIO_PWM1"
+            },
+            {
+                "command": "GPIO13",
+                "payload": "GPIO_PWM3"
+            },
+            {
+                "command": "GPIO15",
+                "payload": "GPIO_PWM4"
             },
             {
                 "command": "SetOption15",
@@ -1250,8 +1308,28 @@
         ],
         "commands": [
             {
+                "command": "GPIO02",
+                "payload": "GPIO_LED1_INV"
+            },
+            {
                 "command": "GPIO4",
-                "payload": "51"
+                "payload": "GPIO_IRRECV"
+            },
+            {
+                "command": "GPIO05",
+                "payload": "GPIO_PWM2"
+            },
+            {
+                "command": "GPIO12",
+                "payload": "GPIO_PWM1"
+            },
+            {
+                "command": "GPIO13",
+                "payload": "GPIO_PWM3"
+            },
+            {
+                "command": "GPIO15",
+                "payload": "GPIO_PWM4"
             },
             {
                 "command": "SetOption15",
@@ -1364,8 +1442,28 @@
         "build_flags": null,
         "commands": [
             {
+                "command": "GPIO02",
+                "payload": "GPIO_LED1_INV"
+            },
+            {
                 "command": "GPIO4",
-                "payload": "51"
+                "payload": "GPIO_IRRECV"
+            },
+            {
+                "command": "GPIO05",
+                "payload": "GPIO_PWM2"
+            },
+            {
+                "command": "GPIO12",
+                "payload": "GPIO_PWM1"
+            },
+            {
+                "command": "GPIO13",
+                "payload": "GPIO_PWM3"
+            },
+            {
+                "command": "GPIO15",
+                "payload": "GPIO_PWM4"
             },
             {
                 "command": "SetOption15",
