@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import sys
+import argparse;
 from copy import deepcopy
 from subprocess import call
 from random import randint
@@ -9,13 +10,23 @@ import re
 import paho.mqtt.client as mqtt
 import datetime
 
-# settings
-pauseBeforeFlash = True
-onlineCheck = True
-flash_mode = "serial"
-#flash_mode = "wifi"
-serialPort="/dev/ttyUSB0"
 
+parser = argparse.ArgumentParser(description='Compile and flash ESPs')
+
+parser.add_argument('-m', '--mode', dest='flashMode',
+                    action='store', choices=('wifi', 'serial'),
+                    default='serial',
+                    help='set flash mode')
+parser.add_argument('--no-online-check', dest='onlineCheck', action='store_false',
+                     help='Don\'t check if it comes online')
+parser.add_argument('--pause', dest='pauseBeforeFlash', action='store_true',
+                     help='Ask for input before flashing')
+parser.add_argument('-p', '--port', dest='serialPort', action='store',
+                     default='/dev/ttyUSB0', help='Specify serial port to flash from')
+parser.add_argument('-v', '--verbose', dest='verbosity', action='count',
+                     default=0, help='Add verbosity')
+
+# settings
 logfile = "output.tsv"
 dev_defs = "flash.json"
 site_defs = "sites.json"
@@ -132,7 +143,7 @@ def handleMQTT(mqclient, dev, mqtt_host, onlineCheck):
 
         return True, "Build, upload, came online success"
 
-def programCustom(dev, site):
+def programCustom(dev, site, args):
     topic = "{baseTop}/{topic}".format(baseTop=dev['mqtt']['base_topic'],
                                      topic=dev['mqtt']['topic'])
     buildFlags = ("-DWIFI_SSID=\\\\\\\"{ssid}\\\\\\\" "
@@ -149,9 +160,9 @@ def programCustom(dev, site):
     codeDir = "../custom-mqtt-programs/{software}".format(software=dev['software'])
 
 
-    if(flash_mode == "serial"):
-        options="--project-option=\"targets=upload\" --project-option=\"upload_port={serialPort}\"".format(serialPort=serialPort);
-    elif(flash_mode == "wifi"):
+    if(args.flashMode == "serial"):
+        options="--project-option=\"targets=upload\" --project-option=\"upload_port={serialPort}\"".format(serialPort=args.serialPort);
+    elif(args.flashMode == "wifi"):
         options="--project-option=\"targets=upload\" --project-option=\"upload_protocol=espota\" --project-option=\"upload_port=10.13.5.3\""
 
     else:
@@ -162,19 +173,19 @@ def programCustom(dev, site):
 
     command = ("PLATFORMIO_LIB_DIR=/home/mark/projects/esp/lib pio ci --project-option=\"build_flags = {buildFlags} "
                "-Wno-overflow -Wno-narrowing\" --board {board} {files} {options} --keep-build-dir "
-               "--build-dir {buildDir}").format(buildFlags=buildFlags,
+               " ").format(buildFlags=buildFlags,
                                                files=files,
                                                options=options,
                                                board=dev['hardware']['board'],
                                                buildDir=buildDir)
     print(command);
 
-    if(pauseBeforeFlash):
+    if(args.pauseBeforeFlash):
         os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing {name}...\'"'.format(name=dev['name']));
     return call(command, shell=True)
 
 
-def programTasmota(dev, site, tasmota_blank_defines):
+def programTasmota(dev, site, tasmota_blank_defines, args):
     site_info = ('#define MQTT_HOST "{}"\n#define SITE "{}"\n'
                  '#define STA_SSID1 "{}"\n#define STA_PASS1 "{}"').format(
                  site["mqtt_host"], site['site_name'],
@@ -212,10 +223,10 @@ def programTasmota(dev, site, tasmota_blank_defines):
 
 
     # somehow flash shit
-    if(flash_mode == "serial"):
-        port=serialPort
+    if(args.flashMode == "serial"):
+        port=args.serialPort
         pioEnv="sonoff-serial"
-    elif(flash_mode == "wifi"):
+    elif(args.flashMode == "wifi"):
         port="{}/u2".format(dev['hardware']['ip_addr'])
         pioEnv="sonoff-wifi"
     else:
@@ -228,7 +239,7 @@ def programTasmota(dev, site, tasmota_blank_defines):
     if(build_result != 0):
         print("failed to build");
         return build_result;
-    if(pauseBeforeFlash):
+    if(args.pauseBeforeFlash):
         os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing {name}...\'"'.format(name=dev['name']));
 
     pio_call = "platformio run -e {} -t upload --upload-port {}".format(pioEnv, port)
@@ -236,7 +247,7 @@ def programTasmota(dev, site, tasmota_blank_defines):
     flash_result = call(pio_call, shell=True)
     return flash_result;
 
-def programDevice(dev, siteConfig, tasmota_blank_defines, mqclient, id=None):
+def programDevice(dev, siteConfig, tasmota_blank_defines, mqclient, args, id=None):
     #counter += 1
 
 
@@ -261,17 +272,17 @@ def programDevice(dev, siteConfig, tasmota_blank_defines, mqclient, id=None):
 
     flash_result = -1;
     if dev['software'] == 'tasmota':
-        flash_result = programTasmota(dev, site, tasmota_blank_defines)
+        flash_result = programTasmota(dev, site, tasmota_blank_defines, args)
     else:
-        flash_result = programCustom(dev, site)
+        flash_result = programCustom(dev, site, args)
 
     if flash_result == 0:
         #TODO: check if it comes online even if no commands
 
         # After flashing, if there are post flash commands,
         # wait until the device comes online and then send the commands
-        if dev['commands'] is not None or onlineCheck:
-            success, message = handleMQTT(mqclient, dev, site["mqtt_host"], onlineCheck)
+        if dev['commands'] is not None or args.onlineCheck:
+            success, message = handleMQTT(mqclient, dev, site["mqtt_host"], args.onlineCheck)
             return success, dev['name'], message;
         else:
             return True, dev['name'], "Build and upload success with result code " + str(flash_result)
@@ -284,7 +295,7 @@ def programDevice(dev, siteConfig, tasmota_blank_defines, mqclient, id=None):
 
 
 
-def startFlashing():
+def startFlashing(args):
     # populate siteConfig
     with open(autoflashdir + "/" + site_defs, "r") as f:
         siteConfig = json.load(f)
@@ -323,15 +334,15 @@ def startFlashing():
     for dev in deviceList:
         if 'ids' in dev:
             for id in dev['ids']:
-                success, device, msg = programDevice(deepcopy(dev), siteConfig, tasmota_blank_defines, mqclient, id);
+                success, device, msg = programDevice(deepcopy(dev), siteConfig, tasmota_blank_defines, mqclient, args, id);
                 print(msg);
                 if success:
                     passed.append(device);
                 else:
                     failed.append(device);
         else:
-            success, device, msg = programDevice(dev, siteConfig, tasmota_blank_defines, mqclient);
-            print(message);
+            success, device, msg = programDevice(dev, siteConfig, tasmota_blank_defines, mqclient, args);
+            print(msg);
             if success:
                 passed.append(device);
             else:
@@ -356,6 +367,9 @@ def startFlashing():
 
 
 if __name__ == "__main__":
+    args = parser.parse_args()
+    print(args);
+    os.system('bash -c "read -s -n 1 -p \'Press the any key to continue if the settings look good\'"');
     #mqclient = mqtt.Client(clean_session=True)
     #dev = {
     #        "name": "light 052",
@@ -365,6 +379,7 @@ if __name__ == "__main__":
     #            },
     #        "commands": None,
     #        };
-    #success, message = handleMQTT(mqclient, dev, '10.13.0.22', onlineCheck)
+    #success, message = handleMQTT(mqclient, dev, '10.13.0.22', args.onlineCheck)
     #print(message);
-    startFlashing()
+
+    startFlashing(args)
