@@ -372,12 +372,12 @@
         "commands": null,
         "ids": [
             {
-                "id": "001",
+                "id": "01",
                 "ip_addr": "10.13.107.74",
                 "mac_addr": "5C:CF:7F:1C:37:3E"
             },
             {
-                "id": "002",
+                "id": "02",
                 "ip_addr": "10.13.107.27",
                 "mac_addr": "5C:CF:7F:1B:D4:60"
             }
@@ -451,12 +451,12 @@
         "commands": null,
         "ids": [
             {
-                "id": "001",
+                "id": "01",
                 "ip_addr": "10.13.107.49",
                 "mac_addr": "5c:cf:7f:bd:5e:15"
             },
             {
-                "id": "002",
+                "id": "02",
                 "ip_addr": "10.13.107.24",
                 "mac_addr": "84:f3:eb:a7:11:3c"
             }
