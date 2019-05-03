@@ -163,7 +163,7 @@ def programCustom(dev, site, args):
     if(args.flashMode == "serial"):
         options="--project-option=\"targets=upload\" --project-option=\"upload_port={serialPort}\"".format(serialPort=args.serialPort);
     elif(args.flashMode == "wifi"):
-        options="--project-option=\"targets=upload\" --project-option=\"upload_protocol=espota\" --project-option=\"upload_port=10.13.5.3\""
+        options="--project-option=\"targets=upload\" --project-option=\"upload_protocol=espota\" --project-option=\"upload_port={serialPort}\"".format(serialPort=dev['hardware']['ip_addr']);
 
     else:
         print("no flash mode set, try again?")
@@ -309,6 +309,7 @@ def startFlashing(args):
     # read in the devices yaml file and sort it by module for more efficient building
     with open(autoflashdir + "/" + dev_defs, "r") as f:
         deviceList = sorted(json.load(f), key=lambda k: k['hardware']['board'])
+    tasmota_blank_defines = None;
 
     if any(filter(lambda dev: dev['software'] == 'tasmota', deviceList)):
         print('some device is tasmota');
