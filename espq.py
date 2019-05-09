@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import json
 import datetime
@@ -169,7 +170,7 @@ class device(dict):
 
     def write_tasmota_config(self):
         """
-            Fills tasmota device parameters into blank_defines.h and writes it 
+            Fills tasmota device parameters into blank_defines.h and writes it
             to {tasmotadir}/sonoff/user_config_override.h
         """
         with open(blank_defines, 'r') as f:
@@ -199,7 +200,7 @@ class device(dict):
         correctPIO=espqdir + '/platformio.ini'
         tasmotaPIO=tasmotadir + '/platformio.ini'
         os.system("bash -c 'cmp --silent {cpio} {tpio} || cp {cpio} {tpio}'".format(cpio=correctPIO, tpio=tasmotaPIO))
-        
+
         os.chdir(tasmotadir)
         pio_call = 'platformio run -e {environment} -t upload --upload-port {port}'
         if self.flash_mode == 'wifi':

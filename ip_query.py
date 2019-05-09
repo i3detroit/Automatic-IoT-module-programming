@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from espq import *
 
 RED = '\033[1;31m'

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
     Write the config file for a tasmota device with -d devicename
     or print a list of devices with --list
@@ -7,13 +8,13 @@ from espq import *
 import argparse
 
 def fmtcols(mylist, cols):
-    """ 
+    """
         Prints a list in a number of columns.
         From https://stackoverflow.com/a/24876899
     """
     maxwidth = max(list(map(lambda x: len(x), mylist)))
     justifyList = list(map(lambda x: x.ljust(maxwidth), mylist))
-    lines = (' '.join(justifyList[i:i+cols]) 
+    lines = (' '.join(justifyList[i:i+cols])
              for i in range(0,len(justifyList),cols))
     print("\n".join(lines))
 
