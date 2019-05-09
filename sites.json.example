@@ -1,8 +1,10 @@
 {
     "i3": {
         "mqtt_host": "10.13.0.22",
-        "wifi_ssid": "i3detroit-iot",
-        "wifi_pass": "whatever",
+        "wifi_ssid": "foo",
+        "wifi_pass": "bar",
+        "wifi_ssid_alt": "",
+        "wifi_pass_alt": "",
         "ntp": "10.13.0.1",
         "latitude": "42.453725",
         "longitude": "-83.113690"
@@ -12,8 +14,8 @@
         "mqtt_host": "192.168.1.107",
         "wifi_ssid": "foo",
         "wifi_pass": "bar",
-        "wifi_ssid_alt": "secondary",
-        "wifi_pass_alt": "secret",
+        "wifi_ssid_alt": "",
+        "wifi_pass_alt": "",
         "ntp": "nl.pool.ntp.org",
         "latitude": "",
         "longitude": ""
@@ -22,6 +24,8 @@
         "mqtt_host": "192.168.1.4",
         "wifi_ssid": "foo",
         "wifi_pass": "bar",
+        "wifi_ssid_alt": "",
+        "wifi_pass_alt": "",
         "ntp": "nl.pool.ntp.org",
         "latitude": "",
         "longitude": ""

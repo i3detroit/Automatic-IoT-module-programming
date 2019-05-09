@@ -1,4 +1,4 @@
-//{} generated on {}
+//Config for {name} generated on {datetime}
 #ifndef _USER_CONFIG_OVERRIDE_H_
 #define _USER_CONFIG_OVERRIDE_H_
 
@@ -393,15 +393,20 @@
   #define WEB_USERNAME         "admin"           // Web server Admin mode user name
 #define USE_ADC_VCC                              // Display Vcc in Power status. Disable for use as Analog input on selected devices
 
-#define CFG_HOLDER {}
-#define MODULE {}
-#define MQTT_GRPTOPIC "{}"
-#define MQTT_FULLTOPIC "{}"
-#define MQTT_TOPIC "{}"
-#define FRIENDLY_NAME "{}"
-#define APP_POWERON_STATE {}
-{}
-{}
-#define STA_SSID2 ""
-#define STA_PASS2 ""
+#define CFG_HOLDER {cfg_holder}
+#define MODULE {module}
+#define MQTT_GRPTOPIC "{group_topic}"
+#define MQTT_FULLTOPIC "{full_topic}"
+#define MQTT_TOPIC "{topic}"
+#define FRIENDLY_NAME "{f_name}"
+#define STA_SSID1 "{wifi_ssid}"
+#define STA_PASS1 "{wifi_pass}"
+#define STA_SSID2 "{wifi_ssid_alt}"
+#define STA_PASS2 "{wifi_pass_alt}"
+#define MQTT_HOST "{mqtt_host}"
+#define NTP_SERVER1 "{ntp}"
+#define LATITUDE {latitude}
+#define LONGITUDE {longitude}
+#define APP_POWERON_STATE {poweron_state}
+{build_flags}
 #endif  // _USER_CONFIG_OVERRIDE_H_

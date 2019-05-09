@@ -3,19 +3,14 @@
         "name": "light %id%",
         "software": "tasmota",
         "site": "i3",
-        "hardware":{
-            "module": "SONOFF_BASIC",
-            "board": "esp01_1m"
-        },
-        "mqtt": {
-            "group_topic": "lights/east",
-            "base_topic": "i3/inside",
-            "topic": "lights/%id%"
-        },
-        "tasmota": {
-            "poweron_state": 1
-        },
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "group_topic": "lights/east",
+        "base_topic": "i3/inside",
+        "topic": "lights/%id%",
+        "poweron_state": 1,
         "build_flags": null,
+        "commands": null,
         "ids": [
             {
                 "id": "001",
@@ -173,36 +168,6 @@
                 "mac_addr": "2C:3A:E8:07:AC:81"
             },
             {
-                "id": "036",
-                "ip_addr": "10.13.107.212",
-                "mac_addr": "2C:3A:E8:11:6E:CC",
-                "commands": [
-                    {
-                        "command": "SetOption13",
-                        "payload": "ON"
-                    },
-                    {
-                        "command": "SetOption32",
-                        "payload": "100"
-                    }
-                ]
-            },
-            {
-                "id": "037",
-                "ip_addr": "10.13.107.230",
-                "mac_addr": "5C:CF:7F:B4:D7:C6",
-                "commands": [
-                    {
-                        "command": "SetOption13",
-                        "payload": "ON"
-                    },
-                    {
-                        "command": "SetOption32",
-                        "payload": "100"
-                    }
-                ]
-            },
-            {
                 "id": "038",
                 "ip_addr": "10.13.107.124",
                 "mac_addr": "60:01:94:84:E3:DA"
@@ -223,18 +188,46 @@
         "name": "light %id%",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "WEMOS",
-            "board": "esp01_1m"
-        },
-        "mqtt": {
-            "group_topic": "lights/east",
-            "base_topic": "i3/inside",
-            "topic": "lights/%id%"
-        },
-        "tasmota": {
-            "poweron_state": 1
-        },
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "group_topic": "lights/east",
+        "base_topic": "i3/inside",
+        "topic": "lights/%id%",
+        "poweron_state": 1,
+        "build_flags": null,
+        "commands": [
+            {
+                "command": "SetOption13",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption32",
+                "payload": "100"
+            }
+        ],
+        "ids": [
+            {
+                "id": "036",
+                "ip_addr": "10.13.107.212",
+                "mac_addr": "2C:3A:E8:11:6E:CC"
+            },
+            {
+                "id": "037",
+                "ip_addr": "10.13.107.230",
+                "mac_addr": "5C:CF:7F:B4:D7:C6"
+            }
+        ]
+    },
+    {
+        "name": "light %id%",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "group_topic": "lights/east",
+        "base_topic": "i3/inside",
+        "topic": "lights/%id%",
+        "poweron_state": 1,
         "build_flags": null,
         "commands": [
             {
@@ -287,10 +280,8 @@
         "name": "light %id%",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_BASIC",
-            "board": "esp01_1m"
-        },
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
         "ids": [
             {
                 "id": "041",
@@ -341,14 +332,10 @@
                 "ip_addr": "10.13.107.190"
             }
         ],
-        "mqtt": {
-            "group_topic": "lights/west",
-            "base_topic": "i3/inside",
-            "topic": "lights/%id%"
-        },
-        "tasmota": {
-            "poweron_state": 1
-        },
+        "group_topic": "lights/west",
+        "base_topic": "i3/inside",
+        "topic": "lights/%id%",
+        "poweron_state": 1,
         "build_flags": null,
         "commands": null
     },
@@ -356,18 +343,12 @@
         "name": "chandelier %id%",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_SV",
-            "board": "esp01_1m"
-        },
-        "mqtt": {
-            "group_topic": "accent/chandelier",
-            "base_topic": "i3/inside",
-            "topic": "accent/chandelier-%id%"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_SV",
+        "board": "esp01_1m",
+        "group_topic": "accent/chandelier",
+        "base_topic": "i3/inside",
+        "topic": "accent/chandelier-%id%",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null,
         "ids": [
@@ -387,18 +368,12 @@
         "name": "sensor cluster %id%",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "WEMOS",
-            "board": "esp01_1m"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "sensors/cluster-%id%"
-        },
-        "tasmota": {
-            "poweron_state": 1
-        },
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "sensors/cluster-%id%",
+        "poweron_state": 1,
         "build_flags": [
             "USE_I2C",
             "USE_BMP",
@@ -435,18 +410,12 @@
         "name": "swirly-lights-%id%",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_BASIC",
-            "board": "esp01_1m"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "commons/accent/swirly-lights-%id"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "commons/accent/swirly-lights-%id",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null,
         "ids": [
@@ -466,20 +435,14 @@
         "name": "media lab lights",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TOUCH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.196",
-            "mac_addr": "60:01:94:86:7C:5B"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "media-lab/lights"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_TOUCH",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.196",
+        "mac_addr": "60:01:94:86:7C:5B",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "media-lab/lights",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -487,20 +450,14 @@
         "name": "commons ceiling fan",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TOUCH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.108",
-            "mac_addr": "F0:9F:C2:24:30:D7"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "commons/ceiling-fans"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_TOUCH",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.108",
+        "mac_addr": "F0:9F:C2:24:30:D7",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "commons/ceiling-fans",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -508,20 +465,14 @@
         "name": "laser ceiling fan",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TOUCH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.52",
-            "mac_addr": "60:01:94:86:BB:C0"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "laser-zone/ceiling-fan"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_TOUCH",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.52",
+        "mac_addr": "60:01:94:86:BB:C0",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "laser-zone/ceiling-fan",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -529,20 +480,14 @@
         "name": "laser vent fan",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_SV",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.121",
-            "mac_addr": "5C:CF:7F:1C:42:64"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "laser-zone/vent-fan"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_SV",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.121",
+        "mac_addr": "5C:CF:7F:1C:42:64",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "laser-zone/vent-fan",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -550,20 +495,14 @@
         "name": "traffic light",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "WEMOS",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.56",
-            "mac_addr": "18:FE:34:FA:3C:8E"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "commons/traffic-light"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.56",
+        "mac_addr": "18:FE:34:FA:3C:8E",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "commons/traffic-light",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": [
             {
@@ -600,20 +539,14 @@
         "name": "fablab vent fan",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_BASIC",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.110",
-            "mac_addr": "5C:CF:7F:1B:CF:DC"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "fablab/vent"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.110",
+        "mac_addr": "5C:CF:7F:1B:CF:DC",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "fablab/vent",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -621,20 +554,14 @@
         "name": "machine shop ceiling fan",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_BASIC",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.137",
-            "mac_addr": "2C:3A:E8:07:B2:B6"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "machine-shop/ceiling-fan"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.137",
+        "mac_addr": "2C:3A:E8:07:B2:B6",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "machine-shop/ceiling-fan",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -642,20 +569,14 @@
         "name": "Paint box vent fan",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_BASIC",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.199",
-            "mac_addr": "5C:CF:7F:BD:86:A1"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "commons/paint-box"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.199",
+        "mac_addr": "5C:CF:7F:BD:86:A1",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "commons/paint-box",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -663,20 +584,14 @@
         "name": "disco-spotlights",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_BASIC",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.236",
-            "mac_addr": "5C:CF:7F:BB:06:C2"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "commons/accent/disco-spotlights"
-        },
-        "tasmota": {
-            "poweron_state": 1
-        },
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.236",
+        "mac_addr": "5C:CF:7F:BB:06:C2",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "commons/accent/disco-spotlights",
+        "poweron_state": 1,
         "build_flags": null,
         "commands": null
     },
@@ -684,20 +599,14 @@
         "name": "433 rf reciever",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_BRIDGE",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.36",
-            "mac_addr": "60:01:94:8F:34:3D"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "infrastructure/433-rf-reciever"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_BRIDGE",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.36",
+        "mac_addr": "60:01:94:8F:34:3D",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "infrastructure/433-rf-reciever",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null,
         "notes": "433-rf-reciever"
@@ -706,20 +615,14 @@
         "name": "wolverine chiller",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_BASIC",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.231",
-            "mac_addr": "5C:CF:7F:72:53:39"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "laser-zone/wolverine/chiller"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.231",
+        "mac_addr": "5C:CF:7F:72:53:39",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "laser-zone/wolverine/chiller",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -727,20 +630,14 @@
         "name": "bumblebee chiller",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_BASIC",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.114",
-            "mac_addr": "5C:CF:7F:72:5E:75"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "laser-zone/bumblebee/chiller"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.114",
+        "mac_addr": "5C:CF:7F:72:5E:75",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "laser-zone/bumblebee/chiller",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -748,20 +645,14 @@
         "name": "fablab chiller",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_POW",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.77",
-            "mac_addr": "5C:CF:7F:92:2C:CB"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "fablab/chiller"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_POW",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.77",
+        "mac_addr": "5C:CF:7F:92:2C:CB",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "fablab/chiller",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -769,20 +660,14 @@
         "name": "h structure workbench lights",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_BASIC",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.83",
-            "mac_addr": "5C:CF:7F:72:96:3E"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "tool-crib/workbench-lights"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.83",
+        "mac_addr": "5C:CF:7F:72:96:3E",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "tool-crib/workbench-lights",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -790,20 +675,14 @@
         "name": "hallway light",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TOUCH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.167",
-            "mac_addr": "60:01:94:86:C7:3B"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "hallway/light"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_TOUCH",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.167",
+        "mac_addr": "60:01:94:86:C7:3B",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "hallway/light",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -811,20 +690,14 @@
         "name": "elab light",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TOUCH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.150",
-            "mac_addr": "60:01:94:86:76:F6"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "elab/light"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_TOUCH",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.150",
+        "mac_addr": "60:01:94:86:76:F6",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "elab/light",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -832,20 +705,14 @@
         "name": "craftroom light",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TOUCH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.239",
-            "mac_addr": "60:01:94:86:BB:84"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "craftroom/light"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_TOUCH",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.239",
+        "mac_addr": "60:01:94:86:BB:84",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "craftroom/light",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -853,20 +720,14 @@
         "name": "small bathroom light",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TOUCH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.79",
-            "mac_addr": "60:01:94:86:BB:D9"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "small-bathroom/light"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_TOUCH",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.79",
+        "mac_addr": "60:01:94:86:BB:D9",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "small-bathroom/light",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -874,20 +735,14 @@
         "name": "dooridor light",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TOUCH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.197",
-            "mac_addr": "60:01:94:86:C9:D1"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "dooridor/lights"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_TOUCH",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.197",
+        "mac_addr": "60:01:94:86:C9:D1",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "dooridor/lights",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -895,20 +750,14 @@
         "name": "classroom light west",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TOUCH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.173",
-            "mac_addr": "60:01:94:86:75:CF"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "classroom/lights-west"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_TOUCH",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.173",
+        "mac_addr": "60:01:94:86:75:CF",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "classroom/lights-west",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -916,41 +765,47 @@
         "name": "classroom light east",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TOUCH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.175",
-            "mac_addr": "60:01:94:86:C8:7F"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "classroom/lights-east"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.101",
+        "mac_addr": "B4:E6:2D:01:74:B9",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "classroom/lights-east",
+        "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "GPIO05",
+                "payload": "GPIO_LED1"
+            },
+            {
+                "command": "GPIO13",
+                "payload": "GPIO_REL1"
+            },
+            {
+                "command": "GPIO14",
+                "payload": "GPIO_SWT1"
+            },
+            {
+                "command": "switchmode1",
+                "payload": "3"
+            }
+            
+        ]
     },
     {
         "name": "genie charging",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_POW",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.242",
-            "mac_addr": "2C:3A:E8:3B:A8:5A"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "commons/genie-charging"
-        },
-        "tasmota": {
-            "poweron_state": 1
-        },
+        "module": "SONOFF_POW",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.242",
+        "mac_addr": "2C:3A:E8:3B:A8:5A",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "commons/genie-charging",
+        "poweron_state": 1,
         "build_flags": null,
         "commands": null
     },
@@ -958,20 +813,14 @@
         "name": "small bathroom vent fan",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TOUCH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.82",
-            "mac_addr": "60:01:94:9D:8F:11"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "small-bathroom/vent"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_TOUCH",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.82",
+        "mac_addr": "60:01:94:9D:8F:11",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "small-bathroom/vent",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -979,20 +828,14 @@
         "name": "small bathroom shower light",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TOUCH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.118",
-            "mac_addr": "60:01:94:9D:91:B5"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "small-bathroom/shower-light"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_TOUCH",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.118",
+        "mac_addr": "60:01:94:9D:91:B5",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "small-bathroom/shower-light",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -1000,20 +843,14 @@
         "name": "commons siren",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_BASIC",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.162",
-            "mac_addr": "DC:4F:22:0C:5F:97"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "commons/siren"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.162",
+        "mac_addr": "DC:4F:22:0C:5F:97",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "commons/siren",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -1021,20 +858,14 @@
         "name": "wolverine",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_POW",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.223",
-            "mac_addr": "EC:FA:BC:00:A0:DC"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "laser-zone/wolverine/laser"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_POW",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.223",
+        "mac_addr": "EC:FA:BC:00:A0:DC",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "laser-zone/wolverine/laser",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": [
             {
@@ -1051,20 +882,14 @@
         "name": "bumblebee",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_POW",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.245",
-            "mac_addr": "EC:FA:BC:00:99:36"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "laser-zone/bumblebee/laser"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_POW",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.245",
+        "mac_addr": "EC:FA:BC:00:99:36",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "laser-zone/bumblebee/laser",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": [
             {
@@ -1081,20 +906,14 @@
         "name": "hallway west lightswitch",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TOUCH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.174",
-            "mac_addr": "60:01:94:86:C6:05"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "hallway/lightswitch-west"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_TOUCH",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.174",
+        "mac_addr": "60:01:94:86:C6:05",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "hallway/lightswitch-west",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": [
             {
@@ -1107,20 +926,14 @@
         "name": "cnc vent fan",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.132",
-            "mac_addr": "2C:3A:E8:08:03:AF"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "cnc/vent"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_TH",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.132",
+        "mac_addr": "2C:3A:E8:08:03:AF",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "cnc/vent",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": [
             {
@@ -1141,20 +954,14 @@
         "name": "cnc large light",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.75",
-            "mac_addr": "5C:CF:7F:42:91:92"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "cnc/light"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_TH",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.75",
+        "mac_addr": "5C:CF:7F:42:91:92",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "cnc/light",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": [
             {
@@ -1175,20 +982,14 @@
         "name": "vent fan over sink",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.12",
-            "mac_addr": "5C:CF:7F:42:93:CF"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "commons/south-vent"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_TH",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.12",
+        "mac_addr": "5C:CF:7F:42:93:CF",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "commons/south-vent",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": [
             {
@@ -1209,20 +1010,14 @@
         "name": "classroom lightswitch east",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_TOUCH",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.164",
-            "mac_addr": "60:01:94:86:BA:F3"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "classroom/lightswitch-east"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_TOUCH",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.164",
+        "mac_addr": "60:01:94:86:BA:F3",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "classroom/lightswitch-east",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": [
             {
@@ -1235,20 +1030,14 @@
         "name": "elab accent arch south",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "WEMOS",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.115",
-            "mac_addr": "60:01:94:A0:04:52"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "elab/accent/arch-south"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.115",
+        "mac_addr": "60:01:94:A0:04:52",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "elab/accent/arch-south",
+        "poweron_state": 0,
         "build_flags": [
             "USE_IR_REMOTE",
             "USE_IR_RECEIVE"
@@ -1288,20 +1077,14 @@
         "name": "elab accent arch north",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "MAGICHOME23",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.138",
-            "mac_addr": "60:01:94:96:D4:7A"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "elab/accent/arch-north"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.138",
+        "mac_addr": "60:01:94:96:D4:7A",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "elab/accent/arch-north",
+        "poweron_state": 0,
         "build_flags": [
             "USE_IR_REMOTE",
             "USE_IR_RECEIVE"
@@ -1341,20 +1124,14 @@
         "name": "lanterns",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_BASIC",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.153",
-            "mac_addr": "84:f3:eb:a7:46:ed"
-        },
-        "mqtt": {
-            "group_topic": "accent/lanterns",
-            "base_topic": "i3/inside",
-            "topic": "laser-zone/accent/lanterns"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.153",
+        "mac_addr": "84:f3:eb:a7:46:ed",
+        "group_topic": "accent/lanterns",
+        "base_topic": "i3/inside",
+        "topic": "laser-zone/accent/lanterns",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -1362,20 +1139,14 @@
         "name": "fairy-lights",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_BASIC",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.253",
-            "mac_addr": "5c:cf:7f:72:53:4f"
-        },
-        "mqtt": {
-            "group_topic": "accent/fairy-lights",
-            "base_topic": "i3/inside",
-            "topic": "commons/accent/fairy-lights"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.253",
+        "mac_addr": "5c:cf:7f:72:53:4f",
+        "group_topic": "accent/fairy-lights",
+        "base_topic": "i3/inside",
+        "topic": "commons/accent/fairy-lights",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -1383,20 +1154,14 @@
         "name": "chinesium laser",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_POW",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.86",
-            "mac_addr": "dc:4f:22:37:4c:24"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "fablab/chinesium-laser"
-        },
-        "tasmota": {
-            "poweron_state": 0
-        },
+        "module": "SONOFF_POW",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.86",
+        "mac_addr": "dc:4f:22:37:4c:24",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "fablab/chinesium-laser",
+        "poweron_state": 0,
         "build_flags": null,
         "commands": null
     },
@@ -1404,20 +1169,14 @@
         "name": "OLD snapple vending light",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "SONOFF_BASIC",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.49",
-            "mac_addr": "5C:CF:7F:BD:5E:15"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "program-me"
-        },
-        "tasmota": {
-            "poweron_state": 1
-        },
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.49",
+        "mac_addr": "5C:CF:7F:BD:5E:15",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "program-me",
+        "poweron_state": 1,
         "build_flags": null,
         "commands": null
     },
@@ -1425,20 +1184,14 @@
         "name": "snapple vending rgb",
         "software": "tasmota",
         "site": "i3",
-        "hardware": {
-            "module": "MAGICHOME23",
-            "board": "esp01_1m",
-            "ip_addr": "10.13.107.106",
-            "mac_addr": "dc:4f:22:c2:7c:95"
-        },
-        "mqtt": {
-            "group_topic": "none",
-            "base_topic": "i3/inside",
-            "topic": "commons/snapple-vending-light"
-        },
-        "tasmota": {
-            "poweron_state": 1
-        },
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.106",
+        "mac_addr": "dc:4f:22:c2:7c:95",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "commons/snapple-vending-light",
+        "poweron_state": 1,
         "build_flags": null,
         "commands": [
             {
@@ -1469,6 +1222,40 @@
                 "command": "SetOption15",
                 "payload": "1"
             }
+
+        ]
+    },
+    {
+        "name": "etekcity-test",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "ip_addr": "",
+        "mac_addr": "",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "etekcity/test",
+        "poweron_state": 0,
+        "build_flags": null,
+        "commands": [
+            {
+                "command": "GPIO05",
+                "payload": "GPIO_LED1"
+            },
+            {
+                "command": "GPIO13",
+                "payload": "GPIO_REL1"
+            },
+            {
+                "command": "GPIO14",
+                "payload": "GPIO_SWT1"
+            },
+            {
+                "command": "switchmode1",
+                "payload": "3"
+            }
+            
         ]
     }
 ]
