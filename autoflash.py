@@ -46,28 +46,26 @@ status5Waiting = True
 def on_message(mqclient, userdata, msg):
     global waiting
     global status5Waiting
-    try:
-        status = json.loads(msg.payload);
-    except ValueError:
-        pass
-
     if(waiting and msg.topic.endswith('INFO2')):
         print("Device is back online after reboot.")
         waiting = False
-
-    if (status5Waiting and 'StatusNET' in status or ('Mac' in status and 'IPAddress' in status)):
-        if('StatusNET' in status):
-            deviceStatus="{userdata}, {ip}, {mac}".format(userdata=userdata,
-                                                          ip=status['StatusNET']['IPAddress'],
-                                                          mac=status['StatusNET']['Mac'])
-        else:
-            deviceStatus="{userdata}, {ip}, {mac}".format(userdata=userdata,
-                                                          ip=status['IPAddress'],
-                                                          mac=status['Mac']);
-        print(deviceStatus);
-        with open(autoflashdir + "/" + logfile, 'a') as output:
-                output.write("{}\n".format(deviceStatus));
-        status5Waiting = False
+    try:
+        status = json.loads(msg.payload)
+        if (status5Waiting and 'StatusNET' in status or ('Mac' in status and 'IPAddress' in status)):
+            if('StatusNET' in status):
+                deviceStatus="{userdata}, {ip}, {mac}".format(userdata=userdata,
+                                                              ip=status['StatusNET']['IPAddress'],
+                                                              mac=status['StatusNET']['Mac'])
+            else:
+                deviceStatus="{userdata}, {ip}, {mac}".format(userdata=userdata,
+                                                              ip=status['IPAddress'],
+                                                              mac=status['Mac']);
+            print(deviceStatus);
+            with open(autoflashdir + "/" + logfile, 'a') as output:
+                    output.write("{}\n".format(deviceStatus));
+            status5Waiting = False
+    except ValueError:
+        pass
     #else:
         #print("%s %s" % (msg.topic, msg.payload))
 
@@ -85,7 +83,7 @@ def site_pick(siteName, siteConfig):
     return site;
 
 
-def list_gpios():
+def list_gpios(request):
     lines=[]
     append=False
     with open(tasmotadir + "/sonoff/sonoff_template.h","r") as f:
@@ -101,7 +99,7 @@ def list_gpios():
     gpios={}
     for num, gpio in enumerate(lines):
         gpios[gpio] = num
-    return(gpios)
+    return(gpios[request])
 
 
 # returns bool success, err message
@@ -111,16 +109,18 @@ def handleMQTT(mqclient, dev, mqtt_host, onlineCheck):
 
     topic = "{base}/{topic}".format(base=dev['mqtt']['base_topic'],
                                      topic=dev['mqtt']['topic'])
-    subscribe_topic = "+/{topic}/+".format(topic=topic)
+    subscribe_topics = ["stat/{topic}/+".format(topic=topic),
+                        "tele/{topic}/+".format(topic=topic)]
 
-    print("Watching for {subscribe_topic}".format(subscribe_topic=subscribe_topic))
     print("Waiting for {name} to reboot...".format(name=dev['name']))
     waiting = True
     status5Waiting = True
     mqclient.reinitialise()
     mqclient.on_message = on_message
     mqclient.connect(mqtt_host)
-    mqclient.subscribe(subscribe_topic)
+    for subscribe_topic in subscribe_topics:
+        print("Watching for {subscribe_topic}".format(subscribe_topic=subscribe_topic))
+        mqclient.subscribe(subscribe_topic)
     mqclient.user_data_set(dev['name']);
     starttime = datetime.datetime.now()
     while waiting and (datetime.datetime.now() - starttime).total_seconds() < 45:
@@ -376,12 +376,12 @@ def startFlashing(args):
     #end device loop
 
     if len(failed) > 0:
-        with open(autoflashdir + "/error.log", "w") as errorlog:
+        with open(autoflashdir + "/error.log", "w+") as errorlog:
             errorlog.write(str(datetime.datetime.now()))
             errorlog.write("\nDevices did not flash:\n")
             errorlog.write("\n".join(failed))
             errorlog.write("\n");
-    with open(autoflashdir + "/flashed.log", "w") as flashlog:
+    with open(autoflashdir + "/flashed.log", "w+") as flashlog:
         flashlog.write(str(datetime.datetime.now()))
         flashlog.write("\nDevices successfully flashed:\n")
         flashlog.write("\n".join(passed))
