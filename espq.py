@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import os
 import json
 import datetime
@@ -10,7 +9,6 @@ from subprocess import call
 from ast import literal_eval
 import paho.mqtt.client as mqtt
 
-devices_to_import = 'tasmota.json'
 site_config = 'sites.json'
 blank_defines = 'blank_defines.h'
 
@@ -106,7 +104,7 @@ class device(dict):
     def _on_message(self, mqtt, userdata, msg):
         print(msg.topic + ' ' + msg.payload)
 
-    def full_flash(self):
+    def flash(self, flash_mode, serial_port):
         # Flash the right software.
         if self.software == 'tasmota':
             self.flashed = self.flash_tasmota()
@@ -297,7 +295,7 @@ class device(dict):
         self.mqtt.disconnect()
 
 
-def import_devices(device_file=devices_to_import, flash_mode = 'wifi', serial_port = ''):
+def import_devices(device_file, flash_mode = 'wifi', serial_port = ''):
     """
         Process JSON file of device configs, export a list of device objects.
         Keyword arguments:
@@ -360,9 +358,5 @@ def get_gpio(request):
     return(gpios[request])
 
 if __name__ == "__main__":
-    devices=import_devices()
-    d=devices[58]
-    d.full_flash()
-    # for dev in devices:
-    #     # full_flash(dev) # Flash devices
-    #     print(dev.name)
+    print('don\'t call espq directly');
+    exit(1);

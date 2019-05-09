@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import argparse
-from espq import *
+import espq
 
 parser = argparse.ArgumentParser(description='Compile and flash ESPs')
 
@@ -16,11 +16,14 @@ parser.add_argument('-p', '--port', dest='serialPort', action='store',
                      default='/dev/ttyUSB0', help='Specify serial port to flash from')
 parser.add_argument('-v', '--verbose', dest='verbosity', action='count',
                      default=0, help='Add verbosity')
+parser.add_argument('deviceFile', metavar='deviceFile',
+                     help='What file to load device defs from')
 
-devices = import_devices()
+args = parser.parse_args()
+print(args);
+input("Press Enter to continue...")
+
+devices = espq.import_devices(args.deviceFile)
 
 for dev in devices:
-    if dev.name == 'classroom_light_east':
-        found = dev
-
-found.full_flash()
+    dev.flash(args.flashMode, args.serialPort)

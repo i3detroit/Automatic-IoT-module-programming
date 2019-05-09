@@ -2,3 +2,4 @@ sites.json
 *.log
 output.tsv
 flash.json
+__pycache__
