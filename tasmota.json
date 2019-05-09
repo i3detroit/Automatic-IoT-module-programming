@@ -370,7 +370,7 @@
         "board": "esp01_1m",
         "group_topic": "none",
         "base_topic": "i3/inside",
-        "topic": "commons/accent/swirly-lights-%id",
+        "topic": "commons/accent/swirly-lights-%id%",
         "poweron_state": 0,
         "build_flags": null,
         "commands": null,
