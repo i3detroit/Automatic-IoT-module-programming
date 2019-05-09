@@ -14,173 +14,140 @@
         "ids": [
             {
                 "id": "001",
-                "ip_addr": "10.13.107.133",
-                "mac_addr": "5C:CF:7F:1B:D4:CA"
+                "ip_addr": "10.13.107.133"
             },
             {
                 "id": "002",
-                "ip_addr": "10.13.107.78",
-                "mac_addr": "5C:CF:7F:1B:CF:BC"
+                "ip_addr": "10.13.107.78"
             },
             {
                 "id": "003",
-                "ip_addr": "10.13.107.104",
-                "mac_addr": "5C:CF:7F:1B:CF:FA"
+                "ip_addr": "10.13.107.104"
             },
             {
                 "id": "004",
-                "ip_addr": "10.13.107.177",
-                "mac_addr": "5C:CF:7F:1C:7B:CB"
+                "ip_addr": "10.13.107.177"
             },
             {
                 "id": "005",
-                "ip_addr": "10.13.107.117",
-                "mac_addr": "84:F3:EB:49:75:C1"
+                "ip_addr": "10.13.107.117"
             },
             {
                 "id": "006",
-                "ip_addr": "10.13.107.135",
-                "mac_addr": "68:C6:3A:CD:C0:1F"
+                "ip_addr": "10.13.107.135"
             },
             {
                 "id": "007",
-                "ip_addr": "10.13.107.193",
-                "mac_addr": "5C:CF:7F:1B:DF:BF"
+                "ip_addr": "10.13.107.193"
             },
             {
                 "id": "008",
                 "ip_addr": "10.13.107.154",
-                "mac_addr": "60:01:94:00:53:B3",
                 "notes": "electrodragon"
             },
             {
                 "id": "009",
                 "ip_addr": "10.13.107.184",
-                "mac_addr": "60:01:94:00:58:18",
                 "notes": "electrodragon"
             },
             {
                 "id": "010",
                 "ip_addr": "10.13.107.130",
-                "mac_addr": "60:01:94:00:BB:79",
                 "notes": "electrodragon"
             },
             {
                 "id": "011",
-                "ip_addr": "10.13.107.98",
-                "mac_addr": "5C:CF:7F:1C:B3:6E"
+                "ip_addr": "10.13.107.98"
             },
             {
                 "id": "016",
                 "ip_addr": "10.13.107.129",
-                "mac_addr": "60:01:94:00:5B:98",
                 "notes": "electrodragon; programming via pin header does not work"
             },
             {
                 "id": "018",
                 "ip_addr": "10.13.107.201",
-                "mac_addr": "60:01:94:00:54:2B",
                 "notes": "electrodragon"
             },
             {
                 "id": "019",
-                "ip_addr": "10.13.107.178",
-                "mac_addr": "2C:3A:E8:11:60:89"
+                "ip_addr": "10.13.107.178"
             },
             {
                 "id": "020",
-                "ip_addr": "10.13.107.252",
-                "mac_addr": "2C:3A:E8:07:AC:83"
+                "ip_addr": "10.13.107.252"
             },
             {
                 "id": "021",
-                "ip_addr": "10.13.107.141",
-                "mac_addr": "5C:CF:7F:BB:06:BC"
+                "ip_addr": "10.13.107.141"
             },
             {
                 "id": "022",
-                "ip_addr": "10.13.107.172",
-                "mac_addr": "5C:CF:7F:B4:D3:83"
+                "ip_addr": "10.13.107.172"
             },
             {
                 "id": "023",
-                "ip_addr": "10.13.107.235",
-                "mac_addr": "5C:CF:7F:BD:86:9A"
+                "ip_addr": "10.13.107.235"
             },
             {
                 "id": "024",
-                "ip_addr": "10.13.107.210",
-                "mac_addr": "5C:CF:7F:BD:72:B1"
+                "ip_addr": "10.13.107.210"
             },
             {
                 "id": "025",
-                "ip_addr": "10.13.107.13",
-                "mac_addr": "5C:CF:7F:BB:04:5F"
+                "ip_addr": "10.13.107.13"
             },
             {
                 "id": "026",
-                "ip_addr": "10.13.107.158",
-                "mac_addr": "2C:3A:E8:0F:4B:18"
+                "ip_addr": "10.13.107.158"
             },
             {
                 "id": "027",
-                "ip_addr": "10.13.107.113",
-                "mac_addr": "60:01:94:8F:A7:30"
+                "ip_addr": "10.13.107.113"
             },
             {
                 "id": "028",
-                "ip_addr": "10.13.107.243",
-                "mac_addr": "5C:CF:7F:BD:86:A2"
+                "ip_addr": "10.13.107.243"
             },
             {
                 "id": "029",
-                "ip_addr": "10.13.107.42",
-                "mac_addr": "5C:CF:7F:BD:85:BC"
+                "ip_addr": "10.13.107.42"
             },
             {
                 "id": "030",
-                "ip_addr": "10.13.107.216",
-                "mac_addr": "5C:CF:7F:BB:04:61"
+                "ip_addr": "10.13.107.216"
             },
             {
                 "id": "031",
-                "ip_addr": "10.13.107.105",
-                "mac_addr": "2C:3A:E8:11:99:19"
+                "ip_addr": "10.13.107.105"
             },
             {
                 "id": "032",
-                "ip_addr": "10.13.107.148",
-                "mac_addr": "5C:CF:7F:BB:06:C3"
+                "ip_addr": "10.13.107.148"
             },
             {
                 "id": "033",
-                "ip_addr": "10.13.107.168",
-                "mac_addr": "5C:CF:7F:B4:D3:7F"
+                "ip_addr": "10.13.107.168"
             },
             {
                 "id": "034",
-                "ip_addr": "10.13.107.198",
-                "mac_addr": "5C:CF:7F:BD:75:B6"
+                "ip_addr": "10.13.107.198"
             },
             {
                 "id": "035",
-                "ip_addr": "10.13.107.126",
-                "mac_addr": "2C:3A:E8:07:AC:81"
+                "ip_addr": "10.13.107.126"
             },
             {
                 "id": "038",
-                "ip_addr": "10.13.107.124",
-                "mac_addr": "60:01:94:84:E3:DA"
+                "ip_addr": "10.13.107.124"
             },
             {
                 "id": "039",
-                "ip_addr": "10.13.107.112",
-                "mac_addr": "60:01:94:84:93:E3"
+                "ip_addr": "10.13.107.112"
             },
             {
                 "id": "040",
-                "ip_addr": "10.13.107.187",
-                "mac_addr": "60:01:94:8E:05:91"
+                "ip_addr": "10.13.107.187"
             }
         ]
     },
@@ -208,13 +175,11 @@
         "ids": [
             {
                 "id": "036",
-                "ip_addr": "10.13.107.212",
-                "mac_addr": "2C:3A:E8:11:6E:CC"
+                "ip_addr": "10.13.107.212"
             },
             {
                 "id": "037",
-                "ip_addr": "10.13.107.230",
-                "mac_addr": "5C:CF:7F:B4:D7:C6"
+                "ip_addr": "10.13.107.230"
             }
         ]
     },
@@ -247,31 +212,26 @@
             {
                 "id": "012",
                 "ip_addr": "10.13.107.237",
-                "mac_addr": "38:2B:78:01:8B:0A",
                 "notes": "unmodified ct-065w eco plug"
             },
             {
                 "id": "013",
                 "ip_addr": "10.13.107.144",
-                "mac_addr": "38:2B:78:01:88:A5",
                 "notes": "unmodified ct-065w eco plug"
             },
             {
                 "id": "014",
                 "ip_addr": "10.13.107.122",
-                "mac_addr": "38:2B:78:01:84:90",
                 "notes": "modified ct-065w eco plug"
             },
             {
                 "id": "015",
                 "ip_addr": "10.13.107.84",
-                "mac_addr": "5C:CF:7F:04:E6:2C",
                 "notes": "modified and broken ct-065w eco plug; Has an esp-12 module instead of default because the magic smoke left, and the voltage current sense was cut."
             },
             {
                 "id": "017",
                 "ip_addr": "10.13.107.127",
-                "mac_addr": "38:2B:78:01:8B:92",
                 "notes": "modified ct-065w eco plug"
             }
         ]
@@ -354,13 +314,11 @@
         "ids": [
             {
                 "id": "01",
-                "ip_addr": "10.13.107.74",
-                "mac_addr": "5C:CF:7F:1C:37:3E"
+                "ip_addr": "10.13.107.74"
             },
             {
                 "id": "02",
-                "ip_addr": "10.13.107.27",
-                "mac_addr": "5C:CF:7F:1B:D4:60"
+                "ip_addr": "10.13.107.27"
             }
         ]
     },
@@ -396,13 +354,11 @@
         "ids": [
             {
                 "id": "006",
-                "ip_addr": "10.13.107.100",
-                "mac_addr": "b4:e6:2d:3b:14:f4"
+                "ip_addr": "10.13.107.100"
             },
             {
                 "id": "007",
-                "ip_addr": "10.13.107.206",
-                "mac_addr": "5c:cf:7f:63:38:cd"
+                "ip_addr": "10.13.107.206"
             }
         ]
     },
@@ -421,13 +377,11 @@
         "ids": [
             {
                 "id": "01",
-                "ip_addr": "10.13.107.49",
-                "mac_addr": "5c:cf:7f:bd:5e:15"
+                "ip_addr": "10.13.107.49"
             },
             {
                 "id": "02",
-                "ip_addr": "10.13.107.24",
-                "mac_addr": "84:f3:eb:a7:11:3c"
+                "ip_addr": "10.13.107.24"
             }
         ]
     },
@@ -438,7 +392,6 @@
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.196",
-        "mac_addr": "60:01:94:86:7C:5B",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "media-lab/lights",
@@ -453,7 +406,6 @@
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.108",
-        "mac_addr": "F0:9F:C2:24:30:D7",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/ceiling-fans",
@@ -468,7 +420,6 @@
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.52",
-        "mac_addr": "60:01:94:86:BB:C0",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "laser-zone/ceiling-fan",
@@ -483,7 +434,6 @@
         "module": "SONOFF_SV",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.121",
-        "mac_addr": "5C:CF:7F:1C:42:64",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "laser-zone/vent-fan",
@@ -498,7 +448,6 @@
         "module": "WEMOS",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.56",
-        "mac_addr": "18:FE:34:FA:3C:8E",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/traffic-light",
@@ -542,7 +491,6 @@
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.110",
-        "mac_addr": "5C:CF:7F:1B:CF:DC",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "fablab/vent",
@@ -557,7 +505,6 @@
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.137",
-        "mac_addr": "2C:3A:E8:07:B2:B6",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "machine-shop/ceiling-fan",
@@ -572,7 +519,6 @@
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.199",
-        "mac_addr": "5C:CF:7F:BD:86:A1",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/paint-box",
@@ -587,7 +533,6 @@
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.236",
-        "mac_addr": "5C:CF:7F:BB:06:C2",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/accent/disco-spotlights",
@@ -602,7 +547,6 @@
         "module": "SONOFF_BRIDGE",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.36",
-        "mac_addr": "60:01:94:8F:34:3D",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "infrastructure/433-rf-reciever",
@@ -618,7 +562,6 @@
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.231",
-        "mac_addr": "5C:CF:7F:72:53:39",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "laser-zone/wolverine/chiller",
@@ -633,7 +576,6 @@
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.114",
-        "mac_addr": "5C:CF:7F:72:5E:75",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "laser-zone/bumblebee/chiller",
@@ -648,7 +590,6 @@
         "module": "SONOFF_POW",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.77",
-        "mac_addr": "5C:CF:7F:92:2C:CB",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "fablab/chiller",
@@ -663,7 +604,6 @@
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.83",
-        "mac_addr": "5C:CF:7F:72:96:3E",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "tool-crib/workbench-lights",
@@ -678,7 +618,6 @@
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.167",
-        "mac_addr": "60:01:94:86:C7:3B",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "hallway/light",
@@ -693,7 +632,6 @@
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.150",
-        "mac_addr": "60:01:94:86:76:F6",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "elab/light",
@@ -708,7 +646,6 @@
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.239",
-        "mac_addr": "60:01:94:86:BB:84",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "craftroom/light",
@@ -723,7 +660,6 @@
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.79",
-        "mac_addr": "60:01:94:86:BB:D9",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "small-bathroom/light",
@@ -738,7 +674,6 @@
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.197",
-        "mac_addr": "60:01:94:86:C9:D1",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "dooridor/lights",
@@ -753,7 +688,6 @@
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.173",
-        "mac_addr": "60:01:94:86:75:CF",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "classroom/lights-west",
@@ -768,7 +702,6 @@
         "module": "WEMOS",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.101",
-        "mac_addr": "B4:E6:2D:01:74:B9",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "classroom/lights-east",
@@ -791,7 +724,7 @@
                 "command": "switchmode1",
                 "payload": "3"
             }
-            
+
         ]
     },
     {
@@ -801,7 +734,6 @@
         "module": "SONOFF_POW",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.242",
-        "mac_addr": "2C:3A:E8:3B:A8:5A",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/genie-charging",
@@ -816,7 +748,6 @@
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.82",
-        "mac_addr": "60:01:94:9D:8F:11",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "small-bathroom/vent",
@@ -831,7 +762,6 @@
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.118",
-        "mac_addr": "60:01:94:9D:91:B5",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "small-bathroom/shower-light",
@@ -846,7 +776,6 @@
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.162",
-        "mac_addr": "DC:4F:22:0C:5F:97",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/siren",
@@ -861,7 +790,6 @@
         "module": "SONOFF_POW",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.223",
-        "mac_addr": "EC:FA:BC:00:A0:DC",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "laser-zone/wolverine/laser",
@@ -885,7 +813,6 @@
         "module": "SONOFF_POW",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.245",
-        "mac_addr": "EC:FA:BC:00:99:36",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "laser-zone/bumblebee/laser",
@@ -909,7 +836,6 @@
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.174",
-        "mac_addr": "60:01:94:86:C6:05",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "hallway/lightswitch-west",
@@ -929,7 +855,6 @@
         "module": "SONOFF_TH",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.132",
-        "mac_addr": "2C:3A:E8:08:03:AF",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "cnc/vent",
@@ -957,7 +882,6 @@
         "module": "SONOFF_TH",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.75",
-        "mac_addr": "5C:CF:7F:42:91:92",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "cnc/light",
@@ -985,7 +909,6 @@
         "module": "SONOFF_TH",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.12",
-        "mac_addr": "5C:CF:7F:42:93:CF",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/south-vent",
@@ -1013,7 +936,6 @@
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.164",
-        "mac_addr": "60:01:94:86:BA:F3",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "classroom/lightswitch-east",
@@ -1033,7 +955,6 @@
         "module": "WEMOS",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.115",
-        "mac_addr": "60:01:94:A0:04:52",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "elab/accent/arch-south",
@@ -1080,7 +1001,6 @@
         "module": "WEMOS",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.138",
-        "mac_addr": "60:01:94:96:D4:7A",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "elab/accent/arch-north",
@@ -1127,7 +1047,6 @@
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.153",
-        "mac_addr": "84:f3:eb:a7:46:ed",
         "group_topic": "accent/lanterns",
         "base_topic": "i3/inside",
         "topic": "laser-zone/accent/lanterns",
@@ -1142,7 +1061,6 @@
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.253",
-        "mac_addr": "5c:cf:7f:72:53:4f",
         "group_topic": "accent/fairy-lights",
         "base_topic": "i3/inside",
         "topic": "commons/accent/fairy-lights",
@@ -1157,7 +1075,6 @@
         "module": "SONOFF_POW",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.86",
-        "mac_addr": "dc:4f:22:37:4c:24",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "fablab/chinesium-laser",
@@ -1172,7 +1089,6 @@
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.49",
-        "mac_addr": "5C:CF:7F:BD:5E:15",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "program-me",
@@ -1187,7 +1103,6 @@
         "module": "WEMOS",
         "board": "esp01_1m",
         "ip_addr": "10.13.107.106",
-        "mac_addr": "dc:4f:22:c2:7c:95",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/snapple-vending-light",
@@ -1232,7 +1147,6 @@
         "module": "WEMOS",
         "board": "esp01_1m",
         "ip_addr": "",
-        "mac_addr": "",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "etekcity/test",
@@ -1255,7 +1169,7 @@
                 "command": "switchmode1",
                 "payload": "3"
             }
-            
+
         ]
     }
 ]
