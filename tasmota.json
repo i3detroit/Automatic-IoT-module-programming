@@ -1141,21 +1141,21 @@
         ]
     },
     {
-        "name": "etekcity-test",
+        "name": "B-Side Office Lights",
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "ip_addr": "",
+        "ip_addr": "10.13.107.103",
         "group_topic": "none",
         "base_topic": "i3/inside",
-        "topic": "etekcity/test",
+        "topic": "b-side/office/lights",
         "poweron_state": 0,
         "build_flags": null,
         "commands": [
             {
                 "command": "GPIO05",
-                "payload": "GPIO_LED1"
+                "payload": "GPIO_LED1_INV"
             },
             {
                 "command": "GPIO13",
