@@ -4,7 +4,7 @@
     or print a list of devices with --list
 """
 
-from espq import *
+import espq
 import argparse
 
 def fmtcols(mylist, cols):
@@ -19,20 +19,31 @@ def fmtcols(mylist, cols):
     print("\n".join(lines))
 
 parser = argparse.ArgumentParser(description='Write user_config_override.h for tasmota device')
-parser.add_argument('-d', '--device', dest='device_name', action='store',
-                     help='Specify device to write config from')
-parser.add_argument('-l', '--list', dest='do_list', action='store_true',
+parser.add_argument('-n', '--device-name', dest='deviceName', action='store',
+                    metavar='device_name', help='Device to write config from')
+parser.add_argument('-l', '--list', dest='doList', action='store_true',
                      default=False, help='List available devices')
+parser.add_argument('-d', '--device-file', dest='deviceFile', action='store',
+                    metavar='device_file', help='JSON file with device definitions')
 args = parser.parse_args()
 
-devices = import_devices()
+devices = espq.import_devices(args.deviceFile)
 
-if args.do_list == True:
+if not args.deviceFile:
+    print("Device file required with -d or --device-file")
+    exit()
+
+if args.doList == True:
+    print("Device names in {device_file}".format(device_file=args.deviceFile))
     fmtcols([dev.name for dev in devices], 3)
     exit()
 
+if not args.deviceName:
+    print("Device name is required with -n or --device-name")
+    exit()
+
 for dev in devices:
-    if args.device_name == dev.name or args.device_name == dev.f_name:
+    if args.deviceName == dev.name:
         found = dev
 try:
     print("Writing config for {}".format(found.f_name))
