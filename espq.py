@@ -14,7 +14,7 @@ blank_defines = 'blank_defines.h'
 
 espqdir = os.path.dirname(os.path.abspath(__file__))
 tasmotadir = espqdir + '/../Sonoff-Tasmota'
-# tasmotadir = espqdir + '/test'
+hass_output_dir = espqdir + '/hass_output'
 
 loop_time, wait_time = 1.0, 45.0
 
@@ -55,7 +55,7 @@ class device(dict):
         self.s_topic = sub('%prefix%', 'stat', self.full_topic)
         self.t_topic = sub('%prefix%', 'tele', self.full_topic)
         self.f_name = sub('_', ' ', self.name)  # Friendly name
-        self.name = sub(' ', '_', self.name)    # Unfriendly name
+        self.name = self.name.replace(' ', '_')    # Unfriendly name
         # Format the device's build flags
         # This is still a little hacky, but I don't know how else to handle it
         # when referring to **self in write_tasmota_config()
@@ -294,6 +294,15 @@ class device(dict):
         self.mqtt.message_callback_remove(s_topic)
         self.mqtt.disconnect()
 
+    def write_hass_config(self):
+        if not os.path.isdir(hass_output_dir):
+            os.mkdir(hass_output_dir)
+        if self.domain == 'light':
+            import hass_templates.light
+            with open(hass_output_dir + '/light_{name}.yaml'.format(**self), 'w') as yamlf:
+                yamlf.write(hass_templates.light.light.format(**self))
+            with open(hass_output_dir + '/sensors_{name}.yaml'.format(**self), 'w') as yamlf:
+                yamlf.write(hass_templates.light.sensors.format(**self))
 
 def import_devices(device_file, flash_mode = 'wifi', serial_port = ''):
     """
