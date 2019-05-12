@@ -12,7 +12,7 @@ It's processed by python's .format to insert some specific settings near the bot
 
 # To program tasmota devices
 1. Create a device configuration file for your device(s) as in tasmota.json.
-  - Each device can be a single device or many identical devices which only differ by some %id% string.
+    - Each device can be a single device or many identical devices which only differ by some %id% string.
 2. Create a sites.json file with your wifi/location information.
 3. Run flash.py
 
