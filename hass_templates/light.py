@@ -30,19 +30,19 @@ sensors = """- platform: mqtt
 - platform: mqtt
   name: '{f_name} Wifi Channel'
   state_topic: 'tele/{base_topic}/{topic}/STATE'
-  value_template: '{{{{ value_json['Wifi']['Channel'] }}}}'
+  value_template: '{{{{ value_json["Wifi"]["Channel"] }}}}'
   force_update: True
 
 - platform: mqtt
   name: '{f_name} Wifi RSSI'
   state_topic: 'tele/{base_topic}/{topic}/STATE'
-  value_template: '{{{{ value_json['Wifi']['RSSI'] }}}}'
+  value_template: '{{{{ value_json["Wifi"]["RSSI"] }}}}'
   force_update: True
 
 - platform: mqtt
   name: '{f_name} Wifi BSSId'
   state_topic: 'tele/{base_topic}/{topic}/STATE'
-  value_template: '{{{{ value_json['Wifi']['BSSId'] }}}}'
+  value_template: '{{{{ value_json["Wifi"]["BSSId"] }}}}'
   force_update: True
 
 - platform: template
