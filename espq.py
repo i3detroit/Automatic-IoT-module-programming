@@ -306,9 +306,9 @@ class device(dict):
         elif self.domain == 'switch':
             import hass_templates.switch
             with open(hass_output_dir + '/switch_{name}.yaml'.format(**self), 'w') as yamlf:
-                yamlf.write(hass_templates.light.light.format(**self))
+                yamlf.write(hass_templates.switch.switch.format(**self))
             with open(hass_output_dir + '/sensors_{name}.yaml'.format(**self), 'w') as yamlf:
-                yamlf.write(hass_templates.light.sensors.format(**self))
+                yamlf.write(hass_templates.switch.sensors.format(**self))
 
 def import_devices(device_file, flash_mode = 'wifi', serial_port = ''):
     """
