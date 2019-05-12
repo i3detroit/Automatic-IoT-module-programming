@@ -1,4 +1,4 @@
-light = """- platform: mqtt
+switch = """- platform: mqtt
   name: '{f_name}'
   state_topic: 'stat/{base_topic}/{topic}/POWER'
   command_topic: 'cmnd/{base_topic}/{topic}/POWER'

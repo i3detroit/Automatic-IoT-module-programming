@@ -1171,5 +1171,71 @@
             }
 
         ]
+    },
+    {
+        "name": "B-Side Ceiling Vent Fan",
+        "domain": "switch",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.109",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "b-side/roof-exhaust-fan",
+        "poweron_state": 0,
+        "build_flags": null,
+        "commands": [
+            {
+                "command": "GPIO05",
+                "payload": "GPIO_LED1_INV"
+            },
+            {
+                "command": "GPIO13",
+                "payload": "GPIO_REL1"
+            },
+            {
+                "command": "GPIO14",
+                "payload": "GPIO_SWT1"
+            },
+            {
+                "command": "switchmode1",
+                "payload": "3"
+            }
+
+        ]
+    },
+    {
+        "name": "Etekcity Test 04",
+        "domain": "light",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.136",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "etekciy/test-04",
+        "poweron_state": 0,
+        "build_flags": null,
+        "commands": [
+            {
+                "command": "GPIO05",
+                "payload": "GPIO_LED1_INV"
+            },
+            {
+                "command": "GPIO13",
+                "payload": "GPIO_REL1"
+            },
+            {
+                "command": "GPIO14",
+                "payload": "GPIO_SWT1"
+            },
+            {
+                "command": "switchmode1",
+                "payload": "3"
+            }
+
+        ]
     }
 ]
