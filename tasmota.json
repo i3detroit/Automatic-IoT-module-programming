@@ -1237,5 +1237,77 @@
             }
 
         ]
+    },
+    {
+        "name": "Omnisensor",
+        "domain": "light",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.111",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "sensors/omnisensor",
+        "poweron_state": 0,
+        "build_flags": [
+                "USE_I2C",
+                "USE_BME680",
+                "USE_PMS5003"
+            ],
+        "commands": [
+            {
+                "command": "GPIO3",
+                "payload": "GPIO_PMS5003"
+            },
+            {
+                "command": "GPIO4",
+                "payload": "GPIO_I2C_SDA"
+            },
+            {
+                "command": "GPIO5",
+                "payload": "GPIO_I2C_SCL"
+            },
+            {
+                "command": "teleperiod",
+                "payload": "60"
+            }
+
+        ]
+    },
+    {
+        "name": "BSide Office Lightswitch",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.87",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "b-side/office-lightswitch",
+        "poweron_state": 0,
+        "build_flags": [
+            "USE_RULES"
+            ],
+        "commands": [
+            {
+                "command": "GPIO0",
+                "payload": "GPIO_SWT1"
+            },
+                        {
+                "command": "GPIO13",
+                "payload": "GPIO_LED1_INV"
+            },
+            {
+                "command": "switchmode",
+                "payload": "3"
+            },
+            {
+                "command": "rule",
+                "payload": "on switch1#state do publish cmnd/i3/inside/b-side/office/lights/power 2 endon"
+            },
+            {
+                "command": "rule",
+                "payload": "1"
     }
 ]
