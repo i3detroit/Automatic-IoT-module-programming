@@ -7,6 +7,10 @@
 import espq
 import argparse
 
+colors = {"RED": '\033[1;31m',
+          "GREEN": '\033[1;32m',
+          "NOCOLOR": '\033[0m'}
+
 def fmtcols(mylist, cols):
     """
         Prints a list in a number of columns.
@@ -35,18 +39,26 @@ if not args.deviceFile:
 
 if args.doList == True:
     print("Device names in {device_file}".format(device_file=args.deviceFile))
-    fmtcols([dev.name for dev in devices], 3)
-    exit()
+    fmtcols(["{GREEN}{num:>3}{NOCOLOR} {d}".format(**colors, num=n, d=dev.name) for n, dev in enumerate(devices)], 3)
 
 if not args.deviceName:
-    print("Device name is required with -n or --device-name")
-    exit()
-
-for dev in devices:
-    if args.deviceName == dev.name:
-        found = dev
+    print("\nChoose a device. Enter the number or name.")
+    choice=input()
+    if choice.isdigit():
+        try:
+            found = devices[int(choice)]
+        except IndexError:
+            print("Device number not found. Exiting.")
+            exit()
+    else:
+        found = choice
+else:
+    for dev in devices:
+        if args.deviceName == dev.name:
+            found = dev
 try:
     print("Writing config for {}".format(found.f_name))
     found.write_tasmota_config()
 except:
-    print("Device name was no found. Try running with --list")
+    print("Device name was no found. Exiting.")
+    exit()
