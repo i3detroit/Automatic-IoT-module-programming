@@ -49,8 +49,11 @@ class device(dict):
                 else:
                     setattr(self, key, '')
         if 'base_topic' in device and 'topic' in device:
+            self.base_topic = self.base_topic.lower()
+            self.topic = self.topic.lower()
             topic_template = '%prefix%/{base_topic}/{topic}'
-            self.full_topic = topic_template.format(base_topic=device['base_topic'], topic=device['topic'])
+            self.full_topic = topic_template.format(**self)
+            print(self.full_topic)
         self.c_topic = sub('%prefix%', 'cmnd', self.full_topic)
         self.s_topic = sub('%prefix%', 'stat', self.full_topic)
         self.t_topic = sub('%prefix%', 'tele', self.full_topic)
@@ -134,7 +137,7 @@ class device(dict):
                 sleep(1)
                 self.online = False
                 self.run_backlog_commands()
-                sleep(12)
+                sleep(1)
                 self.online_check()
 
             if self.online == True:
