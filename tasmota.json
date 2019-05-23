@@ -1141,7 +1141,7 @@
         ]
     },
     {
-        "name": "B-Side Office Lights",
+        "name": "BSide Office Lights",
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
@@ -1173,7 +1173,7 @@
         ]
     },
     {
-        "name": "B-Side Ceiling Vent Fan",
+        "name": "BSide Ceiling Vent Fan",
         "domain": "switch",
         "software": "tasmota",
         "site": "i3",
@@ -1309,5 +1309,53 @@
             {
                 "command": "rule",
                 "payload": "1"
+            }
+        ]
+    },
+    {
+        "name": "BSide Shop %id% Lightswitch",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "b-side/shop-%id%-lightswitch",
+        "poweron_state": 0,
+        "build_flags": [
+            "USE_RULES"
+            ],
+        "commands": [
+            {
+                "command": "GPIO0",
+                "payload": "GPIO_SWT1"
+            },
+                        {
+                "command": "GPIO13",
+                "payload": "GPIO_LED1_INV"
+            },
+            {
+                "command": "switchmode",
+                "payload": "3"
+            },
+            {
+                "command": "rule",
+                "payload": "on switch1#state do publish cmnd/i3/inside/lights/west/power 2 endon"
+            },
+            {
+                "command": "rule",
+                "payload": "1"
+            }
+        ],
+        "ids": [
+            {
+                "id": "South",
+                "ip_addr": "10.13.107.72"
+            },
+            {
+                "id": "North",
+                "ip_addr": ""
+            }
+        ]
     }
 ]
