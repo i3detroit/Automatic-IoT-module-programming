@@ -229,7 +229,7 @@
         "ip_addr": "10.13.107.159",
         "group_topic": "lights/emergency",
         "base_topic": "i3/inside",
-        "topic": "lights/%id%",
+        "topic": "lights/041",
         "poweron_state": 1,
         "build_flags": null,
         "commands": null
@@ -1279,7 +1279,7 @@
                 "USE_I2C",
                 "USE_BME680",
                 "USE_PMS5003"
-            ],
+        ],
         "commands": [
             {
                 "command": "GPIO3",
@@ -1384,103 +1384,97 @@
         ]
     },
     {
-            "name": "B-Side Alarm Panel",
-            "software": "tasmota",
-            "site": "i3",
-            "hardware": {
-                "module": "WEMOS",
-                "board": "esp01_1m",
-                "ip_addr": "10.13.107.228",
-                "mac_addr": "b4:e6:2d:23:26:45"
+        "name": "B-Side Alarm Panel",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.228",
+        "mac_addr": "b4:e6:2d:23:26:45",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "b-side/alarm-panel",
+        "poweron_state": 0,
+        "build_flags": [
+           "USE_I2C",
+           "USE_MCP230xx",
+           "USE_MCP230xx_ADDR 0x20",
+           "USE_MCP230xx_OUTPUT",
+           "USE_MCP230xx_DISPLAYOUTPUT"
+        ],
+        "commands": [
+            {
+                "command": "GPIO4",
+                "payload": "6"
             },
-            "mqtt": {
-                "group_topic": "none",
-                "base_topic": "i3/inside",
-                "topic": "b-side/alarm-panel"
+            {
+                "command": "GPIO5",
+                "payload": "5"
             },
-            "tasmota": {
-                "poweron_state": 0
+            {
+                "command": "sensor29",
+                "payload": "0,2,1,2"
             },
-            "build_flags": [
-               "USE_I2C",
-               "USE_MCP230xx",
-               "USE_MCP230xx_ADDR 0x20",
-               "USE_MCP230xx_OUTPUT",
-               "USE_MCP230xx_DISPLAYOUTPUT"
-            ],
-            "commands": [
-                {
-                    "command": "GPIO4",
-                    "payload": "6"
-                },
-                {
-                    "command": "GPIO5",
-                    "payload": "5"
-                },
-                {
-                    "command": "sensor29",
-                    "payload": "0,2,1,2"
-                },
-                {
-                    "command": "sensor29",
-                    "payload": "1,2,1,2"
-                },
-                {
-                    "command": "sensor29",
-                    "payload": "2,2,1,2"
-                },
-                {
-                    "command": "sensor29",
-                    "payload": "3,2,1,2"
-                },
-                {
-                    "command": "sensor29",
-                    "payload": "4,2,1,2"
-                },
-                {
-                    "command": "sensor29",
-                    "payload": "5,2,1,2"
-                },
-                {
-                    "command": "sensor29",
-                    "payload": "6,2,1,2"
-                },
-                {
-                    "command": "sensor29",
-                    "payload": "7,2,1,2"
-                },
-                {
-                    "command": "sensor29",
-                    "payload": "8,2,1,2"
-                },
-                {
-                    "command": "sensor29",
-                    "payload": "9,2,1,2"
-                },
-                {
-                    "command": "sensor29",
-                    "payload": "10,2,1,2"
-                },
-                {
-                    "command": "sensor29",
-                    "payload": "11,2,1,2"
-                },
-                {
-                    "command": "sensor29",
-                    "payload": "12,2,1,2"
-                },
-                {
-                    "command": "sensor29",
-                    "payload": "13,2,1,2"
-                },
-                {
-                    "command": "sensor29",
-                    "payload": "14,2,1,2"
-                },
-                {
-                    "command": "sensor29",
-                    "payload": "15,2,1,2"
-                }
-            ]
-        }
+            {
+                "command": "sensor29",
+                "payload": "1,2,1,2"
+            },
+            {
+                "command": "sensor29",
+                "payload": "2,2,1,2"
+            },
+            {
+                "command": "sensor29",
+                "payload": "3,2,1,2"
+            },
+            {
+                "command": "sensor29",
+                "payload": "4,2,1,2"
+            },
+            {
+                "command": "sensor29",
+                "payload": "5,2,1,2"
+            },
+            {
+                "command": "sensor29",
+                "payload": "6,2,1,2"
+            },
+            {
+                "command": "sensor29",
+                "payload": "7,2,1,2"
+            },
+            {
+                "command": "sensor29",
+                "payload": "8,2,1,2"
+            },
+            {
+                "command": "sensor29",
+                "payload": "9,2,1,2"
+            },
+            {
+                "command": "sensor29",
+                "payload": "10,2,1,2"
+            },
+            {
+                "command": "sensor29",
+                "payload": "11,2,1,2"
+            },
+            {
+                "command": "sensor29",
+                "payload": "12,2,1,2"
+            },
+            {
+                "command": "sensor29",
+                "payload": "13,2,1,2"
+            },
+            {
+                "command": "sensor29",
+                "payload": "14,2,1,2"
+            },
+            {
+                "command": "sensor29",
+                "payload": "15,2,1,2"
+            }
+        ]
+    }
 ]
