@@ -18,6 +18,11 @@ hass_output_dir = espqdir + '/hass_output'
 
 loop_time, wait_time = 1.0, 45.0
 
+colors = {"RED": '\033[1;31m',
+          "GREEN": '\033[1;32m',
+          "BLUE": '\033[94m',
+          "NOCOLOR": '\033[0m'}
+
 wifi_attr = {'status_payload': '11',
              'stat_topic': 'STATUS11',
              'values': {'reported_ssid': ['StatusSTS', 'Wifi', 'SSId'],
@@ -115,8 +120,8 @@ class device(dict):
             self.flashed = self.flash_custom()
         # If it flashed correctly, watch for it to come online.
         if self.flashed == True:
-            print(('{f_name} flashed successfully. Waiting for it to come'
-                   'back online...'.format(**self)))
+            print(('{BLUE}{f_name} flashed successfully. Waiting for it to '
+                   'come back online...{NOCOLOR}'.format(**colors, **self)))
             sleep(1)
             self.online_check()
         else:
@@ -128,12 +133,12 @@ class device(dict):
         # and watch for it to come online again.
         elif self.flashed == True and self.online == True:
             # Skip commands if there are none.
-            if not hasattr(self, 'commands') or self.commands is None:
+            if not hasattr(self, 'commands') or self.commands is None or not self.commands:
                 self._handle_result(0)
                 return(0)
             else:
-                print(('{f_name} is online after flashing. Running setup'
-                       ' commands...'.format(**self)))
+                print(('{GREEN}{f_name} is online after flashing. Running '
+                       'setup commands...{NOCOLOR}'.format(**colors, **self)))
                 sleep(1)
                 self.online = False
                 self.run_backlog_commands()
@@ -235,7 +240,7 @@ class device(dict):
             print('Function only supports tasmota devices. Try again later')
             return(self.online)
         lwt_topic = '{t_topic}/INFO3'.format(**self)
-        print('Watching for {} Online'.format(lwt_topic))
+        print('Watching for {}'.format(lwt_topic))
         self.mqtt.connect(self.mqtt_host)
         self.mqtt.message_callback_add(lwt_topic, self._lwt_callback)
         self.mqtt.subscribe(lwt_topic)
