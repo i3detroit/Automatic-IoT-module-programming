@@ -155,7 +155,7 @@ class device(dict):
     def _handle_result(self, result_code):
         if result_code == 0:
             result = '{time}\t{f_name} flashed successfully.'.format(time=str(datetime.datetime.now()), **self)
-            with open(espqdir + "flashed.log", "w+") as flashlog:
+            with open(espqdir + "/flash_success.log", "w+") as flashlog:
                 flashlog.write(result)
                 print(result)
             return()
@@ -168,10 +168,10 @@ class device(dict):
             result = ('{time}\t{f_name} did not come back online after setup'
                       'commands.'.format(time=str(datetime.datetime), **self))
         else:
-            result = '{time}\t{f_name} WTF? Shit\'s broken'.format(time=str(datetime.datetime.now()), **self)
-        with open(espqdir + "error.log", "w+") as errorlog:
+            result = '{time}\t{f_name} WTF? Shit\'s broken.'.format(time=str(datetime.datetime.now()), **self)
+        with open(espqdir + "/flash_error.log", "w+") as errorlog:
             errorlog.write(result)
-            print(result)
+            print('{RED}{result}{NOCLOR}'.format(**colors, result=result))
         return()
 
     def write_tasmota_config(self):
@@ -211,13 +211,13 @@ class device(dict):
         pio_call = 'platformio run -e {environment} -t upload --upload-port {port}'
         if self.flash_mode == 'wifi':
             pio_call = pio_call.format(environment='sonoff-wifi', port=(self.ip_addr + '/u2'))
-            print(('Now flashing {module} {f_name} with {software} via {flash_mode} at'
-                   ' {ip_addr}'.format(**self)))
+            print(('{BLUE}Now flashing {module} {f_name} with {software} via '
+                '{flash_mode} at {ip_addr}{NOCOLOR}'.format(**colors, **self)))
         elif self.flash_mode == 'serial':
             pio_call = pio_call.format(environment='sonoff-serial', port=self.serial_port)
-            print(('Now flashing {module} {f_name} with {software} via {flash_mode} at'
-                   ' {serial_port}'.format(**self)))
-        print('{f_name}\'s MQTT topic is {base_topic}/{topic}'.format(**self))
+            print(('{BLUE}Now flashing {module} {f_name} with {software} via '
+                '{flash_mode} at {serial_port}{NOCOLOR}'.format(**colors, **self)))
+        print('{BLUE}{f_name}\'s MQTT topic is {base_topic}/{topic}{NOCLOR}'.format(**colors, **self))
         print(pio_call)
         flash_result = call(pio_call, shell=True)
         os.chdir(espqdir)
@@ -240,7 +240,7 @@ class device(dict):
             print('Function only supports tasmota devices. Try again later')
             return(self.online)
         lwt_topic = '{t_topic}/INFO3'.format(**self)
-        print('Watching for {}'.format(lwt_topic))
+        print('{BLUE}Watching for {}{NOCOLOR}'.format(lwt_topic, **colors))
         self.mqtt.connect(self.mqtt_host)
         self.mqtt.message_callback_add(lwt_topic, self._lwt_callback)
         self.mqtt.subscribe(lwt_topic)
@@ -249,21 +249,21 @@ class device(dict):
             self.mqtt.loop(timeout=loop_time)
         time_waited = (datetime.datetime.now() - starttime).total_seconds()
         if self.online == False:
-            print('{f_name} did not come online within {wait_time} seconds'.format(f_name=self.f_name, wait_time=str(wait_time)))
+            print('{RED}{f_name} did not come online within {wait_time} '
+                  'seconds{NOCLOR}'.format(f_name=self.f_name, wait_time=str(wait_time), **colors))
         elif self.online == True:
-            print('{f_name} came online in {time_waited} seconds'.format(f_name=self.f_name, time_waited=time_waited))
+            print('{GREEN}{f_name} came online in {time_waited} '
+                  'seconds{NOCOLOR}'.format(f_name=self.f_name, time_waited=time_waited, **colors))
         self.mqtt.unsubscribe(lwt_topic)
         self.mqtt.message_callback_remove(lwt_topic)
         self.mqtt.disconnect()
 
-    def _lwt_callback(self, mqtt, userdata, msg):
-        """ MQTT callback to watch for a device to publish LWT Online """
+    def _online_callback(self, mqtt, userdata, msg):
+        """
+            MQTT callback to set online status for a device after
+            it comes back online after flashing.
+        """
         self.online = True
-        # if msg.payload.decode('UTF-8') == 'Online':
-        #     self.online = True
-        #     print('{f_name} published LWT online'.format(**self))
-        # else:
-        #     self.online = False
 
     def run_backlog_commands(self):
         """ Issue setup commands for tasmota over MQTT with backlog """
