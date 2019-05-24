@@ -58,7 +58,6 @@ class device(dict):
             self.topic = self.topic.lower()
             topic_template = '%prefix%/{base_topic}/{topic}'
             self.full_topic = topic_template.format(**self)
-            print(self.full_topic)
         self.c_topic = sub('%prefix%', 'cmnd', self.full_topic)
         self.s_topic = sub('%prefix%', 'stat', self.full_topic)
         self.t_topic = sub('%prefix%', 'tele', self.full_topic)
@@ -242,7 +241,7 @@ class device(dict):
         lwt_topic = '{t_topic}/INFO3'.format(**self)
         print('{BLUE}Watching for {}{NOCOLOR}'.format(lwt_topic, **colors))
         self.mqtt.connect(self.mqtt_host)
-        self.mqtt.message_callback_add(lwt_topic, self._lwt_callback)
+        self.mqtt.message_callback_add(lwt_topic, lambda *args: setattr(self, 'online', True))
         self.mqtt.subscribe(lwt_topic)
         starttime = datetime.datetime.now()
         while self.online == False and (datetime.datetime.now() - starttime).total_seconds() < wait_time:
@@ -257,13 +256,6 @@ class device(dict):
         self.mqtt.unsubscribe(lwt_topic)
         self.mqtt.message_callback_remove(lwt_topic)
         self.mqtt.disconnect()
-
-    def _online_callback(self, mqtt, userdata, msg):
-        """
-            MQTT callback to set online status for a device after
-            it comes back online after flashing.
-        """
-        self.online = True
 
     def run_backlog_commands(self):
         """ Issue setup commands for tasmota over MQTT with backlog """
