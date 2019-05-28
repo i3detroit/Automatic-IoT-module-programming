@@ -119,7 +119,7 @@ class device(dict):
             self.flashed = self.flash_custom()
         # If it flashed correctly, watch for it to come online.
         if self.flashed == True:
-            print(('{BLUE}{f_name} flashed successfully. Waiting for it to '
+            print(('{GREEN}{f_name} flashed successfully. Waiting for it to '
                    'come back online...{NOCOLOR}'.format(**colors, **self)))
             sleep(1)
             self.online_check()
@@ -153,21 +153,34 @@ class device(dict):
 
     def _handle_result(self, result_code):
         if result_code == 0:
-            result = '{time}\t{f_name} flashed successfully.'.format(time=str(datetime.datetime.now()), **self)
+            result = ('{time}\t{GREEN}{f_name} flashed successfully.'
+                      '{NOCOLOR}').format(time=str(datetime.datetime.now()),
+                                          **colors,
+                                          **self)
             with open(espqdir + "/flash_success.log", "w+") as flashlog:
                 flashlog.write(result)
                 print(result)
             return()
         elif result_code == 1:
-            result = '{time}\t{f_name} failed to flash.'.format(time=str(datetime.datetime.now()), **self)
+            result = ('{time}\t{RED}{f_name}{NOCOLOR} failed '
+                     'to flash.').format(time=str(datetime.datetime.now()),
+                                        **colors,
+                                        **self)
         elif result_code == 2:
-            result = ('{time}\t{f_name} did not come back online after'
-                      'flashing.'.format(time=str(datetime.datetime), **self))
+            result = ('{time}\t{RED}{f_name} did not come back online after'
+                      'flashing.{NOCLOR}'.format(time=str(datetime.datetime.now()),
+                                                 **colors,
+                                                 **self))
         elif result_code == 3:
-            result = ('{time}\t{f_name} did not come back online after setup'
-                      'commands.'.format(time=str(datetime.datetime), **self))
+            result = ('{time}\t{RED}{f_name} did not come back online after '
+                      'setup commands.{NOCOLOR}'.format(time=str(datetime.datetime.now()),
+                                                  **colors,
+                                                  **self))
         else:
-            result = '{time}\t{f_name} WTF? Shit\'s broken.'.format(time=str(datetime.datetime.now()), **self)
+            result = ('{time}\t{RED}{f_name} WTF? Shit\'s broken.'
+                      '{NOCOLOR}').format(time=str(datetime.datetime.now()),
+                                               **colors,
+                                               **self)
         with open(espqdir + "/flash_error.log", "w+") as errorlog:
             errorlog.write(result)
             print('{RED}{result}{NOCOLOR}'.format(**colors, result=result))
@@ -260,15 +273,14 @@ class device(dict):
     def run_backlog_commands(self):
         """ Issue setup commands for tasmota over MQTT with backlog """
         if not hasattr(self, 'commands') or self.commands == '':
-            print('No commands for {f_name}, skipping.'.format(**self))
+            print('{BLUE}No commands for {f_name}, skipping.{NOCOLOR}'.format(**colors, **self))
         else:
             self.mqtt.connect(self.mqtt_host)
             backlog_topic = '{c_topic}/backlog'.format(**self)
             # Join all command/payload pairs together with semicolons. If the
             # payload is a tasmota GPIO, use the value of the enumeration.
             backlog_payload = '; '.join(['{c} {p}'.format(c=i['command'], p=get_gpio(i['payload']) if 'GPIO' in i['payload'] else i['payload']) for i in self.commands])
-            print('Sending {topic} {payload}'.format(topic=backlog_topic,
-                                                     payload=backlog_payload))
+            print('{BLUE}Sending {topic} {payload}{NOCOLOR}'.format(topic=backlog_topic, payload=backlog_payload, **colors))
             self.mqtt.publish(backlog_topic, backlog_payload)
             self.mqtt.disconnect()
 
