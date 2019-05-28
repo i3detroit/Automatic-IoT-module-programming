@@ -2,7 +2,7 @@
 #ifndef _USER_CONFIG_OVERRIDE_H_
 #define _USER_CONFIG_OVERRIDE_H_
 
-#if VERSION != 0x06040100
+#if VERSION != 0x06050000
 #error "**** WE DO NOT KNOW WHAT VERSION OF TASMOTA IS ****"
 #endif
 
@@ -11,6 +11,7 @@
 #undef PROJECT
 #undef SAVE_DATA
 #undef SAVE_STATE
+#undef BOOT_LOOP_OFFSET
 
 #undef WIFI_IP_ADDRESS
 #undef WIFI_GATEWAY
@@ -63,6 +64,7 @@
 #undef MQTT_CLIENT_ID
 
 #undef TELE_PERIOD
+#undef TELE_ON_POWER
 
 #undef DOMOTICZ_UPDATE_TIMER
 
@@ -72,6 +74,8 @@
 #undef WEB_PASSWORD
 #undef FRIENDLY_NAME
 #undef EMULATION
+
+#undef MDNS_ENABLED
 
 #undef NTP_SERVER1
 #undef NTP_SERVER2
@@ -272,6 +276,8 @@
 #undef USE_THEO_V2
 #undef USE_ALECTO_V2
 
+#undef USE_SM16716
+
 #undef USE_DEBUG_DRIVER
 
 #undef USE_CLASSIC
@@ -287,8 +293,9 @@
 #define PROJECT                "new-device"          // PROJECT is used as the default topic delimiter
 #define SAVE_DATA              1                 // [SaveData] Save changed parameters to Flash (0 = disable, 1 - 3600 seconds)
 #define SAVE_STATE             0                 // [SetOption0] Save changed power state to Flash (0 = disable, 1 = enable)
+#define BOOT_LOOP_OFFSET       1                 // [SetOption36] Number of boot loops before starting restoring defaults (0 = disable, 1..200 = boot loops offset)
 
-#define WIFI_IP_ADDRESS        "0.0.0.0"         // [IpAddress1] Set to 0.0.0.0 for using DHCP or IP address
+#define WIFI_IP_ADDRESS        "0.0.0.0"         // [IpAddress1] Set to 0.0.0.0 for using DHCP or enter a static IP address
 #define WIFI_GATEWAY           ""     // [IpAddress2] If not using DHCP set Gateway IP address
 #define WIFI_SUBNETMASK        ""   // [IpAddress3] If not using DHCP set Network mask
 #define WIFI_DNS               ""     // [IpAddress4] If not using DHCP set DNS IP address (might be equal to WIFI_GATEWAY)
@@ -332,6 +339,7 @@
 
 // -- MQTT - Telemetry ----------------------------
 #define TELE_PERIOD            300               // [TelePeriod] Telemetry (0 = disable, 10 - 3600 seconds)
+#define TELE_ON_POWER          0                 // [SetOption59] send tele/STATE together with stat/RESULT (0 = Disable, 1 = Enable)
 
 #define DOMOTICZ_UPDATE_TIMER  0                 // [DomoticzUpdateTimer] Send relay status (0 = disable, 1 - 3600 seconds)
 #define HOME_ASSISTANT_DISCOVERY_ENABLE   0      // [SetOption19] Home Assistant Discovery (0 = Disable, 1 = Enable)
@@ -340,6 +348,9 @@
 #define WEB_SERVER             2                 // [WebServer] Web server (0 = Off, 1 = Start as User, 2 = Start as Admin)
 #define WEB_PASSWORD           ""                // [WebPassword] Web server Admin mode Password for WEB_USERNAME (empty string = Disable)
 #define EMULATION              EMUL_NONE         // [Emulation] Select Belkin WeMo (single relay/light) or Hue Bridge emulation (multi relay/light) (EMUL_NONE, EMUL_WEMO or EMUL_HUE)
+
+// -- mDNS ----------------------------------------
+#define MDNS_ENABLED           0                 // [SetOption55] Use mDNS (0 = Disable, 1 = Enable)
 
 // -- Time - Up to three NTP servers in your region
 // we define the first in site config
@@ -385,7 +396,6 @@
 #define CALC_RESOLUTION        3                 // [CalcRes] Maximum number of decimals (0 - 7) used in commands ADD, SUB, MULT and SCALE
 
 #define WIFI_SOFT_AP_CHANNEL   11                 // Soft Access Point Channel number between 1 and 13 as used by Wifi Manager web GUI
-#define MQTT_LIBRARY_TYPE      MQTT_PUBSUBCLIENT   // Use PubSubClient library
 #define MQTT_TELE_RETAIN     0                   // Tele messages may send retain flag (0 = off, 1 = on)
 
 #define USE_WEBSERVER                            // Enable web server and Wifi Manager (+66k code, +8k mem)
