@@ -170,7 +170,7 @@ class device(dict):
             result = '{time}\t{f_name} WTF? Shit\'s broken.'.format(time=str(datetime.datetime.now()), **self)
         with open(espqdir + "/flash_error.log", "w+") as errorlog:
             errorlog.write(result)
-            print('{RED}{result}{NOCLOR}'.format(**colors, result=result))
+            print('{RED}{result}{NOCOLOR}'.format(**colors, result=result))
         return()
 
     def write_tasmota_config(self):
@@ -216,7 +216,7 @@ class device(dict):
             pio_call = pio_call.format(environment='sonoff-serial', port=self.serial_port)
             print(('{BLUE}Now flashing {module} {f_name} with {software} via '
                 '{flash_mode} at {serial_port}{NOCOLOR}'.format(**colors, **self)))
-        print('{BLUE}{f_name}\'s MQTT topic is {base_topic}/{topic}{NOCLOR}'.format(**colors, **self))
+        print('{BLUE}{f_name}\'s MQTT topic is {base_topic}/{topic}{NOCOLOR}'.format(**colors, **self))
         print(pio_call)
         flash_result = call(pio_call, shell=True)
         os.chdir(espqdir)
@@ -249,7 +249,7 @@ class device(dict):
         time_waited = (datetime.datetime.now() - starttime).total_seconds()
         if self.online == False:
             print('{RED}{f_name} did not come online within {wait_time} '
-                  'seconds{NOCLOR}'.format(f_name=self.f_name, wait_time=str(wait_time), **colors))
+                  'seconds{NOCOLOR}'.format(f_name=self.f_name, wait_time=str(wait_time), **colors))
         elif self.online == True:
             print('{GREEN}{f_name} came online in {time_waited} '
                   'seconds{NOCOLOR}'.format(f_name=self.f_name, time_waited=time_waited, **colors))
