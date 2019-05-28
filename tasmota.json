@@ -1277,7 +1277,7 @@
         "poweron_state": 0,
         "build_flags": [
                 "USE_I2C",
-                "USE_BMP"
+                "USE_BMP",
                 "USE_BME680",
                 "USE_PMS5003",
                 "USE_BH1750"
