@@ -5,7 +5,7 @@ import sys
 
 parser = argparse.ArgumentParser(description='Compile and flash ESPs')
 
-parser.add_argument('-m', '--mode', 
+parser.add_argument('-m', '--mode',
                     dest='flashMode',
                     action='store',
                     choices=('wifi', 'serial'),
@@ -30,10 +30,10 @@ parser.add_argument('-v', '--verbose',
                     default=0,
                     help='Add verbosity')
 parser.add_argument('deviceFile', metavar='deviceFile',
-                     help='What file to load device defs from')
+                    help='What file to load device defs from')
 
 args = parser.parse_args()
-print(args);
+print(args)
 input("Press Enter to continue...")
 
 devices = espq.import_devices(args.deviceFile)
