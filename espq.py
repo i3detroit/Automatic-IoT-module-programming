@@ -126,7 +126,7 @@ class device(dict):
         else:
             self._handle_result(1)
 
-        if self.online == False:
+        if self.online == False and self.flashed == True:
             self._handle_result(2)
         # If it came back online, run any setup commands,
         # and watch for it to come online again.
@@ -157,7 +157,7 @@ class device(dict):
                       '{NOCOLOR}').format(time=str(datetime.datetime.now()),
                                           **colors,
                                           **self)
-            with open(espqdir + "/flash_success.log", "w+") as flashlog:
+            with open(espqdir + "/flash_success.log", "a+") as flashlog:
                 flashlog.write(result)
                 print(result)
             return()
@@ -168,7 +168,7 @@ class device(dict):
                                         **self)
         elif result_code == 2:
             result = ('{time}\t{RED}{f_name} did not come back online after'
-                      'flashing.{NOCLOR}'.format(time=str(datetime.datetime.now()),
+                      'flashing.{NOCOLOR}'.format(time=str(datetime.datetime.now()),
                                                  **colors,
                                                  **self))
         elif result_code == 3:
@@ -181,7 +181,7 @@ class device(dict):
                       '{NOCOLOR}').format(time=str(datetime.datetime.now()),
                                                **colors,
                                                **self)
-        with open(espqdir + "/flash_error.log", "w+") as errorlog:
+        with open(espqdir + "/flash_error.log", "a+") as errorlog:
             errorlog.write(result)
             print('{RED}{result}{NOCOLOR}'.format(**colors, result=result))
         return()
@@ -369,7 +369,7 @@ def get_gpio(request):
     """ Retrieve a GPIO's integer value from the enumeration in tasmota """
     lines=[]
     append=False
-    with open(tasmotadir + "/sonoff/sonoff_template.h","r") as f:
+    with open(tasmotadir + "/sonoff/sonoff_template.h", "r") as f:
         for line in f:
             if append==True:
                 split = line.split('//')[0]
