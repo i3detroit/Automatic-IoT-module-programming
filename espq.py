@@ -112,6 +112,10 @@ class device(dict):
         print(msg.topic + ' ' + msg.payload)
 
     def flash(self, flash_mode, serial_port):
+        self.flash_mode = flash_mode
+        if serial_port != '':
+            self.serial_port = serial_port
+
         # Flash the right software.
         if self.software == 'tasmota':
             self.flashed = self.flash_tasmota()
@@ -322,7 +326,7 @@ class device(dict):
             with open(hass_output_dir + '/sensors_{name}.yaml'.format(**self), 'w') as yamlf:
                 yamlf.write(hass_templates.switch.sensors.format(**self))
 
-def import_devices(device_file, flash_mode = 'wifi', serial_port = ''):
+def import_devices(device_file):
     """
         Process JSON file of device configs, export a list of device objects.
         Keyword arguments:
@@ -332,9 +336,6 @@ def import_devices(device_file, flash_mode = 'wifi', serial_port = ''):
         device_import = json.load(f)
     devices=[]
     for dev in device_import:
-        dev['flash_mode'] = flash_mode
-        if serial_port != '':
-            dev['serial_port'] = serial_port
         try:
             for id_info in dev['ids']:
                 new_dev = deepcopy(dev)

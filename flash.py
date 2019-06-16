@@ -42,4 +42,6 @@ for count, dev in enumerate(devices, start=1):
     sys.stdout.write(('\x1b]2Processing device {count}/{total} - {name}'
                       '\x07').format(count=count, total=len(devices),
                                      name=dev.name))
+    print('Processing device {count}/{total} - {name}'.format(count=count, total=len(devices),
+                                     name=dev.name))
     dev.flash(args.flashMode, args.serialPort)
