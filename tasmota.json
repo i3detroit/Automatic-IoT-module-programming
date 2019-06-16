@@ -1366,11 +1366,19 @@
                 "payload": "3"
             },
             {
-                "command": "rule",
-                "payload": "on switch1#state do publish cmnd/i3/inside/lights/west/power 2 endon"
+                "command": "rule1",
+                "payload": "on switch1#state do publish cmnd/i3/inside/lights/042/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/043/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/044/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/045/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/046/power 2 endon"
+            },
+                        {
+                "command": "rule2",
+                "payload": "on switch1#state do publish cmnd/i3/inside/lights/047/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/048/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/049/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/050/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/051/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/052/power 2 endon"
             },
             {
-                "command": "rule",
+                "command": "rule1",
+                "payload": "1"
+            },
+            {
+                "command": "rule2",
                 "payload": "1"
             }
         ],
