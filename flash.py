@@ -2,6 +2,37 @@
 import argparse
 import espq
 import sys
+import os
+import re
+
+def fmtcols(mylist, cols):
+    """
+        Prints a list in a number of columns.
+        From https://stackoverflow.com/a/24876899
+    """
+    maxwidth = max(list(map(lambda x: len(x), mylist)))
+    justifyList = list(map(lambda x: x.ljust(maxwidth), mylist))
+    lines = (' '.join(justifyList[i:i + cols])
+             for i in range(0, len(justifyList), cols))
+    return("\n".join(lines))
+
+
+def progress_report(devices):
+    print("\nProgress report:")
+    formatted_status = fmtcols(["[{status}] {d}".format(status = 'X' if dev.flashed == True else ' ', d=dev.name) for dev in devices], 3)
+    print(re.sub('\[X\]', '[\033[1;32mX\033[0m]', formatted_status))
+    print('=' * cols)
+
+
+colors = {"RED": '\033[1;31m',
+          "GREEN": '\033[1;32m',
+          "NOCOLOR": '\033[0m'}
+
+try:
+    cols, rows = os.get_terminal_size()
+except:
+    cols = 80
+    rows = 40
 
 parser = argparse.ArgumentParser(description='Compile and flash ESPs')
 
@@ -39,9 +70,13 @@ input("Press Enter to continue...")
 devices = espq.import_devices(args.deviceFile)
 
 for count, dev in enumerate(devices, start=1):
+    progress_report(devices)
     sys.stdout.write(('\x1b]2Processing device {count}/{total} - {name}'
                       '\x07').format(count=count, total=len(devices),
                                      name=dev.name))
     print('Processing device {count}/{total} - {name}'.format(count=count, total=len(devices),
                                      name=dev.name))
     dev.flash(args.flashMode, args.serialPort)
+
+progress_report(devices)
+print("Done.")
