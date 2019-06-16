@@ -283,7 +283,7 @@ class device(dict):
             backlog_topic = '{c_topic}/backlog'.format(**self)
             # Join all command/payload pairs together with semicolons. If the
             # payload is a tasmota GPIO, use the value of the enumeration.
-            backlog_payload = '; '.join(['{c} {p}'.format(c=i['command'], p=get_gpio(i['payload']) if 'GPIO' in i['payload'] else i['payload']) for i in self.commands])
+            backlog_payload = '; '.join(['{c} {p}'.format(c=i['command'], p=get_gpio(i['payload']) if 'GPIO' in i['payload'] else i['payload']) for i in self.commands]) + '; restart 1'
             print('{BLUE}Sending {topic} {payload}{NOCOLOR}'.format(topic=backlog_topic, payload=backlog_payload, **colors))
             self.mqtt.publish(backlog_topic, backlog_payload)
             self.mqtt.disconnect()
