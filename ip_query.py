@@ -2,12 +2,18 @@
 
 '''
     Query and print the status of tasmota devices
+    User should set parameters current_version and good_core below
+    for the desired versions of tasmota and esp arduino library.
+
 '''
 
 
 import argparse
 import espq
 from re import sub
+
+current_version = '6.5.0(sonoff)'  # current version of tasmota, formatted as it is reported
+good_core = '2_3_0'  # desired version of esp arduino library
 
 parser = argparse.ArgumentParser(description='Query status of tasmota devices',
                                  formatter_class=argparse.RawTextHelpFormatter,)
@@ -26,20 +32,19 @@ parser.add_argument('-f','--filter',
                           'badcore - device flashed with wrong esp arduino version'))
 args = parser.parse_args()
 
-current_version = '6.5.0(sonoff)'
-good_core = '2_3_0'  # desired version of esp arduino library
-
 RED = '\033[1;31m'
 GREEN = '\033[1;32m'
 NOCOLOR = '\033[0m'
 
-d=espq.import_devices(args.deviceFile)
+d = espq.import_devices(args.deviceFile)
 
 name_len = max([len(dev.name) for dev in d])
 
 for device in d:
     device.query_tas_status(espq.network_attr)
     device.query_tas_status(espq.firmware_attr)
+
+    # Skip printing if the device does not meet filter requirements
     if args.filter == 'update' and (device.tas_version == current_version or device.tas_version == ''):
         continue
     elif args.filter == 'offline' and device.reported_ip != '':
@@ -50,6 +55,8 @@ for device in d:
         continue
     elif args.filter == 'badcore' and (device.core_version == good_core or device.core_version == ''):
         continue
+    # Build formatted output lines one element at a time, join into string when done
+    # Result should be someting like 'device_name      IP   MAC   6.5.0   2_3_0'
     output = [RED if device.reported_ip == '' else GREEN,
               device.name,
               NOCOLOR if device.reported_ip == device.ip_addr else RED,
