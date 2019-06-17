@@ -9,7 +9,7 @@ light = """- platform: mqtt
   payload_off: 'OFF'
 """
 
-sensors = """- platform: mqtt
+sensor = """- platform: mqtt
   name: '{f_name} VCC'
   state_topic: 'tele/{base_topic}/{topic}/STATE'
   value_template: '{{{{ value_json.Vcc }}}}'

@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import datetime
 from re import sub
@@ -312,20 +313,28 @@ class device(dict):
         self.mqtt.disconnect()
 
     def write_hass_config(self):
+        """
+            Write yaml config files for Home Assistant.
+            Templates should go in hass_template_dir, and
+            outputs will go into hass_output_dir/{component_type}/
+            (i.e. a sonoff basic on a light has the standard light component,
+            plus many sensor components for its metadata)
+        """
         if not os.path.isdir(hass_output_dir):
             os.mkdir(hass_output_dir)
-        if self.domain == 'light':
-            import hass_templates.light
-            with open(hass_output_dir + '/light_{name}.yaml'.format(**self), 'w') as yamlf:
-                yamlf.write(hass_templates.light.light.format(**self))
-            with open(hass_output_dir + '/sensors_{name}.yaml'.format(**self), 'w') as yamlf:
-                yamlf.write(hass_templates.light.sensors.format(**self))
-        elif self.domain == 'switch':
-            import hass_templates.switch
-            with open(hass_output_dir + '/switch_{name}.yaml'.format(**self), 'w') as yamlf:
-                yamlf.write(hass_templates.switch.switch.format(**self))
-            with open(hass_output_dir + '/sensors_{name}.yaml'.format(**self), 'w') as yamlf:
-                yamlf.write(hass_templates.switch.sensors.format(**self))
+        try:
+            sys.path.append(hass_template_dir)
+            self.domain_template = __import__(self.domain)
+        except:
+            print('Device {f_name} domain error, cannot write hass config.'.format(**self))
+            return()
+        components = [c for c in dir(self.domain_template) if not c.startswith("__")]
+        for c in components:
+            if not os.path.isdir(os.path.join(hass_output_dir, c)):
+                os.mkdir(os.path.join(hass_output_dir, c))
+            with open('{dir}/{c}/{name}.yaml'.format(dir=hass_output_dir, c = c, **self), 'w') as yamlf:
+                yamlf.write(getattr(self.domain_template, c).format(**self))
+
 
 def import_devices(device_file):
     """
