@@ -1265,7 +1265,7 @@
     },
     {
         "name": "Omnisensor",
-        "domain": "light",
+        "domain": null,
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
