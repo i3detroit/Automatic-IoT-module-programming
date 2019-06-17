@@ -4,3 +4,4 @@ output.tsv
 flash.json
 __pycache__
 hass_output
+*.pyc
