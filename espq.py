@@ -13,8 +13,9 @@ site_config = 'sites.json'
 blank_defines = 'blank_defines.h'
 
 espqdir = os.path.dirname(os.path.abspath(__file__))
-tasmotadir = espqdir + '/../Sonoff-Tasmota'
-hass_output_dir = espqdir + '/hass_output'
+tasmotadir = os.path.join(espqdir, '../Sonoff-Tasmota')
+hass_template_dir = os.path.join(espqdir, 'hass_templates')
+hass_output_dir = os.path.join(espqdir, 'hass_output')
 
 loop_time, wait_time = 1.0, 45.0
 
@@ -201,7 +202,7 @@ class device(dict):
         defines = defines.format(**self, datetime=datetime.datetime.now(),
                                  cfg_holder=str(randint(1, 32000)))
         # Write the config file
-        with open(tasmotadir + '/sonoff/user_config_override.h', 'w') as f:
+        with open(os.path.join(tasmotadir, 'sonoff', 'user_config_override.h'), 'w') as f:
             f.write(defines)
 
     def write_custom_config(self):
@@ -219,8 +220,8 @@ class device(dict):
 
         self.write_tasmota_config()
 
-        correctPIO=espqdir + '/platformio.ini'
-        tasmotaPIO=tasmotadir + '/platformio.ini'
+        correctPIO = os.path.join(espqdir, 'platformio.ini')
+        tasmotaPIO = os.path.join(tasmotadir, 'platformio.ini')
         os.system("bash -c 'cmp --silent {cpio} {tpio} || cp {cpio} {tpio}'".format(cpio=correctPIO, tpio=tasmotaPIO))
 
         os.chdir(tasmotadir)
