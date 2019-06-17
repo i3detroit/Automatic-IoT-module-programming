@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+'''
+    Query and print the status of tasmota devices
+'''
+
+
 import argparse
 import espq
 from re import sub
@@ -11,12 +17,13 @@ parser.add_argument('-f','--filter',
                     dest='filter',
                     choices=('update', 'offline', 'online', 'badip', 'badcore'),
                     action='store',
-                    help=('Optional list of filters:'
-                          '  update  - old version, needs update'
-                          '  offline - device does not respond'
-                          '  online  - devices does respond'
-                          '  badip   - device not at expected IP'
-                          '  badcore - device flashed with wrong esp arduino version'))
+                    metavar='X',
+                    help=('where X can be any of these:\n'
+                          'update  - is old version, needs update\n'
+                          'offline - device does not respond\n'
+                          'online  - devices does respond\n'
+                          'badip   - device not at expected IP\n'
+                          'badcore - device flashed with wrong esp arduino version'))
 args = parser.parse_args()
 
 current_version = '6.5.0(sonoff)'
