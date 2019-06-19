@@ -883,11 +883,21 @@
         "base_topic": "i3/inside",
         "topic": "hallway/lightswitch-west",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+            "USE_RULES"
+        ],
         "commands": [
             {
-                "command": "buttontopic",
-                "payload": "hallway/light"
+                "command": "switchmode1",
+                "payload": "3"
+            },
+            {
+                "command": "rule",
+                "payload": "on button1#state do publish cmnd/i3/inside/hallway/light/POWER TOGGLE endon"
+            },
+            {
+                "command": "rule",
+                "payload": "1"
             }
         ]
     },
@@ -984,11 +994,21 @@
         "base_topic": "i3/inside",
         "topic": "classroom/lightswitch-east",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+            "USE_RULES"
+        ],
         "commands": [
             {
-                "command": "buttontopic",
-                "payload": "classroom/lights-east"
+                "command": "switchmode1",
+                "payload": "3"
+            },
+            {
+                "command": "rule",
+                "payload": "on button1#state do publish cmnd/i3/inside/classroom/lights-east/POWER TOGGLE endon"
+            },
+            {
+                "command": "rule",
+                "payload": "1"
             }
         ]
     },
@@ -1337,7 +1357,7 @@
         "poweron_state": 0,
         "build_flags": [
             "USE_RULES"
-            ],
+        ],
         "commands": [
             {
                 "command": "GPIO0",
