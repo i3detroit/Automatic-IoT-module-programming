@@ -71,12 +71,15 @@ devices = espq.import_devices(args.deviceFile)
 
 for count, dev in enumerate(devices, start=1):
     progress_report(devices)
+    # set terminal title to show progress
     sys.stdout.write(('\x1b]2Processing device {count}/{total} - {name}'
                       '\x07').format(count=count, total=len(devices),
                                      name=dev.name))
     print('Processing device {count}/{total} - {name}'.format(count=count, total=len(devices),
                                      name=dev.name))
     dev.flash(args.flashMode, args.serialPort)
+    # reset terminal title to something useful like hostname
+    sys.stdout.write('\x1b]2{hostname}\x07'.format(hostname=os.uname()[1]))
 
 progress_report(devices)
 print("Done.")
