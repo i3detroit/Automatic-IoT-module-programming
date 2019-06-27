@@ -485,7 +485,9 @@
         "base_topic": "i3/inside",
         "topic": "commons/traffic-light",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+            "USE_DHT"
+        ],
         "commands": [
             {
                 "command": "GPIO00",
@@ -505,7 +507,7 @@
             },
             {
                 "command": "GPIO14",
-                "payload": "GPIO_DHT11"
+                "payload": "GPIO_DHT22"
             },
                         {
                 "command": "GPIO15",
@@ -1025,7 +1027,10 @@
         "poweron_state": 0,
         "build_flags": [
             "USE_IR_REMOTE",
-            "USE_IR_RECEIVE"
+            "USE_IR_RECEIVE",
+            "IR_RCV_BUFFER_SIZE 100",
+            "IR_RCV_TIMEOUT 15",
+            "IR_RCV_MIN_UNKNOWN_SIZE 6"
         ],
         "commands": [
             {
@@ -1071,7 +1076,10 @@
         "poweron_state": 0,
         "build_flags": [
             "USE_IR_REMOTE",
-            "USE_IR_RECEIVE"
+            "USE_IR_RECEIVE",
+            "IR_RCV_BUFFER_SIZE 100",
+            "IR_RCV_TIMEOUT 15",
+            "IR_RCV_MIN_UNKNOWN_SIZE 6"
         ],
         "commands": [
             {
