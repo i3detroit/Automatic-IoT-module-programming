@@ -19,6 +19,12 @@ tasmota_telemetry = """- platform: mqtt
   force_update: True
 
 - platform: mqtt
+  name: '{f_name} Wifi SSId'
+  state_topic: 'tele/{base_topic}/{topic}/STATE'
+  value_template: '{{{{ value_json["Wifi"]["SSId"] }}}}'
+  force_update: True
+
+- platform: mqtt
   name: '{f_name} Wifi Channel'
   state_topic: 'tele/{base_topic}/{topic}/STATE'
   value_template: '{{{{ value_json["Wifi"]["Channel"] }}}}'
@@ -34,6 +40,18 @@ tasmota_telemetry = """- platform: mqtt
   name: '{f_name} Wifi BSSId'
   state_topic: 'tele/{base_topic}/{topic}/STATE'
   value_template: '{{{{ value_json["Wifi"]["BSSId"] }}}}'
+  force_update: True
+
+- platform: mqtt
+  name: '{f_name} Wifi Link Count'
+  state_topic: 'tele/{base_topic}/{topic}/STATE'
+  value_template: '{{{{ value_json["Wifi"]["LinkCount"] }}}}'
+  force_update: True
+
+- platform: mqtt
+  name: '{f_name} Wifi Downtime'
+  state_topic: 'tele/{base_topic}/{topic}/STATE'
+  value_template: '{{{{ value_json["Wifi"]["Downtime"] }}}}'
   force_update: True
 
 - platform: template
