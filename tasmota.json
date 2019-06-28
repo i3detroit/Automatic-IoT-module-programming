@@ -1536,5 +1536,38 @@
                 "payload": "15,2,1,2"
             }
         ]
+    },
+    {
+        "name": "Craft Room Lightswitch",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.14",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "craftroom/lightswitch",
+        "poweron_state": 0,
+        "build_flags": [
+            "USE_RULES"
+        ],
+        "commands": [
+            {
+                "command": "GPIO2",
+                "payload": "GPIO_SWT1"
+            },
+            {
+                "command": "switchmode",
+                "payload": "3"
+            },
+            {
+                "command": "rule",
+                "payload": "on switch1#state do publish cmnd/i3/inside/craftroom/light/power 2 endon"
+            },
+            {
+                "command": "rule",
+                "payload": "1"
+            }
+        ]
     }
 ]
