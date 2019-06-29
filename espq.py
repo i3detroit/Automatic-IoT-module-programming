@@ -15,8 +15,10 @@ blank_defines = 'blank_defines.h'
 
 espqdir = os.path.dirname(os.path.abspath(__file__))
 tasmotadir = os.path.join(espqdir, '../Sonoff-Tasmota')
+custom_dir = os.path.join(espqdir, '../custom-mqtt-programs/')
 hass_template_dir = os.path.join(espqdir, 'hass_templates')
 hass_output_dir = os.path.join(espqdir, 'hass_output')
+buildDir = "/tmp/pio_custom_build";
 
 loop_time, wait_time = 1.0, 45.0
 
@@ -206,12 +208,6 @@ class device(dict):
         with open(os.path.join(tasmotadir, 'sonoff', 'user_config_override.h'), 'w') as f:
             f.write(defines)
 
-    def write_custom_config(self):
-        """
-            Write custom device parameters to config
-        """
-        print('Custom devices coming soon')
-
     def flash_tasmota(self):
         """ Flash the device with tasmota """
         # Make sure device is tasmota
@@ -243,9 +239,48 @@ class device(dict):
 
     def flash_custom(self):
         """ Flash the device with custom firmware """
-        self.write_custom_config()
-        print('Custom software flash coming soon...')
-        flash_result = 1
+        topic = "{baseTop}/{topic}".format(baseTop=self.base_topic,
+                                         topic=self.topic)
+        buildFlags = ("-DWIFI_SSID=\\\\\\\"{ssid}\\\\\\\" "
+                      "-DWIFI_PASSWORD=\\\\\\\"{passw}\\\\\\\" "
+                      "-DNAME=\\\\\\\"{name}\\\\\\\" "
+                      "-DMQTT_SERVER=\\\\\\\"{mqtt_host}\\\\\\\" "
+                      "-DTOPIC=\\\\\\\"{top}\\\\\\\"").format(ssid=self.wifi_ssid,
+                                                              passw=self.wifi_pass,
+                                                              name=self.f_name,
+                                                              mqtt_host=self.mqtt_host,
+                                                              top=topic)
+        #TODO: add build flags if there are any
+        #if build_flags is not None:
+        #    for flag in build_flags:
+        #        buildFlags += "#define " + flag + "\n"
+        codeDir = "{custom_dir}/{software}".format(custom_dir=custom_dir, software=self.software)
+
+
+        if(self.flash_mode == "serial"):
+            options="--project-option=\"targets=upload\" --project-option=\"upload_port={serialPort}\"".format(serialPort=self.serial_port);
+        elif(self.flash_mode == "wifi"):
+            options="--project-option=\"targets=upload\" --project-option=\"upload_protocol=espota\" --project-option=\"upload_port={serialPort}\"".format(serialPort=self.serial_port);
+
+        else:
+            print("no flash mode set, try again?")
+            sys.exit(1)
+
+        files="{codeDir}/thermostat.* {codeDir}/pins.h {codeDir}/doControl.* {codeDir}/i3Logo.h".format(codeDir=codeDir)
+
+        command = ("PLATFORMIO_LIB_DIR=/home/mark/projects/esp/lib pio ci --project-option=\"build_flags = {buildFlags} "
+                   "-Wno-overflow -Wno-narrowing\" --board {board} {files} {options} --keep-build-dir "
+                   " ").format(buildFlags=buildFlags,
+                                                   files=files,
+                                                   options=options,
+                                                   board=self.board,
+                                                   buildDir=buildDir)
+        print(command);
+
+        #if(args.pauseBeforeFlash):
+        #    os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing {name}...\'"'.format(name=dev['name']));
+        #flash_result = call(command, shell=True)
+        sys.exit(1);
         return(True if flash_result == 0 else False)
 
     def online_check(self):
