@@ -240,6 +240,7 @@
     },
     {
         "name": "light %id%",
+        "domain": "light_bn",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BN",
@@ -271,6 +272,7 @@
     },
     {
         "name": "light %id%",
+        "domain": "light",
         "domain": "light",
         "software": "tasmota",
         "site": "i3",
@@ -434,6 +436,7 @@
     },
     {
         "name": "commons ceiling fan",
+        "domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -448,6 +451,7 @@
     },
     {
         "name": "laser ceiling fan",
+        "domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -462,6 +466,7 @@
     },
     {
         "name": "laser vent fan",
+        "domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_SV",
@@ -521,6 +526,7 @@
     },
     {
         "name": "fablab vent fan",
+        "domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -535,6 +541,7 @@
     },
     {
         "name": "machine shop ceiling fan",
+        "domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -549,6 +556,7 @@
     },
     {
         "name": "Paint box vent fan",
+        "domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -593,6 +601,7 @@
     },
     {
         "name": "wolverine chiller",
+        "domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -607,6 +616,7 @@
     },
     {
         "name": "bumblebee chiller",
+        "domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -621,6 +631,7 @@
     },
     {
         "name": "fablab chiller",
+        "domain": "pow",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_POW",
@@ -773,6 +784,7 @@
     },
     {
         "name": "genie charging",
+        "domain": "pow",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_POW",
@@ -787,6 +799,7 @@
     },
     {
         "name": "small bathroom vent fan",
+        "domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -816,6 +829,7 @@
     },
     {
         "name": "commons siren",
+        "domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -830,6 +844,7 @@
     },
     {
         "name": "wolverine",
+        "domain": "pow",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_POW",
@@ -853,6 +868,7 @@
     },
     {
         "name": "bumblebee",
+        "domain": "pow",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_POW",
@@ -876,6 +892,7 @@
     },
     {
         "name": "hallway west lightswitch",
+        "domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -905,6 +922,7 @@
     },
     {
         "name": "cnc vent fan",
+        "domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TH",
@@ -960,6 +978,7 @@
     },
     {
         "name": "vent fan over sink",
+        "domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TH",
@@ -987,6 +1006,7 @@
     },
     {
         "name": "classroom lightswitch east",
+        "domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -1015,15 +1035,15 @@
         ]
     },
     {
-        "name": "elab accent arch south",
+        "name": "elab accent arch %id%",
+        "domain": "light_rgb",
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.115",
         "group_topic": "none",
         "base_topic": "i3/inside",
-        "topic": "elab/accent/arch-south",
+        "topic": "elab/accent/arch-%id%",
         "poweron_state": 0,
         "build_flags": [
             "USE_IR_REMOTE",
@@ -1032,54 +1052,15 @@
             "IR_RCV_TIMEOUT 15",
             "IR_RCV_MIN_UNKNOWN_SIZE 6"
         ],
-        "commands": [
+        "ids": [
             {
-                "command": "GPIO02",
-                "payload": "GPIO_LED1_INV"
+                "id": "South",
+                "ip_addr": "10.13.107.115"
             },
             {
-                "command": "GPIO4",
-                "payload": "GPIO_IRRECV"
-            },
-            {
-                "command": "GPIO05",
-                "payload": "GPIO_PWM2"
-            },
-            {
-                "command": "GPIO12",
-                "payload": "GPIO_PWM1"
-            },
-            {
-                "command": "GPIO13",
-                "payload": "GPIO_PWM3"
-            },
-            {
-                "command": "GPIO15",
-                "payload": "GPIO_PWM4"
-            },
-            {
-                "command": "SetOption15",
-                "payload": "1"
+                "id": "North",
+                "ip_addr": "10.13.107.138"
             }
-        ]
-    },
-    {
-        "name": "elab accent arch north",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "WEMOS",
-        "board": "esp01_1m",
-        "ip_addr": "10.13.107.138",
-        "group_topic": "none",
-        "base_topic": "i3/inside",
-        "topic": "elab/accent/arch-north",
-        "poweron_state": 0,
-        "build_flags": [
-            "USE_IR_REMOTE",
-            "USE_IR_RECEIVE",
-            "IR_RCV_BUFFER_SIZE 100",
-            "IR_RCV_TIMEOUT 15",
-            "IR_RCV_MIN_UNKNOWN_SIZE 6"
         ],
         "commands": [
             {
@@ -1144,6 +1125,7 @@
     },
     {
         "name": "chinesium laser",
+        "domain": "pow",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_POW",
@@ -1158,6 +1140,7 @@
     },
     {
         "name": "OLD snapple vending light",
+        "domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -1172,6 +1155,7 @@
     },
     {
         "name": "snapple vending rgb",
+        "domain": "light_rgb",
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
@@ -1354,6 +1338,7 @@
     },
     {
         "name": "BSide Office Lightswitch",
+        "domain": "generic",
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
@@ -1391,6 +1376,7 @@
     },
     {
         "name": "BSide Shop %id% Lightswitch",
+        "domain": "generic",
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
@@ -1539,6 +1525,7 @@
     },
     {
         "name": "Craft Room Lightswitch",
+        "domain": "generic",
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
