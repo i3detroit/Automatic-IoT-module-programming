@@ -134,6 +134,9 @@ sensor = """
       friendly_name: '{f_name} Vcc'
       unit_of_measurement: 'V'
       value_template: '{{{{ states.switch.{name}.attributes.Vcc }}}}'
+    {name}_heap:
+      friendly_name: '{f_name} Heap'
+      value_template: '{{{{ states.light.{name}.attributes.Heap }}}}'
     {name}_sleepmode:
       friendly_name: '{f_name} SleepMode'
       value_template: '{{{{ states.switch.{name}.attributes.SleepMode }}}}'
