@@ -2,7 +2,7 @@ import os
 import sys
 import json
 import datetime
-from re import sub
+from re import sub, findall
 from time import sleep
 from copy import deepcopy
 from random import randint
@@ -10,11 +10,19 @@ from subprocess import call
 from ast import literal_eval
 import paho.mqtt.client as mqtt
 
+###########################################################
+# Make sure these are set correctly for your environment:
+
 site_config = 'sites.json'
 blank_defines = 'blank_defines.h'
 
 espqdir = os.path.dirname(os.path.abspath(__file__))
+
+current_tasmota_version = '0x06060000'
 tasmotadir = os.path.join(espqdir, '../Sonoff-Tasmota')
+
+###########################################################
+
 hass_template_dir = os.path.join(espqdir, 'hass_templates')
 hass_output_dir = os.path.join(espqdir, 'hass_output')
 
@@ -218,7 +226,9 @@ class device(dict):
         if self.software != 'tasmota':
             print('{f_name} is {software}, not tasmota'.format(**self))
             return(False)
-
+        if current_tasmota_version != get_tasmota_version():
+            print('{RED}Error: Tasmota version mismatch{NOCOLOR}'.format(**colors))
+            return(False)
         self.write_tasmota_config()
 
         correctPIO = os.path.join(espqdir, 'platformio.ini')
@@ -396,6 +406,19 @@ def get_gpio(request):
     for num, gpio in enumerate(lines):
         gpios[gpio] = num
     return(gpios[request])
+
+def get_tasmota_version():
+    """ Retrieve a GPIO's integer value from the enumeration in tasmota """
+    matches = []
+    with open(tasmotadir + "/sonoff/sonoff_version.h", "r") as f:
+        for line in f:
+            matches += findall('0x\d+', line)
+    if len(matches) == 0:
+        raise Exception('No tasmota version found.')
+    elif len(matches) == 1:
+        return matches[0]
+    else:
+        raise IndexError('Too many tasmota versions found.')
 
 if __name__ == "__main__":
     print('don\'t call espq directly');

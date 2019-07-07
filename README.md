@@ -10,6 +10,8 @@ pip install -r requirements.txt
 `blank_defines.h` undefines all of tasmota's config and lets us set what we want.
 It's processed by python's .format to insert some specific settings near the bottom.
 
+Make sure directories and tasmota version are set correctly at the top of espq.py
+
 # To program tasmota devices
 1. Create a device configuration file for your device(s) as in tasmota.json.
     - Each device can be a single device or many identical devices which only differ by some %id% string.
