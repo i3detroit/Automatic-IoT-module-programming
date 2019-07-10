@@ -2,9 +2,9 @@
     {
         "name": "16 Segment Display",
         "domain": null,
-        "software": "16seg",
+        "software": "custom-mqtt-programs",
         "site": "i3",
-        "module": "",
+        "module": "16seg",
         "board": "nodemcuv2",
         "ip_addr": "10.13.107.44",
         "group_topic": "none",

@@ -250,49 +250,27 @@ class device(dict):
                                                               name=self.name,
                                                               mqtt_host=self.mqtt_host,
                                                               top=topic)
-        #TODO: add build flags if there are any
-        #if build_flags is not None:
-        #    for flag in build_flags:
-        #        buildFlags += "#define " + flag + "\n"
-        # codeDir = "{custom_dir}/{software}".format(custom_dir=custom_dir, software=self.software)
-        src_dir = os.path.join(custom_dir, self.software)
+        src_dir = os.path.join(custom_dir, self.module)
         os.environ['PLATFORMIO_SRC_DIR']=src_dir
         os.environ['PLATFORMIO_BUILD_FLAGS']=build_flags
         print(os.environ['PLATFORMIO_SRC_DIR'])
         print(os.environ['PLATFORMIO_BUILD_FLAGS'])
         os.chdir(custom_dir)
-        # if(self.flash_mode == "serial"):
-        #     options="--project-option=\"targets=upload\" --project-option=\"upload_port={serialPort}\"".format(serialPort=self.serial_port);
-        # elif(self.flash_mode == "wifi"):
-        #     options="--project-option=\"targets=upload\" --project-option=\"upload_protocol=espota\" --project-option=\"upload_port={serialPort}\"".format(serialPort=self.serial_port);
-        
         pio_call = 'platformio run -e {board}-{flash_mode} -t upload --upload-port {port}'
         if self.flash_mode == 'wifi':
             pio_call = pio_call.format(port=self.ip_addr, **self)
-            print(('{BLUE}Now flashing {module} {f_name} with {software} via '
+            print(('{BLUE}Now flashing {module} {f_name} in {software} via '
                 '{flash_mode} at {ip_addr}{NOCOLOR}'.format(**colors, **self)))
         elif self.flash_mode == 'serial':
             pio_call = pio_call.format(port=self.serial_port, **self)
-            print(('{BLUE}Now flashing {module} {f_name} with {software} via '
+            print(('{BLUE}Now flashing {module} {f_name} in {software} via '
                 '{flash_mode} at {serial_port}{NOCOLOR}'.format(**colors, **self)))
         else:
             print("no flash mode set, try again?")
             sys.exit(1)
 
-        # command = ("PLATFORMIO_LIB_DIR=/home/mark/projects/esp/lib pio ci --project-option=\"build_flags = {buildFlags} "
-        #            "-Wno-overflow -Wno-narrowing\" --board {board} {files} {options} --keep-build-dir "
-        #            " ").format(buildFlags=buildFlags,
-        #                                            files=files,
-        #                                            options=options,
-        #                                            board=self.board,
-        #                                            buildDir=buildDir)
-
         print(pio_call)
         flash_result = call(pio_call, shell=True)
-
-        #if(args.pauseBeforeFlash):
-        #    os.system('bash -c "read -s -n 1 -p \'Press the any key to start flashing {name}...\'"'.format(name=dev['name']));
-        #flash_result = call(command, shell=True)
 
         os.environ['PLATFORMIO_SRC_DIR']=''
         os.environ['PLATFORMIO_BUILD_FLAGS']=''
