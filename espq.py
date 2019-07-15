@@ -336,17 +336,17 @@ class device(dict):
         # Add the home assistant template dir to path and import the device's domain
         try:
             sys.path.append(hass_template_dir)
-            self.domain_template = __import__(self.domain)
+            self.yaml_template = __import__(self.hass_template)
         except:
             print('Device {f_name} domain error, cannot write hass config.'.format(**self))
             return()
         # Go through all types of components for domain
         # (i.e. domain light has components light & sensor)
-        for c in self.domain_template.components:
+        for c in self.yaml_template.components:
             if not os.path.isdir(os.path.join(hass_output_dir, c)):
                 os.mkdir(os.path.join(hass_output_dir, c))
             with open('{dir}/{c}/{name}_{c}.yaml'.format(dir=hass_output_dir, c = c, **self), 'w') as yamlf:
-                yamlf.write(self.domain_template.components[c].format(**self))
+                yamlf.write(self.yaml_template.components[c].format(**self))
 
 
 def import_devices(device_file):
