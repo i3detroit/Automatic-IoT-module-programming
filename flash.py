@@ -65,7 +65,7 @@ parser.add_argument('deviceFile', metavar='deviceFile',
 
 args = parser.parse_args()
 print(args)
-input("Press Enter to continue...")
+input('Press Enter to continue...')
 
 devices = espq.import_devices(args.deviceFile)
 
@@ -75,8 +75,16 @@ for count, dev in enumerate(devices, start=1):
     sys.stdout.write(('\x1b]2Processing device {count}/{total} - {name}'
                       '\x07').format(count=count, total=len(devices),
                                      name=dev.name))
-    print('Processing device {count}/{total} - {name}'.format(count=count, total=len(devices),
-                                     name=dev.name))
+    
+    if args.pauseBeforeFlash == True:
+        print('Ready to process device {count}/{total} - {name}'.format(count=count,
+                                                                  total=len(devices),
+                                                                  name=dev.name))
+        input('Press Enter to continue...')
+    else:
+        print('Processing device {count}/{total} - {name}'.format(count=count,
+                                                                  total=len(devices),
+                                                                  name=dev.name))
     dev.flash(args.flashMode, args.serialPort)
     # reset terminal title to something useful like hostname
     sys.stdout.write('\x1b]2{hostname}\x07'.format(hostname=os.uname()[1]))

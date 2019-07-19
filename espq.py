@@ -20,8 +20,10 @@ espqdir = os.path.dirname(os.path.abspath(__file__))
 
 current_tasmota_version = '0x06060000'
 tasmotadir = os.path.join(espqdir, '../Sonoff-Tasmota')
+custom_dir = os.path.join(espqdir, '../custom-mqtt-programs/')
 
 ###########################################################
+
 
 hass_template_dir = os.path.join(espqdir, 'hass_templates')
 hass_output_dir = os.path.join(espqdir, 'hass_output')
@@ -73,6 +75,7 @@ class device(dict):
         self.t_topic = sub('%prefix%', 'tele', self.full_topic)
         self.f_name = sub('_', ' ', self.name)  # Friendly name
         self.name = self.name.replace(' ', '_')    # Unfriendly name
+
         self.name = self.name.lower()   # home assistant doesn't like upper case letters in sensor names
         # Format the device's build flags
         # This is still a little hacky, but I don't know how else to handle it
@@ -80,6 +83,7 @@ class device(dict):
         if self.build_flags != '':
             flags = '\n'.join(['#define {}'.format(flag) for flag in self.build_flags])
             self.build_flags = flags
+
         # Insert site information as device attributes
         with open(site_config, 'r') as f:
             sites = json.load(f)
@@ -89,6 +93,17 @@ class device(dict):
                 setattr(self, key, sites[self.site][key])
             else:
                 setattr(self, key, '')
+        # Format the device's build flags
+        # This is still a little hacky--tasmota and custom build flags are handled entirely differently
+        # The latter way is probably better since it's the general case
+        if self.software == 'tasmota' and self.build_flags != '':
+            self.build_flags = '\n'.join(['#define {}'.format(flag) for flag in self.build_flags])
+        elif self.software == 'custom-mqtt-programs':
+            self.build_flags += ('-DWIFI_SSID=\\"{wifi_ssid}\\" '
+                                 '-DWIFI_PASSWORD=\\"{wifi_pass}\\" '
+                                 '-DNAME=\\"{name}\\" '
+                                 '-DMQTT_SERVER=\\"{mqtt_host}\\" '
+                                 '-DTOPIC=\\"{base_topic}/{topic}\\"').format(**self)
         self.mqtt = mqtt.Client(clean_session=True, client_id="espq_{name}".format(**self))
         self.mqtt.reinitialise()
         self.mqtt.on_message = self._on_message
@@ -215,12 +230,6 @@ class device(dict):
         with open(os.path.join(tasmotadir, 'sonoff', 'user_config_override.h'), 'w') as f:
             f.write(defines)
 
-    def write_custom_config(self):
-        """
-            Write custom device parameters to config
-        """
-        print('Custom devices coming soon')
-
     def flash_tasmota(self):
         """ Flash the device with tasmota """
         # Make sure device is tasmota
@@ -254,9 +263,31 @@ class device(dict):
 
     def flash_custom(self):
         """ Flash the device with custom firmware """
-        self.write_custom_config()
-        print('Custom software flash coming soon...')
-        flash_result = 1
+        src_dir = os.path.join(custom_dir, self.module)
+        os.environ['PLATFORMIO_SRC_DIR']=src_dir
+        os.environ['PLATFORMIO_BUILD_FLAGS']=self.build_flags
+        print(os.environ['PLATFORMIO_SRC_DIR'])
+        print(os.environ['PLATFORMIO_BUILD_FLAGS'])
+        os.chdir(custom_dir)
+        pio_call = 'platformio run -e {board}-{flash_mode} -t upload --upload-port {port}'
+        if self.flash_mode == 'wifi':
+            pio_call = pio_call.format(port=self.ip_addr, **self)
+            print(('{BLUE}Now flashing {module} {f_name} in {software} via '
+                '{flash_mode} at {ip_addr}{NOCOLOR}'.format(**colors, **self)))
+        elif self.flash_mode == 'serial':
+            pio_call = pio_call.format(port=self.serial_port, **self)
+            print(('{BLUE}Now flashing {module} {f_name} in {software} via '
+                '{flash_mode} at {serial_port}{NOCOLOR}'.format(**colors, **self)))
+        else:
+            print("no flash mode set, try again?")
+            return(False)
+
+        print(pio_call)
+        flash_result = call(pio_call, shell=True)
+
+        os.environ['PLATFORMIO_SRC_DIR']=''
+        os.environ['PLATFORMIO_BUILD_FLAGS']=''
+        os.chdir(espqdir)
         return(True if flash_result == 0 else False)
 
     def online_check(self):
@@ -265,14 +296,11 @@ class device(dict):
             Returns True if device is Online
         """
         self.online = False
-        if self.software != 'tasmota':
-            print('Function only supports tasmota devices. Try again later')
-            return(self.online)
-        lwt_topic = '{t_topic}/INFO3'.format(**self)
-        print('{BLUE}Watching for {}{NOCOLOR}'.format(lwt_topic, **colors))
+        online_topic = '{t_topic}/INFO2'.format(**self)
+        print('{BLUE}Watching for {}{NOCOLOR}'.format(online_topic, **colors))
         self.mqtt.connect(self.mqtt_host)
-        self.mqtt.message_callback_add(lwt_topic, lambda *args: setattr(self, 'online', True))
-        self.mqtt.subscribe(lwt_topic)
+        self.mqtt.message_callback_add(online_topic, lambda *args: setattr(self, 'online', True))
+        self.mqtt.subscribe(online_topic)
         starttime = datetime.datetime.now()
         while self.online == False and (datetime.datetime.now() - starttime).total_seconds() < wait_time:
             self.mqtt.loop(timeout=loop_time)
@@ -283,8 +311,8 @@ class device(dict):
         elif self.online == True:
             print('{GREEN}{f_name} came online in {time_waited} '
                   'seconds{NOCOLOR}'.format(f_name=self.f_name, time_waited=time_waited, **colors))
-        self.mqtt.unsubscribe(lwt_topic)
-        self.mqtt.message_callback_remove(lwt_topic)
+        self.mqtt.unsubscribe(online_topic)
+        self.mqtt.message_callback_remove(online_topic)
         self.mqtt.disconnect()
 
     def run_backlog_commands(self):
@@ -422,5 +450,5 @@ def get_tasmota_version():
         raise IndexError('Too many tasmota versions found.')
 
 if __name__ == "__main__":
-    print('don\'t call espq directly');
-    exit(1);
+    print("Don't call espq directly")
+    exit(1)
