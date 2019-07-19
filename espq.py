@@ -18,7 +18,6 @@ tasmotadir = os.path.join(espqdir, '../Sonoff-Tasmota')
 custom_dir = os.path.join(espqdir, '../custom-mqtt-programs/')
 hass_template_dir = os.path.join(espqdir, 'hass_templates')
 hass_output_dir = os.path.join(espqdir, 'hass_output')
-buildDir = "/tmp/pio_custom_build";
 
 loop_time, wait_time = 1.0, 45.0
 
@@ -418,5 +417,5 @@ def get_gpio(request):
     return(gpios[request])
 
 if __name__ == "__main__":
-    print('don\'t call espq directly');
-    exit(1);
+    print("Don't call espq directly")
+    exit(1)
