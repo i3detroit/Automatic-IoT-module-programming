@@ -258,7 +258,7 @@
         "site": "i3",
         "module": "multi-topic-switch",
         "board": "nodemcuv2",
-        "ip_addr": "x",
+        "ip_addr": "10.13.107.57",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "weld-zone/tank-sensors",
@@ -272,7 +272,7 @@
         "site": "i3",
         "module": "multi-topic-button",
         "board": "nodemcuv2",
-        "ip_addr": "x",
+        "ip_addr": "10.13.107.71",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "fablab-control-buttons",
@@ -286,7 +286,7 @@
         "site": "i3",
         "module": "thermostat",
         "board": "d1_mini",
-        "ip_addr": "x",
+        "ip_addr": "10.13.107.38",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "office/thermostat",
@@ -337,7 +337,6 @@
         "site": "i3",
         "module": "commons-light-switches",
         "board": "nodemcuv2",
-        "ip_addr": "x",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/light-switches-%id%",
@@ -346,7 +345,7 @@
         "ids": [
             {
                 "id": "east",
-                "ip_addr": "x"
+                "ip_addr": "10.13.107.39"
             },
             {
                 "id": "west",
@@ -361,7 +360,6 @@
         "site": "i3",
         "module": "multi-topic-button",
         "board": "d1_mini",
-        "ip_addr": "x",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "air-compressor-request-%id%",
@@ -374,11 +372,11 @@
             },
             {
                 "id": "002",
-                "ip_addr": "x"
+                "ip_addr": "10.13.107.142"
             },
             {
                 "id": "003",
-                "ip_addr": "x"
+                "ip_addr": "10.13.107.205"
             }
         ]
     }
