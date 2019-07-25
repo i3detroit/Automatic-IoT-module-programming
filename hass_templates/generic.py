@@ -38,8 +38,8 @@ generic_telemetry = """- platform: template
     {name}_wifi_ssid:
       friendly_name: '{f_name} Wifi SSId'
       value_template: '{{{{ states.{hass_domain}.{name}.attributes.Wifi.SSId }}}}'
-    {name}_wifi_bssid:
-      friendly_name: '{f_name} Wifi BSSId'
+    {name}_wifi_ap:
+      friendly_name: '{f_name} Wifi AP'
       value_template: >-
         {{% if states.{hass_domain}.{name}.attributes.Wifi.BSSId | string == '02:9F:C2:24:32:82' %}}
           Office AP
@@ -54,6 +54,9 @@ generic_telemetry = """- platform: template
         {{% else %}}
           {{{{ states.{hass_domain}.{name}.attributes.Wifi.BSSId }}}}
         {{% endif %}}
+    {name}_wifi_bssid:
+      friendly_name: '{f_name} Wifi BSSId'
+      value_template: {{{{ states.{hass_domain}.{name}.attributes.Wifi.BSSId }}}}
     {name}_wifi_channel:
       friendly_name: '{f_name} Wifi Channel'
       value_template: '{{{{ states.{hass_domain}.{name}.attributes.Wifi.Channel }}}}'
