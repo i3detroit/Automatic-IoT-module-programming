@@ -77,12 +77,6 @@ class device(dict):
         self.name = self.name.replace(' ', '_')    # Unfriendly name
 
         self.name = self.name.lower()   # home assistant doesn't like upper case letters in sensor names
-        # Format the device's build flags
-        # This is still a little hacky, but I don't know how else to handle it
-        # when referring to **self in write_tasmota_config()
-        if self.build_flags != '':
-            flags = '\n'.join(['#define {}'.format(flag) for flag in self.build_flags])
-            self.build_flags = flags
 
         # Insert site information as device attributes
         with open(site_config, 'r') as f:
