@@ -65,14 +65,14 @@ class device(dict):
                     setattr(self, key, device[key])
                 else:
                     setattr(self, key, '')
-        if 'base_topic' in device and 'topic' in device:
-            self.base_topic = self.base_topic.lower()
-            self.topic = self.topic.lower()
-            topic_template = '%prefix%/{base_topic}/{topic}'
-            self.full_topic = topic_template.format(**self)
-        self.c_topic = sub('%prefix%', 'cmnd', self.full_topic)
-        self.s_topic = sub('%prefix%', 'stat', self.full_topic)
-        self.t_topic = sub('%prefix%', 'tele', self.full_topic)
+
+        self.base_topic = self.base_topic.lower()
+        full_topic_template = '%prefix%/{base_topic}/%topic%'
+        self.full_topic = full_topic_template.format(**self)
+        self.topic = self.topic.lower()
+        self.c_topic = sub('%topic%', self.topic, sub('%prefix%', 'cmnd', self.full_topic))
+        self.s_topic = sub('%topic%', self.topic, sub('%prefix%', 'stat', self.full_topic))
+        self.t_topic = sub('%topic%', self.topic, sub('%prefix%', 'tele', self.full_topic))
         self.f_name = sub('_', ' ', self.name)  # Friendly name
         self.name = self.name.replace(' ', '_')    # Unfriendly name
 
