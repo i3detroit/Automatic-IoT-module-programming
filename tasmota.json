@@ -16,50 +16,61 @@
         "ids": [
             {
                 "id": "001",
-                "ip_addr": "10.13.107.133"
+                "ip_addr": "10.13.107.133",
+                "group_topic": "lights/row1"
             },
             {
                 "id": "002",
-                "ip_addr": "10.13.107.78"
+                "ip_addr": "10.13.107.78",
+                "group_topic": "lights/row1"
             },
             {
                 "id": "003",
-                "ip_addr": "10.13.107.104"
+                "ip_addr": "10.13.107.104",
+                "group_topic": "lights/row1"
             },
             {
                 "id": "004",
-                "ip_addr": "10.13.107.177"
+                "ip_addr": "10.13.107.177",
+                "group_topic": "lights/row1"
             },
             {
                 "id": "005",
-                "ip_addr": "10.13.107.117"
+                "ip_addr": "10.13.107.117",
+                "group_topic": "lights/row2"
             },
             {
                 "id": "006",
-                "ip_addr": "10.13.107.135"
+                "ip_addr": "10.13.107.135",
+                "group_topic": "lights/row2"
             },
             {
                 "id": "007",
-                "ip_addr": "10.13.107.193"
+                "ip_addr": "10.13.107.193",
+                "group_topic": "lights/row2"
             },
             {
                 "id": "008",
                 "ip_addr": "10.13.107.154",
+                "group_topic": "lights/row2",
                 "notes": "electrodragon"
             },
             {
                 "id": "009",
                 "ip_addr": "10.13.107.184",
+                "group_topic": "lights/row2",
                 "notes": "electrodragon"
             },
             {
                 "id": "010",
                 "ip_addr": "10.13.107.130",
+                "group_topic": "lights/row3",
                 "notes": "electrodragon"
             },
             {
                 "id": "011",
-                "ip_addr": "10.13.107.98"
+                "ip_addr": "10.13.107.98",
+                "group_topic": "lights/row3",
             },
             {
                 "id": "016",
@@ -1455,18 +1466,10 @@
             },
             {
                 "command": "rule1",
-                "payload": "on switch1#state do publish cmnd/i3/inside/lights/042/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/043/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/044/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/045/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/046/power 2 endon"
-            },
-                        {
-                "command": "rule2",
-                "payload": "on switch1#state do publish cmnd/i3/inside/lights/047/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/048/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/049/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/050/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/051/power 2 endon on switch1#state do publish cmnd/i3/inside/lights/052/power 2 endon"
+                "payload": "on switch1#state do publish cmnd/i3/inside/lights/west/power 2 endon"
             },
             {
                 "command": "rule1",
-                "payload": "1"
-            },
-            {
-                "command": "rule2",
                 "payload": "1"
             }
         ],
@@ -1503,12 +1506,14 @@
         "commands": [
             {
                 "command": "GPIO4",
-                "payload": "6"
+                "payload": "GPIO_I2C_SDA"
             },
             {
                 "command": "GPIO5",
-                "payload": "5"
-            },
+                "payload": "GPIO_I2C_SCL"
+            }
+        ],
+        "commands_extra": [
             {
                 "command": "sensor29",
                 "payload": "0,2,1,2"
