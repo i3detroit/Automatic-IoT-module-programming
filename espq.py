@@ -164,9 +164,18 @@ class device(dict):
                        'setup commands...{NOCOLOR}'.format(**colors, **self)))
                 sleep(1)
                 self.online = False
-                self.run_backlog_commands()
+                self.run_backlog_commands(self.commands)
                 sleep(1)
                 self.online_check()
+                # For some rare cases, a second round of commands is required
+                # after the first reboot
+                try:
+                    print('Running second round of setup commands...')
+                    self.run_backlog_commands(self.commands_extra)
+                    sleep(1)
+                    self.online_check()
+                except AttributeError:
+                    pass
 
             if self.online == True:
                 self._handle_result(0)
@@ -309,7 +318,7 @@ class device(dict):
         self.mqtt.message_callback_remove(online_topic)
         self.mqtt.disconnect()
 
-    def run_backlog_commands(self):
+    def run_backlog_commands(self, commands):
         """ Issue setup commands for tasmota over MQTT with backlog """
         if not hasattr(self, 'commands') or self.commands == '':
             print('{BLUE}No commands for {f_name}, skipping.{NOCOLOR}'.format(**colors, **self))
@@ -318,7 +327,7 @@ class device(dict):
             backlog_topic = '{c_topic}/backlog'.format(**self)
             # Join all command/payload pairs together with semicolons. If the
             # payload is a tasmota GPIO, use the value of the enumeration.
-            backlog_payload = '; '.join(['{c} {p}'.format(c=i['command'], p=get_gpio(i['payload']) if 'GPIO' in i['payload'] else i['payload']) for i in self.commands]) + '; restart 1'
+            backlog_payload = '; '.join(['{c} {p}'.format(c=i['command'], p=get_gpio(i['payload']) if 'GPIO' in i['payload'] else i['payload']) for i in commands]) + '; restart 1'
             print('{BLUE}Sending {topic} {payload}{NOCOLOR}'.format(topic=backlog_topic, payload=backlog_payload, **colors))
             self.mqtt.publish(backlog_topic, backlog_payload)
             self.mqtt.disconnect()
@@ -389,10 +398,12 @@ def import_devices(device_file):
                         new_dev[key] = sub('%id%',
                                            id_info['id'],
                                            new_dev[key])
-                new_dev['ip_addr'] = id_info['ip_addr']
-                if 'mac_addr' in id_info:
-                    new_dev['mac_addr'] = id_info['mac_addr']
+                # new_dev['ip_addr'] = id_info['ip_addr']
+                # if 'mac_addr' in id_info:
+                #     new_dev['mac_addr'] = id_info['mac_addr']
                 # Need to add processing of custom device parameters
+                for key in id_info:
+                    new_dev[key] = id_info[key]
                 devices.append(device(new_dev))
         except KeyError:
             devices.append(device(dev))
