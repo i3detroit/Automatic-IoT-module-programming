@@ -2,10 +2,12 @@ import os
 import sys
 import json
 import datetime
-from re import sub, findall
 from time import sleep
+from filecmp import cmp
 from copy import deepcopy
 from random import randint
+from shutil import copyfile
+from re import sub, findall
 from subprocess import call
 from ast import literal_eval
 import paho.mqtt.client as mqtt
@@ -246,7 +248,8 @@ class device(dict):
 
         correctPIO = os.path.join(espqdir, 'platformio.ini')
         tasmotaPIO = os.path.join(tasmotadir, 'platformio.ini')
-        os.system("bash -c 'cmp --silent {cpio} {tpio} || cp {cpio} {tpio}'".format(cpio=correctPIO, tpio=tasmotaPIO))
+        if not cmp(correctPIO, tasmotaPIO):
+            copyfile(correctPIO, tasmotaPIO)
 
         os.chdir(tasmotadir)
         pio_call = 'platformio run -e {environment} -t upload --upload-port {port}'
