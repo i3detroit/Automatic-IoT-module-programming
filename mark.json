@@ -1,0 +1,64 @@
+[
+    {
+        "name": "oven",
+        "domain": null,
+        "software": "mtfurlan/oven-monitor",
+        "site": "mark",
+        "board": "d1_mini",
+        "ip_addr": "192.168.107.13",
+        "group_topic": "none",
+        "base_topic": "mark",
+        "topic": "oven",
+        "build_flags": "",
+        "commands": null
+    },
+    {
+        "name": "All the atmosphere sensors",
+        "domain": null,
+        "software": "custom-mqtt-programs",
+        "site": "mark",
+        "srcdir": "atmosphere-sensor-cluster",
+        "board": "d1_mini",
+        "group_topic": "none",
+        "base_topic": "mark",
+        "build_flags": "",
+        "commands": null
+        "ids": [
+            {
+                "name": "Living Room Atmosphere",
+                "ip_addr": "192.168.1.192",
+                "topic": "living-room/atmosphere-sensor"
+            },
+            {
+                "name": "Bedroom Atmosphere",
+                "ip_addr": "192.168.1.193",
+                "topic": "bedroom/atmosphere-sensor"
+            },
+            {
+                "name": "Basement North Atmosphere",
+                "ip_addr": "",
+                "topic": "basement/north-atmosphere-sensor"
+            },
+            {
+                "name": "Basement South Atmosphere",
+                "ip_addr": "",
+                "topic": "basement/south-atmosphere-sensor"
+            }
+        ]
+
+    },
+    {
+        "name": "Thermostat",
+        "domain": null,
+        "software": "i3detroit/custom-mqtt-programs",
+        "site": "mark",
+        "srcdir": "thermostat",
+        "board": "d1_mini",
+        "ip_addr": "192.168.107.12",
+        "group_topic": "none",
+        "base_topic": "mark",
+        "topic": "thermostat",
+        "build_flags": "",
+        "commands": null
+    }
+]

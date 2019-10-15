@@ -32,3 +32,8 @@ A version of 'platformio.ini' is provided here to be used with tasmota. The flas
 - Query tasmota device status (IP, MAC, tasmota version, core version) with ip_query.py.
 - Write user_config_override.h for a tasmota device with config_tas.py.
 - Home assistant configuration files can be generated via espq.write_hass_config().
+
+```
+pio lib install 166 334 89 31 942 BH1750
+ln -s ../../mqtt-wrapper/ lib/mqtt-wrapper
+```

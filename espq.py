@@ -16,13 +16,13 @@ import paho.mqtt.client as mqtt
 # Make sure these are set correctly for your environment:
 
 site_config = 'sites.json'
-blank_defines = 'blank_defines.h'
+tasmota_blank_defines = 'tasmota_blank_defines.h'
 
 espqdir = os.path.dirname(os.path.abspath(__file__))
 
 current_tasmota_version = '0x06060000'
-tasmotadir = os.path.join(espqdir, '../Sonoff-Tasmota')
-custom_dir = os.path.join(espqdir, '../custom-mqtt-programs/')
+tasmota_dir = os.path.join(espqdir, '../Sonoff-Tasmota')
+custom_dir = os.path.join(espqdir, '../')
 
 ###########################################################
 
@@ -94,7 +94,7 @@ class device(dict):
         # The latter way is probably better since it's the general case
         if self.software == 'tasmota' and self.build_flags != '':
             self.build_flags = '\n'.join(['#define {}'.format(flag) for flag in self.build_flags])
-        elif self.software == 'custom-mqtt-programs':
+        else:
             self.build_flags += ('-DWIFI_SSID=\\"{wifi_ssid}\\" '
                                  '-DWIFI_PASSWORD=\\"{wifi_pass}\\" '
                                  '-DNAME=\\"{name}\\" '
@@ -223,16 +223,16 @@ class device(dict):
 
     def write_tasmota_config(self):
         """
-            Fills tasmota device parameters into blank_defines.h and writes it
-            to {tasmotadir}/sonoff/user_config_override.h
+            Fills tasmota device parameters into tasmota_blank_defines.h and writes it
+            to {tasmota_dir}/sonoff/user_config_override.h
         """
-        with open(blank_defines, 'r') as f:
+        with open(tasmota_blank_defines, 'r') as f:
             defines = f.read()
         # Every device attribute is passed to the string formatter
         defines = defines.format(**self, datetime=datetime.datetime.now(),
                                  cfg_holder=str(randint(1, 32000)))
         # Write the config file
-        with open(os.path.join(tasmotadir, 'sonoff', 'user_config_override.h'), 'w') as f:
+        with open(os.path.join(tasmota_dir, 'sonoff', 'user_config_override.h'), 'w') as f:
             f.write(defines)
 
     def flash_tasmota(self):
@@ -247,11 +247,11 @@ class device(dict):
         self.write_tasmota_config()
 
         correctPIO = os.path.join(espqdir, 'platformio.ini')
-        tasmotaPIO = os.path.join(tasmotadir, 'platformio.ini')
+        tasmotaPIO = os.path.join(tasmota_dir, 'platformio.ini')
         if not cmp(correctPIO, tasmotaPIO):
             copyfile(correctPIO, tasmotaPIO)
 
-        os.chdir(tasmotadir)
+        os.chdir(tasmota_dir)
         pio_call = 'platformio run -e {environment} -t upload --upload-port {port}'
         if self.flash_mode == 'wifi':
             pio_call = pio_call.format(environment='sonoff-wifi', port=(self.ip_addr + '/u2'))
@@ -269,26 +269,42 @@ class device(dict):
 
     def flash_custom(self):
         """ Flash the device with custom firmware """
-        src_dir = os.path.join(custom_dir, self.module)
-        os.environ['PLATFORMIO_SRC_DIR']=src_dir
+        # Expects software to be a directory in the custom_dir variable hardcoded at the top
+        # srcdir is an optional field that will build with the PLATFORMIO_SRC_DIR env var set to that
+        # That makes i3detroit/custom-mqtt-programs work
+        print('using software {s}'.format(s=self.software));
+
+        sd = os.path.join(custom_dir, self.software)
+        if not os.path.exists(sd):
+            #bad dir
+            print('custom code, software dir: {s} doesn\'t exist'.format(s=sd))
+            return False
+
+        #at this point path exists
+        os.chdir(sd)
+
+        if self.srcdir:
+            os.environ['PLATFORMIO_SRC_DIR']=self.srcdir
+            print('src dir: {srcdir}'.format(**self))
+
         os.environ['PLATFORMIO_BUILD_FLAGS']=self.build_flags
-        print(os.environ['PLATFORMIO_SRC_DIR'])
         print(os.environ['PLATFORMIO_BUILD_FLAGS'])
-        os.chdir(custom_dir)
+
         pio_call = 'platformio run -e {board}-{flash_mode} -t upload --upload-port {port}'
         if self.flash_mode == 'wifi':
             pio_call = pio_call.format(port=self.ip_addr, **self)
-            print(('{BLUE}Now flashing {module} {f_name} in {software} via '
+            print(('{BLUE}Now flashing {srcdir} {f_name} in {software} via '
                 '{flash_mode} at {ip_addr}{NOCOLOR}'.format(**colors, **self)))
         elif self.flash_mode == 'serial':
             pio_call = pio_call.format(port=self.serial_port, **self)
-            print(('{BLUE}Now flashing {module} {f_name} in {software} via '
+            print(('{BLUE}Now flashing {srcdir} {f_name} in {software} via '
                 '{flash_mode} at {serial_port}{NOCOLOR}'.format(**colors, **self)))
         else:
             print("no flash mode set, try again?")
             return(False)
 
         print(pio_call)
+        #sys.exit(1);
         flash_result = call(pio_call, shell=True)
 
         os.environ['PLATFORMIO_SRC_DIR']=''
@@ -392,26 +408,35 @@ def import_devices(device_file):
     with open(device_file, 'r') as f:
         device_import = json.load(f)
     devices=[]
+    # dev is an entry in a config json
     for dev in device_import:
-        try:
+        # a device can have an "ids" field which will turn it into multiple devices
+        if 'ids' in dev:
             for id_info in dev['ids']:
                 new_dev = deepcopy(dev)
-                for key in new_dev:
-                    if isinstance(new_dev[key], str):
-                        new_dev[key] = sub('%id%',
-                                           id_info['id'],
-                                           new_dev[key])
-                # new_dev['ip_addr'] = id_info['ip_addr']
-                # if 'mac_addr' in id_info:
-                #     new_dev['mac_addr'] = id_info['mac_addr']
-                # Need to add processing of custom device parameters
+                #if the device specific obj has an "id" field
+                if 'id' in id_info:
+                    #replace the "%id%" string in all string properties
+                    for key in new_dev:
+                        if isinstance(new_dev[key], str):
+                            new_dev[key] = sub('%id%',
+                                               id_info['id'],
+                                               new_dev[key])
+                # just copy all the keys over
                 for key in id_info:
                     new_dev[key] = id_info[key]
                 devices.append(device(new_dev))
-        except KeyError:
+        else: #no ids field, was only one device
             devices.append(device(dev))
-    devices = sorted(devices, key=lambda k: k.module)
+    devices = sorted(devices, key=deviceSortingFunction)
     return devices
+
+def deviceSortingFunction(dev):
+    if(dev.software == "tasmota"):
+        return "tasmota" + dev.module;
+    else:
+        return dev.software + dev.srcdir;
+
 
 def nested_get(input_dict, nested_key):
     """
@@ -429,7 +454,7 @@ def get_gpio(request):
     """ Retrieve a GPIO's integer value from the enumeration in tasmota """
     lines=[]
     append=False
-    with open(tasmotadir + "/sonoff/sonoff_template.h", "r") as f:
+    with open(tasmota_dir + "/sonoff/sonoff_template.h", "r") as f:
         for line in f:
             if append==True:
                 split = line.split('//')[0]
@@ -447,7 +472,7 @@ def get_gpio(request):
 def get_tasmota_version():
     """ Retrieve a GPIO's integer value from the enumeration in tasmota """
     matches = []
-    with open(tasmotadir + "/sonoff/sonoff_version.h", "r") as f:
+    with open(tasmota_dir + "/sonoff/sonoff_version.h", "r") as f:
         for line in f:
             matches += findall('0x\d+', line)
     if len(matches) == 0:
