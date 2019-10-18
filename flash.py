@@ -90,6 +90,10 @@ questions = [
 answers = prompt(questions, style=style)
 selected_devices = [device for device in devices if device['f_name'] in answers['device_selection']]
 
+if len(selected_devices) == 0:
+    print('No devices selected. Exiting.')
+    exit()
+
 print(args)
 print('Devices to be flashed')
 progress_report(selected_devices)
