@@ -673,7 +673,12 @@
         "topic": "fablab/chiller",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "teleperiod",
+                "payload": "60"
+            }
+        ]
     },
     {
         "name": "h structure workbench lights",
@@ -826,7 +831,12 @@
         "topic": "commons/genie-charging",
         "poweron_state": 1,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "teleperiod",
+                "payload": "60"
+            }
+        ]
     },
     {
         "name": "small bathroom vent fan",
@@ -894,6 +904,10 @@
             {
                 "command": "SetOption32",
                 "payload": "100"
+            },
+            {
+                "command": "teleperiod",
+                "payload": "60"
             }
         ]
     },
@@ -918,6 +932,10 @@
             {
                 "command": "SetOption32",
                 "payload": "100"
+            },
+            {
+                "command": "teleperiod",
+                "payload": "60"
             }
         ]
     },
@@ -1167,7 +1185,12 @@
         "topic": "fablab/chinesium-laser",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "teleperiod",
+                "payload": "60"
+            }
+        ]
     },
     {
         "name": "OLD snapple vending light",
@@ -1597,7 +1620,12 @@
         "build_flags": [
             "USE_RULES"
         ],
-        "commands": null
+        "commands": [
+            {
+                "command": "teleperiod",
+                "payload": "60"
+            }
+        ]
     },
     {
         "name": "Snappple Compressor",
@@ -1612,6 +1640,11 @@
         "topic": "commons/snapple-compress",
         "poweron_state": 1,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "teleperiod",
+                "payload": "60"
+            }
+        ]
     }
 ]
