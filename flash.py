@@ -77,6 +77,7 @@ args = parser.parse_args()
 
 devices = espq.import_devices(args.deviceFile)
 
+# Create list of menu choices with category separators for module
 choice_list = []
 current_type = None
 for device in devices:
@@ -91,7 +92,7 @@ questions = [
         'type': 'checkbox',
         'message': 'Select Devices',
         'name': 'device_selection',
-        'choices': choice_list, #[{'name': '{f_name}'.format(**device)} for device in devices],
+        'choices': choice_list,
         'validate': lambda answer: 'You must choose at least one device.' if len(answer) == 0 else True
     }
 ]
