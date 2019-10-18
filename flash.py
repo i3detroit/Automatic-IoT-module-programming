@@ -77,13 +77,21 @@ args = parser.parse_args()
 
 devices = espq.import_devices(args.deviceFile)
 
+choice_list = []
+current_type = None
+for device in devices:
+    if device['module'] != current_type:
+        current_type = device['module']
+        choice_list.append(Separator(f'======== {current_type} ========'))
+    choice_list.append({'name': device['f_name']})
+
 # Ask the user to choose which devices to flash
 questions = [
     {
         'type': 'checkbox',
         'message': 'Select Devices',
         'name': 'device_selection',
-        'choices': [{'name': '{f_name}'.format(**device)} for device in devices],
+        'choices': choice_list, #[{'name': '{f_name}'.format(**device)} for device in devices],
         'validate': lambda answer: 'You must choose at least one device.' if len(answer) == 0 else True
     }
 ]
