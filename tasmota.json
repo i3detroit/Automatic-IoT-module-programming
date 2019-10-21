@@ -2,6 +2,7 @@
     {
         "name": "light %id%",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -166,6 +167,7 @@
     {
         "name": "light %id%",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -199,6 +201,7 @@
     {
         "name": "light %id%",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
@@ -257,6 +260,7 @@
     {
         "name": "light %id%",
         "hass_template": "light_bn",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BN",
@@ -289,6 +293,7 @@
     {
         "name": "light %id%",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -361,6 +366,7 @@
     {
         "name": "chandelier %id%",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_SV",
@@ -429,6 +435,7 @@
     {
         "name": "swirly-lights-%id%",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -453,6 +460,7 @@
     {
         "name": "media lab lights",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -468,6 +476,7 @@
     {
         "name": "commons ceiling fan",
         "hass_template": "switch",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -483,6 +492,7 @@
     {
         "name": "laser ceiling fan",
         "hass_template": "switch",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -498,6 +508,7 @@
     {
         "name": "laser vent fan",
         "hass_template": "switch",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_SV",
@@ -558,6 +569,7 @@
     {
         "name": "fablab vent fan",
         "hass_template": "switch",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -573,6 +585,7 @@
     {
         "name": "machine shop ceiling fan",
         "hass_template": "switch",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -588,6 +601,7 @@
     {
         "name": "Paint box vent fan",
         "hass_template": "switch",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -603,6 +617,7 @@
     {
         "name": "disco-spotlights",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -633,6 +648,7 @@
     {
         "name": "wolverine chiller",
         "hass_template": "switch",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -648,6 +664,7 @@
     {
         "name": "bumblebee chiller",
         "hass_template": "switch",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -663,6 +680,7 @@
     {
         "name": "fablab chiller",
         "hass_template": "pow",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_POW",
@@ -683,6 +701,7 @@
     {
         "name": "h structure workbench lights",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -698,6 +717,7 @@
     {
         "name": "hallway light",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -713,6 +733,7 @@
     {
         "name": "elab light",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -728,6 +749,7 @@
     {
         "name": "craftroom light",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -743,6 +765,7 @@
     {
         "name": "small bathroom light",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -758,6 +781,7 @@
     {
         "name": "dooridor light",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -773,6 +797,7 @@
     {
         "name": "classroom light west",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -788,6 +813,7 @@
     {
         "name": "classroom light east",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
@@ -821,6 +847,7 @@
     {
         "name": "genie charging",
         "hass_template": "pow",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_POW",
@@ -841,6 +868,7 @@
     {
         "name": "small bathroom vent fan",
         "hass_template": "switch",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -856,6 +884,7 @@
     {
         "name": "small bathroom shower light",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -871,6 +900,7 @@
     {
         "name": "commons siren",
         "hass_template": "switch",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -886,6 +916,7 @@
     {
         "name": "wolverine",
         "hass_template": "pow",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_POW",
@@ -914,6 +945,7 @@
     {
         "name": "bumblebee",
         "hass_template": "pow",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_POW",
@@ -942,6 +974,7 @@
     {
         "name": "hallway west lightswitch",
         "hass_template": "switch",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -972,6 +1005,7 @@
     {
         "name": "cnc vent fan",
         "hass_template": "switch",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TH",
@@ -1000,6 +1034,7 @@
     {
         "name": "cnc large light",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TH",
@@ -1028,6 +1063,7 @@
     {
         "name": "vent fan over sink",
         "hass_template": "switch",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TH",
@@ -1056,6 +1092,7 @@
     {
         "name": "classroom lightswitch east",
         "hass_template": "switch",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
@@ -1086,6 +1123,7 @@
     {
         "name": "elab accent arch %id%",
         "hass_template": "light_rgb",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
@@ -1145,6 +1183,7 @@
     {
         "name": "lanterns",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -1160,6 +1199,7 @@
     {
         "name": "fairy-lights",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -1175,6 +1215,7 @@
     {
         "name": "chinesium laser",
         "hass_template": "pow",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_POW",
@@ -1195,6 +1236,7 @@
     {
         "name": "OLD snapple vending light",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
@@ -1210,6 +1252,7 @@
     {
         "name": "snapple vending rgb",
         "hass_template": "light_rgb",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
@@ -1255,6 +1298,7 @@
     {
         "name": "BSide Office Lights",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
@@ -1288,6 +1332,7 @@
     {
         "name": "BSide Ceiling Vent Fan",
         "hass_template": "switch",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
@@ -1321,6 +1366,7 @@
     {
         "name": "Etekcity Test 04",
         "hass_template": "light",
+        "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
@@ -1574,6 +1620,7 @@
     {
         "name": "Craft Room Lightswitch",
         "hass_template": "generic",
+        "hass_domain": "sensor",
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
@@ -1608,6 +1655,7 @@
     {
         "name": "Fablab AC",
         "hass_template": "pow",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_POW",
@@ -1630,6 +1678,7 @@
     {
         "name": "Snappple Compressor",
         "hass_template": "pow",
+        "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_S31",

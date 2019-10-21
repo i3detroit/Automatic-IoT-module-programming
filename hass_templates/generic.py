@@ -56,7 +56,7 @@ generic_telemetry = """- platform: template
         {{% endif %}}
     {name}_wifi_bssid:
       friendly_name: '{f_name} Wifi BSSId'
-      value_template: {{{{ states.{hass_domain}.{name}.attributes.Wifi.BSSId }}}}
+      value_template: '{{{{ states.{hass_domain}.{name}.attributes.Wifi.BSSId }}}}'
     {name}_wifi_channel:
       friendly_name: '{f_name} Wifi Channel'
       value_template: '{{{{ states.{hass_domain}.{name}.attributes.Wifi.Channel }}}}'
