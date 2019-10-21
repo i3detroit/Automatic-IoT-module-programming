@@ -24,17 +24,6 @@ def progress_report(devices):
     print(re.sub('\[X\]', '[\033[1;32mX\033[0m]', formatted_status))
     print('=' * cols)
 
-# Style for selection interface
-style = style_from_dict({
-    Token.Separator: '#FF00AA',
-    Token.QuestionMark: '#00AAFF bold',
-    Token.Selected: '#00AAFF',  # default
-    Token.Pointer: '#00FF00 bold',
-    Token.Instruction: '#FFAA00',  # default
-    Token.Answer: '#00AAFF bold',
-    Token.Question: '#FF00AA',
-})
-
 colors = {"RED": '\033[1;31m',
           "GREEN": '\033[1;32m',
           "NOCOLOR": '\033[0m'}
@@ -76,28 +65,7 @@ parser.add_argument('deviceFile', metavar='deviceFile',
 args = parser.parse_args()
 
 devices = espq.import_devices(args.deviceFile)
-
-# Create list of menu choices with category separators for module
-choice_list = []
-current_type = None
-for device in devices:
-    if device['module'] != current_type:
-        current_type = device['module']
-        choice_list.append(Separator(f'======== {current_type} ========'))
-    choice_list.append({'name': device['f_name']})
-
-# Ask the user to choose which devices to flash
-questions = [
-    {
-        'type': 'checkbox',
-        'message': 'Select Devices',
-        'name': 'device_selection',
-        'choices': choice_list,
-        'validate': lambda answer: 'You must choose at least one device.' if len(answer) == 0 else True
-    }
-]
-answers = prompt(questions, style=style)
-selected_devices = [device for device in devices if device['f_name'] in answers['device_selection']]
+selected_devices = espq.choose_devices(devices)
 
 if len(selected_devices) == 0:
     print('No devices selected. Exiting.')

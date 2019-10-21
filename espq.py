@@ -11,6 +11,7 @@ from re import sub, findall
 from subprocess import call
 from ast import literal_eval
 import paho.mqtt.client as mqtt
+from PyInquirer import style_from_dict, Token, prompt, Separator
 
 ###########################################################
 # Make sure these are set correctly for your environment:
@@ -456,6 +457,41 @@ def get_tasmota_version():
         return matches[0]
     else:
         raise IndexError('Too many tasmota versions found.')
+
+def choose_devices(devices):
+    ''' Create list of menu choices with category separators for module '''
+    # Style for selection interface
+    style = style_from_dict({
+        Token.Separator: '#FF00AA',
+        Token.QuestionMark: '#00AAFF bold',
+        Token.Selected: '#00AAFF',  # default
+        Token.Pointer: '#00FF00 bold',
+        Token.Instruction: '#FFAA00',  # default
+        Token.Answer: '#00AAFF bold',
+        Token.Question: '#FF00AA',
+    })
+
+    choice_list = []
+    current_type = None
+    for device in devices:
+        if device['module'] != current_type:
+            current_type = device['module']
+            choice_list.append(Separator(f'======== {current_type} ========'))
+        choice_list.append({'name': device['f_name']})
+
+    # Ask the user to choose which devices to flash
+    questions = [
+        {
+            'type': 'checkbox',
+            'message': 'Select Devices',
+            'name': 'device_selection',
+            'choices': choice_list,
+            'validate': lambda answer: 'You must choose at least one device.' if len(answer) == 0 else True
+        }
+    ]
+    answers = prompt(questions, style=style)
+    selected_devices = [device for device in devices if device['f_name'] in answers['device_selection']]
+    return selected_devices
 
 if __name__ == "__main__":
     print("Don't call espq directly")
