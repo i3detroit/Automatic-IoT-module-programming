@@ -194,7 +194,7 @@ class device(dict):
                                           **colors,
                                           **self)
             with open(espqdir + "/flash_success.log", "a+") as flashlog:
-                flashlog.write(result)
+                flashlog.write(result + '\n')
                 print(result)
             return()
         elif result_code == 1:
@@ -218,7 +218,7 @@ class device(dict):
                                                **colors,
                                                **self)
         with open(espqdir + "/flash_error.log", "a+") as errorlog:
-            errorlog.write(result)
+            errorlog.write(result + '\n')
             print('{RED}{result}{NOCOLOR}'.format(**colors, result=result))
         return()
 
