@@ -2,7 +2,7 @@
 import argparse
 import espq
 import os
-from PyInquirer import style_from_dict, Token, prompt, Separator
+from PyInquirer import style_from_dict, Token
 
 # Style for selection interface
 style = style_from_dict({
@@ -26,12 +26,16 @@ except:
     cols = 80
     rows = 40
 
-parser = argparse.ArgumentParser(description='Parametrically generate home assistant config')
+parser = argparse.ArgumentParser(description='Parametrically generate home '
+                                             'assistant config files')
 parser.add_argument('deviceFile', metavar='deviceFile',
                     help='What file to load device definitionss from')
 args = parser.parse_args()
 
 devices = espq.import_devices(args.deviceFile)
+# filter out devices that aren't configured
+devices = [dev for dev in devices if hasattr(dev, 'hass_template')
+                                     and hasattr(dev, 'hass_domain')]
 devices = sorted(devices, key=lambda k: k.f_name.lower())
 devices = sorted(devices, key=lambda k: k.module)
 
@@ -43,10 +47,7 @@ if len(selected_devices) == 0:
 
 # Do the flashing
 for dev in selected_devices:
-    # try:
-        print("Writing {hass_template} config for {f_name}".format(**dev))
-        dev.write_hass_config()
-    # except KeyError:
-    #     print('{f_name} has no hass template defined. Skipping.'.format(**dev))
+    print("Writing {hass_template} config for {f_name}".format(**dev))
+    dev.write_hass_config()
 print("Done.")
 
