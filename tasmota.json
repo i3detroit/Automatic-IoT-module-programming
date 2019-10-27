@@ -661,7 +661,8 @@
         "topic": "laser-zone/wolverine/chiller",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": null,
+        "flash_warning": "Make sure no one is using the laser cutter"
     },
     {
         "name": "bumblebee chiller",
@@ -677,7 +678,8 @@
         "topic": "laser-zone/bumblebee/chiller",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": null,
+        "flash_warning": "Make sure no one is using the laser cutter"
     },
     {
         "name": "fablab chiller",
@@ -698,7 +700,8 @@
                 "command": "teleperiod",
                 "payload": "60"
             }
-        ]
+        ],
+        "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration."
     },
     {
         "name": "h structure workbench lights",
@@ -865,7 +868,8 @@
                 "command": "teleperiod",
                 "payload": "60"
             }
-        ]
+        ],
+        "flash_warning": "This will reset any power monitoring calibration"
     },
     {
         "name": "small bathroom vent fan",
@@ -942,7 +946,8 @@
                 "command": "teleperiod",
                 "payload": "60"
             }
-        ]
+        ],
+        "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration."
     },
     {
         "name": "bumblebee",
@@ -971,7 +976,8 @@
                 "command": "teleperiod",
                 "payload": "60"
             }
-        ]
+        ],
+        "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration."
     },
     {
         "name": "hallway west lightswitch",
@@ -1233,7 +1239,8 @@
                 "command": "teleperiod",
                 "payload": "60"
             }
-        ]
+        ],
+        "flash_warning": "Make sure no one is using the laser cutter. Also this will reset any power monitoring calibration"
     },
     {
         "name": "OLD snapple vending light",
@@ -1677,7 +1684,8 @@
                 "command": "teleperiod",
                 "payload": "60"
             }
-        ]
+        ],
+        "flash_warning": "This will reset any power monitoring calibration."
     },
     {
         "name": "Snappple Compressor",

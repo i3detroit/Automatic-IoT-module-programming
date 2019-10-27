@@ -85,7 +85,13 @@ for count, dev in enumerate(selected_devices, start=1):
                       '\x07').format(count=count, total=len(selected_devices),
                                      name=dev.name))
     
-    if args.pauseBeforeFlash == True:
+    if hasattr(dev, 'flash_warning'):
+        print('Ready to process device {count}/{total} - {name}'.format(count=count,
+                                                                  total=len(selected_devices),
+                                                                  name=dev.name))
+        print('{RED}WARNING: {flash_warning}{NOCOLOR}'.format(**colors, **dev))
+        input('Press Enter to ignore the warning and continue...')
+    elif args.pauseBeforeFlash == True:
         print('Ready to process device {count}/{total} - {name}'.format(count=count,
                                                                   total=len(selected_devices),
                                                                   name=dev.name))
