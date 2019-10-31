@@ -4,7 +4,6 @@ import espq
 import sys
 import os
 import re
-from PyInquirer import style_from_dict, Token, prompt, Separator
 
 def fmtcols(mylist, cols):
     """
@@ -87,9 +86,9 @@ for count, dev in enumerate(selected_devices, start=1):
     
     if hasattr(dev, 'flash_warning'):
         print('Ready to process device {count}/{total} - {name}'.format(count=count,
-                                                                  total=len(selected_devices),
-                                                                  name=dev.name))
-        print('{RED}WARNING: {flash_warning}{NOCOLOR}'.format(**colors, **dev))
+                                                                        total=len(selected_devices),
+                                                                        name=dev.name))
+        print('{RED}WARNING: {flash_warning}{NOCOLOR}'.format(flash_warning=dev.flash_warning, **colors))
         input('Press Enter to ignore the warning and continue...')
     elif args.pauseBeforeFlash == True:
         print('Ready to process device {count}/{total} - {name}'.format(count=count,
