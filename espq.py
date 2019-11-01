@@ -21,7 +21,7 @@ blank_defines = 'blank_defines.h'
 
 espqdir = os.path.dirname(os.path.abspath(__file__))
 
-current_tasmota_version = '0x06060000'
+current_tasmota_version = '0x06070100'
 tasmotadir = os.path.join(espqdir, '../Sonoff-Tasmota')
 custom_dir = os.path.join(espqdir, '../custom-mqtt-programs/')
 

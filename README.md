@@ -77,3 +77,8 @@ The full MQTT topic will be `%prefix%/{base_topic}/{topic}`
 
 ## flash_warning
 (Optional) Warning text to be displayed before flashing a device. Forces pause and user interaction before compiling and flashing. Can be used as a failsafe for devices you should care when flashing, like things people might be using (in our case laser cutters) or devices that might lose calibration settings (i.e. sonoff pows)
+
+# Moving to a new version of Tasmota
+* Review changes in sonoff/my_user_config.h to see if any options you're using changed.
+* Take all the #define lines from that file and #undef them in blank_defines.h.
+* Update tasmota version string in espq.py from sonoff/sonoff_version.h

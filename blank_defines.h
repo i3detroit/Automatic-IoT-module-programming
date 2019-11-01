@@ -3,53 +3,43 @@
 #define _USER_CONFIG_OVERRIDE_H_
 
 #undef CFG_HOLDER
-
 #undef PROJECT
+#undef MODULE
 #undef SAVE_DATA
 #undef SAVE_STATE
 #undef BOOT_LOOP_OFFSET
-
 #undef WIFI_IP_ADDRESS
 #undef WIFI_GATEWAY
 #undef WIFI_SUBNETMASK
 #undef WIFI_DNS
-
 #undef STA_SSID1
 #undef STA_PASS1
 #undef STA_SSID2
 #undef STA_PASS2
 #undef WIFI_CONFIG_TOOL
-#undef WIFI_CONFIG_NO_SSID
-
 #undef SYS_LOG_HOST
 #undef SYS_LOG_PORT
 #undef SYS_LOG_LEVEL
 #undef SERIAL_LOG_LEVEL
 #undef WEB_LOG_LEVEL
-
+#undef MQTT_LOG_LEVEL
 #undef OTA_URL
-
 #undef MQTT_USE
-
 #undef MQTT_HOST
 #undef MQTT_FINGERPRINT1
 #undef MQTT_FINGERPRINT2
 #undef MQTT_PORT
 #undef MQTT_USER
 #undef MQTT_PASS
-
 #undef MQTT_BUTTON_RETAIN
 #undef MQTT_POWER_RETAIN
 #undef MQTT_SWITCH_RETAIN
 #undef MQTT_BUTTON_SWITCH_FORCE_LOCAL
-
 #undef MQTT_STATUS_OFF
 #undef MQTT_STATUS_ON
 #undef MQTT_CMND_TOGGLE
 #undef MQTT_CMND_HOLD
-
 #undef MQTT_FULLTOPIC
-
 #undef SUB_PREFIX
 #undef PUB_PREFIX
 #undef PUB_PREFIX2
@@ -58,19 +48,14 @@
 #undef MQTT_BUTTON_TOPIC
 #undef MQTT_SWITCH_TOPIC
 #undef MQTT_CLIENT_ID
-
 #undef TELE_PERIOD
 #undef TELE_ON_POWER
-
 #undef DOMOTICZ_UPDATE_TIMER
-
 #undef HOME_ASSISTANT_DISCOVERY_ENABLE
-
 #undef WEB_SERVER
 #undef WEB_PASSWORD
 #undef FRIENDLY_NAME
 #undef EMULATION
-
 #undef COLOR_TEXT
 #undef COLOR_BACKGROUND
 #undef COLOR_FORM
@@ -89,30 +74,24 @@
 #undef COLOR_BUTTON_SAVE_HOVER
 #undef COLOR_TIMER_TAB_TEXT
 #undef COLOR_TIMER_TAB_BACKGROUND
-
 #undef MDNS_ENABLED
-
 #undef NTP_SERVER1
 #undef NTP_SERVER2
 #undef NTP_SERVER3
-
 #undef TIME_DST_HEMISPHERE
 #undef TIME_DST_WEEK
 #undef TIME_DST_DAY
 #undef TIME_DST_MONTH
 #undef TIME_DST_HOUR
 #undef TIME_DST_OFFSET
-
 #undef TIME_STD_HEMISPHERE
 #undef TIME_STD_WEEK
 #undef TIME_STD_DAY
 #undef TIME_STD_MONTH
 #undef TIME_STD_HOUR
 #undef TIME_STD_OFFSET
-
 #undef LATITUDE
 #undef LONGITUDE
-
 #undef APP_TIMEZONE
 #undef APP_LEDSTATE
 #undef APP_LEDMASK
@@ -121,13 +100,11 @@
 #undef APP_BLINKTIME
 #undef APP_BLINKCOUNT
 #undef APP_SLEEP
-
 #undef KEY_DEBOUNCE_TIME
 #undef KEY_HOLD_TIME
 #undef SWITCH_DEBOUNCE_TIME
 #undef SWITCH_MODE
 #undef WS2812_LEDS
-
 #undef TEMP_CONVERSION
 #undef PRESSURE_CONVERSION
 #undef TEMP_RESOLUTION
@@ -135,61 +112,70 @@
 #undef PRESSURE_RESOLUTION
 #undef ENERGY_RESOLUTION
 #undef CALC_RESOLUTION
-
 #undef MY_LANGUAGE
-
 #undef WIFI_SOFT_AP_CHANNEL
-#undef USE_WPS
-#undef USE_SMARTCONFIG
-
 #undef USE_ARDUINO_OTA
-
 #undef MQTT_TELE_RETAIN
-
 #undef USE_DOMOTICZ
 #undef DOMOTICZ_IN_TOPIC
 #undef DOMOTICZ_OUT_TOPIC
-
 #undef USE_HOME_ASSISTANT
 #undef HOME_ASSISTANT_DISCOVERY_PREFIX
 #undef USE_MQTT_TLS
 #undef USE_MQTT_TLS_CA_CERT
+#undef USE_MQTT_TLS_FORCE_EC_CIPHER
 #undef USE_MQTT_AWS_IOT
-
 #undef USE_KNX
 #undef USE_KNX_WEB_MENU
-
 #undef USE_WEBSERVER
 #undef WEB_PORT
 #undef WEB_USERNAME
 #undef USE_JAVASCRIPT_ES6
+#undef USE_WEBSEND_RESPONSE
 #undef USE_EMULATION_HUE
 #undef USE_EMULATION_WEMO
-
 #undef USE_DISCOVERY
 #undef WEBSERVER_ADVERTISE
 #undef MQTT_HOST_DISCOVERY
-
 #undef USE_TIMERS
 #undef USE_TIMERS_WEB
 #undef USE_SUNRISE
 #undef SUNRISE_DAWN_ANGLE
-
 #undef USE_RULES
 #undef USE_SCRIPT
 #undef USE_SCRIPT_FATFS
-
+#undef USE_EXPRESSION
+#undef SUPPORT_IF_STATEMENT
+#undef SUPPORT_MQTT_EVENT
+#undef ROTARY_V1
+#undef USE_SONOFF_RF
+#undef USE_RF_FLASH
+#undef USE_SONOFF_SC
+#undef USE_TUYA_MCU
+#undef TUYA_DIMMER_ID
+#undef USE_ARMTRONIX_DIMMERS
+#undef USE_PS_16_DZ
+#undef USE_SONOFF_IFAN
+#undef USE_BUZZER
+#undef USE_ARILUX_RF
+#undef USE_SHUTTER
+#undef USE_DEEPSLEEP
+#undef USE_EXS_DIMMER
+#undef EXS_MCU_CMNDS
+#undef USE_WS2812
+#undef USE_WS2812_DMA
+#undef USE_WS2812_HARDWARE
+#undef USE_WS2812_CTYPE
+#undef USE_MY92X1
+#undef USE_SM16716
+#undef USE_SM2135
+#undef USE_SONOFF_L1
 #undef USE_COUNTER
-
 #undef USE_ADC_VCC
-
-#undef USE_DS18x20_LEGACY
 #undef USE_DS18x20
 #undef W1_PARASITE_POWER
 #undef DS18B20_INTERNAL_PULLUP
-
 #undef USE_I2C
-
 #undef USE_SHT
 #undef USE_HTU
 #undef USE_BMP
@@ -201,6 +187,7 @@
 #undef USE_ADS1115
 #undef USE_ADS1115_I2CDEV
 #undef USE_INA219
+#undef USE_INA226
 #undef USE_SHT3X
 #undef USE_TSL2561
 #undef USE_MGS
@@ -224,12 +211,14 @@
 #undef USE_RTC_ADDR
 #undef USE_MGC3130
 #undef USE_MAX44009
-#undef USE_SCD30   
-#undef USE_SPS30   
-#undef USE_ADE7953   
-#undef USE_VL53L0X 
+#undef USE_SCD30
+#undef USE_SPS30
+#undef USE_ADE7953
+#undef USE_VL53L0X
 #undef USE_MLX90614
-
+#undef USE_CHIRP
+#undef USE_PAJ7620
+#undef USE_PCF8574
 #undef USE_DISPLAY
 #undef USE_DISPLAY_MODES1TO5
 #undef USE_DISPLAY_LCD
@@ -243,86 +232,114 @@
 #undef MTX_ADDRESS6
 #undef MTX_ADDRESS7
 #undef MTX_ADDRESS8
-
+#undef USE_DISPLAY_SH1106
 #undef USE_SPI
-
 #undef USE_DISPLAY
 #undef USE_DISPLAY_ILI9341
 #undef USE_DISPLAY_EPAPER_29
-
+#undef USE_DISPLAY_EPAPER_42
+#undef USE_DISPLAY_ILI9488
+#undef USE_DISPLAY_SSD1351
+#undef USE_DISPLAY_RA8876
 #undef USE_MHZ19
 #undef USE_SENSEAIR
 #undef CO2_LOW
 #undef CO2_HIGH
 #undef USE_PMS5003
+#undef PMS_MODEL_PMS3003
 #undef USE_NOVA_SDS
-#undef WORKING_PERIOD
+#undef STARTING_OFFSET
 #undef USE_SERIAL_BRIDGE
-#undef USE_SDM120
-#undef SDM120_SPEED
-#undef USE_SDM220
-#undef USE_SDM630
-#undef SDM630_SPEED
 #undef USE_MP3_PLAYER
 #undef MP3_VOLUME
-#undef USE_TUYA_DIMMER
-#undef TUYA_DIMMER_ID
-#undef USE_ARMTRONIX_DIMMERS
-#undef USE_PS_16_DZ
-#undef ROTARY_V1
 #undef USE_AZ7798
-#undef USE_PN532_HSU            
-#undef USE_PN532_CAUSE_EVENTS 
+#undef USE_PN532_HSU
+#undef USE_PN532_CAUSE_EVENTS
 #undef USE_PN532_DATA_FUNCTION
-#undef USE_PN532_DATA_RAW     
-
+#undef USE_PN532_DATA_RAW
+#undef USE_RDM6300
+#undef USE_IBEACON
+#undef USE_ENERGY_MARGIN_DETECTION
+#undef USE_ENERGY_POWER_LIMIT
 #undef USE_PZEM004T
 #undef USE_PZEM_AC
 #undef USE_PZEM_DC
 #undef USE_MCP39F501
-
+#undef USE_SDM120
+#undef SDM120_SPEED
+#undef USE_SDM630
+#undef SDM630_SPEED
+#undef USE_DDS2382
+#undef DDS2382_SPEED
+#undef USE_DDSU666
+#undef DDSU666_SPEED
+#undef USE_SOLAX_X1
+#undef SOLAXX1_SPEED
+#undef SOLAXX1_PV2
 #undef USE_DHT
-
+#undef USE_MAX31855
+#undef USE_MAX31865
+#undef MAX31865_PTD_WIRES
+#undef MAX31865_PTD_RES
+#undef MAX31865_REF_RES
+#undef MAX31865_PTD_BIAS
 #undef USE_IR_REMOTE
+#undef USE_IR_SEND_AIWA
+#undef USE_IR_SEND_DISH
+#undef USE_IR_SEND_JVC
+#undef USE_IR_SEND_LG
+#undef USE_IR_SEND_MITSUBISHI
+#undef USE_IR_SEND_NEC
+#undef USE_IR_SEND_PANASONIC
+#undef USE_IR_SEND_PIONEER
+#undef USE_IR_SEND_RC5
+#undef USE_IR_SEND_RC6
+#undef USE_IR_SEND_SAMSUNG
+#undef USE_IR_SEND_SANYO
+#undef USE_IR_SEND_SHARP
+#undef USE_IR_SEND_SONY
+#undef USE_IR_SEND_WHYNTER
 #undef USE_IR_HVAC
+#undef USE_IR_HVAC_TOSHIBA
+#undef USE_IR_HVAC_MITSUBISHI
+#undef USE_IR_HVAC_LG
+#undef USE_IR_HVAC_FUJITSU
+#undef USE_IR_HVAC_MIDEA
 #undef USE_IR_RECEIVE
 #undef IR_RCV_BUFFER_SIZE
 #undef IR_RCV_TIMEOUT
 #undef IR_RCV_MIN_UNKNOWN_SIZE
-
-#undef USE_WS2812
-#undef USE_WS2812_CTYPE
-#undef USE_WS2812_DMA
-
-#undef USE_ARILUX_RF
-
+#undef USE_ZIGBEE
+#undef USE_ZIGBEE_PANID
+#undef USE_ZIGBEE_EXTPANID
+#undef USE_ZIGBEE_CHANNEL
+#undef USE_ZIGBEE_PRECFGKEY_L
+#undef USE_ZIGBEE_PRECFGKEY_H
+#undef USE_ZIGBEE_PERMIT_JOIN
 #undef USE_SR04
-
 #undef USE_TM1638
 #undef USE_HX711
 #undef USE_HX711_GUI
-
-#undef USE_RF_FLASH
-
 #undef USE_TX20_WIND_SENSOR
-
 #undef USE_RC_SWITCH
-
 #undef USE_RF_SENSOR
 #undef USE_THEO_V2
 #undef USE_ALECTO_V2
-
-#undef USE_SM16716
-
 #undef USE_HRE
-
+#undef USE_A4988_STEPPER
+#undef USE_ARDUINO_SLAVE
+#undef USE_ARDUINO_FLASH_SPEED
+#undef USE_ARDUINO_SERIAL_SPEED
+#undef DEBUG_TASMOTA_CORE
+#undef DEBUG_TASMOTA_DRIVER
+#undef DEBUG_TASMOTA_SENSOR
 #undef USE_DEBUG_DRIVER
-
-#undef FIRMWARE_CLASSIC
 #undef FIRMWARE_BASIC
 #undef FIRMWARE_SENSORS
 #undef FIRMWARE_KNX_NO_EMULATION
 #undef FIRMWARE_DISPLAYS
+#undef FIRMWARE_IR
+#undef FIRMWARE_IR_CUSTOM
 #undef FIRMWARE_MINIMAL
 
 // force the compiler to show a warning to confirm that this file is inlcuded
@@ -338,14 +355,17 @@
 #define WIFI_SUBNETMASK        ""   // [IpAddress3] If not using DHCP set Network mask
 #define WIFI_DNS               ""     // [IpAddress4] If not using DHCP set DNS IP address (might be equal to WIFI_GATEWAY)
 
-#define WIFI_CONFIG_TOOL       WIFI_RETRY        // [WifiConfig] Default tool if wifi fails to connect
-#define WIFI_CONFIG_NO_SSID    WIFI_WPSCONFIG    // Default tool if wifi fails to connect and no SSID is configured
+
+#define WIFI_CONFIG_TOOL       WIFI_RETRY        // [WifiConfig] Default tool if wifi fails to connect (default option: 4 - WIFI_RETRY)
+                                                 // (WIFI_RESTART, WIFI_MANAGER, WIFI_RETRY, WIFI_WAIT, WIFI_SERIAL, WIFI_MANAGER_RESET_ONLY)
+                                                 // The configuration can be changed after first setup using WifiConfig 0, 2, 4, 5, 6 and 7.
 
 #define SYS_LOG_HOST           ""                // [LogHost] (Linux) syslog host
 #define SYS_LOG_PORT           514               // [LogPort] default syslog UDP port
 #define SYS_LOG_LEVEL          LOG_LEVEL_NONE    // [SysLog] (LOG_LEVEL_NONE, LOG_LEVEL_ERROR, LOG_LEVEL_INFO, LOG_LEVEL_DEBUG, LOG_LEVEL_DEBUG_MORE)
 #define SERIAL_LOG_LEVEL       LOG_LEVEL_INFO    // [SerialLog] (LOG_LEVEL_NONE, LOG_LEVEL_ERROR, LOG_LEVEL_INFO, LOG_LEVEL_DEBUG, LOG_LEVEL_DEBUG_MORE)
 #define WEB_LOG_LEVEL          LOG_LEVEL_INFO    // [WebLog] (LOG_LEVEL_NONE, LOG_LEVEL_ERROR, LOG_LEVEL_INFO, LOG_LEVEL_DEBUG, LOG_LEVEL_DEBUG_MORE)
+#define MQTT_LOG_LEVEL         LOG_LEVEL_NONE    // [MqttLog] (LOG_LEVEL_NONE, LOG_LEVEL_ERROR, LOG_LEVEL_INFO, LOG_LEVEL_DEBUG, LOG_LEVEL_DEBUG_MORE)
 
 #define OTA_URL ""
 
