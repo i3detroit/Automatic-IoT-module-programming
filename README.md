@@ -74,3 +74,6 @@ The full MQTT topic will be `%prefix%/{base_topic}/{topic}`
 
 ## ids
 (Optional) List of json objects containing 'id' and other parameters. Useful for when many devices are identical except for name (i.e. Light 001, Light 002 or Light East, Light West). The string '%id%' may be used in device parameters (such as name & topic) and duplicates of the device will be created for all ids listed. Other parameters such as group_topic can be included in the id object. For example `{"name": "light %id%", "topic": "lights/%id%", "ids": [{"id": "001", "ip_addr": "10.13.107.133", "group_topic": "lights/row1"}, {"id": "006", "ip_addr": "10.13.107.135", "group_topic": "lights/row2"}]}`
+
+## flash_warning
+(Optional) Warning text to be displayed before flashing a device. Forces pause and user interaction before compiling and flashing. Can be used as a failsafe for devices you should care when flashing, like things people might be using (in our case laser cutters) or devices that might lose calibration settings (i.e. sonoff pows)
