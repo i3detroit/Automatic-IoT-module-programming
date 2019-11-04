@@ -82,3 +82,4 @@ The full MQTT topic will be `%prefix%/{base_topic}/{topic}`
 * Review changes in sonoff/my_user_config.h to see if any options you're using changed.
 * Take all the #define lines from that file and #undef them in blank_defines.h.
 * Update tasmota version string in espq.py from sonoff/sonoff_version.h
+* Fix path to Tasmota/pio/espupload.py in Tasmota/pio/http-uploader.py and make sure those scripts are executable
