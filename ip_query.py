@@ -12,8 +12,8 @@ import argparse
 import espq
 from re import sub
 
-current_version = '6.5.0(sonoff)'  # current version of tasmota, formatted as it is reported
-good_core = '2_3_0'  # desired version of esp arduino library
+current_version = '6.7.1(sonoff)'  # current version of tasmota, formatted as it is reported
+good_core = ['2_3_0', 'STAGE']  # desired version of esp arduino library
 
 parser = argparse.ArgumentParser(description='Query status of tasmota devices',
                                  formatter_class=argparse.RawTextHelpFormatter,)
@@ -70,7 +70,7 @@ for device in d:
               sub('\(sonoff\)', '', device.tas_version),
               NOCOLOR,
               '   ',
-              RED if device.core_version != good_core else '',
+              RED if device.core_version not in good_core else '',
               device.core_version,
               NOCOLOR]
     print(''.join(output))
