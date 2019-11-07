@@ -1,6 +1,6 @@
 [
     {
-        "name": "light %id%",
+        "name": "Light %id%",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -124,10 +124,6 @@
                 "group_topic": "lights/row5"
             },
             {
-                "id": "028",
-                "ip_addr": "10.13.107.243"
-            },
-            {
                 "id": "029",
                 "ip_addr": "10.13.107.42",
                 "group_topic": "lights/machine-shop"
@@ -165,7 +161,7 @@
         ]
     },
     {
-        "name": "light %id%",
+        "name": "Welding Light",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -174,7 +170,24 @@
         "board": "esp01_1m",
         "group_topic": "lights/east",
         "base_topic": "i3/inside",
-        "topic": "lights/%id%",
+        "topic": "lights/028",
+        "ip_addr": "10.13.107.243",
+        "poweron_state": 1,
+        "build_flags": null,
+        "commands": null
+    },
+    {
+        "name": "Vinyl Light",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "group_topic": "lights/east",
+        "base_topic": "i3/inside",
+        "topic": "lights/036",
+        "ip_addr": "10.13.107.212",
         "poweron_state": 1,
         "build_flags": null,
         "commands": [
@@ -186,20 +199,35 @@
                 "command": "SetOption32",
                 "payload": "100"
             }
-        ],
-        "ids": [
+        ]
+    },
+    {
+        "name": "Treehouse Light",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "group_topic": "lights/east",
+        "base_topic": "i3/inside",
+        "topic": "lights/037",
+        "ip_addr": "10.13.107.230",
+        "poweron_state": 1,
+        "build_flags": null,
+        "commands": [
             {
-                "id": "036",
-                "ip_addr": "10.13.107.212"
+                "command": "SetOption13",
+                "payload": "ON"
             },
             {
-                "id": "037",
-                "ip_addr": "10.13.107.230"
+                "command": "SetOption32",
+                "payload": "100"
             }
         ]
     },
     {
-        "name": "light %id%",
+        "name": "Light %id%",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -258,7 +286,7 @@
         ]
     },
     {
-        "name": "light %id%",
+        "name": "Light %id%",
         "hass_template": "light_bn",
         "hass_domain": "light",
         "software": "tasmota",
@@ -291,7 +319,7 @@
         "commands": null
     },
     {
-        "name": "light %id%",
+        "name": "Light %id%",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -364,7 +392,7 @@
         "commands": null
     },
     {
-        "name": "chandelier %id%",
+        "name": "Chandelier %id%",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -389,7 +417,7 @@
         ]
     },
     {
-        "name": "sensor cluster %id%",
+        "name": "Sensor Cluster %id%",
         "hass_template": "sensor_cluster",
         "hass_domain": "sensor",
         "software": "tasmota",
@@ -435,7 +463,7 @@
         ]
     },
     {
-        "name": "swirly-lights-%id%",
+        "name": "Swirly Lights %id%",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -460,7 +488,7 @@
         ]
     },
     {
-        "name": "media lab lights",
+        "name": "Media Lab Lights",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -476,7 +504,7 @@
         "commands": null
     },
     {
-        "name": "commons ceiling fan",
+        "name": "Commons Ceiling Fan",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -492,7 +520,7 @@
         "commands": null
     },
     {
-        "name": "laser ceiling fan",
+        "name": "Laser Ceiling Fan",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -508,7 +536,7 @@
         "commands": null
     },
     {
-        "name": "laser vent fan",
+        "name": "Laser Vent Fan",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -524,7 +552,7 @@
         "commands": null
     },
     {
-        "name": "traffic light",
+        "name": "Traffic Light",
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
@@ -569,7 +597,7 @@
         ]
     },
     {
-        "name": "fablab vent fan",
+        "name": "Fablab Vent Fan",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -585,7 +613,7 @@
         "commands": null
     },
     {
-        "name": "machine shop ceiling fan",
+        "name": "Machine Shop Ceiling Fan",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -601,7 +629,7 @@
         "commands": null
     },
     {
-        "name": "Paint box vent fan",
+        "name": "Paint Box Vent Fan",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -617,7 +645,7 @@
         "commands": null
     },
     {
-        "name": "disco-spotlights",
+        "name": "Disco Spotlights",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -633,7 +661,7 @@
         "commands": null
     },
     {
-        "name": "433 rf reciever",
+        "name": "433 RF Reciever",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BRIDGE",
@@ -648,7 +676,7 @@
         "notes": "433-rf-reciever"
     },
     {
-        "name": "wolverine chiller",
+        "name": "Wolverine Chiller",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -665,7 +693,7 @@
         "flash_warning": "Make sure no one is using the laser cutter"
     },
     {
-        "name": "bumblebee chiller",
+        "name": "Bumblebee Chiller",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -682,7 +710,7 @@
         "flash_warning": "Make sure no one is using the laser cutter"
     },
     {
-        "name": "fablab chiller",
+        "name": "Fablab Chiller",
         "hass_template": "pow",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -704,7 +732,7 @@
         "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration."
     },
     {
-        "name": "h structure workbench lights",
+        "name": "Tool Crib Workbench Lights",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -720,7 +748,7 @@
         "commands": null
     },
     {
-        "name": "hallway light",
+        "name": "Hallway Light",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -736,7 +764,7 @@
         "commands": null
     },
     {
-        "name": "elab light",
+        "name": "Elab Light",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -752,7 +780,7 @@
         "commands": null
     },
     {
-        "name": "craftroom light",
+        "name": "Craftroom Light",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -768,7 +796,7 @@
         "commands": null
     },
     {
-        "name": "small bathroom light",
+        "name": "Small Bathroom Light",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -784,7 +812,7 @@
         "commands": null
     },
     {
-        "name": "dooridor light",
+        "name": "Dooridor Light",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -800,7 +828,7 @@
         "commands": null
     },
     {
-        "name": "classroom light west",
+        "name": "Classroom Light West",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -816,7 +844,7 @@
         "commands": null
     },
     {
-        "name": "classroom light east",
+        "name": "Classroom Light East",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -850,7 +878,7 @@
         ]
     },
     {
-        "name": "genie charging",
+        "name": "Genie Charging",
         "hass_template": "pow",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -872,7 +900,7 @@
         "flash_warning": "This will reset any power monitoring calibration"
     },
     {
-        "name": "small bathroom vent fan",
+        "name": "Small Bathroom Vent Fan",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -888,7 +916,7 @@
         "commands": null
     },
     {
-        "name": "small bathroom shower light",
+        "name": "Small Bathroom Shower Light",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -904,7 +932,7 @@
         "commands": null
     },
     {
-        "name": "commons siren",
+        "name": "Commons Siren",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -920,7 +948,7 @@
         "commands": null
     },
     {
-        "name": "wolverine",
+        "name": "Wolverine",
         "hass_template": "pow",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -950,7 +978,7 @@
         "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration."
     },
     {
-        "name": "bumblebee",
+        "name": "Bumblebee",
         "hass_template": "pow",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -980,7 +1008,7 @@
         "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration."
     },
     {
-        "name": "hallway west lightswitch",
+        "name": "Hallway West Lightswitch",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -1011,7 +1039,7 @@
         ]
     },
     {
-        "name": "cnc vent fan",
+        "name": "CNC Vent Fan",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -1040,7 +1068,7 @@
         ]
     },
     {
-        "name": "cnc large light",
+        "name": "CNC Large Light",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -1069,7 +1097,7 @@
         ]
     },
     {
-        "name": "vent fan over sink",
+        "name": "Vent Fan Over Sink",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -1098,7 +1126,7 @@
         ]
     },
     {
-        "name": "classroom lightswitch east",
+        "name": "Classroom Lightswitch East",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -1129,7 +1157,7 @@
         ]
     },
     {
-        "name": "elab accent arch %id%",
+        "name": "Elab Arch %id%",
         "hass_template": "light_rgb",
         "hass_domain": "light",
         "software": "tasmota",
@@ -1189,7 +1217,7 @@
         ]
     },
     {
-        "name": "lanterns",
+        "name": "Lanterns",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -1205,7 +1233,7 @@
         "commands": null
     },
     {
-        "name": "fairy-lights",
+        "name": "Fairy Lights",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -1221,7 +1249,7 @@
         "commands": null
     },
     {
-        "name": "chinesium laser",
+        "name": "Chinesium Laser",
         "hass_template": "pow",
         "hass_domain": "switch",
         "software": "tasmota",
@@ -1259,7 +1287,7 @@
         "commands": null
     },
     {
-        "name": "snapple vending rgb",
+        "name": "Snapple Vending Light",
         "hass_template": "light_rgb",
         "hass_domain": "light",
         "software": "tasmota",
