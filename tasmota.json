@@ -1716,14 +1716,14 @@
         "flash_warning": "This will reset any power monitoring calibration."
     },
     {
-        "name": "Snappple Compressor",
+        "name": "Snapple Compressor",
         "hass_template": "pow",
         "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_S31",
         "board": "esp01_1m",
-        "ip_addr": "10.13.3.50",
+        "ip_addr": "10.13.107.166",
         "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/snapple-compress",
