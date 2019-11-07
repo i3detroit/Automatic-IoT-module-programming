@@ -37,39 +37,39 @@ generic_telemetry = """- platform: template
       value_template: '{{{{ states.{hass_domain}.{name}.attributes.LoadAvg }}}}'
     {name}_wifi_ssid:
       friendly_name: '{f_name} Wifi SSId'
-      value_template: '{{{{ states.{hass_domain}.{name}.attributes.Wifi.SSId }}}}'
+      value_template: "{{{{ state_attr('{hass_domain}.{name}', 'Wifi')['SSId'] }}}}"
     {name}_wifi_ap:
       friendly_name: '{f_name} Wifi AP'
       value_template: >-
-        {{% if states.{hass_domain}.{name}.attributes.Wifi.BSSId | string == '02:9F:C2:24:32:82' %}}
+        {{% if state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] | string == '02:9F:C2:24:32:82' %}}
           Office AP
-        {{% elif states.{hass_domain}.{name}.attributes.Wifi.BSSId | string == '02:9F:C2:24:30:D7' %}}
+        {{% elif state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] | string == '02:9F:C2:24:30:D7' %}}
           Mezzanine AP
-        {{% elif states.{hass_domain}.{name}.attributes.Wifi.BSSId | string == '02:9F:C2:24:2D:F1' %}}
+        {{% elif state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] | string == '02:9F:C2:24:2D:F1' %}}
           Tool Crib AP
-        {{% elif states.{hass_domain}.{name}.attributes.Wifi.BSSId | string == '0E:EC:DA:B7:E0:7D' %}}
+        {{% elif state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] | string == '0E:EC:DA:B7:E0:7D' %}}
           B-Side South AP
-        {{% elif states.{hass_domain}.{name}.attributes.Wifi.BSSId | string == 'C6:FB:E4:44:66:C4' %}}
+        {{% elif state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] | string == 'C6:FB:E4:44:66:C4' %}}
           B-Side North AP
         {{% else %}}
-          {{{{ states.{hass_domain}.{name}.attributes.Wifi.BSSId }}}}
+          {{{{ state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] }}}}
         {{% endif %}}
     {name}_wifi_bssid:
       friendly_name: '{f_name} Wifi BSSId'
-      value_template: '{{{{ states.{hass_domain}.{name}.attributes.Wifi.BSSId }}}}'
+      value_template: "{{{{ state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] }}}}"
     {name}_wifi_channel:
       friendly_name: '{f_name} Wifi Channel'
-      value_template: '{{{{ states.{hass_domain}.{name}.attributes.Wifi.Channel }}}}'
+      value_template: "{{{{ state_attr('{hass_domain}.{name}', 'Wifi')['Channel'] }}}}"
     {name}_wifi_rssi:
       friendly_name: '{f_name} Wifi RSSI'
       unit_of_measurement: '%'
-      value_template: '{{{{ states.{hass_domain}.{name}.attributes.Wifi.RSSI }}}}'
+      value_template: "{{{{ state_attr('{hass_domain}.{name}', 'Wifi')['RSSI'] }}}}"
     {name}_wifi_linkcount:
       friendly_name: '{f_name} Wifi Link Count'
-      value_template: '{{{{ states.{hass_domain}.{name}.attributes.Wifi.LinkCount }}}}'
+      value_template: "{{{{ state_attr('{hass_domain}.{name}', 'Wifi')['LinkCount'] }}}}"
     {name}_wifi_downtime:
       friendly_name: '{f_name} Wifi Downtime'
-      value_template: '{{{{ states.{hass_domain}.{name}.attributes.Wifi.Downtime }}}}'
+      value_template: "{{{{ state_attr('{hass_domain}.{name}', 'Wifi')['Downtime'] }}}}"
 """
 
 components = {
