@@ -11,7 +11,16 @@
         "topic": "lights/%id%",
         "poweron_state": 1,
         "build_flags": null,
-        "commands": null,
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ],
         "ids": [
             {
                 "id": "001",
@@ -174,7 +183,16 @@
         "ip_addr": "10.13.107.243",
         "poweron_state": 1,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Vinyl Light",
@@ -191,6 +209,14 @@
         "poweron_state": 1,
         "build_flags": null,
         "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            },
             {
                 "command": "SetOption13",
                 "payload": "ON"
@@ -223,6 +249,14 @@
             {
                 "command": "SetOption32",
                 "payload": "100"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ]
     },
@@ -250,6 +284,14 @@
             {
                 "command": "GPIO15",
                 "payload": "GPIO_REL1"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ],
         "ids": [
@@ -316,7 +358,16 @@
         "topic": "lights/%id%",
         "poweron_state": 1,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Light %id%",
@@ -389,7 +440,16 @@
         "topic": "lights/%id%",
         "poweron_state": 1,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Chandelier %id%",
@@ -404,7 +464,16 @@
         "topic": "accent/chandelier-%id%",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null,
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ],
         "ids": [
             {
                 "id": "01",
@@ -434,6 +503,14 @@
             "USE_BH1750"
         ],
         "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            },
             {
                 "command": "GPIO4",
                 "payload": "GPIO_I2C_SDA"
@@ -475,7 +552,16 @@
         "topic": "commons/accent/swirly-lights-%id%",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null,
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ],
         "ids": [
             {
                 "id": "01",
@@ -501,7 +587,16 @@
         "topic": "media-lab/lights",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Commons Ceiling Fan",
@@ -517,7 +612,16 @@
         "topic": "commons/ceiling-fans",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Laser Ceiling Fan",
@@ -533,7 +637,16 @@
         "topic": "laser-zone/ceiling-fan",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Laser Vent Fan",
@@ -549,7 +662,16 @@
         "topic": "laser-zone/vent-fan",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Traffic Light",
@@ -593,6 +715,14 @@
                         {
                 "command": "GPIO16",
                 "payload": "GPIO_LED1_INV"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ]
     },
@@ -610,7 +740,16 @@
         "topic": "fablab/vent",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Machine Shop Ceiling Fan",
@@ -626,7 +765,16 @@
         "topic": "machine-shop/ceiling-fan",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Paint Box Vent Fan",
@@ -642,7 +790,16 @@
         "topic": "commons/paint-box",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Disco Spotlights",
@@ -658,7 +815,16 @@
         "topic": "commons/accent/disco-spotlights",
         "poweron_state": 1,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "433 RF Reciever",
@@ -672,7 +838,16 @@
         "topic": "infrastructure/433-rf-reciever",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null,
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ],
         "notes": "433-rf-reciever"
     },
     {
@@ -689,7 +864,16 @@
         "topic": "laser-zone/wolverine/chiller",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null,
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ],
         "flash_warning": "Make sure no one is using the laser cutter"
     },
     {
@@ -706,7 +890,16 @@
         "topic": "laser-zone/bumblebee/chiller",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null,
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ],
         "flash_warning": "Make sure no one is using the laser cutter"
     },
     {
@@ -727,6 +920,14 @@
             {
                 "command": "teleperiod",
                 "payload": "60"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ],
         "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration."
@@ -745,7 +946,16 @@
         "topic": "tool-crib/workbench-lights",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Hallway Light",
@@ -761,7 +971,16 @@
         "topic": "hallway/light",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Elab Light",
@@ -777,7 +996,16 @@
         "topic": "elab/light",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Craftroom Light",
@@ -793,7 +1021,16 @@
         "topic": "craftroom/light",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Small Bathroom Light",
@@ -809,7 +1046,16 @@
         "topic": "small-bathroom/light",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Dooridor Light",
@@ -825,7 +1071,16 @@
         "topic": "dooridor/lights",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Classroom Light West",
@@ -841,7 +1096,16 @@
         "topic": "classroom/lights-west",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Classroom Light East",
@@ -873,8 +1137,15 @@
             {
                 "command": "switchmode1",
                 "payload": "3"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
-
         ]
     },
     {
@@ -895,6 +1166,14 @@
             {
                 "command": "teleperiod",
                 "payload": "60"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ],
         "flash_warning": "This will reset any power monitoring calibration"
@@ -913,7 +1192,16 @@
         "topic": "small-bathroom/vent",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Small Bathroom Shower Light",
@@ -929,7 +1217,16 @@
         "topic": "small-bathroom/shower-light",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Commons Siren",
@@ -945,7 +1242,16 @@
         "topic": "commons/siren",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Wolverine",
@@ -973,6 +1279,14 @@
             {
                 "command": "teleperiod",
                 "payload": "60"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ],
         "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration."
@@ -1003,6 +1317,14 @@
             {
                 "command": "teleperiod",
                 "payload": "60"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ],
         "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration."
@@ -1035,6 +1357,14 @@
             {
                 "command": "rule",
                 "payload": "1"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ]
     },
@@ -1064,6 +1394,14 @@
             {
                 "command": "switchmode1",
                 "payload": "3"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ]
     },
@@ -1093,6 +1431,14 @@
             {
                 "command": "switchmode1",
                 "payload": "3"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ]
     },
@@ -1122,6 +1468,14 @@
             {
                 "command": "switchmode1",
                 "payload": "3"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ]
     },
@@ -1153,6 +1507,14 @@
             {
                 "command": "rule",
                 "payload": "1"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ]
     },
@@ -1213,6 +1575,14 @@
             {
                 "command": "SetOption15",
                 "payload": "1"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ]
     },
@@ -1230,7 +1600,16 @@
         "topic": "laser-zone/accent/lanterns",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Fairy Lights",
@@ -1246,7 +1625,16 @@
         "topic": "commons/accent/fairy-lights",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Chinesium Laser",
@@ -1266,6 +1654,14 @@
             {
                 "command": "teleperiod",
                 "payload": "60"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ],
         "flash_warning": "Make sure no one is using the laser cutter. Also this will reset any power monitoring calibration"
@@ -1284,7 +1680,16 @@
         "topic": "program-me",
         "poweron_state": 1,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ]
     },
     {
         "name": "Snapple Vending Light",
@@ -1328,8 +1733,15 @@
             {
                 "command": "SetOption15",
                 "payload": "1"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
-
         ]
     },
     {
@@ -1362,8 +1774,15 @@
             {
                 "command": "switchmode1",
                 "payload": "3"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
-
         ]
     },
     {
@@ -1396,8 +1815,15 @@
             {
                 "command": "switchmode1",
                 "payload": "3"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
-
         ]
     },
     {
@@ -1430,8 +1856,15 @@
             {
                 "command": "switchmode1",
                 "payload": "3"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
-
         ]
     },
     {
@@ -1469,8 +1902,15 @@
             {
                 "command": "teleperiod",
                 "payload": "60"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
-
         ]
     },
     {
@@ -1509,6 +1949,14 @@
             {
                 "command": "rule",
                 "payload": "1"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ]
     },
@@ -1547,6 +1995,14 @@
             {
                 "command": "rule1",
                 "payload": "1"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ],
         "ids": [
@@ -1587,6 +2043,14 @@
             {
                 "command": "GPIO5",
                 "payload": "GPIO_I2C_SCL"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ],
         "commands_extra": [
@@ -1688,6 +2152,14 @@
             {
                 "command": "rule",
                 "payload": "1"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ]
     },
@@ -1711,6 +2183,14 @@
             {
                 "command": "teleperiod",
                 "payload": "60"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
         ],
         "flash_warning": "This will reset any power monitoring calibration."
@@ -1733,7 +2213,16 @@
             {
                 "command": "teleperiod",
                 "payload": "60"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
             }
-        ]
+        ],
+        "flash_warning": "This will reset any power monitoring calibration."
     }
 ]
