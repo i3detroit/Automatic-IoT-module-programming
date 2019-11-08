@@ -53,7 +53,7 @@ for device in d:
         continue
     elif args.filter == 'badip' and (device.reported_ip == device.ip_addr or device.reported_ip == ''):
         continue
-    elif args.filter == 'badcore' and (device.core_version == good_core or device.core_version == ''):
+    elif args.filter == 'badcore' and (device.core_version in good_core or device.core_version == ''):
         continue
     # Build formatted output lines one element at a time, join into string when done
     # Result should be someting like 'device_name      IP   MAC   6.5.0   2_3_0'
