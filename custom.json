@@ -379,5 +379,28 @@
                 "ip_addr": "10.13.107.205"
             }
         ]
+    },
+    {
+        "name": "%id% Timer",
+        "domain": null,
+        "software": "custom-mqtt-programs",
+        "site": "i3",
+        "module": "laser-timer-esp",
+        "board": "huzzah",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "laser-zone/%id%-timer",
+        "build_flags": "",
+        "commands": null,
+        "ids": [
+            {
+                "id": "Wolverine",
+                "ip_addr": "10.13.107.85"
+            },
+            {
+                "id": "Bumblebee",
+                "ip_addr": "10.13.107.81"
+            }
+        ]
     }
 ]
