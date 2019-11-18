@@ -24,7 +24,7 @@ generic_telemetry = """- platform: template
       value_template: '{{{{ states.{hass_domain}.{name}.attributes.Vcc }}}}'
     {name}_heap:
       friendly_name: '{f_name} Heap'
-      value_template: '{{{{ states.light.{name}.attributes.Heap }}}}'
+      value_template: '{{{{ states.{hass_domain}.{name}.attributes.Heap }}}}'
     {name}_sleepmode:
       friendly_name: '{f_name} SleepMode'
       value_template: '{{{{ states.{hass_domain}.{name}.attributes.SleepMode }}}}'
