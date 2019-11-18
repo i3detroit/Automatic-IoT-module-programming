@@ -35,6 +35,10 @@ except:
     rows = 40
 
 parser = argparse.ArgumentParser(description='Compile and flash ESPs')
+parser.add_argument('--all',
+                    dest='flashAll',
+                    action='store_true',
+                    help='Skip device selection & flash all devices in file')
 parser.add_argument('-m', '--mode',
                     dest='flashMode',
                     action='store',
@@ -64,7 +68,10 @@ parser.add_argument('deviceFile', metavar='deviceFile',
 args = parser.parse_args()
 
 devices = espq.import_devices(args.deviceFile)
-selected_devices = espq.choose_devices(devices)
+if args.flashAll == True:
+    selected_devices = devices
+else:
+    selected_devices = espq.choose_devices(devices)
 
 if len(selected_devices) == 0:
     print('No devices selected. Exiting.')
