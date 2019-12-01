@@ -9,11 +9,10 @@ pip install -r requirements.txt
 Make sure local directories and tasmota version are set correctly at the top of espq.py
 This is written expecting a directoy setup like:
 .
-./Automatic-IoT-module-programming
-./Sonoff-Tasmota
-./Sonoff-Tasmota/sonoff
-./custom-mqtt-programs
-./custom-mqtt-programs/name-of-program
+../Sonoff-Tasmota
+../Sonoff-Tasmota/sonoff
+../custom-mqtt-programs
+../custom-mqtt-programs/name-of-program
 
 # To program tasmota devices
 1. Create a device configuration file for your device(s) as in tasmota.json.
@@ -51,7 +50,7 @@ For tasmota, should be one of the supported hardware modules (https://github.com
 Type of esp board. esp01_1m for tasmota. Usually d1_mini, nodemcuv2, etc. for custom.
 
 ## hass_template
-(Optional) Which template file to use from ./hass_templates (light, light_rgb, generic, etc.) 
+(Optional) Which template file to use from ./hass_templates (light, light_rgb, generic, etc.)
 
 ## hass_domain
 (Optional) Type of devive in home assistant: light, sensor, switch, etc.
