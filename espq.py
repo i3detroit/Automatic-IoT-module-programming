@@ -272,8 +272,8 @@ class device(dict):
         src_dir = os.path.join(custom_dir, self.module)
         os.environ['PLATFORMIO_SRC_DIR']=src_dir
         os.environ['PLATFORMIO_BUILD_FLAGS']=self.build_flags
-        print(os.environ['PLATFORMIO_SRC_DIR'])
-        print(os.environ['PLATFORMIO_BUILD_FLAGS'])
+        print("PLATFORMIO_SRC_DIR:", os.environ['PLATFORMIO_SRC_DIR'])
+        print("PLATFORMIO_BUILD_FLAGS:", os.environ['PLATFORMIO_BUILD_FLAGS'])
         os.chdir(custom_dir)
         pio_call = 'platformio run -e {board}-{flash_mode} -t upload --upload-port {port}'
         if self.flash_mode == 'wifi':
