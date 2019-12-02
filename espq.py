@@ -22,8 +22,8 @@ blank_defines = 'blank_defines.h'
 espqdir = os.path.dirname(os.path.abspath(__file__))
 
 current_tasmota_version = '0x06070100'
-tasmota_dir = os.path.join(espqdir, '../Sonoff-Tasmota')
-custom_dir = os.path.join(espqdir, '../custom-mqtt-programs/')
+tasmota_dir = os.path.join(espqdir, '..', 'Sonoff-Tasmota');
+custom_dir = os.path.join(espqdir, '..', 'custom-mqtt-programs/');
 
 ###########################################################
 
@@ -191,7 +191,7 @@ class device(dict):
                       '{NOCOLOR}').format(time=str(datetime.datetime.now()),
                                           **colors,
                                           **self)
-            with open(espqdir + "/flash_success.log", "a+") as flashlog:
+            with open(os.path.join(espqdir, 'flash_success.log', 'a+') as flashlog:
                 flashlog.write(result + '\n')
                 print(result)
             return()
@@ -215,7 +215,7 @@ class device(dict):
                       '{NOCOLOR}').format(time=str(datetime.datetime.now()),
                                                **colors,
                                                **self)
-        with open(espqdir + "/flash_error.log", "a+") as errorlog:
+        with open(os.path.join(espqdir, 'flash_error.log', 'a+') as errorlog:
             errorlog.write(result + '\n')
             print('{RED}{result}{NOCOLOR}'.format(**colors, result=result))
         return()
@@ -379,7 +379,7 @@ class device(dict):
         for c in self.yaml_template.components:
             if not os.path.isdir(os.path.join(hass_output_dir, c)):
                 os.mkdir(os.path.join(hass_output_dir, c))
-            with open('{dir}/{c}/{name}_{c}.yaml'.format(dir=hass_output_dir, c = c, **self), 'w') as yamlf:
+            with open(os.path.join(hass_output_dir, c, '{name}_{c}.yaml'.format(c = c, **self)), 'w') as yamlf:
                 yamlf.write(self.yaml_template.components[c].format(**self))
 
 
@@ -441,7 +441,7 @@ def get_gpio(request):
     lines=[]
     append=False
 
-    f = open(tasmota_dir + "/sonoff/sonoff_template.h", "r")
+    f = open(os.path.join(tasmota_dir, "sonoff", "sonoff_template.h"), "r")
     for line in f:
         if append==True:
             split = line.split('//')[0]
@@ -462,7 +462,7 @@ def get_tasmota_version():
     """ Retrieve a GPIO's integer value from the enumeration in tasmota """
     matches = []
 
-    f = open(tasmota_dir + "/sonoff/sonoff_version.h", "r")
+    f = open(os.path.join(tasmota_dir, "sonoff", "sonoff_version.h"), "r")
     for line in f:
         matches += findall('0x\d+', line)
     f.close()
