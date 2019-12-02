@@ -2033,7 +2033,8 @@
            "USE_MCP230xx",
            "USE_MCP230xx_ADDR 0x20",
            "USE_MCP230xx_OUTPUT",
-           "USE_MCP230xx_DISPLAYOUTPUT"
+           "USE_MCP230xx_DISPLAYOUTPUT",
+           "USE_RULES"
         ],
         "commands": [
             {
@@ -2088,11 +2089,11 @@
             },
             {
                 "command": "sensor29",
-                "payload": "8,2,1,2"
+                "payload": "8,2,1,0"
             },
             {
                 "command": "sensor29",
-                "payload": "9,2,1,2"
+                "payload": "9,2,1,0"
             },
             {
                 "command": "sensor29",
@@ -2117,6 +2118,14 @@
             {
                 "command": "sensor29",
                 "payload": "15,2,1,2"
+            },
+            {
+                "command": "rule1",
+                "payload": "on event#MCPINT_D8=0 do publish cmnd/i3/inside/lights/west/power 0 endon on event#MCPINT_D9=0 do publish cmnd/i3/inside/lights/west/power 1 endon"
+            },
+            {
+                "command": "rule1",
+                "payload": "1"
             }
         ]
     },
