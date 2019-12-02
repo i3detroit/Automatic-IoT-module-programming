@@ -22,7 +22,7 @@ blank_defines = 'blank_defines.h'
 espqdir = os.path.dirname(os.path.abspath(__file__))
 
 current_tasmota_version = '0x06070100'
-tasmotadir = os.path.join(espqdir, '../Sonoff-Tasmota')
+tasmota_dir = os.path.join(espqdir, '../Sonoff-Tasmota')
 custom_dir = os.path.join(espqdir, '../custom-mqtt-programs/')
 
 ###########################################################
@@ -227,7 +227,7 @@ class device(dict):
     def write_tasmota_config(self):
         """
             Fills tasmota device parameters into blank_defines.h and writes it
-            to {tasmotadir}/sonoff/user_config_override.h
+            to {tasmota_dir}/sonoff/user_config_override.h
         """
         f = open(blank_defines,'r')
         defines = f.read()
@@ -236,7 +236,7 @@ class device(dict):
         defines = defines.format(**self, datetime=datetime.datetime.now(),
                                  cfg_holder=str(randint(1, 32000)))
         # Write the config file
-        with open(os.path.join(tasmotadir, 'sonoff', 'user_config_override.h'), 'w') as f:
+        with open(os.path.join(tasmota_dir, 'sonoff', 'user_config_override.h'), 'w') as f:
             f.write(defines)
 
     def flash_tasmota(self):
@@ -251,11 +251,11 @@ class device(dict):
         self.write_tasmota_config()
 
         correctPIO = os.path.join(espqdir, 'platformio.ini')
-        tasmotaPIO = os.path.join(tasmotadir, 'platformio.ini')
+        tasmotaPIO = os.path.join(tasmota_dir, 'platformio.ini')
         if not cmp(correctPIO, tasmotaPIO):
             copyfile(correctPIO, tasmotaPIO)
 
-        os.chdir(tasmotadir)
+        os.chdir(tasmota_dir)
         pio_call = 'platformio run -e {environment} -t upload --upload-port {port}'
         if self.flash_mode == 'wifi':
             pio_call = pio_call.format(environment='sonoff-wifi', port=(self.ip_addr + '/u2'))
@@ -436,7 +436,7 @@ def get_gpio(request):
     lines=[]
     append=False
 
-    f = open(tasmotadir + "/sonoff/sonoff_template.h", "r")
+    f = open(tasmota_dir + "/sonoff/sonoff_template.h", "r")
     for line in f:
         if append==True:
             split = line.split('//')[0]
@@ -457,7 +457,7 @@ def get_tasmota_version():
     """ Retrieve a GPIO's integer value from the enumeration in tasmota """
     matches = []
 
-    f = open(tasmotadir + "/sonoff/sonoff_version.h", "r")
+    f = open(tasmota_dir + "/sonoff/sonoff_version.h", "r")
     for line in f:
         matches += findall('0x\d+', line)
     f.close()
