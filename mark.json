@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Sensor Cluster %id%",
+        "hass_template": "sensor_cluster",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "sensors/cluster-%id%",
+        "poweron_state": 1,
+        "build_flags": [
+            "USE_I2C",
+            "USE_BMP",
+            "USE_BH1750"
+        ],
+        "commands": [
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            },
+            {
+                "command": "GPIO4",
+                "payload": "GPIO_I2C_SDA"
+            },
+            {
+                "command": "GPIO5",
+                "payload": "GPIO_I2C_SCL"
+            },
+            {
+                "command": "teleperiod",
+                "payload": "60"
+            }
+        ],
+        "ids": [
+            {
+                "id": "006",
+                "ip_addr": "10.13.107.100"
+            },
+            {
+                "id": "007",
+                "ip_addr": "10.13.107.206"
+            },
+            {
+                "id": "008",
+                "ip_addr": "10.13.107.53"
+            }
+        ]
+    }
+]
