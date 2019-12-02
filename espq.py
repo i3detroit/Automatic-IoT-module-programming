@@ -394,22 +394,22 @@ def import_devices(device_file):
         device_import = json.load(f)
     devices=[]
     for dev in device_import:
-        try:
+        if 'ids' in dev:
             for id_info in dev['ids']:
                 new_dev = deepcopy(dev)
-                for key in new_dev:
-                    if isinstance(new_dev[key], str):
-                        new_dev[key] = sub('%id%',
-                                           id_info['id'],
-                                           new_dev[key])
-                # new_dev['ip_addr'] = id_info['ip_addr']
-                # if 'mac_addr' in id_info:
-                #     new_dev['mac_addr'] = id_info['mac_addr']
-                # Need to add processing of custom device parameters
+                #if the device specific obj has an "id" field
+                if 'id' in id_info:
+                    #replace the "%id%" string in all string properties
+                    for key in new_dev:
+                        if isinstance(new_dev[key], str):
+                            new_dev[key] = sub('%id%',
+                                               id_info['id'],
+                                               new_dev[key])
+                # just copy all the keys over
                 for key in id_info:
                     new_dev[key] = id_info[key]
                 devices.append(device(new_dev))
-        except KeyError:
+        else: # no ids field
             devices.append(device(dev))
     devices = sorted(devices, key=lambda k: k.module)
     return devices
