@@ -129,7 +129,8 @@ class device(dict):
         return('\n'.join('{}: {}'.format(k, str(v)) for k, v in self.items() if v != ''))
 
     def __del__(self):
-        self.mqtt.disconnect()
+        if 'mqtt' in self:
+            self.mqtt.disconnect()
 
     def _on_message(self, mqtt, userdata, msg):
         print(msg.topic + ' ' + msg.payload)
