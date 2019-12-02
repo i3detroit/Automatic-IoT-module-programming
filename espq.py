@@ -476,7 +476,7 @@ def choose_devices(devices):
     for device in devices:
         if device['module'] != current_type:
             current_type = device['module']
-            choice_list.append(Separator(f'======== {current_type} ========'))
+            choice_list.append(Separator('======== {current_type} ========'.format(current_type)))
         choice_list.append({'name': device['f_name']})
 
     # Ask the user to choose which devices to flash
