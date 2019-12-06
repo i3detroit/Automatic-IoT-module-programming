@@ -2233,5 +2233,126 @@
             }
         ],
         "flash_warning": "This will reset any power monitoring calibration."
+    },
+    {
+        "name": "Front Door Panel",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "ip_addr": "10.13.107.102",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "commons/front-door-indicator",
+        "poweron_state": 0,
+        "build_flags": [
+           "USE_I2C",
+           "USE_MCP230xx",
+           "USE_MCP230xx_ADDR 0x20",
+           "USE_MCP230xx_OUTPUT",
+           "USE_MCP230xx_DISPLAYOUTPUT",
+           "USE_RULES",
+           "SUPPORT_MQTT_EVENT"
+        ],
+        "commands": [
+            {
+                "command": "GPIO4",
+                "payload": "GPIO_I2C_SDA"
+            },
+            {
+                "command": "GPIO5",
+                "payload": "GPIO_I2C_SCL"
+            },
+            {
+                "command": "SetOption56",
+                "payload": "ON"
+            },
+            {
+                "command": "SetOption57",
+                "payload": "ON"
+            }
+        ],
+        "commands_extra": [
+            {
+                "command": "sensor29",
+                "payload": "0,5,0"
+            },
+            {
+                "command": "sensor29",
+                "payload": "1,5,0"
+            },
+            {
+                "command": "sensor29",
+                "payload": "2,5,0"
+            },
+            {
+                "command": "sensor29",
+                "payload": "3,5,0"
+            },
+            {
+                "command": "sensor29",
+                "payload": "4"
+            },
+            {
+                "command": "sensor29",
+                "payload": "5"
+            },
+            {
+                "command": "sensor29",
+                "payload": "6"
+            },
+            {
+                "command": "sensor29",
+                "payload": "7"
+            },
+            {
+                "command": "sensor29",
+                "payload": "8"
+            },
+            {
+                "command": "sensor29",
+                "payload": "9"
+            },
+            {
+                "command": "sensor29",
+                "payload": "10,2,0,0"
+            },
+            {
+                "command": "sensor29",
+                "payload": "11"
+            },
+            {
+                "command": "sensor29",
+                "payload": "12"
+            },
+            {
+                "command": "sensor29",
+                "payload": "13,2,1,0"
+            },
+            {
+                "command": "sensor29",
+                "payload": "14"
+            },
+            {
+                "command": "sensor29",
+                "payload": "15"
+            },
+            {
+                "command": "rule1",
+                "payload": "on event#MCPINT_D13=1 do backlog sensor29 3,ON; sensor29 2,OFF endon on event#MCPINT_D13=0 do backlog sensor29 3,OFF; sensor29 2,ON endon on Event#glasslock=LOCKED do backlog sensor29 0,ON; sensor29 1,OFF endon on Event#glasslock=UNLOCKED do backlog sensor29 0,OFF; sensor29 1,ON endon"
+            },
+            {
+                "command": "rule1",
+                "payload": "1"
+            },
+            {
+                "command": "rule2",
+                "payload": "on Mqtt#Connected do backlog subscribe glasslock,stat/i3/inside/classroom/glass-door/lock; publish cmnd/i3/inside/classroom/glass-door/lock endon"
+            },
+            {
+                "command": "rule2",
+                "payload": "1"
+            }
+        ]
     }
 ]
