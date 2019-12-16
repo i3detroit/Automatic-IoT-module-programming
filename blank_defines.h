@@ -479,7 +479,6 @@
 #define USE_WEBSERVER                            // Enable web server and Wifi Manager (+66k code, +8k mem)
   #define WEB_PORT             80                // Web server Port for User and Admin mode
   #define WEB_USERNAME         "admin"           // Web server Admin mode user name
-#define USE_ADC_VCC                              // Display Vcc in Power status. Disable for use as Analog input on selected devices
 
 #define CFG_HOLDER {cfg_holder}
 #define MODULE {module}
@@ -497,4 +496,8 @@
 #define LONGITUDE {longitude}
 #define APP_POWERON_STATE {poweron_state}
 {build_flags}
+#ifndef USE_ANALOG_IN
+  #define USE_ADC_VCC                              // Display Vcc in Power status. Disable for use as Analog input on selected devices
+#endif
+
 #endif  // _USER_CONFIG_OVERRIDE_H_

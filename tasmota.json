@@ -13,12 +13,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ],
         "ids": [
@@ -185,12 +181,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -210,20 +202,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption13",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption32",
-                "payload": "100"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON; SetOption13 ON; SetOption32 100"
             }
         ]
     },
@@ -243,20 +223,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption13",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption32",
-                "payload": "100"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON; SetOption13 ON; SetOption32 100"
             }
         ]
     },
@@ -274,24 +242,9 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "GPIO2",
-                "payload": "GPIO_LED1_INV"
-            },
-            {
-                "command": "GPIO13",
-                "payload": "GPIO_KEY1"
-            },
-            {
-                "command": "GPIO15",
-                "payload": "GPIO_REL1"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "GPIO2 56; GPIO13 9; GPIO15 21; SetOption56 ON; SetOption57 ON",
+                "restart": 1
             }
         ],
         "ids": [
@@ -360,12 +313,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -442,12 +391,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -466,12 +411,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ],
         "ids": [
@@ -504,24 +445,9 @@
         ],
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
-            },
-            {
-                "command": "GPIO4",
-                "payload": "GPIO_I2C_SDA"
-            },
-            {
-                "command": "GPIO5",
-                "payload": "GPIO_I2C_SCL"
-            },
-            {
-                "command": "teleperiod",
-                "payload": "60"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON; GPIO4 6; GPIO5 5; teleperiod 60",
+                "restart": 1
             }
         ],
         "ids": [
@@ -554,12 +480,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ],
         "ids": [
@@ -589,12 +511,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -614,12 +532,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -639,12 +553,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -664,12 +574,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -689,40 +595,9 @@
         ],
         "commands": [
             {
-                "command": "GPIO00",
-                "payload": "GPIO_KEY1"
-            },
-            {
-                "command": "GPIO04",
-                "payload": "GPIO_REL3_INV"
-            },
-            {
-                "command": "GPIO05",
-                "payload": "GPIO_REL2_INV"
-            },
-            {
-                "command": "GPIO12",
-                "payload": "GPIO_REL1_INV"
-            },
-            {
-                "command": "GPIO14",
-                "payload": "GPIO_DHT22"
-            },
-                        {
-                "command": "GPIO15",
-                "payload": "GPIO_REL4_INV"
-            },
-                        {
-                "command": "GPIO16",
-                "payload": "GPIO_LED1_INV"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "GPIO00 9; GPIO04 31; GPIO05 30; GPIO12 29; GPIO14 2; GPIO15 32; GPIO16 56; SetOption56 ON; SetOption57 ON",
+                "restart": 1
             }
         ]
     },
@@ -742,12 +617,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -767,12 +638,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -792,12 +659,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -817,12 +680,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -840,12 +699,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ],
         "notes": "433-rf-reciever"
@@ -866,12 +721,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ],
         "flash_warning": "Make sure no one is using the laser cutter"
@@ -892,12 +743,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ],
         "flash_warning": "Make sure no one is using the laser cutter"
@@ -918,16 +765,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "teleperiod",
-                "payload": "60"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "teleperiod 60; SetOption56 ON; SetOption57 ON"
             }
         ],
         "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration."
@@ -948,12 +787,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -973,12 +808,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -998,12 +829,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -1023,12 +850,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -1048,12 +871,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -1073,12 +892,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -1098,12 +913,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -1123,28 +934,9 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "GPIO05",
-                "payload": "GPIO_LED1"
-            },
-            {
-                "command": "GPIO13",
-                "payload": "GPIO_REL1"
-            },
-            {
-                "command": "GPIO14",
-                "payload": "GPIO_SWT1"
-            },
-            {
-                "command": "switchmode1",
-                "payload": "3"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "GPIO05 52; GPIO13 21; GPIO14 9; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "restart": 1
             }
         ]
     },
@@ -1164,16 +956,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "teleperiod",
-                "payload": "60"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "teleperiod 60; SetOption56 ON; SetOption57 ON"
             }
         ],
         "flash_warning": "This will reset any power monitoring calibration"
@@ -1194,12 +978,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -1219,12 +999,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -1244,12 +1020,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -1269,24 +1041,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption13",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption32",
-                "payload": "100"
-            },
-            {
-                "command": "teleperiod",
-                "payload": "60"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption13 ON; SetOption32 100; teleperiod 60; SetOption56 ON; SetOption57 ON"
             }
         ],
         "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration."
@@ -1307,24 +1063,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption13",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption32",
-                "payload": "100"
-            },
-            {
-                "command": "teleperiod",
-                "payload": "60"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption13 ON; SetOption32 100; teleperiod 60; SetOption56 ON; SetOption57 ON"
             }
         ],
         "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration."
@@ -1347,24 +1087,8 @@
         ],
         "commands": [
             {
-                "command": "switchmode1",
-                "payload": "3"
-            },
-            {
-                "command": "rule",
-                "payload": "on button1#state do publish cmnd/i3/inside/hallway/light/POWER TOGGLE endon"
-            },
-            {
-                "command": "rule",
-                "payload": "1"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "switchmode1 3; rule on button1#state do publish cmnd/i3/inside/hallway/light/POWER TOGGLE endon; rule 1; SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -1384,24 +1108,9 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "GPIO4",
-                "payload": "GPIO_SWT1"
-            },
-            {
-                "command": "GPIO14",
-                "payload": "GPIO_LED1_INV"
-            },
-            {
-                "command": "switchmode1",
-                "payload": "3"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "GPIO4 9; GPIO14 56; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "restart": 1
             }
         ]
     },
@@ -1421,24 +1130,9 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "GPIO4",
-                "payload": "GPIO_SWT1"
-            },
-            {
-                "command": "GPIO14",
-                "payload": "GPIO_LED1_INV"
-            },
-            {
-                "command": "switchmode1",
-                "payload": "3"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "GPIO4 9; GPIO14 56; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "restart": 1
             }
         ]
     },
@@ -1458,24 +1152,9 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "GPIO4",
-                "payload": "GPIO_SWT1"
-            },
-            {
-                "command": "GPIO14",
-                "payload": "GPIO_LED1_INV"
-            },
-            {
-                "command": "switchmode1",
-                "payload": "3"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "GPIO4 9; GPIO14 56; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "restart": 1
             }
         ]
     },
@@ -1497,24 +1176,8 @@
         ],
         "commands": [
             {
-                "command": "switchmode1",
-                "payload": "3"
-            },
-            {
-                "command": "rule",
-                "payload": "on button1#state do publish cmnd/i3/inside/classroom/lights-east/POWER TOGGLE endon"
-            },
-            {
-                "command": "rule",
-                "payload": "1"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "switchmode1 3; rule on button1#state do publish cmnd/i3/inside/classroom/lights-east/POWER TOGGLE endon; rule 1; SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -1549,40 +1212,9 @@
         ],
         "commands": [
             {
-                "command": "GPIO02",
-                "payload": "GPIO_LED1_INV"
-            },
-            {
-                "command": "GPIO4",
-                "payload": "GPIO_IRRECV"
-            },
-            {
-                "command": "GPIO05",
-                "payload": "GPIO_PWM2"
-            },
-            {
-                "command": "GPIO12",
-                "payload": "GPIO_PWM1"
-            },
-            {
-                "command": "GPIO13",
-                "payload": "GPIO_PWM3"
-            },
-            {
-                "command": "GPIO15",
-                "payload": "GPIO_PWM4"
-            },
-            {
-                "command": "SetOption15",
-                "payload": "1"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "GPIO02 56; GPIO4 51; GPIO05 38; GPIO12 37; GPIO13 39; GPIO15 40; SetOption15 1; SetOption56 ON; SetOption57 ON",
+                "restart": 1
             }
         ]
     },
@@ -1602,12 +1234,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -1627,12 +1255,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -1652,16 +1276,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "teleperiod",
-                "payload": "60"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "teleperiod 60; SetOption56 ON; SetOption57 ON"
             }
         ],
         "flash_warning": "Make sure no one is using the laser cutter. Also this will reset any power monitoring calibration"
@@ -1682,12 +1298,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
             }
         ]
     },
@@ -1707,40 +1319,9 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "GPIO02",
-                "payload": "GPIO_LED1_INV"
-            },
-            {
-                "command": "GPIO4",
-                "payload": "GPIO_IRRECV"
-            },
-            {
-                "command": "GPIO05",
-                "payload": "GPIO_PWM2"
-            },
-            {
-                "command": "GPIO12",
-                "payload": "GPIO_PWM1"
-            },
-            {
-                "command": "GPIO13",
-                "payload": "GPIO_PWM3"
-            },
-            {
-                "command": "GPIO15",
-                "payload": "GPIO_PWM4"
-            },
-            {
-                "command": "SetOption15",
-                "payload": "1"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "GPIO02 56; GPIO4 51; GPIO05 38; GPIO12 37; GPIO13 39; GPIO15 40; SetOption15 1; SetOption56 ON; SetOption57 ON",
+                "restart": 1
             }
         ]
     },
@@ -1760,28 +1341,9 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "GPIO05",
-                "payload": "GPIO_LED1_INV"
-            },
-            {
-                "command": "GPIO13",
-                "payload": "GPIO_REL1"
-            },
-            {
-                "command": "GPIO14",
-                "payload": "GPIO_SWT1"
-            },
-            {
-                "command": "switchmode1",
-                "payload": "3"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "GPIO05 56; GPIO13 21; GPIO14 9; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "restart": 1
             }
         ]
     },
@@ -1801,28 +1363,9 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "GPIO05",
-                "payload": "GPIO_LED1_INV"
-            },
-            {
-                "command": "GPIO13",
-                "payload": "GPIO_REL1"
-            },
-            {
-                "command": "GPIO14",
-                "payload": "GPIO_SWT1"
-            },
-            {
-                "command": "switchmode1",
-                "payload": "3"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "GPIO05 56; GPIO13 21; GPIO14 9; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "restart": 1
             }
         ]
     },
@@ -1842,28 +1385,9 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "GPIO05",
-                "payload": "GPIO_LED1_INV"
-            },
-            {
-                "command": "GPIO13",
-                "payload": "GPIO_REL1"
-            },
-            {
-                "command": "GPIO14",
-                "payload": "GPIO_SWT1"
-            },
-            {
-                "command": "switchmode1",
-                "payload": "3"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "GPIO05 56; GPIO13 21; GPIO14 9; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "restart": 1
             }
         ]
     },
@@ -1888,28 +1412,9 @@
         ],
         "commands": [
             {
-                "command": "GPIO3",
-                "payload": "GPIO_PMS5003"
-            },
-            {
-                "command": "GPIO4",
-                "payload": "GPIO_I2C_SDA"
-            },
-            {
-                "command": "GPIO5",
-                "payload": "GPIO_I2C_SCL"
-            },
-            {
-                "command": "teleperiod",
-                "payload": "60"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "GPIO3 69; GPIO4 6; GPIO5 5; teleperiod 60; SetOption56 ON; SetOption57 ON",
+                "restart": 1
             }
         ]
     },
@@ -1931,32 +1436,9 @@
         ],
         "commands": [
             {
-                "command": "GPIO0",
-                "payload": "GPIO_SWT1"
-            },
-                        {
-                "command": "GPIO13",
-                "payload": "GPIO_LED1_INV"
-            },
-            {
-                "command": "switchmode",
-                "payload": "3"
-            },
-            {
-                "command": "rule",
-                "payload": "on switch1#state do publish cmnd/i3/inside/b-side/office/lights/power 2 endon"
-            },
-            {
-                "command": "rule",
-                "payload": "1"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "GPIO0 9; GPIO13 56; switchmode 3; rule on switch1#state do publish cmnd/i3/inside/b-side/office/lights/power 2 endon; rule 1; SetOption56 ON; SetOption57 ON",
+                "restart": 1
             }
         ]
     },
@@ -1977,32 +1459,8 @@
             ],
         "commands": [
             {
-                "command": "GPIO0",
-                "payload": "GPIO_SWT1"
-            },
-                        {
-                "command": "GPIO13",
-                "payload": "GPIO_LED1_INV"
-            },
-            {
-                "command": "switchmode",
-                "payload": "3"
-            },
-            {
-                "command": "rule1",
-                "payload": "on switch1#state do publish cmnd/i3/inside/lights/west/power 2 endon"
-            },
-            {
-                "command": "rule1",
-                "payload": "1"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "GPIO0 9; GPIO13 56; switchmode 3; rule1 on switch1#state do publish cmnd/i3/inside/lights/west/power 2 endon; rule1 1; SetOption56 ON; SetOption57 ON"
             }
         ],
         "ids": [
@@ -2038,94 +1496,17 @@
         ],
         "commands": [
             {
-                "command": "GPIO4",
-                "payload": "GPIO_I2C_SDA"
+                "command": "backlog",
+                "payload": "GPIO4 6; GPIO5 5; SetOption56 ON; SetOption57 ON",
+                "restart": 1
             },
             {
-                "command": "GPIO5",
-                "payload": "GPIO_I2C_SCL"
+                "command": "backlog",
+                "payload": "sensor29 0,2,1,2; sensor29 1,2,1,2; sensor29 2,2,1,2; sensor29 3,2,1,2; sensor29 4,2,1,2; sensor29 5,2,1,2; sensor29 6,2,1,2; sensor29 7,2,1,2; sensor29 8,2,1,0; sensor29 9,2,1,0; sensor29 10,2,1,2; sensor29 11,2,1,2; sensor29 12,2,1,2; sensor29 13,2,1,2; sensor29 14,2,1,2; sensor29 15,2,1,2"
             },
             {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
-            }
-        ],
-        "commands_extra": [
-            {
-                "command": "sensor29",
-                "payload": "0,2,1,2"
-            },
-            {
-                "command": "sensor29",
-                "payload": "1,2,1,2"
-            },
-            {
-                "command": "sensor29",
-                "payload": "2,2,1,2"
-            },
-            {
-                "command": "sensor29",
-                "payload": "3,2,1,2"
-            },
-            {
-                "command": "sensor29",
-                "payload": "4,2,1,2"
-            },
-            {
-                "command": "sensor29",
-                "payload": "5,2,1,2"
-            },
-            {
-                "command": "sensor29",
-                "payload": "6,2,1,2"
-            },
-            {
-                "command": "sensor29",
-                "payload": "7,2,1,2"
-            },
-            {
-                "command": "sensor29",
-                "payload": "8,2,1,0"
-            },
-            {
-                "command": "sensor29",
-                "payload": "9,2,1,0"
-            },
-            {
-                "command": "sensor29",
-                "payload": "10,2,1,2"
-            },
-            {
-                "command": "sensor29",
-                "payload": "11,2,1,2"
-            },
-            {
-                "command": "sensor29",
-                "payload": "12,2,1,2"
-            },
-            {
-                "command": "sensor29",
-                "payload": "13,2,1,2"
-            },
-            {
-                "command": "sensor29",
-                "payload": "14,2,1,2"
-            },
-            {
-                "command": "sensor29",
-                "payload": "15,2,1,2"
-            },
-            {
-                "command": "rule1",
-                "payload": "on event#MCPINT_D8=0 do publish cmnd/i3/inside/lights/west/power 0 endon on event#MCPINT_D9=0 do publish cmnd/i3/inside/lights/west/power 1 endon"
-            },
-            {
-                "command": "rule1",
-                "payload": "1"
+                "command": "backlog",
+                "payload": "rule1 on event#MCPINT_D8=0 do publish cmnd/i3/inside/lights/west/power 0 endon on event#MCPINT_D9=0 do publish cmnd/i3/inside/lights/west/power 1 endon; rule1 1"
             }
         ]
     },
@@ -2147,28 +1528,9 @@
         ],
         "commands": [
             {
-                "command": "GPIO2",
-                "payload": "GPIO_SWT1"
-            },
-            {
-                "command": "switchmode",
-                "payload": "3"
-            },
-            {
-                "command": "rule",
-                "payload": "on switch1#state do publish cmnd/i3/inside/craftroom/light/power 2 endon"
-            },
-            {
-                "command": "rule",
-                "payload": "1"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "GPIO2 9; switchmode 3; rule on switch1#state do publish cmnd/i3/inside/craftroom/light/power 2 endon; rule 1; SetOption56 ON; SetOption57 ON",
+                "restart": 1
             }
         ]
     },
@@ -2190,16 +1552,8 @@
         ],
         "commands": [
             {
-                "command": "teleperiod",
-                "payload": "60"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "teleperiod 60; SetOption56 ON; SetOption57 ON"
             }
         ],
         "flash_warning": "This will reset any power monitoring calibration."
@@ -2220,16 +1574,8 @@
         "build_flags": null,
         "commands": [
             {
-                "command": "teleperiod",
-                "payload": "60"
-            },
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "backlog",
+                "payload": "teleperiod 60; SetOption56 ON; SetOption57 ON"
             }
         ],
         "flash_warning": "This will reset any power monitoring calibration."
@@ -2256,102 +1602,74 @@
         ],
         "commands": [
             {
-                "command": "GPIO4",
-                "payload": "GPIO_I2C_SDA"
+                "command": "backlog", 
+                "payload": "GPIO4 6; GPIO5 5; SetOption56 ON; SetOption57 ON",
+                "restart": 1
             },
             {
-                "command": "GPIO5",
-                "payload": "GPIO_I2C_SCL"
+                "command": "backlog",
+                "payload": "sensor29 0,5,0; sensor29 1,5,0; sensor29 2,5,0; sensor29 3,5,0; sensor29 4; sensor29 5; sensor29 6,5,0; sensor29 7,5,0; sensor29 8; sensor29 9; sensor29 10,2,0,0; sensor29 11; sensor29 12; sensor29 13,2,1,0; sensor29 14; sensor29 15"
             },
             {
-                "command": "SetOption56",
-                "payload": "ON"
+                "command": "rule1",
+                "payload": "on event#MCPINT_D13=1 do backlog sensor29 3,ON; sensor29 2,OFF endon on event#MCPINT_D13=0 do backlog sensor29 3,OFF; sensor29 2,ON endon on Event#glasslock=LOCKED do backlog sensor29 0,ON; sensor29 1,OFF endon on Event#glasslock=UNLOCKED do backlog sensor29 0,OFF; sensor29 1,ON endon on Event#aircomp=ON do backlog sensor29 6,ON; sensor29 7,OFF endon on Event#aircomp=OFF do backlog sensor29 6,OFF; sensor29 7,ON endon"
             },
             {
-                "command": "SetOption57",
-                "payload": "ON"
+                "command": "rule1",
+                "payload": "1"
+            },
+            {
+                "command": "rule2",
+                "payload": "on Mqtt#Connected do backlog subscribe glasslock,stat/i3/inside/classroom/glass-door/lock; publish cmnd/i3/inside/classroom/glass-door/lock; subscribe aircomp,stat/i3/inside/infrastructure/air-compressor/power; publish cmnd/i3/inside/infrastructure/air-compressor/POWER endon on event#MCPINT_D10=0 do publish stat/i3/inside/commons/front-door/lock UNLOCKED endon on event#MCPINT_D10=1 do publish stat/i3/inside/commons/front-door/lock LOCKED endon"
+            },
+            {
+                "command": "rule2",
+                "payload": "1"
+            },
+            {
+                "command": "restart",
+                "payload": "1",
+                "restart": 1
+            }
+        ]
+    },
+    {
+        "name": "Air Comp Pressure Sensor %id%",
+        "domain": null,
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "sensors/air-comp-pressure-%id%",
+        "poweron_state": 0,
+        "build_flags": [
+                "USE_I2C",
+                "USE_ANALOG_IN",
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "ADC0",
+                "payload": "1",
+                "restart": 1
+            },
+            {
+                "command": "rule1",
+                "payload": "on tele-analog#a0 do var1=((0.2129*%value%)-23.065) endon on var1#state do publish air-comp-pressure/pressure %var1% endon"
+            },
+            {
+                "command": "teleperiod",
+                "payload": "30"
             }
         ],
-        "commands_extra": [
+        "ids": [
             {
-                "command": "sensor29",
-                "payload": "0,5,0"
-            },
-            {
-                "command": "sensor29",
-                "payload": "1,5,0"
-            },
-            {
-                "command": "sensor29",
-                "payload": "2,5,0"
-            },
-            {
-                "command": "sensor29",
-                "payload": "3,5,0"
-            },
-            {
-                "command": "sensor29",
-                "payload": "4"
-            },
-            {
-                "command": "sensor29",
-                "payload": "5"
-            },
-            {
-                "command": "sensor29",
-                "payload": "6"
-            },
-            {
-                "command": "sensor29",
-                "payload": "7"
-            },
-            {
-                "command": "sensor29",
-                "payload": "8"
-            },
-            {
-                "command": "sensor29",
-                "payload": "9"
-            },
-            {
-                "command": "sensor29",
-                "payload": "10,2,0,0"
-            },
-            {
-                "command": "sensor29",
-                "payload": "11"
-            },
-            {
-                "command": "sensor29",
-                "payload": "12"
-            },
-            {
-                "command": "sensor29",
-                "payload": "13,2,1,0"
-            },
-            {
-                "command": "sensor29",
-                "payload": "14"
-            },
-            {
-                "command": "sensor29",
-                "payload": "15"
-            },
-            {
-                "command": "rule1",
-                "payload": "on event#MCPINT_D13=1 do backlog sensor29 3,ON; sensor29 2,OFF endon on event#MCPINT_D13=0 do backlog sensor29 3,OFF; sensor29 2,ON endon on Event#glasslock=LOCKED do backlog sensor29 0,ON; sensor29 1,OFF endon on Event#glasslock=UNLOCKED do backlog sensor29 0,OFF; sensor29 1,ON endon"
-            },
-            {
-                "command": "rule1",
-                "payload": "1"
-            },
-            {
-                "command": "rule2",
-                "payload": "on Mqtt#Connected do backlog subscribe glasslock,stat/i3/inside/classroom/glass-door/lock; publish cmnd/i3/inside/classroom/glass-door/lock endon"
-            },
-            {
-                "command": "rule2",
-                "payload": "1"
+                "id": "01",
+                "ip_addr": "10.13.107.89"
             }
         ]
     }

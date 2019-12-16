@@ -166,19 +166,15 @@ class device(dict):
                 print(('{GREEN}{f_name} is online after flashing. Running '
                        'setup commands...{NOCOLOR}'.format(**colors, **self)))
                 sleep(1)
-                self.online = False
-                self.run_backlog_commands(self.commands)
-                sleep(1)
-                self.online_check()
-                # For some rare cases, a second round of commands is required
-                # after the first reboot
-                try:
-                    print('Running second round of setup commands...')
-                    self.run_backlog_commands(self.commands_extra)
+                for c in self.commands:
+                    self.mqtt.connect(self.mqtt_host)
+                    command = "{c_topic}/{cmnd}".format(**self, cmnd=c['command'])
+                    print("Sending {c} {p}".format(c=command, p=c['payload']))
+                    self.mqtt.publish(command, c['payload'])
+                    self.mqtt.disconnect()
                     sleep(1)
-                    self.online_check()
-                except AttributeError:
-                    pass
+                    if "restart" in c and c['restart'] == 1:
+                        self.online_check()
 
             if self.online == True:
                 self._handle_result(0)
