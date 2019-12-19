@@ -1634,7 +1634,7 @@
         ]
     },
     {
-        "name": "Air Comp Pressure Sensor %id%",
+        "name": "Air Line Pressure Sensor %id%",
         "domain": null,
         "software": "tasmota",
         "site": "i3",
@@ -1642,7 +1642,7 @@
         "board": "esp01_1m",
         "group_topic": "none",
         "base_topic": "i3/inside",
-        "topic": "sensors/air-comp-pressure-%id%",
+        "topic": "sensors/air-line-pressure-%id%",
         "poweron_state": 0,
         "build_flags": [
                 "USE_I2C",
@@ -1659,11 +1659,20 @@
             },
             {
                 "command": "rule1",
-                "payload": "on tele-analog#a0 do var1=((0.2129*%value%)-23.065) endon on var1#state do publish air-comp-pressure/pressure %var1% endon"
+                "payload": "on tele-analog#a0 do var1=((0.2123*%value%)-22.735) endon on var1#state do publish stat/i3/inside/sensors/air-line-pressure-%id%/pressure %var1% endon"
+            },
+            {
+                "command": "rule1",
+                "payload": "1"
             },
             {
                 "command": "teleperiod",
                 "payload": "30"
+            },
+            {
+                "command": "restart",
+                "payload": "1",
+                "restart": 1
             }
         ],
         "ids": [

@@ -401,6 +401,15 @@ def import_devices(device_file):
                             new_dev[key] = sub('%id%',
                                                id_info['id'],
                                                new_dev[key])
+                        elif key == 'commands':
+                            for c in new_dev['commands']:
+                                c['command'] = sub('%id%',
+                                                   id_info['id'],
+                                                   c['command'])
+                                c['payload'] = sub('%id%',
+                                                   id_info['id'],
+                                                   c['payload'])
+
                 # just copy all the keys over
                 for key in id_info:
                     new_dev[key] = id_info[key]
