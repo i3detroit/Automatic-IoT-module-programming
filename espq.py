@@ -82,9 +82,8 @@ class device(dict):
         self.name = self.name.lower()   # home assistant doesn't like upper case letters in sensor names
 
         # Insert site information as device attributes
-        f = open(site_config,'r')
-        sites = json.load(f)
-        f.close()
+        with open(site_config, 'r') as f:
+            sites = json.load(f)
         for key in sites[self.site]:
             # Sanitize attributes so missing ones are '' instead of None
             if sites[self.site][key] is not None:
@@ -191,7 +190,7 @@ class device(dict):
                       '{NOCOLOR}').format(time=str(datetime.datetime.now()),
                                           **colors,
                                           **self)
-            with open(os.path.join(espqdir, 'flash_success.log', 'a+') as flashlog:
+            with open(os.path.join(espqdir, 'flash_success.log', 'a+')) as flashlog:
                 flashlog.write(result + '\n')
                 print(result)
             return()
@@ -215,7 +214,7 @@ class device(dict):
                       '{NOCOLOR}').format(time=str(datetime.datetime.now()),
                                                **colors,
                                                **self)
-        with open(os.path.join(espqdir, 'flash_error.log', 'a+') as errorlog:
+        with open(os.path.join(espqdir, 'flash_error.log', 'a+')) as errorlog:
             errorlog.write(result + '\n')
             print('{RED}{result}{NOCOLOR}'.format(**colors, result=result))
         return()
@@ -225,9 +224,8 @@ class device(dict):
             Fills tasmota device parameters into blank_defines.h and writes it
             to {tasmota_dir}/sonoff/user_config_override.h
         """
-        f = open(blank_defines,'r')
-        defines = f.read()
-        f.close()
+        with open(blank_defines, 'r') as f:
+            defines = f.read()
         # Every device attribute is passed to the string formatter
         defines = defines.format(**self, datetime=datetime.datetime.now(),
                                  cfg_holder=str(randint(1, 32000)))
@@ -389,10 +387,8 @@ def import_devices(device_file):
         Keyword arguments:
         device_file -- JSON file of devices
     """
-    f = open(device_file,'r')
-    device_import = json.load(f)
-    f.close()
-
+    with open(device_file, 'r') as f:
+        device_import = json.load(f)
     devices=[]
     for dev in device_import:
         if 'ids' in dev:
@@ -440,19 +436,16 @@ def get_gpio(request):
     """ Retrieve a GPIO's integer value from the enumeration in tasmota """
     lines=[]
     append=False
-
-    f = open(os.path.join(tasmota_dir, "sonoff", "sonoff_template.h"), "r")
-    for line in f:
-        if append==True:
-            split = line.split('//')[0]
-            subbed = sub('[\\s+,;}]','', split)
-            lines.append(subbed)
-        if 'UserSelectablePins' in line:
-            append=True
-        if '}' in line:
-            append=False
-    f.close()
-
+    with open(os.path.join(tasmota_dir, "sonoff", "sonoff_template.h"), "r") as f:
+        for line in f:
+            if append==True:
+                split = line.split('//')[0]
+                subbed = sub('[\\s+,;}]','', split)
+                lines.append(subbed)
+            if 'UserSelectablePins' in line:
+                append=True
+            if '}' in line:
+                append=False
     gpios={}
     for num, gpio in enumerate(lines):
         gpios[gpio] = num
@@ -461,12 +454,9 @@ def get_gpio(request):
 def get_tasmota_version():
     """ Retrieve a GPIO's integer value from the enumeration in tasmota """
     matches = []
-
-    f = open(os.path.join(tasmota_dir, "sonoff", "sonoff_version.h"), "r")
-    for line in f:
-        matches += findall('0x\d+', line)
-    f.close()
-
+    with open(os.path.join(tasmota_dir, "sonoff", "sonoff_version.h"), "r") as f:
+        for line in f:
+            matches += findall('0x\d+', line)
     if len(matches) == 0:
         raise Exception('No tasmota version found.')
     elif len(matches) == 1:
