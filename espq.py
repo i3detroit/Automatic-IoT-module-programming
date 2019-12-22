@@ -190,7 +190,7 @@ class device(dict):
                       '{NOCOLOR}').format(time=str(datetime.datetime.now()),
                                           **colors,
                                           **self)
-            with open(os.path.join(espqdir, 'flash_success.log', 'a+')) as flashlog:
+            with open(os.path.join(espqdir, 'flash_success.log'), 'a+') as flashlog:
                 flashlog.write(result + '\n')
                 print(result)
             return()
@@ -214,7 +214,7 @@ class device(dict):
                       '{NOCOLOR}').format(time=str(datetime.datetime.now()),
                                                **colors,
                                                **self)
-        with open(os.path.join(espqdir, 'flash_error.log', 'a+')) as errorlog:
+        with open(os.path.join(espqdir, 'flash_error.log'), 'a+') as errorlog:
             errorlog.write(result + '\n')
             print('{RED}{result}{NOCOLOR}'.format(**colors, result=result))
         return()
