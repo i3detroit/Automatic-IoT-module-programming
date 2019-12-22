@@ -1598,12 +1598,14 @@
            "USE_MCP230xx_OUTPUT",
            "USE_MCP230xx_DISPLAYOUTPUT",
            "USE_RULES",
-           "SUPPORT_MQTT_EVENT"
+           "SUPPORT_MQTT_EVENT",
+           "USE_EXPRESSION",
+           "USE_ANALOG_IN"
         ],
         "commands": [
             {
                 "command": "backlog", 
-                "payload": "GPIO4 6; GPIO5 5; SetOption56 ON; SetOption57 ON",
+                "payload": "GPIO4 6; GPIO5 5; SetOption56 ON; SetOption57 ON; ADC0 1",
                 "restart": 1
             },
             {
@@ -1624,6 +1626,14 @@
             },
             {
                 "command": "rule2",
+                "payload": "1"
+            },
+            {
+                "command": "rule3",
+                "payload": "on tele-analog#a0 do var1=((%value%*13)/811) endon on var1#state do publish tele/i3/inside/commons/front-door-indicator/batteryVoltage %var1% endon"
+            },
+            {
+                "command": "rule3",
                 "payload": "1"
             },
             {
