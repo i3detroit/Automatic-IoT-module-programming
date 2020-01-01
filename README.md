@@ -3,7 +3,7 @@
 Setup:
 
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 Make sure local directories and tasmota version are set correctly at the top of espq.py
