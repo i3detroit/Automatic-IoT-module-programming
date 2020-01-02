@@ -7,7 +7,7 @@ from filecmp import cmp
 from copy import deepcopy
 from random import randint
 from shutil import copyfile
-from re import sub, findall
+import re
 from subprocess import call
 from ast import literal_eval
 import paho.mqtt.client as mqtt
@@ -21,8 +21,8 @@ blank_defines = 'blank_defines.h'
 
 espqdir = os.path.dirname(os.path.abspath(__file__))
 
-current_tasmota_version = '0x06070100' # TODO: Put commit hash or tag in comment here
-tasmota_dir = os.path.join(espqdir, '..', 'Sonoff-Tasmota');
+current_tasmota_version = '0x08010000' # v8.1.0
+tasmota_dir = os.path.join(espqdir, '..', 'Tasmota');
 custom_dir = os.path.join(espqdir, '..', 'custom-mqtt-programs/');
 
 ###########################################################
@@ -73,10 +73,10 @@ class device(dict):
         full_topic_template = '%prefix%/{base_topic}/%topic%'
         self.full_topic = full_topic_template.format(**self)
         self.topic = self.topic.lower()
-        self.c_topic = sub('%topic%', self.topic, sub('%prefix%', 'cmnd', self.full_topic))
-        self.s_topic = sub('%topic%', self.topic, sub('%prefix%', 'stat', self.full_topic))
-        self.t_topic = sub('%topic%', self.topic, sub('%prefix%', 'tele', self.full_topic))
-        self.f_name = sub('_', ' ', self.name)  # Friendly name
+        self.c_topic = re.sub('%topic%', self.topic, re.sub('%prefix%', 'cmnd', self.full_topic))
+        self.s_topic = re.sub('%topic%', self.topic, re.sub('%prefix%', 'stat', self.full_topic))
+        self.t_topic = re.sub('%topic%', self.topic, re.sub('%prefix%', 'tele', self.full_topic))
+        self.f_name = re.sub('_', ' ', self.name)  # Friendly name
         self.name = self.name.replace(' ', '_')    # Unfriendly name
 
         self.name = self.name.lower()   # home assistant doesn't like upper case letters in sensor names
@@ -222,7 +222,7 @@ class device(dict):
     def write_tasmota_config(self):
         """
             Fills tasmota device parameters into blank_defines.h and writes it
-            to {tasmota_dir}/sonoff/user_config_override.h
+            to {tasmota_dir}/tasmota/user_config_override.h
         """
         with open(blank_defines, 'r') as f:
             defines = f.read()
@@ -230,7 +230,7 @@ class device(dict):
         defines = defines.format(**self, datetime=datetime.datetime.now(),
                                  cfg_holder=str(randint(1, 32000)))
         # Write the config file
-        with open(os.path.join(tasmota_dir, 'sonoff', 'user_config_override.h'), 'w') as f:
+        with open(os.path.join(tasmota_dir, 'tasmota', 'user_config_override.h'), 'w') as f:
             f.write(defines)
 
     def flash_tasmota(self):
@@ -244,19 +244,19 @@ class device(dict):
             return(False)
         self.write_tasmota_config()
 
-        correctPIO = os.path.join(espqdir, 'platformio.ini')
-        tasmotaPIO = os.path.join(tasmota_dir, 'platformio.ini')
-        if not cmp(correctPIO, tasmotaPIO):
+        correctPIO = os.path.join(espqdir, 'platformio_override.ini')
+        tasmotaPIO = os.path.join(tasmota_dir, 'platformio_override.ini')
+        if not os.path.exists(tasmotaPIO) or not cmp(correctPIO, tasmotaPIO):
             copyfile(correctPIO, tasmotaPIO)
 
         os.chdir(tasmota_dir)
         pio_call = 'platformio run -e {environment} -t upload --upload-port {port}'
         if self.flash_mode == 'wifi':
-            pio_call = pio_call.format(environment='sonoff-wifi', port=(self.ip_addr + '/u2'))
+            pio_call = pio_call.format(environment='tasmota-wifi', port=(self.ip_addr + '/u2'))
             print(('{BLUE}Now flashing {module} {f_name} with {software} via '
                 '{flash_mode} at {ip_addr}{NOCOLOR}'.format(**colors, **self)))
         elif self.flash_mode == 'serial':
-            pio_call = pio_call.format(environment='sonoff-serial', port=self.serial_port)
+            pio_call = pio_call.format(environment='tasmota-serial', port=self.serial_port)
             print(('{BLUE}Now flashing {module} {f_name} with {software} via '
                 '{flash_mode} at {serial_port}{NOCOLOR}'.format(**colors, **self)))
         print('{BLUE}{f_name}\'s MQTT topic is {base_topic}/{topic}{NOCOLOR}'.format(**colors, **self))
@@ -399,15 +399,15 @@ def import_devices(device_file):
                     #replace the "%id%" string in all string properties
                     for key in new_dev:
                         if isinstance(new_dev[key], str):
-                            new_dev[key] = sub('%id%',
+                            new_dev[key] = re.sub('%id%',
                                                id_info['id'],
                                                new_dev[key])
                         elif key == 'commands':
                             for c in new_dev['commands']:
-                                c['command'] = sub('%id%',
+                                c['command'] = re.sub('%id%',
                                                    id_info['id'],
                                                    c['command'])
-                                c['payload'] = sub('%id%',
+                                c['payload'] = re.sub('%id%',
                                                    id_info['id'],
                                                    c['payload'])
 
@@ -436,11 +436,11 @@ def get_gpio(request):
     """ Retrieve a GPIO's integer value from the enumeration in tasmota """
     lines=[]
     append=False
-    with open(os.path.join(tasmota_dir, "sonoff", "sonoff_template.h"), "r") as f:
+    with open(os.path.join(tasmota_dir, "tasmota", "tasmota_template.h"), "r") as f:
         for line in f:
             if append==True:
                 split = line.split('//')[0]
-                subbed = sub('[\\s+,;}]','', split)
+                subbed = re.sub('[\\s+,;}]','', split)
                 lines.append(subbed)
             if 'UserSelectablePins' in line:
                 append=True
@@ -453,16 +453,12 @@ def get_gpio(request):
 
 def get_tasmota_version():
     """ Retrieve a GPIO's integer value from the enumeration in tasmota """
-    matches = []
-    with open(os.path.join(tasmota_dir, "sonoff", "sonoff_version.h"), "r") as f:
+    with open(os.path.join(tasmota_dir, "tasmota", "tasmota_version.h"), "r") as f:
         for line in f:
-            matches += findall('0x\d+', line)
-    if len(matches) == 0:
-        raise Exception('No tasmota version found.')
-    elif len(matches) == 1:
-        return matches[0]
-    else:
-        raise IndexError('Too many tasmota versions found.')
+            match = re.match('.* VERSION = (0x[0-9A-Fa-f]+);', line)
+            if match:
+                return match.groups()[0];
+    raise Exception('No tasmota version found.')
 
 def choose_devices(devices):
     ''' Create list of menu choices with category separators for module '''
