@@ -16,12 +16,12 @@ from PyInquirer import style_from_dict, Token, prompt, Separator
 ###########################################################
 # Make sure these are set correctly for your environment:
 
-site_config = 'sites.json'
+site_config = os.path.join('config', 'sites.json')
 blank_defines = 'blank_defines.h'
 
 espqdir = os.path.dirname(os.path.abspath(__file__))
 
-current_tasmota_version = '0x06070100'
+current_tasmota_version = '0x06070100' # TODO: Put commit hash or tag in comment here
 tasmota_dir = os.path.join(espqdir, '..', 'Sonoff-Tasmota');
 custom_dir = os.path.join(espqdir, '..', 'custom-mqtt-programs/');
 

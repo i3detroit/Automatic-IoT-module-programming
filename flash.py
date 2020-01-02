@@ -90,7 +90,7 @@ for count, dev in enumerate(selected_devices, start=1):
     sys.stdout.write(('\x1b]2Processing device {count}/{total} - {name}'
                       '\x07').format(count=count, total=len(selected_devices),
                                      name=dev.name))
-    
+
     if hasattr(dev, 'flash_warning'):
         print('Ready to process device {count}/{total} - {name}'.format(count=count,
                                                                         total=len(selected_devices),
