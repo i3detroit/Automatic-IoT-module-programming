@@ -12,8 +12,8 @@ import argparse
 import espq
 from re import sub
 
-current_version = '6.7.1(sonoff)'  # current version of tasmota, formatted as it is reported
-good_core = ['2_3_0', 'STAGE']  # desired version of esp arduino library
+current_version = '8.1.0(tasmota)'  # current version of tasmota, formatted as it is reported
+good_core = ['2_6_1']  # desired version of esp arduino library
 
 parser = argparse.ArgumentParser(description='Query status of tasmota devices',
                                  formatter_class=argparse.RawTextHelpFormatter,)
