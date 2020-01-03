@@ -38,22 +38,6 @@ generic_telemetry = """- platform: template
     {name}_wifi_ssid:
       friendly_name: '{f_name} Wifi SSId'
       value_template: "{{{{ state_attr('{hass_domain}.{name}', 'Wifi')['SSId'] }}}}"
-    {name}_wifi_ap:
-      friendly_name: '{f_name} Wifi AP'
-      value_template: >-
-        {{% if state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] | string == '02:9F:C2:24:32:82' %}}
-          Office AP
-        {{% elif state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] | string == '02:9F:C2:24:30:D7' %}}
-          Mezzanine AP
-        {{% elif state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] | string == '02:9F:C2:24:2D:F1' %}}
-          Tool Crib AP
-        {{% elif state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] | string == '0E:EC:DA:B7:E0:7D' %}}
-          B-Side South AP
-        {{% elif state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] | string == 'C6:FB:E4:44:66:C4' %}}
-          B-Side North AP
-        {{% else %}}
-          {{{{ state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] }}}}
-        {{% endif %}}
     {name}_wifi_bssid:
       friendly_name: '{f_name} Wifi BSSId'
       value_template: "{{{{ state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] }}}}"
@@ -70,6 +54,7 @@ generic_telemetry = """- platform: template
     {name}_wifi_downtime:
       friendly_name: '{f_name} Wifi Downtime'
       value_template: "{{{{ state_attr('{hass_domain}.{name}', 'Wifi')['Downtime'] }}}}"
+    {wifi_APs_string}
 """
 
 components = {

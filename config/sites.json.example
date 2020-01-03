@@ -7,7 +7,17 @@
         "wifi_pass_alt": "",
         "ntp": "10.13.0.1",
         "latitude": "42.453725",
-        "longitude": "-83.113690"
+        "longitude": "-83.113690".
+        "wifi_APs": [
+            {
+                "name": "Office AP",
+                "MAC": "FF:FF:FF:FF:FF:FF"
+            },
+            {
+                "name": "Tool Crib AP",
+                "MAC": "FF:FF:FF:FF:FF:FF"
+            }
+        ]
     },
 
     "mike": {

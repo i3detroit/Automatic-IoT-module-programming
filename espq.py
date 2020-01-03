@@ -372,6 +372,16 @@ class device(dict):
         except:
             print('Device {f_name} domain error, cannot write hass config.'.format(**self))
             return()
+
+        if hasattr(self, 'wifi_APs'):
+            self.wifi_APs_string = "{name}_wifi_ap:\n      friendly_name: '{f_name} Wifi AP'\n      value_template: >-\n".format(**self)
+            for AP in self.wifi_APs[:1]:
+                self.wifi_APs_string += "        {{% if state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] | string == '".format(**self) + AP['MAC'] + "' %}\n          " + AP['name'] + "\n"
+            for AP in self.wifi_APs[1:]:
+                self.wifi_APs_string += "        {{% elif state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] | string == '".format(**self) + AP['MAC'] + "' %}\n          " + AP['name'] + "\n"
+            self.wifi_APs_string += "        {{% else %}}\n          {{{{ state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] }}}}\n        {{% endif %}}".format(**self)
+        else:
+            self.wifi_APs_string = ''
         # Go through all types of components for domain
         # (i.e. domain light has components light & sensor)
         for c in self.yaml_template.components:

@@ -7,7 +7,7 @@ pip3 install -r requirements.txt
 pip2 install pycurl
 ```
 
-Make sure local directories and tasmota version are set correctly at the top of espq.py
+Make sure local directories and tasmota version are set correctly at the top of `espq.py`
 This is written expecting a directoy setup like:
 ```
 .
@@ -18,6 +18,7 @@ This is written expecting a directoy setup like:
 
 Tasmota should be checked out to the tag or hash referenced in esqp.py where `current_tasmota_version` is defined.
 
+Create a `config/sites.json` file for your location based on `config/sites.json.example`
 
 # To program tasmota devices
 1. Create a device configuration file for your device(s) as in tasmota.json.
