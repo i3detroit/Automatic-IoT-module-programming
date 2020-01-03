@@ -67,7 +67,7 @@ for device in d:
               device.reported_mac,
               '   ',
               RED if device.tas_version != current_version else '',
-              sub('\(sonoff\)', '', device.tas_version),
+              sub('\(tasmota\)|\(sonoff\)', '', device.tas_version),
               NOCOLOR,
               '   ',
               RED if device.core_version not in good_core else '',
