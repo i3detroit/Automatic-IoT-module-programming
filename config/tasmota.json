@@ -10,7 +10,11 @@
         "base_topic": "i3/inside",
         "topic": "lights/%id%",
         "poweron_state": 1,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -178,7 +182,11 @@
         "topic": "lights/028",
         "ip_addr": "10.13.107.243",
         "poweron_state": 1,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -199,7 +207,11 @@
         "topic": "lights/036",
         "ip_addr": "10.13.107.212",
         "poweron_state": 1,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -220,7 +232,11 @@
         "topic": "lights/037",
         "ip_addr": "10.13.107.230",
         "poweron_state": 1,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -239,7 +255,11 @@
         "base_topic": "i3/inside",
         "topic": "lights/%id%",
         "poweron_state": 1,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -310,7 +330,11 @@
         "base_topic": "i3/inside",
         "topic": "lights/%id%",
         "poweron_state": 1,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -388,7 +412,11 @@
         "base_topic": "i3/inside",
         "topic": "lights/%id%",
         "poweron_state": 1,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -408,7 +436,11 @@
         "base_topic": "i3/inside",
         "topic": "accent/chandelier-%id%",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -441,7 +473,10 @@
         "build_flags": [
             "USE_I2C",
             "USE_BMP",
-            "USE_BH1750"
+            "USE_BH1750",
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION"
         ],
         "commands": [
             {
@@ -477,7 +512,11 @@
         "base_topic": "i3/inside",
         "topic": "commons/accent/swirly-lights-%id%",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -508,7 +547,11 @@
         "base_topic": "i3/inside",
         "topic": "media-lab/lights",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -529,7 +572,11 @@
         "base_topic": "i3/inside",
         "topic": "commons/ceiling-fans",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -550,7 +597,11 @@
         "base_topic": "i3/inside",
         "topic": "laser-zone/ceiling-fan",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -571,7 +622,11 @@
         "base_topic": "i3/inside",
         "topic": "laser-zone/vent-fan",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -591,7 +646,10 @@
         "topic": "commons/traffic-light",
         "poweron_state": 0,
         "build_flags": [
-            "USE_DHT"
+            "USE_DHT",
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION"
         ],
         "commands": [
             {
@@ -614,7 +672,11 @@
         "base_topic": "i3/inside",
         "topic": "fablab/vent",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -635,7 +697,11 @@
         "base_topic": "i3/inside",
         "topic": "machine-shop/ceiling-fan",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -656,7 +722,11 @@
         "base_topic": "i3/inside",
         "topic": "commons/paint-box",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -677,7 +747,11 @@
         "base_topic": "i3/inside",
         "topic": "commons/accent/disco-spotlights",
         "poweron_state": 1,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -696,7 +770,11 @@
         "base_topic": "i3/inside",
         "topic": "infrastructure/433-rf-reciever",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -718,7 +796,11 @@
         "base_topic": "i3/inside",
         "topic": "laser-zone/wolverine/chiller",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -740,7 +822,11 @@
         "base_topic": "i3/inside",
         "topic": "laser-zone/bumblebee/chiller",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -762,7 +848,11 @@
         "base_topic": "i3/inside",
         "topic": "fablab/chiller",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -784,7 +874,11 @@
         "base_topic": "i3/inside",
         "topic": "tool-crib/workbench-lights",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -805,7 +899,11 @@
         "base_topic": "i3/inside",
         "topic": "hallway/light",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -826,7 +924,11 @@
         "base_topic": "i3/inside",
         "topic": "elab/light",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -847,7 +949,11 @@
         "base_topic": "i3/inside",
         "topic": "craftroom/light",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -868,7 +974,11 @@
         "base_topic": "i3/inside",
         "topic": "small-bathroom/light",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -889,7 +999,11 @@
         "base_topic": "i3/inside",
         "topic": "dooridor/lights",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -910,7 +1024,11 @@
         "base_topic": "i3/inside",
         "topic": "classroom/lights-west",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -931,7 +1049,11 @@
         "base_topic": "i3/inside",
         "topic": "classroom/lights-east",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -953,7 +1075,11 @@
         "base_topic": "i3/inside",
         "topic": "commons/genie-charging",
         "poweron_state": 1,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -975,7 +1101,11 @@
         "base_topic": "i3/inside",
         "topic": "small-bathroom/vent",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -996,7 +1126,11 @@
         "base_topic": "i3/inside",
         "topic": "small-bathroom/shower-light",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -1017,7 +1151,11 @@
         "base_topic": "i3/inside",
         "topic": "commons/siren",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -1038,7 +1176,11 @@
         "base_topic": "i3/inside",
         "topic": "laser-zone/wolverine/laser",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -1060,7 +1202,11 @@
         "base_topic": "i3/inside",
         "topic": "laser-zone/bumblebee/laser",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -1083,7 +1229,9 @@
         "topic": "hallway/lightswitch-west",
         "poweron_state": 0,
         "build_flags": [
-            "USE_RULES"
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION"
         ],
         "commands": [
             {
@@ -1105,7 +1253,11 @@
         "base_topic": "i3/inside",
         "topic": "cnc/vent",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -1127,7 +1279,11 @@
         "base_topic": "i3/inside",
         "topic": "cnc/light",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -1149,7 +1305,11 @@
         "base_topic": "i3/inside",
         "topic": "commons/south-vent",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -1172,7 +1332,9 @@
         "topic": "classroom/lightswitch-east",
         "poweron_state": 0,
         "build_flags": [
-            "USE_RULES"
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION"
         ],
         "commands": [
             {
@@ -1198,7 +1360,10 @@
             "USE_IR_RECEIVE",
             "IR_RCV_BUFFER_SIZE 100",
             "IR_RCV_TIMEOUT 15",
-            "IR_RCV_MIN_UNKNOWN_SIZE 6"
+            "IR_RCV_MIN_UNKNOWN_SIZE 6",
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION"
         ],
         "ids": [
             {
@@ -1231,7 +1396,11 @@
         "base_topic": "i3/inside",
         "topic": "laser-zone/accent/lanterns",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -1252,7 +1421,11 @@
         "base_topic": "i3/inside",
         "topic": "commons/accent/fairy-lights",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -1273,7 +1446,11 @@
         "base_topic": "i3/inside",
         "topic": "fablab/chinesium-laser",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -1295,7 +1472,11 @@
         "base_topic": "i3/inside",
         "topic": "program-me",
         "poweron_state": 1,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -1316,7 +1497,11 @@
         "base_topic": "i3/inside",
         "topic": "commons/snapple-vending-light",
         "poweron_state": 1,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -1338,7 +1523,11 @@
         "base_topic": "i3/inside",
         "topic": "b-side/office/lights",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -1360,7 +1549,11 @@
         "base_topic": "i3/inside",
         "topic": "b-side/roof-exhaust-fan",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -1382,7 +1575,11 @@
         "base_topic": "i3/inside",
         "topic": "etekciy/test-04",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
@@ -1408,7 +1605,10 @@
                 "USE_BMP",
                 "USE_BME680",
                 "USE_PMS5003",
-                "USE_BH1750"
+                "USE_BH1750",
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
         ],
         "commands": [
             {
@@ -1432,7 +1632,9 @@
         "topic": "b-side/office-lightswitch",
         "poweron_state": 0,
         "build_flags": [
-            "USE_RULES"
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION"
         ],
         "commands": [
             {
@@ -1455,7 +1657,9 @@
         "topic": "b-side/shop-%id%-lightswitch",
         "poweron_state": 0,
         "build_flags": [
-            "USE_RULES"
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION"
             ],
         "commands": [
             {
@@ -1492,7 +1696,9 @@
            "USE_MCP230xx_ADDR 0x20",
            "USE_MCP230xx_OUTPUT",
            "USE_MCP230xx_DISPLAYOUTPUT",
-           "USE_RULES"
+           "USE_RULES",
+           "SUPPORT_MQTT_EVENT",
+           "USE_EXPRESSION"
         ],
         "commands": [
             {
@@ -1524,7 +1730,9 @@
         "topic": "craftroom/lightswitch",
         "poweron_state": 0,
         "build_flags": [
-            "USE_RULES"
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION"
         ],
         "commands": [
             {
@@ -1548,7 +1756,9 @@
         "topic": "fablab/ac",
         "poweron_state": 1,
         "build_flags": [
-            "USE_RULES"
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION"
         ],
         "commands": [
             {
@@ -1571,7 +1781,11 @@
         "base_topic": "i3/inside",
         "topic": "commons/snapple-compress",
         "poweron_state": 1,
-        "build_flags": null,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "commands": [
             {
                 "command": "backlog",
