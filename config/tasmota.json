@@ -1677,7 +1677,7 @@
             },
             {
                 "command": "teleperiod",
-                "payload": "30"
+                "payload": "10"
             },
             {
                 "command": "restart",
@@ -1689,6 +1689,55 @@
             {
                 "id": "01",
                 "ip_addr": "10.13.107.89"
+            }
+        ]
+    },
+    {
+        "name": "Air Line Pressure Sensor %id%",
+        "domain": null,
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "sensors/air-line-pressure-%id%",
+        "poweron_state": 0,
+        "build_flags": [
+                "USE_I2C",
+                "USE_ANALOG_IN",
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "ADC0",
+                "payload": "1",
+                "restart": 1
+            },
+            {
+                "command": "rule1",
+                "payload": "on tele-analog#a0 do var1=((0.1781*%value%)-19.747) endon on var1#state do publish stat/i3/inside/sensors/air-line-pressure-%id%/pressure %var1% endon"
+            },
+            {
+                "command": "rule1",
+                "payload": "1"
+            },
+            {
+                "command": "teleperiod",
+                "payload": "10"
+            },
+            {
+                "command": "restart",
+                "payload": "1",
+                "restart": 1
+            }
+        ],
+        "ids": [
+            {
+                "id": "02",
+                "ip_addr": "10.13.107.33"
             }
         ]
     }
