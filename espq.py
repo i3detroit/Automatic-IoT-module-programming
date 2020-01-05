@@ -76,8 +76,8 @@ class device(dict):
         self.c_topic = re.sub('%topic%', self.topic, re.sub('%prefix%', 'cmnd', self.full_topic))
         self.s_topic = re.sub('%topic%', self.topic, re.sub('%prefix%', 'stat', self.full_topic))
         self.t_topic = re.sub('%topic%', self.topic, re.sub('%prefix%', 'tele', self.full_topic))
-        self.f_name = re.sub('_', ' ', self.name)  # Friendly name
-        self.name = self.name.replace(' ', '_')    # Unfriendly name
+        self.f_name = re.sub('_', ' ', re.sub('\/', ' ', self.name))  # Friendly name
+        self.name =   re.sub(' ', '_', re.sub('\/', '-', self.name))  # Unfriendly name
 
         self.name = self.name.lower()   # home assistant doesn't like upper case letters in sensor names
 
