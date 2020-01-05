@@ -1,0 +1,162 @@
+[
+    {
+        "name": "Light %id%",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "base_topic": "evan/inside/basement",
+        "topic": "lights/%id%",
+        "poweron_state": 1,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
+            }
+        ],
+        "ids": [
+            {
+                "id": "001",
+                "ip_addr": "10.13.107.133",
+                "group_topic": "lights"
+            },
+            {
+                "id": "002",
+                "ip_addr": "10.13.107.78",
+                "group_topic": "lights"
+            },
+            {
+                "id": "003",
+                "ip_addr": "10.13.107.104",
+                "group_topic": "lights"
+            },
+            {
+                "id": "004",
+                "ip_addr": "10.13.107.177",
+                "group_topic": "lights"
+            },
+            {
+                "id": "005",
+                "ip_addr": "10.13.107.117",
+                "group_topic": "lights"
+            },
+            {
+                "id": "006",
+                "ip_addr": "10.13.107.135",
+                "group_topic": "lights"
+            },
+            {
+                "id": "007",
+                "ip_addr": "10.13.107.193",
+                "group_topic": "lights"
+            },
+            {
+                "id": "008",
+                "ip_addr": "10.13.107.154",
+                "group_topic": "lights"
+            },
+            {
+                "id": "009",
+                "ip_addr": "10.13.107.184",
+                "group_topic": "lights"
+            },
+            {
+                "id": "010",
+                "ip_addr": "10.13.107.130",
+                "group_topic": "lights"
+            },
+            {
+                "id": "011",
+                "ip_addr": "10.13.107.98",
+                "group_topic": "lights"
+            },
+            {
+                "id": "012",
+                "ip_addr": "10.13.107.98",
+                "group_topic": "lights"
+            }
+        ]
+    },
+    {
+        "name": "Sensor Cluster %id%",
+        "hass_template": "sensor_cluster",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "evan",
+        "group_topic": "sensors",
+        "topic": "%id%/sensor-cluster",
+        "poweron_state": 1,
+        "build_flags": [
+            "USE_I2C",
+            "USE_BMP",
+            "USE_BH1750",
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON; GPIO4 6; GPIO5 5; teleperiod 60",
+                "restart": 1
+            }
+        ],
+        "ids": [
+            {
+                "id": "inside/office",
+                "ip_addr": "10.13.107.100"
+            },
+            {
+                "id": "inside/basement-west",
+                "ip_addr": "10.13.107.100"
+            },
+            {
+                "id": "inside/basement-east",
+                "ip_addr": "10.13.107.100"
+            },
+            {
+                "id": "inside/upstairs-west",
+                "ip_addr": "10.13.107.100"
+            },
+            {
+                "id": "inside/upstairs-east",
+                "ip_addr": "10.13.107.100"
+            },
+            {
+                "id": "inside/hallway",
+                "ip_addr": "10.13.107.100"
+            },
+            {
+                "id": "inside/living-room",
+                "ip_addr": "10.13.107.100"
+            },
+            {
+                "id": "inside/bathroom",
+                "ip_addr": "10.13.107.100"
+            },
+            {
+                "id": "inside/bedroom",
+                "ip_addr": "10.13.107.100"
+            },
+            {
+                "id": "inside/kitchen",
+                "ip_addr": "10.13.107.206"
+            },
+            {
+                "id": "garage",
+                "ip_addr": "10.13.107.206"
+            }
+        ]
+    }
+]
