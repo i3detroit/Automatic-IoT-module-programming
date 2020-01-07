@@ -295,7 +295,9 @@ class device(dict):
         online_topic = '{t_topic}/INFO2'.format(**self)
         print('{BLUE}Watching for {}{NOCOLOR}'.format(online_topic, **colors))
         self.mqtt.connect(self.mqtt_host)
-        self.mqtt.message_callback_add(online_topic, lambda *args: setattr(self, 'online', True))
+        def fuckPython(*args):
+            online = True;
+        self.mqtt.message_callback_add(online_topic, fuckPython)
         self.mqtt.subscribe(online_topic)
         starttime = datetime.datetime.now()
         while online == False and (datetime.datetime.now() - starttime).total_seconds() < wait_time:
