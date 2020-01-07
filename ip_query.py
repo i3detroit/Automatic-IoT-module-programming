@@ -41,36 +41,46 @@ d = espq.import_devices(args.deviceFile)
 name_len = max([len(dev.name) for dev in d])
 
 for device in d:
-    device.query_tas_status(espq.network_attr)
-    device.query_tas_status(espq.firmware_attr)
+    network_response = device.query_tas_status(espq.network_attr)
+    firmware_response = device.query_tas_status(espq.firmware_attr)
+
+    offline = False;
+    if not bool(network_response) or not bool(firmware_response):
+        offline = True;
 
     # Skip printing if the device does not meet filter requirements
-    if args.filter == 'update' and (device.tas_version == current_version or device.tas_version == ''):
+    if args.filter == 'update' and (firmware_response['tas_version'] == current_version or firmware_response['tas_version'] == ''):
         continue
-    elif args.filter == 'offline' and device.reported_ip != '':
+    elif args.filter == 'offline' and network_response['reported_ip'] != '':
         continue
-    elif args.filter == 'online' and device.reported_ip == '':
+    elif args.filter == 'online' and network_response['reported_ip'] == '':
         continue
-    elif args.filter == 'badip' and (device.reported_ip == device.ip_addr or device.reported_ip == ''):
+    elif args.filter == 'badip' and (network_response['reported_ip'] == device.ip_addr or network_response['reported_ip'] == ''):
         continue
-    elif args.filter == 'badcore' and (device.core_version in good_core or device.core_version == ''):
+    elif args.filter == 'badcore' and (firmware_response['core_version'] in good_core or firmware_response['core_version'] == ''):
         continue
+
     # Build formatted output lines one element at a time, join into string when done
     # Result should be someting like 'device_name      IP   MAC   6.5.0   2_3_0'
-    output = [RED if device.reported_ip == '' else GREEN,
+    # This is just super hard to work with and does the same check multiple times
+    # TODO: literally anything else
+    if offline:
+        print("{RED}{name} is offline{NOCOLOR}".format(name=device.name, RED=RED, NOCOLOR=NOCOLOR));
+        continue;
+    output = [RED if network_response['reported_ip'] == '' else GREEN,
               device.name,
-              NOCOLOR if device.reported_ip == device.ip_addr else RED,
+              NOCOLOR if 'ip_addr' in device and network_response['reported_ip'] == device.ip_addr else RED,
               '\t'.expandtabs(name_len + 1 - len(device.name)),
-              device.reported_ip,
-              NOCOLOR if device.reported_ip != device.ip_addr else '',
-              '\t'.expandtabs(17 - len(device.reported_ip)),
-              device.reported_mac,
+              network_response['reported_ip'],
+              NOCOLOR if 'ip_addr' in device and network_response['reported_ip'] != device.ip_addr else '',
+              '\t'.expandtabs(17 - len(network_response['reported_ip'])),
+              network_response['reported_mac'],
               '   ',
-              RED if device.tas_version != current_version else '',
-              sub('\(tasmota\)|\(sonoff\)', '', device.tas_version),
+              RED if firmware_response['tas_version'] != current_version else '',
+              sub('\(tasmota\)|\(sonoff\)', '', firmware_response['tas_version']),
               NOCOLOR,
               '   ',
-              RED if device.core_version not in good_core else '',
-              device.core_version,
+              RED if firmware_response['core_version'] not in good_core else '',
+              firmware_response['core_version'],
               NOCOLOR]
     print(''.join(output))

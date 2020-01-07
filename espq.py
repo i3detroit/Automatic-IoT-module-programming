@@ -104,17 +104,7 @@ class device(dict):
         self.mqtt = mqtt.Client(clean_session=True, client_id="espq_{name}".format(**self))
         self.mqtt.reinitialise()
         self.mqtt.on_message = self._on_message
-        self.online = False
-        self.flashed = False
-        self.reported_ip = ''           # IP reported from status 5
-        self.reported_mac = ''          # MAC reported from status 5
-        self.reported_wificonfig = ''   # WifiConfig reported from status 5
-        self.tas_version = ''           # Tasmota version reported from status 2
-        self.core_version = ''          # Core version reported from status 2
-        self.reported_ssid = ''         # Wi-Fi SSID device is connected to
-        self.reported_bssid = ''        # Access point device is connected to
-        self.reported_channel = ''      # Wi-Fi channel device is on
-        self.reported_rssi = ''         # RSSI of Wi-Fi connection
+        self.flashed = False # TODO: remove
 
     def __getattr__(self, name):
         if name in self:
@@ -142,23 +132,25 @@ class device(dict):
 
         # Flash the right software.
         if self.software == 'tasmota':
-            self.flashed = self.flash_tasmota()
+            flashed = self.flash_tasmota()
         else:
-            self.flashed = self.flash_custom()
+            flashed = self.flash_custom()
+            self.flashed = flashed; # flash.py needs this right now, TODO: remove
         # If it flashed correctly, watch for it to come online.
-        if self.flashed == True:
+        online = False
+        if flashed == True:
             print(('{GREEN}{f_name} flashed successfully. Waiting for it to '
                    'come back online...{NOCOLOR}'.format(**colors, **self)))
             sleep(1)
-            self.online_check()
+            online = self.online_check()
         else:
             self._handle_result(1)
 
-        if self.online == False and self.flashed == True:
+        if online == False and flashed == True:
             self._handle_result(2)
         # If it came back online, run any setup commands,
         # and watch for it to come online again.
-        elif self.flashed == True and self.online == True:
+        elif flashed == True and online == True:
             # Skip commands if there are none.
             if not hasattr(self, 'commands') or self.commands is None or not self.commands:
                 self._handle_result(0)
@@ -177,7 +169,7 @@ class device(dict):
                     if "restart" in c and c['restart'] == 1:
                         self.online_check()
 
-            if self.online == True:
+            if online == True:
                 self._handle_result(0)
                 return(0)
             else:
@@ -299,25 +291,26 @@ class device(dict):
             Connect to MQTT and watch for the device to publish LWT Online
             Returns True if device is Online
         """
-        self.online = False
+        online = False
         online_topic = '{t_topic}/INFO2'.format(**self)
         print('{BLUE}Watching for {}{NOCOLOR}'.format(online_topic, **colors))
         self.mqtt.connect(self.mqtt_host)
         self.mqtt.message_callback_add(online_topic, lambda *args: setattr(self, 'online', True))
         self.mqtt.subscribe(online_topic)
         starttime = datetime.datetime.now()
-        while self.online == False and (datetime.datetime.now() - starttime).total_seconds() < wait_time:
+        while online == False and (datetime.datetime.now() - starttime).total_seconds() < wait_time:
             self.mqtt.loop(timeout=loop_time)
         time_waited = (datetime.datetime.now() - starttime).total_seconds()
-        if self.online == False:
+        if online == False:
             print('{RED}{f_name} did not come online within {wait_time} '
                   'seconds{NOCOLOR}'.format(f_name=self.f_name, wait_time=str(wait_time), **colors))
-        elif self.online == True:
+        elif online == True:
             print('{GREEN}{f_name} came online in {time_waited} '
                   'seconds{NOCOLOR}'.format(f_name=self.f_name, time_waited=time_waited, **colors))
         self.mqtt.unsubscribe(online_topic)
         self.mqtt.message_callback_remove(online_topic)
         self.mqtt.disconnect()
+        return online;
 
     def run_backlog_commands(self, commands):
         """ Issue setup commands for tasmota over MQTT with backlog """
@@ -338,9 +331,10 @@ class device(dict):
             Query a tasmota device's status of a certain type.
             Attributes can be wifi_attr, network_attr, or firmware_attr.
         """
+        response = {};
         def _tas_status_callback(mqtt, userdata, msg):
             for k, v in attributes['values'].items():
-                setattr(self, k, nested_get(literal_eval(msg.payload.decode('UTF-8')), v))
+                response[k] = nested_get(literal_eval(msg.payload.decode('UTF-8')), v)
         s_topic = '{s_topic}/{stat_topic}'.format(stat_topic=attributes['stat_topic'], **self)
         c_topic = '{c_topic}/status'.format(**self)
         self.mqtt.message_callback_add(s_topic, _tas_status_callback)
@@ -349,11 +343,12 @@ class device(dict):
         starttime = datetime.datetime.now()
         self.mqtt.publish(c_topic, attributes['status_payload'])
         # check and see if the last attribute has been found yet
-        while getattr(self, list(attributes['values'].keys())[-1]) == '' and (datetime.datetime.now() - starttime).total_seconds() < loop_time:
+        while len(list(response)) < len(list(attributes['values'])) and (datetime.datetime.now() - starttime).total_seconds() < loop_time:
             self.mqtt.loop(timeout=loop_time)
         self.mqtt.unsubscribe(s_topic)
         self.mqtt.message_callback_remove(s_topic)
         self.mqtt.disconnect()
+        return response;
 
     def write_hass_config(self):
         """
