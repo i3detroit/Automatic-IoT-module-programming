@@ -41,36 +41,40 @@ d = espq.import_devices(args.deviceFile)
 name_len = max([len(dev.name) for dev in d])
 
 for device in d:
-    device.query_tas_status(espq.network_attr)
-    device.query_tas_status(espq.firmware_attr)
+    response = device.query_tas_status()
+    offline = False
+    if not bool(response):
+        offline = True
 
     # Skip printing if the device does not meet filter requirements
-    if args.filter == 'update' and (device.tas_version == current_version or device.tas_version == ''):
+    if args.filter == 'update' and (response['tas_version'] == current_version or response['tas_version'] == ''):
         continue
-    elif args.filter == 'offline' and device.reported_ip != '':
+    elif args.filter == 'offline' and response['ip'] != '':
         continue
-    elif args.filter == 'online' and device.reported_ip == '':
+    elif args.filter == 'online' and response['ip'] == '':
         continue
-    elif args.filter == 'badip' and (device.reported_ip == device.ip_addr or device.reported_ip == ''):
+    elif args.filter == 'badip' and (response['ip'] == device.ip_addr or response['ip'] == ''):
         continue
-    elif args.filter == 'badcore' and (device.core_version in good_core or device.core_version == ''):
+    elif args.filter == 'badcore' and (response['core_version'] in good_core or response['core_version'] == ''):
         continue
+
     # Build formatted output lines one element at a time, join into string when done
     # Result should be someting like 'device_name      IP   MAC   6.5.0   2_3_0'
-    output = [RED if device.reported_ip == '' else GREEN,
-              device.name,
-              NOCOLOR if device.reported_ip == device.ip_addr else RED,
-              '\t'.expandtabs(name_len + 1 - len(device.name)),
-              device.reported_ip,
-              NOCOLOR if device.reported_ip != device.ip_addr else '',
-              '\t'.expandtabs(17 - len(device.reported_ip)),
-              device.reported_mac,
-              '   ',
-              RED if device.tas_version != current_version else '',
-              sub('\(tasmota\)|\(sonoff\)', '', device.tas_version),
+    # This is just super hard to work with and does the same check multiple times
+    # TODO: literally anything else
+    if offline:
+        print("{RED}".format(RED=RED) + "{name}".format(name=device.name).ljust(name_len + 1) + "Offline{NOCOLOR}".format(NOCOLOR=NOCOLOR))
+        continue
+    output_line = [GREEN,
+              device.name.ljust(name_len+1),  #left justify with trailing spaces filling out max name length
+              NOCOLOR if 'ip_addr' in device and response['ip'] == device.ip_addr else RED,
+              response['ip'].ljust(16),  #left justify with trailing spaces filling out max IP length
+              NOCOLOR if 'ip_addr' in device and response['ip'] != device.ip_addr else '',
+              response['mac'].ljust(19),
+              RED if response['tas_version'] != current_version else '',
+              sub('\(tasmota\)|\(sonoff\)', '', response['tas_version']).ljust(7),
               NOCOLOR,
-              '   ',
-              RED if device.core_version not in good_core else '',
-              device.core_version,
+              RED if response['core_version'] not in good_core else '',
+              response['core_version'],
               NOCOLOR]
-    print(''.join(output))
+    print(''.join(output_line))

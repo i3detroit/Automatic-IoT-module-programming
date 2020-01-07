@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import datetime
+from functools import reduce
 from time import sleep
 from filecmp import cmp
 from copy import deepcopy
@@ -22,8 +23,8 @@ blank_defines = 'blank_defines.h'
 espqdir = os.path.dirname(os.path.abspath(__file__))
 
 current_tasmota_version = '0x08010000' # v8.1.0
-tasmota_dir = os.path.join(espqdir, '..', 'Tasmota');
-custom_dir = os.path.join(espqdir, '..', 'custom-mqtt-programs/');
+tasmota_dir = os.path.join(espqdir, '..', 'Tasmota')
+custom_dir = os.path.join(espqdir, '..', 'custom-mqtt-programs/')
 
 ###########################################################
 
@@ -38,21 +39,17 @@ colors = {"RED": '\033[1;31m',
           "BLUE": '\033[94m',
           "NOCOLOR": '\033[0m'}
 
-wifi_attr = {'status_payload': '11',
-             'stat_topic': 'STATUS11',
-             'values': {'reported_ssid': ['StatusSTS', 'Wifi', 'SSId'],
-                        'reported_bssid': ['StatusSTS', 'Wifi', 'BSSId'],
-                        'reported_channel': ['StatusSTS', 'Wifi', 'Channel'],
-                        'reported_rssi': ['StatusSTS', 'Wifi', 'RSSI']}}
-network_attr = {'status_payload': '5',
-                'stat_topic': 'STATUS5',
-                'values': {'reported_ip': ['StatusNET', 'IPAddress'],
-                           'reported_mac': ['StatusNET', 'Mac'],
-                           'reported_wificonfig':['StatusNET', 'WifiConfig']}}
-firmware_attr = {'status_payload': '2',
-                'stat_topic': 'STATUS2',
-                'values': {'tas_version': ['StatusFWR', 'Version'],
-                           'core_version': ['StatusFWR', 'Core']}}
+tasmota_status_query = {
+        '11': {'ssid': ['StatusSTS', 'Wifi', 'SSId'],
+            'bssid': ['StatusSTS', 'Wifi', 'BSSId'],
+            'channel': ['StatusSTS', 'Wifi', 'Channel'],
+            'rssi': ['StatusSTS', 'Wifi', 'RSSI']},
+        '5': {'ip': ['StatusNET', 'IPAddress'],
+            'mac': ['StatusNET', 'Mac'],
+            'wificonfig':['StatusNET', 'WifiConfig']},
+        '2': {'tas_version': ['StatusFWR', 'Version'],
+            'core_version': ['StatusFWR', 'Core']}
+        }
 
 class device(dict):
     """
@@ -104,17 +101,9 @@ class device(dict):
         self.mqtt = mqtt.Client(clean_session=True, client_id="espq_{name}".format(**self))
         self.mqtt.reinitialise()
         self.mqtt.on_message = self._on_message
+        self.flashed = False 
         self.online = False
-        self.flashed = False
-        self.reported_ip = ''           # IP reported from status 5
-        self.reported_mac = ''          # MAC reported from status 5
-        self.reported_wificonfig = ''   # WifiConfig reported from status 5
-        self.tas_version = ''           # Tasmota version reported from status 2
-        self.core_version = ''          # Core version reported from status 2
-        self.reported_ssid = ''         # Wi-Fi SSID device is connected to
-        self.reported_bssid = ''        # Access point device is connected to
-        self.reported_channel = ''      # Wi-Fi channel device is on
-        self.reported_rssi = ''         # RSSI of Wi-Fi connection
+        self.reported = {}
 
     def __getattr__(self, name):
         if name in self:
@@ -146,19 +135,20 @@ class device(dict):
         else:
             self.flashed = self.flash_custom()
         # If it flashed correctly, watch for it to come online.
+        online = False
         if self.flashed == True:
             print(('{GREEN}{f_name} flashed successfully. Waiting for it to '
                    'come back online...{NOCOLOR}'.format(**colors, **self)))
             sleep(1)
-            self.online_check()
+            online = self.online_check()
         else:
             self._handle_result(1)
 
-        if self.online == False and self.flashed == True:
+        if online == False and self.flashed == True:
             self._handle_result(2)
         # If it came back online, run any setup commands,
         # and watch for it to come online again.
-        elif self.flashed == True and self.online == True:
+        elif self.flashed == True and online == True:
             # Skip commands if there are none.
             if not hasattr(self, 'commands') or self.commands is None or not self.commands:
                 self._handle_result(0)
@@ -177,7 +167,7 @@ class device(dict):
                     if "restart" in c and c['restart'] == 1:
                         self.online_check()
 
-            if self.online == True:
+            if online == True:
                 self._handle_result(0)
                 return(0)
             else:
@@ -318,6 +308,7 @@ class device(dict):
         self.mqtt.unsubscribe(online_topic)
         self.mqtt.message_callback_remove(online_topic)
         self.mqtt.disconnect()
+        return self.online
 
     def run_backlog_commands(self, commands):
         """ Issue setup commands for tasmota over MQTT with backlog """
@@ -333,27 +324,50 @@ class device(dict):
             self.mqtt.publish(backlog_topic, backlog_payload)
             self.mqtt.disconnect()
 
-    def query_tas_status(self, attributes):
+    def query_tas_status(self):
         """
-            Query a tasmota device's status of a certain type.
-            Attributes can be wifi_attr, network_attr, or firmware_attr.
+            Query a tasmota device's status
         """
+        response = {}
         def _tas_status_callback(mqtt, userdata, msg):
-            for k, v in attributes['values'].items():
-                setattr(self, k, nested_get(literal_eval(msg.payload.decode('UTF-8')), v))
-        s_topic = '{s_topic}/{stat_topic}'.format(stat_topic=attributes['stat_topic'], **self)
+            status_num=re.sub(r'.*STATUS([0-9]*)$', r'\1', msg.topic)
+            msg = json.loads(msg.payload.decode('UTF-8'))
+            for datum in tasmota_status_query[status_num]:
+                datumPath=tasmota_status_query[status_num][datum]
+                response[datum] = nested_get(msg, datumPath)
+            response['status{num}'.format(num=status_num)] = datetime.datetime.now()
+        s_topic = '{s_topic}/+'.format(**self)
         c_topic = '{c_topic}/status'.format(**self)
         self.mqtt.message_callback_add(s_topic, _tas_status_callback)
         self.mqtt.connect(self.mqtt_host)
         self.mqtt.subscribe(s_topic)
+
+        #publish requests
+        for status_number, ignored in tasmota_status_query.items():
+            self.mqtt.publish(c_topic, status_number)
+
+        # _too_old will return true if the time is more than seconds ago
+        def _too_old(time, seconds):
+            return (datetime.datetime.now() - time).total_seconds() > seconds
+        # _list_all_true will return true if everything in the list is true
+        def _list_all_true(list):
+            return reduce(lambda a,b: True if (a and b) else False, list)
+
+        # while not all of the responses exist, and we aren't too old since the start time
+        # Was goign to check if the responses are too old, but as long as we
+        #  don't call status more than once per run, their existance shows they
+        #  were found
         starttime = datetime.datetime.now()
-        self.mqtt.publish(c_topic, attributes['status_payload'])
-        # check and see if the last attribute has been found yet
-        while getattr(self, list(attributes['values'].keys())[-1]) == '' and (datetime.datetime.now() - starttime).total_seconds() < loop_time:
-            self.mqtt.loop(timeout=loop_time)
+        while(not _list_all_true(list(map(lambda num: 'status{num}'.format(num=num) in response, tasmota_status_query.keys())))
+                and not _too_old(starttime, 2*loop_time)):
+            self.mqtt.loop(timeout=2*loop_time)
+
         self.mqtt.unsubscribe(s_topic)
         self.mqtt.message_callback_remove(s_topic)
         self.mqtt.disconnect()
+
+        self.reported = response
+        return response
 
     def write_hass_config(self):
         """
