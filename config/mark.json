@@ -1,5 +1,79 @@
 [
     {
+        "name": "Basement Light %id%",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "mark",
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "base_topic": "mark/basement",
+        "topic": "lights/%id%",
+        "poweron_state": 1,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
+            }
+        ],
+        "ids": [
+            {
+                "id": "001",
+                "group_topic": "lights",
+                "ip_addr": "192.168.107.16"
+            },
+            {
+                "id": "002",
+                "group_topic": "lights"
+            },
+            {
+                "id": "003",
+                "group_topic": "lights"
+            },
+            {
+                "id": "004",
+                "group_topic": "lights"
+            },
+            {
+                "id": "005",
+                "group_topic": "lights"
+            },
+            {
+                "id": "006",
+                "group_topic": "lights"
+            },
+            {
+                "id": "007",
+                "group_topic": "lights"
+            },
+            {
+                "id": "008",
+                "group_topic": "lights"
+            },
+            {
+                "id": "009",
+                "group_topic": "lights"
+            },
+            {
+                "id": "010",
+                "group_topic": "lights"
+            },
+            {
+                "id": "011",
+                "group_topic": "lights"
+            },
+            {
+                "id": "012",
+                "group_topic": "lights"
+            }
+        ]
+    },
+    {
         "name": "Sensor Cluster %id%",
         "hass_template": "sensor_cluster",
         "hass_domain": "sensor",
