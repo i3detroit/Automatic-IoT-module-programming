@@ -239,6 +239,16 @@ class device(dict):
         if not os.path.exists(tasmotaPIO) or not cmp(correctPIO, tasmotaPIO):
             copyfile(correctPIO, tasmotaPIO)
 
+        if not 'ip_addr' in self or self.ip_addr == '' or self.ip_addr == None:
+            print('No IP address for this device in the config. Querying device...')
+            self.query_tas_status()
+            if 'ip' in self.reported:
+                print('{name} is online at {ip}'.format(name=self.f_name, ip=self.reported['ip']))
+                self.ip_addr = self.reported['ip']
+            else:
+                print('{f_name} did not respond at {c_topic}. IP address unavailable. Skipping device...'.format(**self))
+                return(False)
+
         os.chdir(tasmota_dir)
         pio_call = 'platformio run -e {environment} -t upload --upload-port {port}'
         if self.flash_mode == 'wifi':

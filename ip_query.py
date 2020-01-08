@@ -45,6 +45,8 @@ for device in d:
     offline = False
     if not bool(response):
         offline = True
+    if "ip_addr" not in device:
+        device.ip_addr = '';
 
     # Skip printing if the device does not meet filter requirements
     if args.filter == 'update' and (response['tas_version'] == current_version or response['tas_version'] == ''):
