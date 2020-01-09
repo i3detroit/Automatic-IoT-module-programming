@@ -51,7 +51,7 @@ sensor_cluster = """- platform: mqtt
       value_template: "{{{{ states('sensor.{name}_pressure') | multiply(1/10) | round(1) }}}}"
 """
 
-sensor = generic.generic_telemetry + sensor_cluster
+sensor = generic.sensor + generic.generic_telemetry + sensor_cluster
 
 components = {
                 'sensor': sensor
