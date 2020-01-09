@@ -54,7 +54,7 @@ generic_telemetry = """- platform: template
     {name}_wifi_downtime:
       friendly_name: '{f_name} Wifi Downtime'
       value_template: "{{{{ state_attr('{hass_domain}.{name}', 'Wifi')['Downtime'] }}}}"
-    {wifi_APs_string}
+{wifi_APs_string}
 """
 
 components = {

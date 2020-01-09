@@ -374,7 +374,7 @@ class device(dict):
             return()
 
         if hasattr(self, 'wifi_APs'):
-            self.wifi_APs_string = "{name}_wifi_ap:\n      friendly_name: '{f_name} Wifi AP'\n      value_template: >-\n".format(**self)
+            self.wifi_APs_string = "    {name}_wifi_ap:\n      friendly_name: '{f_name} Wifi AP'\n      value_template: >-\n".format(**self)
             for AP in self.wifi_APs[:1]:
                 self.wifi_APs_string += "        {{% if state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] | string == '".format(**self) + AP['MAC'] + "' %}\n          " + AP['name'] + "\n"
             for AP in self.wifi_APs[1:]:

@@ -7,7 +7,7 @@ sensor_cluster = """- platform: mqtt
   name: '{f_name} Temperature'
   state_topic: 'tele/{base_topic}/{topic}/SENSOR'
   unit_of_measurement: '°C'
-  value_template: '{{{{ value_json['BME280']['Temperature'] }}}}'
+  value_template: "{{{{ value_json['BME280']['Temperature'] }}}}"
   force_update: True
   availability_topic: 'tele/{base_topic}/{topic}/LWT'
   payload_available: 'Online'
@@ -17,7 +17,7 @@ sensor_cluster = """- platform: mqtt
   name: '{f_name} Pressure'
   state_topic: 'tele/{base_topic}/{topic}/SENSOR'
   unit_of_measurement: 'hPa'
-  value_template: '{{{{ value_json['BME280']['Pressure'] }}}}'
+  value_template: "{{{{ value_json['BME280']['Pressure'] }}}}"
   force_update: True
   availability_topic: 'tele/{base_topic}/{topic}/LWT'
   payload_available: 'Online'
@@ -27,7 +27,7 @@ sensor_cluster = """- platform: mqtt
   name: '{f_name} Humidity'
   state_topic: 'tele/{base_topic}/{topic}/SENSOR'
   unit_of_measurement: '%'
-  value_template: '{{{{ value_json['BME280']['Humidity'] }}}}'
+  value_template: "{{{{ value_json['BME280']['Humidity'] }}}}"
   force_update: True
   availability_topic: 'tele/{base_topic}/{topic}/LWT'
   payload_available: 'Online'
@@ -37,7 +37,7 @@ sensor_cluster = """- platform: mqtt
   name: '{f_name} Lux'
   state_topic: 'tele/{base_topic}/{topic}/SENSOR'
   unit_of_measurement: 'lux'
-  value_template: '{{{{ value_json['BH1750']['Illuminance'] }}}}'
+  value_template: "{{{{ value_json['BH1750']['Illuminance'] }}}}"
   force_update: True
   availability_topic: 'tele/{base_topic}/{topic}/LWT'
   payload_available: 'Online'
