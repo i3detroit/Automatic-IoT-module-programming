@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import datetime
+from functools import reduce
 from time import sleep
 from filecmp import cmp
 from copy import deepcopy
@@ -38,21 +39,17 @@ colors = {"RED": '\033[1;31m',
           "BLUE": '\033[94m',
           "NOCOLOR": '\033[0m'}
 
-wifi_attr = {'status_payload': '11',
-             'stat_topic': 'STATUS11',
-             'values': {'reported_ssid': ['StatusSTS', 'Wifi', 'SSId'],
-                        'reported_bssid': ['StatusSTS', 'Wifi', 'BSSId'],
-                        'reported_channel': ['StatusSTS', 'Wifi', 'Channel'],
-                        'reported_rssi': ['StatusSTS', 'Wifi', 'RSSI']}}
-network_attr = {'status_payload': '5',
-                'stat_topic': 'STATUS5',
-                'values': {'reported_ip': ['StatusNET', 'IPAddress'],
-                           'reported_mac': ['StatusNET', 'Mac'],
-                           'reported_wificonfig':['StatusNET', 'WifiConfig']}}
-firmware_attr = {'status_payload': '2',
-                'stat_topic': 'STATUS2',
-                'values': {'tas_version': ['StatusFWR', 'Version'],
-                           'core_version': ['StatusFWR', 'Core']}}
+tasmota_status_query = {
+        '11': {'ssid': ['StatusSTS', 'Wifi', 'SSId'],
+            'bssid': ['StatusSTS', 'Wifi', 'BSSId'],
+            'channel': ['StatusSTS', 'Wifi', 'Channel'],
+            'rssi': ['StatusSTS', 'Wifi', 'RSSI']},
+        '5': {'ip': ['StatusNET', 'IPAddress'],
+            'mac': ['StatusNET', 'Mac'],
+            'wificonfig':['StatusNET', 'WifiConfig']},
+        '2': {'tas_version': ['StatusFWR', 'Version'],
+            'core_version': ['StatusFWR', 'Core']}
+        }
 
 class device(dict):
     """
@@ -328,28 +325,49 @@ class device(dict):
             self.mqtt.publish(backlog_topic, backlog_payload)
             self.mqtt.disconnect()
 
-    def query_tas_status(self, attributes):
+    def query_tas_status(self):
         """
-            Query a tasmota device's status of a certain type.
-            Attributes can be wifi_attr, network_attr, or firmware_attr.
+            Query a tasmota device's status
         """
         response = {};
         def _tas_status_callback(mqtt, userdata, msg):
-            for k, v in attributes['values'].items():
-                response[k] = nested_get(literal_eval(msg.payload.decode('UTF-8')), v)
-        s_topic = '{s_topic}/{stat_topic}'.format(stat_topic=attributes['stat_topic'], **self)
+            statusNum=re.sub(r'.*STATUS([0-9]*)$', r'\1', msg.topic)
+            msg = json.loads(msg.payload.decode('UTF-8'));
+            for datum in tasmota_status_query[statusNum]:
+                datumPath=tasmota_status_query[statusNum][datum]
+                response[datum] = nested_get(msg, datumPath);
+            response['status{num}'.format(num=statusNum)] = datetime.datetime.now()
+        s_topic = '{s_topic}/+'.format(**self)
         c_topic = '{c_topic}/status'.format(**self)
         self.mqtt.message_callback_add(s_topic, _tas_status_callback)
         self.mqtt.connect(self.mqtt_host)
         self.mqtt.subscribe(s_topic)
+
+        #publish requests
+        for statusNumber, ignored in tasmota_status_query.items():
+            self.mqtt.publish(c_topic, statusNumber)
+
+        # tooOld will return true if the time is more than seconds ago
+        def tooOld(time, seconds):
+            return (datetime.datetime.now() - time).total_seconds() > seconds
+        # listAllTrue will return true if everything in the list is tru
+        def listAllTrue(list):
+            return reduce(lambda a,b: True if (a and b) else False, list)
+
+        # while not all of the responses exist, and we aren't too old since the start time
+        # Was goign to check if the responses are too old, but as long as we
+        #  don't call status more than once per run, their existance shows they
+        #  were found
         starttime = datetime.datetime.now()
-        self.mqtt.publish(c_topic, attributes['status_payload'])
-        # check and see if the last attribute has been found yet
-        while len(list(response)) < len(list(attributes['values'])) and (datetime.datetime.now() - starttime).total_seconds() < loop_time:
+        while(not listAllTrue(list(map(lambda num: 'status{num}'.format(num=num) in response, tasmota_status_query.keys())))
+                and not tooOld(starttime, loop_time)):
             self.mqtt.loop(timeout=loop_time)
+
         self.mqtt.unsubscribe(s_topic)
         self.mqtt.message_callback_remove(s_topic)
         self.mqtt.disconnect()
+
+        self.reported = response;
         return response;
 
     def write_hass_config(self):

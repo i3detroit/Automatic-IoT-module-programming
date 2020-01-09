@@ -41,11 +41,15 @@ d = espq.import_devices(args.deviceFile)
 name_len = max([len(dev.name) for dev in d])
 
 for device in d:
-    network_response = device.query_tas_status(espq.network_attr)
-    firmware_response = device.query_tas_status(espq.firmware_attr)
+    response = device.query_tas_status()
+    print(response);
+    exit(1);
+    if "ip_addr" not in device:
+        device.ip_addr = '';
+
 
     offline = False;
-    if not bool(network_response) or not bool(firmware_response):
+    if not bool(response):
         offline = True;
 
     # Skip printing if the device does not meet filter requirements
