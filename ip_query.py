@@ -42,26 +42,20 @@ name_len = max([len(dev.name) for dev in d])
 
 for device in d:
     response = device.query_tas_status()
-    print(response);
-    exit(1);
-    if "ip_addr" not in device:
-        device.ip_addr = '';
-
-
-    offline = False;
+    offline = False
     if not bool(response):
-        offline = True;
+        offline = True
 
     # Skip printing if the device does not meet filter requirements
-    if args.filter == 'update' and (firmware_response['tas_version'] == current_version or firmware_response['tas_version'] == ''):
+    if args.filter == 'update' and (response['tas_version'] == current_version or response['tas_version'] == ''):
         continue
-    elif args.filter == 'offline' and network_response['reported_ip'] != '':
+    elif args.filter == 'offline' and response['ip'] != '':
         continue
-    elif args.filter == 'online' and network_response['reported_ip'] == '':
+    elif args.filter == 'online' and response['ip'] == '':
         continue
-    elif args.filter == 'badip' and (network_response['reported_ip'] == device.ip_addr or network_response['reported_ip'] == ''):
+    elif args.filter == 'badip' and (response['ip'] == device.ip_addr or response['ip'] == ''):
         continue
-    elif args.filter == 'badcore' and (firmware_response['core_version'] in good_core or firmware_response['core_version'] == ''):
+    elif args.filter == 'badcore' and (response['core_version'] in good_core or response['core_version'] == ''):
         continue
 
     # Build formatted output lines one element at a time, join into string when done
@@ -69,22 +63,18 @@ for device in d:
     # This is just super hard to work with and does the same check multiple times
     # TODO: literally anything else
     if offline:
-        print("{RED}{name} is offline{NOCOLOR}".format(name=device.name, RED=RED, NOCOLOR=NOCOLOR));
-        continue;
-    output = [RED if network_response['reported_ip'] == '' else GREEN,
-              device.name,
-              NOCOLOR if 'ip_addr' in device and network_response['reported_ip'] == device.ip_addr else RED,
-              '\t'.expandtabs(name_len + 1 - len(device.name)),
-              network_response['reported_ip'],
-              NOCOLOR if 'ip_addr' in device and network_response['reported_ip'] != device.ip_addr else '',
-              '\t'.expandtabs(17 - len(network_response['reported_ip'])),
-              network_response['reported_mac'],
-              '   ',
-              RED if firmware_response['tas_version'] != current_version else '',
-              sub('\(tasmota\)|\(sonoff\)', '', firmware_response['tas_version']),
+        print("{RED}".format(RED=RED) + "{name}".format(name=device.name).ljust(name_len + 1) + "Offline{NOCOLOR}".format(NOCOLOR=NOCOLOR))
+        continue
+    output_line = [GREEN,
+              device.name.ljust(name_len+1),  #left justify with trailing spaces filling out max name length
+              NOCOLOR if 'ip_addr' in device and response['ip'] == device.ip_addr else RED,
+              response['ip'].ljust(16),  #left justify with trailing spaces filling out max IP length
+              NOCOLOR if 'ip_addr' in device and response['ip'] != device.ip_addr else '',
+              response['mac'].ljust(19),
+              RED if response['tas_version'] != current_version else '',
+              sub('\(tasmota\)|\(sonoff\)', '', response['tas_version']).ljust(7),
               NOCOLOR,
-              '   ',
-              RED if firmware_response['core_version'] not in good_core else '',
-              firmware_response['core_version'],
+              RED if response['core_version'] not in good_core else '',
+              response['core_version'],
               NOCOLOR]
-    print(''.join(output))
+    print(''.join(output_line))
