@@ -101,7 +101,8 @@ class device(dict):
         self.mqtt = mqtt.Client(clean_session=True, client_id="espq_{name}".format(**self))
         self.mqtt.reinitialise()
         self.mqtt.on_message = self._on_message
-        self.flashed = False # TODO: remove
+        self.flashed = False 
+        self.online = False
 
     def __getattr__(self, name):
         if name in self:
@@ -288,28 +289,26 @@ class device(dict):
             Connect to MQTT and watch for the device to publish LWT Online
             Returns True if device is Online
         """
-        online = False
+        self.online = False
         online_topic = '{t_topic}/INFO2'.format(**self)
         print('{BLUE}Watching for {}{NOCOLOR}'.format(online_topic, **colors))
         self.mqtt.connect(self.mqtt_host)
-        def fuckPython(*args):
-            online = True
-        self.mqtt.message_callback_add(online_topic, fuckPython)
+        self.mqtt.message_callback_add(online_topic, lambda *args: setattr(self, 'online', True))
         self.mqtt.subscribe(online_topic)
         starttime = datetime.datetime.now()
-        while online == False and (datetime.datetime.now() - starttime).total_seconds() < wait_time:
+        while self.online == False and (datetime.datetime.now() - starttime).total_seconds() < wait_time:
             self.mqtt.loop(timeout=loop_time)
         time_waited = (datetime.datetime.now() - starttime).total_seconds()
-        if online == False:
+        if self.online == False:
             print('{RED}{f_name} did not come online within {wait_time} '
                   'seconds{NOCOLOR}'.format(f_name=self.f_name, wait_time=str(wait_time), **colors))
-        elif online == True:
+        elif self.online == True:
             print('{GREEN}{f_name} came online in {time_waited} '
                   'seconds{NOCOLOR}'.format(f_name=self.f_name, time_waited=time_waited, **colors))
         self.mqtt.unsubscribe(online_topic)
         self.mqtt.message_callback_remove(online_topic)
         self.mqtt.disconnect()
-        return online
+        return self.online
 
     def run_backlog_commands(self, commands):
         """ Issue setup commands for tasmota over MQTT with backlog """
