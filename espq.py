@@ -131,13 +131,12 @@ class device(dict):
 
         # Flash the right software.
         if self.software == 'tasmota':
-            flashed = self.flash_tasmota()
+            self.flashed = self.flash_tasmota()
         else:
-            flashed = self.flash_custom()
-            self.flashed = flashed # flash.py needs this right now, TODO: remove
+            self.flashed = self.flash_custom()
         # If it flashed correctly, watch for it to come online.
         online = False
-        if flashed == True:
+        if self.flashed == True:
             print(('{GREEN}{f_name} flashed successfully. Waiting for it to '
                    'come back online...{NOCOLOR}'.format(**colors, **self)))
             sleep(1)
@@ -145,11 +144,11 @@ class device(dict):
         else:
             self._handle_result(1)
 
-        if online == False and flashed == True:
+        if online == False and self.flashed == True:
             self._handle_result(2)
         # If it came back online, run any setup commands,
         # and watch for it to come online again.
-        elif flashed == True and online == True:
+        elif self.flashed == True and online == True:
             # Skip commands if there are none.
             if not hasattr(self, 'commands') or self.commands is None or not self.commands:
                 self._handle_result(0)

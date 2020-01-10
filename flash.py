@@ -19,7 +19,7 @@ def fmtcols(mylist, cols):
 
 def progress_report(devices):
     """ Print a list of devices and their flashing status """
-    formatted_status = fmtcols(["[{status}] {d}".format(status = 'X' if dev.flashed == True else ' ', d=dev.name) for dev in devices], 3)
+    formatted_status = fmtcols(["[{status}] {d}".format(status = 'X' if (dev.flashed == True and dev.online == True) else ' ', d=dev.name) for dev in devices], 3)
     print(re.sub('\[X\]', '[\033[1;32mX\033[0m]', formatted_status))
     print('=' * cols)
 
