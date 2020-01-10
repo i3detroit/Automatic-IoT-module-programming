@@ -23,8 +23,8 @@ blank_defines = 'blank_defines.h'
 espqdir = os.path.dirname(os.path.abspath(__file__))
 
 current_tasmota_version = '0x08010000' # v8.1.0
-tasmota_dir = os.path.join(espqdir, '..', 'Tasmota');
-custom_dir = os.path.join(espqdir, '..', 'custom-mqtt-programs/');
+tasmota_dir = os.path.join(espqdir, '..', 'Tasmota')
+custom_dir = os.path.join(espqdir, '..', 'custom-mqtt-programs/')
 
 ###########################################################
 
@@ -132,7 +132,7 @@ class device(dict):
             flashed = self.flash_tasmota()
         else:
             flashed = self.flash_custom()
-            self.flashed = flashed; # flash.py needs this right now, TODO: remove
+            self.flashed = flashed # flash.py needs this right now, TODO: remove
         # If it flashed correctly, watch for it to come online.
         online = False
         if flashed == True:
@@ -293,7 +293,7 @@ class device(dict):
         print('{BLUE}Watching for {}{NOCOLOR}'.format(online_topic, **colors))
         self.mqtt.connect(self.mqtt_host)
         def fuckPython(*args):
-            online = True;
+            online = True
         self.mqtt.message_callback_add(online_topic, fuckPython)
         self.mqtt.subscribe(online_topic)
         starttime = datetime.datetime.now()
@@ -309,7 +309,7 @@ class device(dict):
         self.mqtt.unsubscribe(online_topic)
         self.mqtt.message_callback_remove(online_topic)
         self.mqtt.disconnect()
-        return online;
+        return online
 
     def run_backlog_commands(self, commands):
         """ Issue setup commands for tasmota over MQTT with backlog """
@@ -329,14 +329,14 @@ class device(dict):
         """
             Query a tasmota device's status
         """
-        response = {};
+        response = {}
         def _tas_status_callback(mqtt, userdata, msg):
-            statusNum=re.sub(r'.*STATUS([0-9]*)$', r'\1', msg.topic)
-            msg = json.loads(msg.payload.decode('UTF-8'));
-            for datum in tasmota_status_query[statusNum]:
-                datumPath=tasmota_status_query[statusNum][datum]
-                response[datum] = nested_get(msg, datumPath);
-            response['status{num}'.format(num=statusNum)] = datetime.datetime.now()
+            status_num=re.sub(r'.*STATUS([0-9]*)$', r'\1', msg.topic)
+            msg = json.loads(msg.payload.decode('UTF-8'))
+            for datum in tasmota_status_query[status_num]:
+                datumPath=tasmota_status_query[status_num][datum]
+                response[datum] = nested_get(msg, datumPath)
+            response['status{num}'.format(num=status_num)] = datetime.datetime.now()
         s_topic = '{s_topic}/+'.format(**self)
         c_topic = '{c_topic}/status'.format(**self)
         self.mqtt.message_callback_add(s_topic, _tas_status_callback)
@@ -344,14 +344,14 @@ class device(dict):
         self.mqtt.subscribe(s_topic)
 
         #publish requests
-        for statusNumber, ignored in tasmota_status_query.items():
-            self.mqtt.publish(c_topic, statusNumber)
+        for status_number, ignored in tasmota_status_query.items():
+            self.mqtt.publish(c_topic, status_number)
 
-        # tooOld will return true if the time is more than seconds ago
-        def tooOld(time, seconds):
+        # _too_old will return true if the time is more than seconds ago
+        def _too_old(time, seconds):
             return (datetime.datetime.now() - time).total_seconds() > seconds
-        # listAllTrue will return true if everything in the list is tru
-        def listAllTrue(list):
+        # _list_all_true will return true if everything in the list is true
+        def _list_all_true(list):
             return reduce(lambda a,b: True if (a and b) else False, list)
 
         # while not all of the responses exist, and we aren't too old since the start time
@@ -359,16 +359,16 @@ class device(dict):
         #  don't call status more than once per run, their existance shows they
         #  were found
         starttime = datetime.datetime.now()
-        while(not listAllTrue(list(map(lambda num: 'status{num}'.format(num=num) in response, tasmota_status_query.keys())))
-                and not tooOld(starttime, loop_time)):
+        while(not _list_all_true(list(map(lambda num: 'status{num}'.format(num=num) in response, tasmota_status_query.keys())))
+                and not _too_old(starttime, loop_time)):
             self.mqtt.loop(timeout=loop_time)
 
         self.mqtt.unsubscribe(s_topic)
         self.mqtt.message_callback_remove(s_topic)
         self.mqtt.disconnect()
 
-        self.reported = response;
-        return response;
+        self.reported = response
+        return response
 
     def write_hass_config(self):
         """
