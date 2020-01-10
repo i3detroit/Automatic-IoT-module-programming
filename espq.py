@@ -103,6 +103,7 @@ class device(dict):
         self.mqtt.on_message = self._on_message
         self.flashed = False 
         self.online = False
+        self.reported = {}
 
     def __getattr__(self, name):
         if name in self:
@@ -359,8 +360,8 @@ class device(dict):
         #  were found
         starttime = datetime.datetime.now()
         while(not _list_all_true(list(map(lambda num: 'status{num}'.format(num=num) in response, tasmota_status_query.keys())))
-                and not _too_old(starttime, loop_time)):
-            self.mqtt.loop(timeout=loop_time)
+                and not _too_old(starttime, 2*loop_time)):
+            self.mqtt.loop(timeout=2*loop_time)
 
         self.mqtt.unsubscribe(s_topic)
         self.mqtt.message_callback_remove(s_topic)
