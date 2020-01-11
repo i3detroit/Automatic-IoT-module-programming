@@ -1,16 +1,14 @@
 import os
+import re
 import sys
 import json
 import datetime
-from functools import reduce
 from time import sleep
 from filecmp import cmp
 from copy import deepcopy
 from random import randint
 from shutil import copyfile
-import re
 from subprocess import call
-from ast import literal_eval
 import paho.mqtt.client as mqtt
 from PyInquirer import style_from_dict, Token, prompt, Separator
 
@@ -32,7 +30,9 @@ custom_dir = os.path.join(espqdir, '..', 'custom-mqtt-programs/')
 hass_template_dir = os.path.join(espqdir, 'hass_templates')
 hass_output_dir = os.path.join(espqdir, 'hass_output')
 
-loop_time, wait_time = 1.0, 45.0
+loop_time = 1 # passed to mqtt.loop timeout
+wait_time = 45.0 # how long to wait for device to come online after flash
+waitForStatus = 3 # how long to wait for a status before giving up
 
 colors = {"RED": '\033[1;31m',
           "GREEN": '\033[1;32m',
@@ -50,6 +50,10 @@ tasmota_status_query = {
         '2': {'tas_version': ['StatusFWR', 'Version'],
             'core_version': ['StatusFWR', 'Core']}
         }
+
+# too_old will return true if the time is more than seconds ago
+def too_old(time, seconds):
+    return (datetime.datetime.now() - time).total_seconds() > seconds
 
 class device(dict):
     """
@@ -101,7 +105,7 @@ class device(dict):
         self.mqtt = mqtt.Client(clean_session=True, client_id="espq_{name}".format(**self))
         self.mqtt.reinitialise()
         self.mqtt.on_message = self._on_message
-        self.flashed = False 
+        self.flashed = False
         self.online = False
         self.reported = {}
 
@@ -305,10 +309,10 @@ class device(dict):
         self.mqtt.connect(self.mqtt_host)
         self.mqtt.message_callback_add(online_topic, lambda *args: setattr(self, 'online', True))
         self.mqtt.subscribe(online_topic)
-        starttime = datetime.datetime.now()
-        while self.online == False and (datetime.datetime.now() - starttime).total_seconds() < wait_time:
+        startTime = datetime.datetime.now()
+        while self.online == False and not too_old(startTime, wait_time):
             self.mqtt.loop(timeout=loop_time)
-        time_waited = (datetime.datetime.now() - starttime).total_seconds()
+        time_waited = (datetime.datetime.now() - startTime).total_seconds()
         if self.online == False:
             print('{RED}{f_name} did not come online within {wait_time} '
                   'seconds{NOCOLOR}'.format(f_name=self.f_name, wait_time=str(wait_time), **colors))
@@ -356,21 +360,21 @@ class device(dict):
         for status_number, ignored in tasmota_status_query.items():
             self.mqtt.publish(c_topic, status_number)
 
-        # _too_old will return true if the time is more than seconds ago
-        def _too_old(time, seconds):
-            return (datetime.datetime.now() - time).total_seconds() > seconds
-        # _list_all_true will return true if everything in the list is true
-        def _list_all_true(list):
-            return reduce(lambda a,b: True if (a and b) else False, list)
+
+        # status numbers, converted to status2, etc
+        def _status_words():
+            return ['status{num}'.format(num=key) for key in tasmota_status_query.keys()]
 
         # while not all of the responses exist, and we aren't too old since the start time
-        # Was goign to check if the responses are too old, but as long as we
-        #  don't call status more than once per run, their existance shows they
-        #  were found
-        starttime = datetime.datetime.now()
-        while(not _list_all_true(list(map(lambda num: 'status{num}'.format(num=num) in response, tasmota_status_query.keys())))
-                and not _too_old(starttime, 2*loop_time)):
-            self.mqtt.loop(timeout=2*loop_time)
+        startTime = datetime.datetime.now()
+        done = False
+        while(not done and not too_old(startTime, waitForStatus)):
+            done = True
+            for status in _status_words():
+                done = done and status in response
+            if not done:
+                self.mqtt.loop(timeout=loop_time)
+
 
         self.mqtt.unsubscribe(s_topic)
         self.mqtt.message_callback_remove(s_topic)
