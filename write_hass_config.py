@@ -1,30 +1,6 @@
 #!/usr/bin/env python3
 import argparse
 import espq
-import os
-from PyInquirer import style_from_dict, Token
-
-# Style for selection interface
-style = style_from_dict({
-    Token.Separator: '#FF00AA',
-    Token.QuestionMark: '#00AAFF bold',
-    Token.Selected: '#00AAFF',  # default
-    Token.Pointer: '#00FF00 bold',
-    Token.Instruction: '#FFAA00',  # default
-    Token.Answer: '#00AAFF bold',
-    Token.Question: '#FF00AA',
-})
-
-colors = {"RED": '\033[1;31m',
-          "GREEN": '\033[1;32m',
-          "NOCOLOR": '\033[0m'}
-
-# get terminal window size for pretty printing
-try:
-    cols, rows = os.get_terminal_size()
-except:
-    cols = 80
-    rows = 40
 
 parser = argparse.ArgumentParser(description='Parametrically generate home '
                                              'assistant config files')

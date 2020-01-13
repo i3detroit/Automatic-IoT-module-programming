@@ -324,20 +324,6 @@ class device(dict):
         self.mqtt.disconnect()
         return self.online
 
-    def run_backlog_commands(self, commands):
-        """ Issue setup commands for tasmota over MQTT with backlog """
-        if not hasattr(self, 'commands') or self.commands == '':
-            print('{BLUE}No commands for {f_name}, skipping.{NOCOLOR}'.format(**colors, **self))
-        else:
-            self.mqtt.connect(self.mqtt_host)
-            backlog_topic = '{c_topic}/backlog'.format(**self)
-            # Join all command/payload pairs together with semicolons. If the
-            # payload is a tasmota GPIO, use the value of the enumeration.
-            backlog_payload = '; '.join(['{c} {p}'.format(c=i['command'], p=get_gpio(i['payload']) if 'GPIO' in i['payload'] else i['payload']) for i in commands]) + '; restart 1'
-            print('{BLUE}Sending {topic} {payload}{NOCOLOR}'.format(topic=backlog_topic, payload=backlog_payload, **colors))
-            self.mqtt.publish(backlog_topic, backlog_payload)
-            self.mqtt.disconnect()
-
     def query_tas_status(self):
         """
             Query a tasmota device's status
@@ -470,27 +456,8 @@ def nested_get(input_dict, nested_key):
             return(None)
     return(internal_dict_value)
 
-def get_gpio(request):
-    """ Retrieve a GPIO's integer value from the enumeration in tasmota """
-    lines=[]
-    append=False
-    with open(os.path.join(tasmota_dir, "tasmota", "tasmota_template.h"), "r") as f:
-        for line in f:
-            if append==True:
-                split = line.split('//')[0]
-                subbed = re.sub('[\\s+,;}]','', split)
-                lines.append(subbed)
-            if 'UserSelectablePins' in line:
-                append=True
-            if '}' in line:
-                append=False
-    gpios={}
-    for num, gpio in enumerate(lines):
-        gpios[gpio] = num
-    return(gpios[request])
-
 def get_tasmota_version():
-    """ Retrieve a GPIO's integer value from the enumeration in tasmota """
+    """ Get the version number from tasmota repo """
     with open(os.path.join(tasmota_dir, "tasmota", "tasmota_version.h"), "r") as f:
         for line in f:
             match = re.match('.* VERSION = (0x[0-9A-Fa-f]+);', line)
