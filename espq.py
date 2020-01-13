@@ -1,16 +1,14 @@
 import os
+import re
 import sys
 import json
 import datetime
-from functools import reduce
 from time import sleep
 from filecmp import cmp
 from copy import deepcopy
 from random import randint
 from shutil import copyfile
-import re
 from subprocess import call
-from ast import literal_eval
 import paho.mqtt.client as mqtt
 from PyInquirer import style_from_dict, Token, prompt, Separator
 
