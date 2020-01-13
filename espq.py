@@ -366,7 +366,7 @@ class device(dict):
 
         # status numbers, converted to status2, etc
         def _status_words():
-            return list(map(lambda: statusNum: 'status{num}'.format(num=statusNum), tasmota_status_query.keys()))
+            return ['status{num}'.format(num=key) for key in tasmota_status_query.keys()]
 
         # while not all of the responses exist, and we aren't too old since the start time
         startTime = datetime.datetime.now()
