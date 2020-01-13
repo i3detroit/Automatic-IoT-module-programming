@@ -35,7 +35,6 @@ hass_output_dir = os.path.join(espqdir, 'hass_output')
 loop_time = 1 # passed to mqtt.loop timeout
 wait_time = 45.0 # how long to wait for device to come online after flash
 waitForStatus = 3 # how long to wait for a status before giving up
-staleStatus = 42 # status is considered stale if this many seconds old
 
 colors = {"RED": '\033[1;31m',
           "GREEN": '\033[1;32m',
@@ -374,7 +373,7 @@ class device(dict):
         while(not done and not too_old(startTime, waitForStatus)):
             done = True
             for status in _status_words():
-                done = done and status in response and not too_old(response[status], staleStatus)
+                done = done and status in response
             if not done:
                 self.mqtt.loop(timeout=loop_time)
 
