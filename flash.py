@@ -58,6 +58,10 @@ parser.add_argument('-p', '--port',
                     action='store',
                     default='/dev/ttyUSB0',
                     help='Specify serial port to flash from')
+parser.add_argument('--query',
+                    dest='query',
+                    action='store_true',
+                    help='Query devices for version numbers')
 parser.add_argument('-v', '--verbose',
                     dest='verbosity',
                     action='count',
@@ -71,7 +75,7 @@ devices = espq.import_devices(args.deviceFile)
 if args.flashAll == True:
     selected_devices = devices
 else:
-    selected_devices = espq.choose_devices(devices)
+    selected_devices = espq.choose_devices(devices, query=args.query)
 
 if len(selected_devices) == 0:
     print('No devices selected. Exiting.')

@@ -43,7 +43,8 @@ tasmota_status_query = {
         '11': {'ssid': ['StatusSTS', 'Wifi', 'SSId'],
             'bssid': ['StatusSTS', 'Wifi', 'BSSId'],
             'channel': ['StatusSTS', 'Wifi', 'Channel'],
-            'rssi': ['StatusSTS', 'Wifi', 'RSSI']},
+            'rssi': ['StatusSTS', 'Wifi', 'RSSI'],
+            'power': ['StatusSTS', 'POWER']},
         '5': {'ip': ['StatusNET', 'IPAddress'],
             'mac': ['StatusNET', 'Mac'],
             'wificonfig':['StatusNET', 'WifiConfig']},
@@ -466,8 +467,11 @@ def get_tasmota_version():
                 return match.groups()[0];
     raise Exception('No tasmota version found.')
 
-def choose_devices(devices):
-    ''' Create list of menu choices with category separators for module '''
+def choose_devices(devices, query=False):
+    '''
+        Create list of menu choices from devices with category separators
+        Optional param query: query and display device version numbers
+    '''
     # Style for selection interface
     style = style_from_dict({
         Token.Separator: '#FF00AA',
@@ -481,11 +485,28 @@ def choose_devices(devices):
 
     choice_list = []
     current_type = None
+    name_len_spacer = max([len(dev.name) for dev in devices]) + 1
+
+    if query == True:
+        print('Querying all devices for version numbers. This may take a minute...')
+        choice_list.append(Separator('Name'.center(name_len_spacer) + 'Firmware'.center(15) + 'Core'.center(7) + 'State'))
+
     for device in devices:
         if device['module'] != current_type:
             current_type = device['module']
-            choice_list.append(Separator('======== {current_type} ========'.format(current_type = current_type)))
-        choice_list.append({'name': device['f_name']})
+            choice_list.append(Separator(' {} '.format(current_type).center(name_len_spacer + 29, '=')))
+        if query == True and device.software == 'tasmota':
+            device.query_tas_status()
+            menu_text = device.f_name.ljust(name_len_spacer)
+            if 'tas_version' in device.reported and 'core_version' in device.reported:
+                menu_text += device.reported['tas_version'].ljust(15)
+                menu_text += device.reported['core_version'].ljust(7)
+                menu_text += device.reported['power'] if device.reported['power'] is not None else ''
+            else:
+                menu_text += 'Offline'
+            choice_list.append({'name': menu_text, 'value': device['f_name']})
+        else:
+            choice_list.append({'name': device['f_name'], 'value': device['f_name']})
 
     # Ask the user to choose which devices to flash
     questions = [
@@ -494,7 +515,6 @@ def choose_devices(devices):
             'message': 'Select Devices',
             'name': 'device_selection',
             'choices': choice_list,
-            'validate': lambda answer: 'You must choose at least one device.' if len(answer) == 0 else True
         }
     ]
     answers = prompt(questions, style=style)
