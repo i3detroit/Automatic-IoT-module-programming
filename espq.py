@@ -330,12 +330,13 @@ class device(dict):
         """
         response = {}
         def _tas_status_callback(mqtt, userdata, msg):
-            status_num=re.sub(r'.*STATUS([0-9]*)$', r'\1', msg.topic)
-            msg = json.loads(msg.payload.decode('UTF-8'))
-            for datum in tasmota_status_query[status_num]:
-                datumPath=tasmota_status_query[status_num][datum]
-                response[datum] = nested_get(msg, datumPath)
-            response['status{num}'.format(num=status_num)] = datetime.datetime.now()
+            if 'STATUS' in msg.topic[-8:]:
+                status_num=re.sub(r'.*STATUS([0-9]*)$', r'\1', msg.topic)
+                msg = json.loads(msg.payload.decode('UTF-8'))
+                for datum in tasmota_status_query[status_num]:
+                    datumPath=tasmota_status_query[status_num][datum]
+                    response[datum] = nested_get(msg, datumPath)
+                response['status{num}'.format(num=status_num)] = datetime.datetime.now()
         s_topic = '{s_topic}/+'.format(**self)
         c_topic = '{c_topic}/status'.format(**self)
         self.mqtt.message_callback_add(s_topic, _tas_status_callback)
