@@ -7,19 +7,23 @@ import re
 
 def fmtcols(mylist, cols):
     """
-        Prints a list in a number of columns.
-        From https://stackoverflow.com/a/24876899
+    Prints a list in a number of columns.
+    From https://stackoverflow.com/a/24876899
     """
-    maxwidth = max(list(map(lambda x: len(x), mylist)))
-    justifyList = list(map(lambda x: x.ljust(maxwidth), mylist))
+    maxwidth = max([len(x) for x in mylist])
+    justifyList = [x.ljust(maxwidth) for x in mylist]
     lines = (' '.join(justifyList[i:i + cols])
              for i in range(0, len(justifyList), cols))
     return("\n".join(lines))
 
 
 def progress_report(devices):
-    """ Print a list of devices and their flashing status """
-    formatted_status = fmtcols(["[{status}] {d}".format(status = 'X' if (dev.flashed == True and dev.online == True) else ' ', d=dev.name) for dev in devices], 3)
+    """
+    Print a list of devices and their flashing status
+    """
+    formatted_status = fmtcols(["[{status}] {d}".format(status = 'X' if \
+        (dev.flashed and dev.online) else ' ', d=dev.name) \
+        for dev in devices], 3)
     print(re.sub('\[X\]', '[\033[1;32mX\033[0m]', formatted_status))
     print('=' * cols)
 
@@ -72,7 +76,7 @@ parser.add_argument('deviceFile', metavar='deviceFile',
 args = parser.parse_args()
 
 devices = espq.import_devices(args.deviceFile)
-if args.flashAll == True:
+if args.flashAll:
     selected_devices = devices
 else:
     selected_devices = espq.choose_devices(devices, query=args.query)
@@ -96,20 +100,24 @@ for count, dev in enumerate(selected_devices, start=1):
                                      name=dev.name))
 
     if hasattr(dev, 'flash_warning'):
-        print('Ready to process device {count}/{total} - {name}'.format(count=count,
-                                                                        total=len(selected_devices),
-                                                                        name=dev.name))
-        print('{RED}WARNING: {flash_warning}{NOCOLOR}'.format(flash_warning=dev.flash_warning, **colors))
+        print('Ready to process device {count}/{total} - '
+              '{name}'.format(count=count,
+                              total=len(selected_devices),
+                              name=dev.name))
+        print('{RED}WARNING: {flash_warning}'
+              '{NOCOLOR}'.format(flash_warning=dev.flash_warning, **colors))
         input('Press Enter to ignore the warning and continue...')
-    elif args.pauseBeforeFlash == True:
-        print('Ready to process device {count}/{total} - {name}'.format(count=count,
-                                                                  total=len(selected_devices),
-                                                                  name=dev.name))
+    elif args.pauseBeforeFlash:
+        print('Ready to process device {count}/{total} - '
+              '{name}'.format(count=count,
+                              total=len(selected_devices),
+                              name=dev.name))
         input('Press Enter to continue...')
     else:
-        print('Processing device {count}/{total} - {name}'.format(count=count,
-                                                                  total=len(selected_devices),
-                                                                  name=dev.name))
+        print('Processing device {count}/{total} - '
+              '{name}'.format(count=count,
+                              total=len(selected_devices),
+                              name=dev.name))
     dev.flash(args.flashMode, args.serialPort)
     # reset terminal title to something useful like hostname
     sys.stdout.write('\x1b]2{hostname}\x07'.format(hostname=os.uname()[1]))

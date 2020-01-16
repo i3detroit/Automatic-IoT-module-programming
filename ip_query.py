@@ -12,8 +12,10 @@ import argparse
 import espq
 from re import sub
 
-current_version = '8.1.0(tasmota)'  # current version of tasmota, formatted as it is reported
-good_core = ['2_6_1']  # desired version of esp arduino library
+# current version of tasmota, formatted as it is reported
+current_version = '8.1.0(tasmota)'
+# desired version of esp arduino library
+good_core = ['2_6_1']
 
 parser = argparse.ArgumentParser(description='Query status of tasmota devices',
                                  formatter_class=argparse.RawTextHelpFormatter,)
@@ -29,7 +31,8 @@ parser.add_argument('-f','--filter',
                           'offline - device does not respond\n'
                           'online  - devices does respond\n'
                           'badip   - device not at expected IP\n'
-                          'badcore - device flashed with wrong esp arduino version'))
+                          'badcore - device flashed with wrong '
+                          'esp arduino version'))
 args = parser.parse_args()
 
 RED = '\033[1;31m'
@@ -49,34 +52,46 @@ for device in d:
         device.ip_addr = '';
 
     # Skip printing if the device does not meet filter requirements
-    if args.filter == 'update' and (response['tas_version'] == current_version or response['tas_version'] == ''):
+    if args.filter == 'update' and (response['tas_version'] == current_version \
+                                    or response['tas_version'] == ''):
         continue
     elif args.filter == 'offline' and response['ip'] != '':
         continue
     elif args.filter == 'online' and response['ip'] == '':
         continue
-    elif args.filter == 'badip' and (response['ip'] == device.ip_addr or response['ip'] == ''):
+    elif args.filter == 'badip' and (response['ip'] == device.ip_addr or \
+                                     response['ip'] == ''):
         continue
-    elif args.filter == 'badcore' and (response['core_version'] in good_core or response['core_version'] == ''):
+    elif args.filter == 'badcore' and (response['core_version'] in good_core \
+                                       or response['core_version'] == ''):
         continue
 
-    # Build formatted output lines one element at a time, join into string when done
+    # Build formatted output lines one element at a time, 
     # Result should be someting like 'device_name      IP   MAC   6.5.0   2_3_0'
-    # This is just super hard to work with and does the same check multiple times
+    # This is just super hard to work with
     # TODO: literally anything else
     if offline:
-        print("{RED}".format(RED=RED) + "{name}".format(name=device.name).ljust(name_len + 1) + "Offline{NOCOLOR}".format(NOCOLOR=NOCOLOR))
+        print(RED + "{name}".format(name=device.name).ljust(name_len + 1)
+              + "Offline{NOCOLOR}".format(NOCOLOR=NOCOLOR))
         continue
-    output_line = [GREEN,
-              device.name.ljust(name_len+1),  #left justify with trailing spaces filling out max name length
-              NOCOLOR if 'ip_addr' in device and response['ip'] == device.ip_addr else RED,
-              response['ip'].ljust(16),  #left justify with trailing spaces filling out max IP length
-              NOCOLOR if 'ip_addr' in device and response['ip'] != device.ip_addr else '',
-              response['mac'].ljust(19),
-              RED if response['tas_version'] != current_version else '',
-              sub('\(tasmota\)|\(sonoff\)', '', response['tas_version']).ljust(7),
-              NOCOLOR,
-              RED if response['core_version'] not in good_core else '',
-              response['core_version'],
-              NOCOLOR]
-    print(''.join(output_line))
+
+    if 'ip_addr' in device and response['ip'] == device.ip_addr:
+        ip_color = NOCOLOR
+    else:
+        ip_color = RED
+
+    tas_version_str = sub('\(tasmota\)|\(sonoff\)', '',
+                          response['tas_version']).ljust(7)
+    output_line = (GREEN
+                   + device.name.ljust(name_len+1)
+                   + ip_color
+                   + response['ip'].ljust(16)
+                   + NOCOLOR
+                   + response['mac'].ljust(19)
+                   + (RED if response['tas_version'] != current_version else '')
+                   + tas_version_str
+                   + NOCOLOR
+                   + (RED if response['core_version'] not in good_core else '')
+                   + response['core_version']
+                   + NOCOLOR)
+    print(output_line)
