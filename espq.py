@@ -244,7 +244,7 @@ class device(dict):
         if not os.path.exists(tasmotaPIO) or not cmp(correctPIO, tasmotaPIO):
             copyfile(correctPIO, tasmotaPIO)
 
-        if not 'ip_addr' in self or self.ip_addr == '' or self.ip_addr == None:
+        if self.flash_mode == 'wifi' and ( not 'ip_addr' in self or self.ip_addr == '' or self.ip_addr == None ):
             print('No IP address for this device in the config. Querying device...')
             self.query_tas_status()
             if 'ip' in self.reported:
