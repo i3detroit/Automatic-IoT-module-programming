@@ -9,6 +9,7 @@
         "board": "esp01_1m",
         "base_topic": "mark/basement",
         "topic": "lights/%id%",
+        "group_topic": "lights/all",
         "poweron_state": 1,
         "build_flags": [
                 "USE_RULES",
@@ -24,107 +25,43 @@
         "ids": [
             {
                 "id": "001",
-                "group_topic": "lights",
                 "ip_addr": "192.168.107.16"
             },
             {
-                "id": "002",
-                "group_topic": "lights"
+                "id": "002"
             },
             {
-                "id": "003",
-                "group_topic": "lights"
+                "id": "003"
             },
             {
-                "id": "004",
-                "group_topic": "lights"
+                "id": "004"
             },
             {
-                "id": "005",
-                "group_topic": "lights"
+                "id": "005"
             },
             {
-                "id": "006",
-                "group_topic": "lights"
+                "id": "006"
             },
             {
-                "id": "007",
-                "group_topic": "lights"
+                "id": "007"
             },
             {
-                "id": "008",
-                "group_topic": "lights"
-            },
-            {
-                "id": "009",
-                "group_topic": "lights"
-            },
-            {
-                "id": "010",
-                "group_topic": "lights"
-            },
-            {
-                "id": "011",
-                "group_topic": "lights"
-            },
-            {
-                "id": "012",
-                "group_topic": "lights"
+                "id": "008"
             }
         ]
     },
     {
-        "name": "Sensor Cluster %id%",
-        "hass_template": "sensor_cluster",
-        "hass_domain": "sensor",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "WEMOS",
-        "board": "esp01_1m",
+        "name": "Thermostat",
+        "domain": null,
+        "software": "custom-mqtt-programs",
+        "site": "mark",
+        "module": "thermostat",
+        "board": "d1_mini",
+        "ip_addr": "192.168.107.12",
         "group_topic": "none",
-        "base_topic": "i3/inside",
-        "topic": "sensors/cluster-%id%",
-        "poweron_state": 1,
-        "build_flags": [
-            "USE_I2C",
-            "USE_BMP",
-            "USE_BH1750"
-        ],
-        "commands": [
-            {
-                "command": "SetOption56",
-                "payload": "ON"
-            },
-            {
-                "command": "SetOption57",
-                "payload": "ON"
-            },
-            {
-                "command": "GPIO4",
-                "payload": "GPIO_I2C_SDA"
-            },
-            {
-                "command": "GPIO5",
-                "payload": "GPIO_I2C_SCL"
-            },
-            {
-                "command": "teleperiod",
-                "payload": "60"
-            }
-        ],
-        "ids": [
-            {
-                "id": "006",
-                "ip_addr": "10.13.107.100"
-            },
-            {
-                "id": "007",
-                "ip_addr": "10.13.107.206"
-            },
-            {
-                "id": "008",
-                "ip_addr": "10.13.107.53"
-            }
-        ]
+        "base_topic": "mark",
+        "topic": "thermostat",
+        "build_flags": "",
+        "commands": null
     }
 ]
