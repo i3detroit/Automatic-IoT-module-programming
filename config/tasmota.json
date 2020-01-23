@@ -450,6 +450,24 @@
             {
                 "id": "008",
                 "ip_addr": "10.13.107.53"
+            },
+            {
+                "id": "Commons Ground",
+                "name": "Commons Ground Sensor Cluster",
+                "ip_addr": "10.13.107.59",
+                "topic": "commons/ground-sensor-cluster"
+            },
+            {
+                "id": "Commons Ceiling",
+                "name": "Commons Ceiling Sensor Cluster",
+                "ip_addr": "10.13.107.134",
+                "topic": "commons/ceiling-sensor-cluster"
+            },
+            {
+                "id": "Fablab",
+                "name": "Fablab Sensor Cluster",
+                "ip_addr": "10.13.107.222",
+                "topic": "fablab/sensor-cluster"
             }
         ]
     },
@@ -1650,6 +1668,291 @@
                         "payload": "rule1 on tele-analog#a0 do var1=((0.1781*%value%)-19.747) endon on var1#state do publish stat/i3/inside/sensors/air-line-pressure-%id%/pressure %var1% endon; rule1 1"
                     }
                 ]
+            }
+        ]
+    },
+    {
+        "name": "Machine Shop Light Switches %id%",
+        "hass_template": "generic",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "poweron_state": 0,
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "machine-shop/light-switches-%id%",
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON; GPIO4 9; GPIO5 10; GPIO0 11; GPIO2 12; switchmode1 3; switchmode2 3; switchmode3 3; switchmode4 3",
+                "restart": 1
+            },
+            {
+                "command": "backlog",
+                "payload": "rule1 on switch1#state do publish cmnd/i3/inside/lights/machine-shop/power 1 endon on switch2#state do publish cmnd/i3/inside/lights/machine-shop/power 0 endon on switch3#state do publish cmnd/i3/inside/machine-shop/ceiling-fan/power 1 endon on switch4#state do publish cmnd/i3/inside/machine-shop/ceiling-fan/power 0 endon; rule1 1",
+                "restart": 0
+            }
+        ],
+        "ids": [
+            {
+                "id": "South",
+                "ip_addr": "10.13.107.23"
+            },
+            {
+                "id": "West",
+                "ip_addr": "10.13.107.64"
+            }
+        ]
+    },
+    {
+        "name": "Middle East Light Switches %id%",
+        "hass_template": "generic",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "poweron_state": 0,
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "commons/middle-east-light-switches-%id%",
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON; GPIO4 9; GPIO5 10; GPIO0 11; GPIO2 12; switchmode1 3; switchmode2 3; switchmode3 3; switchmode4 3",
+                "restart": 1
+            },
+            {
+                "command": "backlog",
+                "payload": "rule1 on switch1#state do publish cmnd/i3/inside/lights/row5/power 1 endon on switch2#state do publish cmnd/i3/inside/lights/row5/power 0 endon on switch3#state do publish cmnd/i3/inside/lights/row4/power 1 endon on switch4#state do publish cmnd/i3/inside/lights/row4/power 0 endon; rule1 1",
+                "restart": 0
+            }
+        ],
+        "ids": [
+            {
+                "id": "South",
+                "ip_addr": "10.13.107."
+            },
+            {
+                "id": "North",
+                "ip_addr": "10.13.107."
+            }
+        ]
+    },
+    {
+        "name": "Commons Light Switches %id%",
+        "hass_template": "generic",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "poweron_state": 0,
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "commons/light-switches-%id%",
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON; GPIO4 9; GPIO14 10; GPIO14 11; GPIO5 12; GPIO0 13; GPIO2 14; switchmode1 3; switchmode2 3; switchmode3 3; switchmode4 3; switchmode5 3; switchmode6 3",
+                "restart": 1
+            },
+            {
+                "command": "backlog",
+                "payload": "rule1 on switch1#state do publish cmnd/i3/inside/lights/row1/power 1 endon on switch2#state do publish cmnd/i3/inside/lights/row1/power 0 endon on switch3#state do publish cmnd/i3/inside/lights/row2/power 1 endon on switch4#state do publish cmnd/i3/inside/lights/row2/power 0 endon; on switch5#state do publish cmnd/i3/inside/lights/row3/power 1 endon on switch6#state do publish cmnd/i3/inside/lights/row3/power 0 endon; rule1 1",
+                "restart": 0
+            }
+        ],
+        "ids": [
+            {
+                "id": "East",
+                "ip_addr": "10.13.107."
+            },
+            {
+                "id": "West",
+                "ip_addr": "10.13.107."
+            }
+        ]
+    },
+    {
+        "name": "Air Compressor Request Button %id%",
+        "hass_template": "generic",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "poweron_state": 0,
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "air-compressor-request-%id%",
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON; GPIO0 9; switchmode1 3",
+                "restart": 1
+            },
+            {
+                "command": "backlog",
+                "payload": "rule1 on switch1#state do publish cmnd/i3/inside/infrastructure/air-compressor/POWER ON endon; rule1 1",
+                "restart": 0
+            }
+        ],
+        "ids": [
+            {
+                "id": "001",
+                "ip_addr": "10.13.107.23"
+            },
+            {
+                "id": "002",
+                "ip_addr": "10.13.107.64"
+            },
+            {
+                "id": "003",
+                "ip_addr": "10.13.107.64"
+            }
+        ]
+    },
+    {
+        "name": "Weld Zone Light Button",
+        "hass_template": "generic",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "poweron_state": 0,
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "lights/028-button",
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON; GPIO0 9; switchmode1 3",
+                "restart": 1
+            },
+            {
+                "command": "backlog",
+                "payload": "rule1 on switch1#state do publish cmnd/i3/inside/lights/028/POWER ON endon; rule1 1",
+                "restart": 0
+            }
+        ]
+    },
+    {
+        "name": "Disco Button",
+        "hass_template": "generic",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "i3",
+        "ip_addr": "10.13.107.25",
+        "module": "WEMOS",
+        "poweron_state": 0,
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "commons/disco-button",
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON; GPIO0 9; switchmode1 3; GPIO2 10; switchmode2 3",
+                "restart": 1
+            },
+            {
+                "command": "backlog",
+                "payload": "rule1 on switch1#state do publish cmnd/i3/inside/commons/disco/POWER ON endon on switch2#state do publish cmnd/i3/inside/commons/disco/POWER OFF endon; rule1 1",
+                "restart": 0
+            }
+        ]
+    },
+    {
+        "name": "Fablab Control Buttons",
+        "hass_template": "generic",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "poweron_state": 0,
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "i3/inside",
+        "topic": "fablab/control-buttons",
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON; GPIO0 9; switchmode1 3;  GPIO2 10; switchmode2 3; GPIO1 11; switchmode3 3; GPIO3 12; switchmode4 3; GPIO4 13; switchmode5 3; GPIO5 52; GPIO12 53; GPIO13 54",
+                "restart": 1
+            },
+            {
+                "command": "rule1",
+                "payload": "on Mqtt#Connected do backlog subscribe aircomp,stat/i3/inside/infrastructure/air-compressor/power; publish cmnd/i3/inside/infrastructure/air-compressor/POWER; subscribe venfan,stat/i3/inside/fablab/vent/power; publish cmnd/i3/inside/fablab/vent/power; subscribe chiller,stat/i3/inside/fablab/chiller/power; publish cmnd/i3/inside/fablab/chiller/power endon",
+                "restart": 0
+            },
+            {
+                "command": "rule1",
+                "payload": "1",
+                "restart": 0
+            },
+            {
+                "command": "rule2",
+                "payload": "on switch1#state do publish cmnd/i3/inside/fablab/vent/POWER ON endon on switch2#state do publish cmnd/i3/inside/fablab/vent/POWER OFF endon on switch3#state do publish cmnd/i3/inside/fablab/chiller/POWER ON endon on switch4#state do publish cmnd/i3/inside/fablab/chiller/POWER OFF endon on switch5#state do publish i3/inside/infrastructure/air-compressor/POWER ON endon",
+                "restart": 0
+            },
+            {
+                "command": "rule2",
+                "payload": "1",
+                "restart": 0
+            },
+            {
+                "command": "rule3",
+                "payload": "on Event#aircomp=ON do ledpower3 1 endon on Event#aircomp=OFF do ledpower3 0 endon on Event#ventfan=ON do ledpower1 1 endon on Event#ventfan=OFF do ledpower1 0 endon on Event#chiller=ON do ledpower2 1 endon on Event#chiller=OFF do ledpower2 0 endon",
+                "restart": 0
+            },
+            {
+                "command": "rule3",
+                "payload": "1",
+                "restart": 0
+            },
+            {
+                "command": "restart",
+                "payload": "1",
+                "restart": 1
             }
         ]
     }
