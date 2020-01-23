@@ -62,14 +62,12 @@ class device(dict):
     """
     def __init__(self, device):
         for key in device:
-            # Each devices doesn't need to know about the other IDs
-            if key != 'ids':
-                # Convert all other keys to device attributes
-                # Sanitize attributes so missing ones are '' instead of None
-                if device[key] is not None:
-                    setattr(self, key, device[key])
-                else:
-                    setattr(self, key, '')
+            # Convert all other keys to device attributes
+            # Sanitize attributes so missing ones are '' instead of None
+            if device[key] is not None:
+                setattr(self, key, device[key])
+            else:
+                setattr(self, key, '')
 
         self.base_topic = self.base_topic.lower()
         self.full_topic = '%prefix%/{base_topic}/%topic%'.format(**self)
@@ -464,26 +462,27 @@ def import_devices(device_file):
         if 'ids' in dev:
             for id_info in dev['ids']:
                 new_dev = deepcopy(dev)
-                #if the device specific obj has an "id" field
-                if 'id' in id_info:
-                    #replace the "%id%" string in all string properties
+                # Copy all id specific keys into the base device
+                # This will override any keys set outside of 'ids'
+                for key in id_info:
+                    new_dev[key] = id_info[key]
+                # replace the "%id%" string in all device properties
+                if 'id' in new_dev:
                     for key in new_dev:
                         if isinstance(new_dev[key], str):
                             new_dev[key] = re.sub('%id%',
-                                               id_info['id'],
-                                               new_dev[key])
+                                                  new_dev['id'],
+                                                  new_dev[key])
                         elif key == 'commands':
                             for c in new_dev['commands']:
                                 c['command'] = re.sub('%id%',
-                                                   id_info['id'],
-                                                   c['command'])
+                                                      new_dev['id'],
+                                                      c['command'])
                                 c['payload'] = re.sub('%id%',
-                                                   id_info['id'],
-                                                   c['payload'])
-
-                # just copy all the keys over
-                for key in id_info:
-                    new_dev[key] = id_info[key]
+                                                      new_dev['id'],
+                                                      c['payload'])
+                # each individual doesn't need to know about other ids
+                del new_dev['ids']
                 devices.append(device(new_dev))
         else: # no ids field
             devices.append(device(dev))
