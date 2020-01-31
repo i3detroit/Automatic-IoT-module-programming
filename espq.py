@@ -459,32 +459,33 @@ def import_devices(device_file):
         device_import = json.load(f)
     devices=[]
     for dev in device_import:
-        if 'ids' in dev:
-            for id_info in dev['ids']:
+        if 'instances' in dev:
+            for instance in dev['instances']:
                 new_dev = deepcopy(dev)
-                # Copy all id specific keys into the base device
-                # This will override any keys set outside of 'ids'
-                for key in id_info:
-                    new_dev[key] = id_info[key]
-                # replace the "%id%" string in all device properties
+                # Copy all instance specific keys into the base device
+                # This will override any keys set outside of 'instances'
+                # except commands and build flags, which are appended
+                for key in instance:
+                    if key == "commands" or key == "build_flags":
+                        new_dev[key] += instance[key]
+                    else:
+                        new_dev[key] = instance[key]
+                # replace the "%id%" string with 'id' in all device properties
                 if 'id' in new_dev:
                     for key in new_dev:
                         if isinstance(new_dev[key], str):
-                            new_dev[key] = re.sub('%id%',
-                                                  new_dev['id'],
+                            new_dev[key] = re.sub('%id%', new_dev['id'],
                                                   new_dev[key])
                         elif key == 'commands':
                             for c in new_dev['commands']:
-                                c['command'] = re.sub('%id%',
-                                                      new_dev['id'],
+                                c['command'] = re.sub('%id%', new_dev['id'],
                                                       c['command'])
-                                c['payload'] = re.sub('%id%',
-                                                      new_dev['id'],
+                                c['payload'] = re.sub('%id%', new_dev['id'],
                                                       c['payload'])
-                # each individual doesn't need to know about other ids
-                del new_dev['ids']
+                # each individual doesn't need to contain the other instances
+                del new_dev['instances']
                 devices.append(device(new_dev))
-        else: # no ids field
+        else: # no instances field
             devices.append(device(dev))
     devices = sorted(devices, key=lambda k: k.module)
     return devices

@@ -21,7 +21,7 @@
                 "payload": "SetOption56 ON; SetOption57 ON"
             }
         ],
-        "ids": [
+        "instances": [
             {
                 "id": "001",
                 "ip_addr": "10.13.107.133",
@@ -133,6 +133,12 @@
                 "group_topic": "lights/row5"
             },
             {
+                "name": "Welding Light",
+                "id": "028",
+                "ip_addr": "10.13.107.243",
+                "group_topic": "lights/east"
+            },
+            {
                 "id": "029",
                 "ip_addr": "10.13.107.42",
                 "group_topic": "lights/machine-shop"
@@ -166,46 +172,88 @@
                 "id": "035",
                 "ip_addr": "10.13.107.126",
                 "group_topic": "lights/machine-shop"
-            }
-        ]
-    },
-    {
-        "name": "Welding Light",
-        "hass_template": "light",
-        "hass_domain": "light",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_BASIC",
-        "board": "esp01_1m",
-        "group_topic": "lights/east",
-        "base_topic": "i3/inside",
-        "topic": "lights/028",
-        "ip_addr": "10.13.107.243",
-        "poweron_state": 1,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
+            },
             {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
+                "id": "041",
+                "ip_addr": "10.13.107.159",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "042",
+                "ip_addr": "10.13.107.107",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "043",
+                "ip_addr": "10.13.107.50",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "044",
+                "ip_addr": "10.13.107.93",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "045",
+                "ip_addr": "10.13.107.191",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "046",
+                "ip_addr": "10.13.107.226",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "047",
+                "ip_addr": "10.13.107.157",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "048",
+                "ip_addr": "10.13.107.185",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "049",
+                "ip_addr": "10.13.107.165",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "050",
+                "ip_addr": "10.13.107.192",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "051",
+                "ip_addr": "10.13.107.227",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "052",
+                "ip_addr": "10.13.107.190",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "053",
+                "ip_addr": "10.13.107.229",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "054",
+                "ip_addr": "10.13.107.41"
             }
         ]
     },
     {
-        "name": "Vinyl Light",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
-        "group_topic": "lights/east",
         "base_topic": "i3/inside",
-        "topic": "lights/036",
-        "ip_addr": "10.13.107.212",
+        "topic": "lights/%id%",
+        "group_topic": "lights/east",
         "poweron_state": 1,
         "build_flags": [
                 "USE_RULES",
@@ -217,30 +265,17 @@
                 "command": "backlog",
                 "payload": "SetOption56 ON; SetOption57 ON; SetOption13 ON; SetOption32 100"
             }
-        ]
-    },
-    {
-        "name": "Treehouse Light",
-        "hass_template": "light",
-        "hass_domain": "light",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_BASIC",
-        "board": "esp01_1m",
-        "group_topic": "lights/east",
-        "base_topic": "i3/inside",
-        "topic": "lights/037",
-        "ip_addr": "10.13.107.230",
-        "poweron_state": 1,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
         ],
-        "commands": [
+        "instances": [
             {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON; SetOption13 ON; SetOption32 100"
+                "name": "Vinyl Light",
+                "id": "036",
+                "ip_addr": "10.13.107.212"
+            },
+            {
+                "name": "Treehouse Light",
+                "id": "037",
+                "ip_addr": "10.13.107.230"
             }
         ]
     },
@@ -267,35 +302,35 @@
                 "restart": 1
             }
         ],
-        "ids": [
+        "instances": [
             {
                 "id": "012",
-                "ip_addr": "10.13.107.237",
                 "group_topic": "lights/row3",
+                "ip_addr": "10.13.107.237",
                 "notes": "unmodified ct-065w eco plug"
             },
             {
                 "id": "013",
-                "ip_addr": "10.13.107.144",
                 "group_topic": "lights/row3",
+                "ip_addr": "10.13.107.144",
                 "notes": "unmodified ct-065w eco plug"
             },
             {
                 "id": "014",
-                "ip_addr": "10.13.107.122",
                 "group_topic": "lights/row3",
+                "ip_addr": "10.13.107.122",
                 "notes": "modified ct-065w eco plug"
             },
             {
                 "id": "015",
-                "ip_addr": "10.13.107.84",
                 "group_topic": "lights/row4",
+                "ip_addr": "10.13.107.84",
                 "notes": "modified and broken ct-065w eco plug; Has an esp-12 module instead of default because the magic smoke left, and the voltage current sense was cut."
             },
             {
                 "id": "017",
-                "ip_addr": "10.13.107.127",
                 "group_topic": "lights/row4",
+                "ip_addr": "10.13.107.127",
                 "notes": "modified ct-065w eco plug"
             }
         ]
@@ -308,7 +343,22 @@
         "site": "i3",
         "module": "SONOFF_BN",
         "board": "esp01_1m",
-        "ids": [
+        "base_topic": "i3/inside",
+        "topic": "lights/%id%",
+        "group_topic": "lights/emergency",
+        "poweron_state": 1,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
+            }
+        ],
+        "instances": [
             {
                 "id": "027",
                 "ip_addr": "10.13.107.113"
@@ -325,103 +375,6 @@
                 "id": "040",
                 "ip_addr": "10.13.107.187"
             }
-        ],
-        "group_topic": "lights/emergency",
-        "base_topic": "i3/inside",
-        "topic": "lights/%id%",
-        "poweron_state": 1,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
-    },
-    {
-        "name": "Light %id%",
-        "hass_template": "light",
-        "hass_domain": "light",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_BASIC",
-        "board": "esp01_1m",
-        "ids": [
-            {
-                "id": "041",
-                "ip_addr": "10.13.107.159"
-            },
-            {
-                "id": "042",
-                "ip_addr": "10.13.107.107"
-            },
-            {
-                "id": "043",
-                "ip_addr": "10.13.107.50"
-            },
-            {
-                "id": "044",
-                "ip_addr": "10.13.107.93"
-            },
-            {
-                "id": "045",
-                "ip_addr": "10.13.107.191"
-            },
-            {
-                "id": "046",
-                "ip_addr": "10.13.107.226"
-            },
-            {
-                "id": "047",
-                "ip_addr": "10.13.107.157"
-            },
-            {
-                "id": "048",
-                "ip_addr": "10.13.107.185"
-            },
-            {
-                "id": "049",
-                "ip_addr": "10.13.107.165"
-            },
-            {
-                "id": "050",
-                "ip_addr": "10.13.107.192"
-            },
-            {
-                "id": "051",
-                "ip_addr": "10.13.107.227"
-            },
-            {
-                "id": "052",
-                "ip_addr": "10.13.107.190"
-            },
-            {
-                "id": "053",
-                "ip_addr": "10.13.107.229"
-            },
-            {
-                "id": "054",
-                "ip_addr": "10.13.107.41"
-            }
-        ],
-        "group_topic": "lights/west",
-        "base_topic": "i3/inside",
-        "topic": "lights/%id%",
-        "poweron_state": 1,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
         ]
     },
     {
@@ -432,9 +385,9 @@
         "site": "i3",
         "module": "SONOFF_SV",
         "board": "esp01_1m",
-        "group_topic": "accent/chandelier",
         "base_topic": "i3/inside",
         "topic": "accent/chandelier-%id%",
+        "group_topic": "accent/chandelier",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -447,7 +400,7 @@
                 "payload": "SetOption56 ON; SetOption57 ON"
             }
         ],
-        "ids": [
+        "instances": [
             {
                 "id": "01",
                 "ip_addr": "10.13.107.74"
@@ -466,9 +419,9 @@
         "site": "i3",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "sensors/cluster-%id%",
+        "group_topic": "none",
         "poweron_state": 1,
         "build_flags": [
             "USE_I2C",
@@ -485,7 +438,7 @@
                 "restart": 1
             }
         ],
-        "ids": [
+        "instances": [
             {
                 "id": "006",
                 "ip_addr": "10.13.107.100"
@@ -508,9 +461,9 @@
         "site": "i3",
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/accent/swirly-lights-%id%",
+        "group_topic": "none",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -523,7 +476,7 @@
                 "payload": "SetOption56 ON; SetOption57 ON"
             }
         ],
-        "ids": [
+        "instances": [
             {
                 "id": "01",
                 "ip_addr": "10.13.107.49"
@@ -535,17 +488,14 @@
         ]
     },
     {
-        "name": "Media Lab Lights",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.196",
-        "group_topic": "none",
         "base_topic": "i3/inside",
-        "topic": "media-lab/lights",
+        "group_topic": "none",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -557,20 +507,135 @@
                 "command": "backlog",
                 "payload": "SetOption56 ON; SetOption57 ON"
             }
+        ],
+        "instances": [
+            {
+                "name": "Media Lab Lights",
+                "topic": "media-lab/lights",
+                "ip_addr": "10.13.107.196"
+            },
+            {
+                "name": "Hallway Light",
+                "topic": "hallway/light",
+                "ip_addr": "10.13.107.167"
+            },
+            {
+                "name": "Dooridor Light",
+                "topic": "dooridor/lights",
+                "ip_addr": "10.13.107.197"
+            },
+            {
+                "name": "Elab Light",
+                "topic": "elab/light",
+                "ip_addr": "10.13.107.150"
+            },
+            {
+                "name": "Craftroom Light",
+                "topic": "craftroom/light",
+                "ip_addr": "10.13.107.239"
+            },
+            {
+                "name": "Small Bathroom Light",
+                "topic": "small-bathroom/light",
+                "ip_addr": "10.13.107.79"
+            },
+            {
+                "name": "Small Bathroom Shower Light",
+                "topic": "small-bathroom/shower-light",
+                "ip_addr": "10.13.107.118"
+            },
+            {
+                "name": "Classroom Light West",
+                "topic": "classroom/lights-west",
+                "ip_addr": "10.13.107.173"
+            }
         ]
     },
     {
-        "name": "Commons Ceiling Fan",
+        "name": "Classroom Lightswitch East",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.108",
-        "group_topic": "none",
         "base_topic": "i3/inside",
-        "topic": "commons/ceiling-fans",
+        "topic": "classroom/lightswitch-east",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.164",
+        "poweron_state": 0,
+        "build_flags": [
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "switchmode1 3; rule on button1#state do publish cmnd/i3/inside/classroom/lights-east/POWER TOGGLE endon; rule 1; SetOption56 ON; SetOption57 ON"
+            }
+        ]
+    },
+    {
+        "name": "Classroom Light East",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "base_topic": "i3/inside",
+        "topic": "classroom/lights-east",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.101",
+        "poweron_state": 0,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "GPIO05 52; GPIO13 21; GPIO14 9; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "restart": 1
+            }
+        ]
+    },
+    {
+        "name": "Hallway West Lightswitch",
+        "hass_template": "switch",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "SONOFF_TOUCH",
+        "board": "esp01_1m",
+        "base_topic": "i3/inside",
+        "topic": "hallway/lightswitch-west",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.174",
+        "poweron_state": 0,
+        "build_flags": [
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "switchmode1 3; rule on button1#state do publish cmnd/i3/inside/hallway/light/POWER TOGGLE endon; rule 1; SetOption56 ON; SetOption57 ON"
+            }
+        ]
+    },
+    {
+        "hass_template": "switch",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "SONOFF_TOUCH",
+        "board": "esp01_1m",
+        "base_topic": "i3/inside",
+        "group_topic": "none",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -582,20 +647,32 @@
                 "command": "backlog",
                 "payload": "SetOption56 ON; SetOption57 ON"
             }
+        ],
+        "instances":[
+            {
+                "name": "Commons Ceiling Fan",
+                "topic": "commons/ceiling-fans",
+                "ip_addr": "10.13.107.108"
+            },
+            {
+                "name": "Laser Ceiling Fan",
+                "topic": "laser-zone/ceiling-fan",
+                "ip_addr": "10.13.107.52"
+            }
         ]
     },
     {
-        "name": "Laser Ceiling Fan",
+        "name": "Small Bathroom Vent Fan",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.52",
-        "group_topic": "none",
         "base_topic": "i3/inside",
-        "topic": "laser-zone/ceiling-fan",
+        "topic": "small-bathroom/vent",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.82",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -617,10 +694,10 @@
         "site": "i3",
         "module": "SONOFF_SV",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.121",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "laser-zone/vent-fan",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.121",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -640,10 +717,10 @@
         "site": "i3",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.56",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/traffic-light",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.56",
         "poweron_state": 0,
         "build_flags": [
             "USE_DHT",
@@ -667,10 +744,10 @@
         "site": "i3",
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.110",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "fablab/vent",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.110",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -692,10 +769,10 @@
         "site": "i3",
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.137",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "machine-shop/ceiling-fan",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.137",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -717,10 +794,10 @@
         "site": "i3",
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.199",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/paint-box",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.199",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -742,10 +819,10 @@
         "site": "i3",
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.236",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/accent/disco-spotlights",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.236",
         "poweron_state": 1,
         "build_flags": [
                 "USE_RULES",
@@ -765,10 +842,10 @@
         "site": "i3",
         "module": "SONOFF_BRIDGE",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.36",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "infrastructure/433-rf-reciever",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.36",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -784,17 +861,16 @@
         "notes": "433-rf-reciever"
     },
     {
-        "name": "Wolverine Chiller",
+        "name": "%id% Chiller",
         "hass_template": "switch",
         "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.231",
-        "group_topic": "none",
         "base_topic": "i3/inside",
-        "topic": "laser-zone/wolverine/chiller",
+        "topic": "laser-zone/%id%/chiller",
+        "group_topic": "none",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -807,33 +883,17 @@
                 "payload": "SetOption56 ON; SetOption57 ON"
             }
         ],
-        "flash_warning": "Make sure no one is using the laser cutter"
-    },
-    {
-        "name": "Bumblebee Chiller",
-        "hass_template": "switch",
-        "hass_domain": "switch",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_BASIC",
-        "board": "esp01_1m",
-        "ip_addr": "10.13.107.114",
-        "group_topic": "none",
-        "base_topic": "i3/inside",
-        "topic": "laser-zone/bumblebee/chiller",
-        "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
+        "flash_warning": "Make sure no one is using the laser cutter",
+        "instances": [
             {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
+                "id": "Wolverine",
+                "ip_addr": "10.13.107.231"
+            },
+            {
+                "id": "Bumblebee",
+                "ip_addr": "10.13.107.114"
             }
-        ],
-        "flash_warning": "Make sure no one is using the laser cutter"
+        ]
     },
     {
         "name": "Fablab Chiller",
@@ -843,10 +903,10 @@
         "site": "i3",
         "module": "SONOFF_POW",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.77",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "fablab/chiller",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.77",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -869,10 +929,10 @@
         "site": "i3",
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.83",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "tool-crib/workbench-lights",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.83",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -883,182 +943,6 @@
             {
                 "command": "backlog",
                 "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
-    },
-    {
-        "name": "Hallway Light",
-        "hass_template": "light",
-        "hass_domain": "light",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_TOUCH",
-        "board": "esp01_1m",
-        "ip_addr": "10.13.107.167",
-        "group_topic": "none",
-        "base_topic": "i3/inside",
-        "topic": "hallway/light",
-        "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
-    },
-    {
-        "name": "Elab Light",
-        "hass_template": "light",
-        "hass_domain": "light",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_TOUCH",
-        "board": "esp01_1m",
-        "ip_addr": "10.13.107.150",
-        "group_topic": "none",
-        "base_topic": "i3/inside",
-        "topic": "elab/light",
-        "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
-    },
-    {
-        "name": "Craftroom Light",
-        "hass_template": "light",
-        "hass_domain": "light",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_TOUCH",
-        "board": "esp01_1m",
-        "ip_addr": "10.13.107.239",
-        "group_topic": "none",
-        "base_topic": "i3/inside",
-        "topic": "craftroom/light",
-        "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
-    },
-    {
-        "name": "Small Bathroom Light",
-        "hass_template": "light",
-        "hass_domain": "light",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_TOUCH",
-        "board": "esp01_1m",
-        "ip_addr": "10.13.107.79",
-        "group_topic": "none",
-        "base_topic": "i3/inside",
-        "topic": "small-bathroom/light",
-        "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
-    },
-    {
-        "name": "Dooridor Light",
-        "hass_template": "light",
-        "hass_domain": "light",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_TOUCH",
-        "board": "esp01_1m",
-        "ip_addr": "10.13.107.197",
-        "group_topic": "none",
-        "base_topic": "i3/inside",
-        "topic": "dooridor/lights",
-        "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
-    },
-    {
-        "name": "Classroom Light West",
-        "hass_template": "light",
-        "hass_domain": "light",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_TOUCH",
-        "board": "esp01_1m",
-        "ip_addr": "10.13.107.173",
-        "group_topic": "none",
-        "base_topic": "i3/inside",
-        "topic": "classroom/lights-west",
-        "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
-    },
-    {
-        "name": "Classroom Light East",
-        "hass_template": "light",
-        "hass_domain": "light",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "WEMOS",
-        "board": "esp01_1m",
-        "ip_addr": "10.13.107.101",
-        "group_topic": "none",
-        "base_topic": "i3/inside",
-        "topic": "classroom/lights-east",
-        "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "GPIO05 52; GPIO13 21; GPIO14 9; switchmode1 3; SetOption56 ON; SetOption57 ON",
-                "restart": 1
             }
         ]
     },
@@ -1070,10 +954,10 @@
         "site": "i3",
         "module": "SONOFF_POW",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.242",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/genie-charging",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.242",
         "poweron_state": 1,
         "build_flags": [
                 "USE_RULES",
@@ -1089,56 +973,6 @@
         "flash_warning": "This will reset any power monitoring calibration"
     },
     {
-        "name": "Small Bathroom Vent Fan",
-        "hass_template": "switch",
-        "hass_domain": "switch",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_TOUCH",
-        "board": "esp01_1m",
-        "ip_addr": "10.13.107.82",
-        "group_topic": "none",
-        "base_topic": "i3/inside",
-        "topic": "small-bathroom/vent",
-        "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
-    },
-    {
-        "name": "Small Bathroom Shower Light",
-        "hass_template": "light",
-        "hass_domain": "light",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_TOUCH",
-        "board": "esp01_1m",
-        "ip_addr": "10.13.107.118",
-        "group_topic": "none",
-        "base_topic": "i3/inside",
-        "topic": "small-bathroom/shower-light",
-        "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
-    },
-    {
         "name": "Commons Siren",
         "hass_template": "switch",
         "hass_domain": "switch",
@@ -1146,10 +980,10 @@
         "site": "i3",
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.162",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/siren",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.162",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -1164,17 +998,16 @@
         ]
     },
     {
-        "name": "Wolverine",
+        "name": "%id%",
         "hass_template": "pow",
         "hass_domain": "switch",
         "software": "tasmota",
         "site": "i3",
         "module": "SONOFF_POW",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.223",
-        "group_topic": "none",
         "base_topic": "i3/inside",
-        "topic": "laser-zone/wolverine/laser",
+        "topic": "laser-zone/%id%/laser",
+        "group_topic": "none",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -1187,56 +1020,15 @@
                 "payload": "SetOption13 ON; SetOption32 100; teleperiod 60; SetOption56 ON; SetOption57 ON"
             }
         ],
-        "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration."
-    },
-    {
-        "name": "Bumblebee",
-        "hass_template": "pow",
-        "hass_domain": "switch",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_POW",
-        "board": "esp01_1m",
-        "ip_addr": "10.13.107.245",
-        "group_topic": "none",
-        "base_topic": "i3/inside",
-        "topic": "laser-zone/bumblebee/laser",
-        "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
+        "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration.",
+        "instances": [
             {
-                "command": "backlog",
-                "payload": "SetOption13 ON; SetOption32 100; teleperiod 60; SetOption56 ON; SetOption57 ON"
-            }
-        ],
-        "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration."
-    },
-    {
-        "name": "Hallway West Lightswitch",
-        "hass_template": "switch",
-        "hass_domain": "switch",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_TOUCH",
-        "board": "esp01_1m",
-        "ip_addr": "10.13.107.174",
-        "group_topic": "none",
-        "base_topic": "i3/inside",
-        "topic": "hallway/lightswitch-west",
-        "poweron_state": 0,
-        "build_flags": [
-            "USE_RULES",
-            "SUPPORT_MQTT_EVENT",
-            "USE_EXPRESSION"
-        ],
-        "commands": [
+                "id": "Wolverine",
+                "ip_addr": "10.13.107.223"
+            },
             {
-                "command": "backlog",
-                "payload": "switchmode1 3; rule on button1#state do publish cmnd/i3/inside/hallway/light/POWER TOGGLE endon; rule 1; SetOption56 ON; SetOption57 ON"
+                "id": "Bumblebee",
+                "ip_addr": "10.13.107.245"
             }
         ]
     },
@@ -1248,10 +1040,10 @@
         "site": "i3",
         "module": "SONOFF_TH",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.132",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "cnc/vent",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.132",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -1274,10 +1066,10 @@
         "site": "i3",
         "module": "SONOFF_TH",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.75",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "cnc/light",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.75",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -1300,10 +1092,10 @@
         "site": "i3",
         "module": "SONOFF_TH",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.12",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/south-vent",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.12",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -1319,31 +1111,6 @@
         ]
     },
     {
-        "name": "Classroom Lightswitch East",
-        "hass_template": "switch",
-        "hass_domain": "switch",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_TOUCH",
-        "board": "esp01_1m",
-        "ip_addr": "10.13.107.164",
-        "group_topic": "none",
-        "base_topic": "i3/inside",
-        "topic": "classroom/lightswitch-east",
-        "poweron_state": 0,
-        "build_flags": [
-            "USE_RULES",
-            "SUPPORT_MQTT_EVENT",
-            "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "switchmode1 3; rule on button1#state do publish cmnd/i3/inside/classroom/lights-east/POWER TOGGLE endon; rule 1; SetOption56 ON; SetOption57 ON"
-            }
-        ]
-    },
-    {
         "name": "Elab Arch %id%",
         "hass_template": "light_rgb",
         "hass_domain": "light",
@@ -1351,9 +1118,9 @@
         "site": "i3",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "elab/accent/arch-%id%",
+        "group_topic": "none",
         "poweron_state": 0,
         "build_flags": [
             "USE_IR_REMOTE",
@@ -1365,7 +1132,14 @@
             "SUPPORT_MQTT_EVENT",
             "USE_EXPRESSION"
         ],
-        "ids": [
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "GPIO02 56; GPIO4 51; GPIO05 38; GPIO12 37; GPIO13 39; GPIO15 40; SetOption15 1; SetOption56 ON; SetOption57 ON",
+                "restart": 1
+            }
+        ],
+        "instances": [
             {
                 "id": "South",
                 "ip_addr": "10.13.107.115"
@@ -1373,13 +1147,6 @@
             {
                 "id": "North",
                 "ip_addr": "10.13.107.138"
-            }
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "GPIO02 56; GPIO4 51; GPIO05 38; GPIO12 37; GPIO13 39; GPIO15 40; SetOption15 1; SetOption56 ON; SetOption57 ON",
-                "restart": 1
             }
         ]
     },
@@ -1391,10 +1158,10 @@
         "site": "i3",
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.153",
-        "group_topic": "accent/lanterns",
         "base_topic": "i3/inside",
         "topic": "laser-zone/accent/lanterns",
+        "group_topic": "accent/lanterns",
+        "ip_addr": "10.13.107.153",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -1416,10 +1183,10 @@
         "site": "i3",
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.253",
-        "group_topic": "accent/fairy-lights",
         "base_topic": "i3/inside",
         "topic": "commons/accent/fairy-lights",
+        "group_topic": "accent/fairy-lights",
+        "ip_addr": "10.13.107.253",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -1441,10 +1208,10 @@
         "site": "i3",
         "module": "SONOFF_POW",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.86",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "fablab/chinesium-laser",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.86",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -1467,10 +1234,10 @@
         "site": "i3",
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.49",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "program-me",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.49",
         "poweron_state": 1,
         "build_flags": [
                 "USE_RULES",
@@ -1492,10 +1259,10 @@
         "site": "i3",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.106",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/snapple-vending-light",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.106",
         "poweron_state": 1,
         "build_flags": [
                 "USE_RULES",
@@ -1518,10 +1285,10 @@
         "site": "i3",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.103",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "b-side/office/lights",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.103",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -1544,10 +1311,10 @@
         "site": "i3",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.109",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "b-side/roof-exhaust-fan",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.109",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -1570,10 +1337,10 @@
         "site": "i3",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.136",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "etekciy/test-04",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.136",
         "poweron_state": 0,
         "build_flags": [
                 "USE_RULES",
@@ -1590,15 +1357,16 @@
     },
     {
         "name": "Omnisensor",
-        "domain": null,
+        "hass_template": null,
+        "hass_domain": null,
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.111",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "sensors/omnisensor",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.111",
         "poweron_state": 0,
         "build_flags": [
                 "USE_I2C",
@@ -1626,10 +1394,10 @@
         "site": "i3",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.87",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "b-side/office-lightswitch",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.87",
         "poweron_state": 0,
         "build_flags": [
             "USE_RULES",
@@ -1652,22 +1420,22 @@
         "site": "i3",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "b-side/shop-%id%-lightswitch",
+        "group_topic": "none",
         "poweron_state": 0,
         "build_flags": [
             "USE_RULES",
             "SUPPORT_MQTT_EVENT",
             "USE_EXPRESSION"
-            ],
+        ],
         "commands": [
             {
                 "command": "backlog",
                 "payload": "GPIO0 9; GPIO13 56; switchmode 3; rule1 on switch1#state do publish cmnd/i3/inside/lights/west/power 2 endon; rule1 1; SetOption56 ON; SetOption57 ON"
             }
         ],
-        "ids": [
+        "instances": [
             {
                 "id": "South",
                 "ip_addr": "10.13.107.72"
@@ -1680,15 +1448,16 @@
     },
     {
         "name": "B-Side Alarm Panel",
+        "hass_template": null,
+        "hass_domain": null,
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.228",
-        "mac_addr": "b4:e6:2d:23:26:45",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "b-side/alarm-panel",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.228",
         "poweron_state": 0,
         "build_flags": [
            "USE_I2C",
@@ -1724,10 +1493,10 @@
         "site": "i3",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.14",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "craftroom/lightswitch",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.14",
         "poweron_state": 0,
         "build_flags": [
             "USE_RULES",
@@ -1750,10 +1519,10 @@
         "site": "i3",
         "module": "SONOFF_POW",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.55",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "fablab/ac",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.55",
         "poweron_state": 1,
         "build_flags": [
             "USE_RULES",
@@ -1776,15 +1545,15 @@
         "site": "i3",
         "module": "SONOFF_S31",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.166",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/snapple-compress",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.166",
         "poweron_state": 1,
         "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION"
         ],
         "commands": [
             {
@@ -1796,14 +1565,16 @@
     },
     {
         "name": "Front Door Panel",
+        "hass_template": null,
+        "hass_domain": null,
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "ip_addr": "10.13.107.102",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/front-door-indicator",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.102",
         "poweron_state": 0,
         "build_flags": [
            "USE_I2C",
@@ -1859,99 +1630,51 @@
     },
     {
         "name": "Air Line Pressure Sensor %id%",
-        "domain": null,
+        "hass_template": null,
+        "hass_domain": null,
         "software": "tasmota",
         "site": "i3",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "sensors/air-line-pressure-%id%",
+        "group_topic": "none",
         "poweron_state": 0,
         "build_flags": [
-                "USE_I2C",
-                "USE_ANALOG_IN",
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
+            "USE_I2C",
+            "USE_ANALOG_IN",
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION",
+            "TELE_PERIOD 10"
         ],
         "commands": [
             {
                 "command": "ADC0",
                 "payload": "1",
                 "restart": 1
-            },
-            {
-                "command": "rule1",
-                "payload": "on tele-analog#a0 do var1=((0.2123*%value%)-22.735) endon on var1#state do publish stat/i3/inside/sensors/air-line-pressure-%id%/pressure %var1% endon"
-            },
-            {
-                "command": "rule1",
-                "payload": "1"
-            },
-            {
-                "command": "teleperiod",
-                "payload": "10"
-            },
-            {
-                "command": "restart",
-                "payload": "1",
-                "restart": 1
             }
         ],
-        "ids": [
+        "instances": [
             {
                 "id": "01",
-                "ip_addr": "10.13.107.89"
-            }
-        ]
-    },
-    {
-        "name": "Air Line Pressure Sensor %id%",
-        "domain": null,
-        "software": "tasmota",
-        "site": "i3",
-        "module": "WEMOS",
-        "board": "esp01_1m",
-        "group_topic": "none",
-        "base_topic": "i3/inside",
-        "topic": "sensors/air-line-pressure-%id%",
-        "poweron_state": 0,
-        "build_flags": [
-                "USE_I2C",
-                "USE_ANALOG_IN",
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "ADC0",
-                "payload": "1",
-                "restart": 1
+                "ip_addr": "10.13.107.89",
+                "commands": [
+                    {
+                        "command": "backlog",
+                        "payload": "rule1 on tele-analog#a0 do var1=((0.2123*%value%)-22.735) endon on var1#state do publish stat/i3/inside/sensors/air-line-pressure-%id%/pressure %var1% endon; rule1 1"
+                    }
+                ]
             },
-            {
-                "command": "rule1",
-                "payload": "on tele-analog#a0 do var1=((0.1781*%value%)-19.747) endon on var1#state do publish stat/i3/inside/sensors/air-line-pressure-%id%/pressure %var1% endon"
-            },
-            {
-                "command": "rule1",
-                "payload": "1"
-            },
-            {
-                "command": "teleperiod",
-                "payload": "10"
-            },
-            {
-                "command": "restart",
-                "payload": "1",
-                "restart": 1
-            }
-        ],
-        "ids": [
             {
                 "id": "02",
-                "ip_addr": "10.13.107.33"
+                "ip_addr": "10.13.107.33",
+                "commands": [
+                    {
+                        "command": "backlog",
+                        "payload": "rule1 on tele-analog#a0 do var1=((0.1781*%value%)-19.747) endon on var1#state do publish stat/i3/inside/sensors/air-line-pressure-%id%/pressure %var1% endon; rule1 1"
+                    }
+                ]
             }
         ]
     }

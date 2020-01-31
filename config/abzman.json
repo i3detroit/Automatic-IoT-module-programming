@@ -21,7 +21,7 @@
                 "payload": "SetOption56 ON; SetOption57 ON"
             }
         ],
-        "ids": [
+        "instances": [
             {
                 "id": "001",
                 "ip_addr": "10.13.107.133",
@@ -112,7 +112,7 @@
                 "restart": 1
             }
         ],
-        "ids": [
+        "instances": [
             {
                 "id": "inside/office",
                 "ip_addr": "10.13.107.100"

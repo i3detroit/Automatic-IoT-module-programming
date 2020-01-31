@@ -22,7 +22,7 @@
                 "payload": "SetOption56 ON; SetOption57 ON"
             }
         ],
-        "ids": [
+        "instances": [
             {
                 "id": "001",
                 "ip_addr": "192.168.107.16"
