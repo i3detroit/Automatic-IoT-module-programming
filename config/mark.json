@@ -47,6 +47,9 @@
             },
             {
                 "id": "008"
+            },
+            {
+                "id": "009"
             }
         ]
     },
@@ -55,6 +58,8 @@
         "domain": null,
         "software": "custom-mqtt-programs",
         "site": "mark",
+        "hass_template": "thermostat",
+        "hass_domain": "climate",
         "module": "thermostat",
         "board": "d1_mini",
         "ip_addr": "192.168.107.12",
