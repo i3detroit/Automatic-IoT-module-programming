@@ -1700,7 +1700,7 @@
                 "restart": 0
             }
         ],
-        "ids": [
+        "instances": [
             {
                 "id": "South",
                 "ip_addr": "10.13.107.23"
@@ -1731,7 +1731,7 @@
         "commands": [
             {
                 "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON; GPIO4 9; GPIO5 10; GPIO0 11; GPIO2 12; switchmode1 3; switchmode2 3; switchmode3 3; switchmode4 3",
+                "payload": "GPIO4 9; GPIO5 10; GPIO0 11; GPIO2 12; switchmode1 3; switchmode2 3; switchmode3 3; switchmode4 3; restart 1",
                 "restart": 1
             },
             {
@@ -1740,7 +1740,7 @@
                 "restart": 0
             }
         ],
-        "ids": [
+        "instances": [
             {
                 "id": "South",
                 "ip_addr": "10.13.107."
@@ -1780,7 +1780,7 @@
                 "restart": 0
             }
         ],
-        "ids": [
+        "instances": [
             {
                 "id": "East",
                 "ip_addr": "10.13.107."
@@ -1820,7 +1820,7 @@
                 "restart": 0
             }
         ],
-        "ids": [
+        "instances": [
             {
                 "id": "001",
                 "ip_addr": "10.13.107.23"
