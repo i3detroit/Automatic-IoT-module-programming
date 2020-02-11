@@ -172,16 +172,7 @@ class device(dict):
                 print(('{GREEN}{f_name} is online after flashing. Running '
                        'setup commands...{NC}'.format(**colors, **self)))
                 sleep(1)
-                for c in self.commands:
-                    self.mqtt.connect(self.mqtt_host)
-                    command = "{c_topic}/{cmnd}".format(**self, 
-                                                        cmnd=c['command'])
-                    print("Sending {c} {p}".format(c=command, p=c['payload']))
-                    self.mqtt.publish(command, c['payload'])
-                    self.mqtt.disconnect()
-                    sleep(1)
-                    if "restart" in c and c['restart'] == 1:
-                        self.online_check()
+                self.run_setup_commands()
 
             if online:
                 self._handle_result(0)
@@ -189,6 +180,17 @@ class device(dict):
             else:
                 self._handle_result(3)
         return(1)
+
+    def run_setup_commands(self):
+        for c in self.commands:
+            self.mqtt.connect(self.mqtt_host)
+            command = "{c_topic}/{cmnd}".format(**self, cmnd=c['command'])
+            print("Sending {c} {p}".format(c=command, p=c['payload']))
+            self.mqtt.publish(command, c['payload'])
+            self.mqtt.disconnect()
+            sleep(1)
+            if "restart" in c and c['restart'] == 1:
+                self.online_check()
 
     def _handle_result(self, result_code):
         """
@@ -377,7 +379,7 @@ class device(dict):
             return ['status{num}'.format(num=key) for key \
                     in tasmota_status_query.keys()]
 
-        # while not all of the responses exist, 
+        # while not all of the responses exist,
         # and we aren't too old since the start time
         startTime = dt.datetime.now()
         done = False
@@ -506,7 +508,7 @@ def get_tasmota_version():
     """
     Get the version number from tasmota repo
     """
-    with open(os.path.join(tasmota_dir, "tasmota", 
+    with open(os.path.join(tasmota_dir, "tasmota",
                            "tasmota_version.h"), "r") as f:
         for line in f:
             match = re.match('.* VERSION = (0x[0-9A-Fa-f]+);', line)
@@ -532,7 +534,7 @@ def choose_devices(devices, query=False):
 
     choice_list = []
     current_type = None
-    name_len = max([len(dev.name) for dev in devices]) + 1
+    name_len = max([len(dev.f_name) for dev in devices]) + 1
 
     if query:
         print('Querying all devices for version numbers. '
@@ -541,13 +543,13 @@ def choose_devices(devices, query=False):
                                      + 'Firmware'.center(15)
                                      + 'Core'.center(7) + 'State'))
     for device in devices:
-        if device['module'] != current_type:
-            current_type = device['module']
+        if device.module != current_type:
+            current_type = device.module
             sep_str = ' {} '.format(current_type).center(name_len + 29, '=')
             choice_list.append(Separator(sep_str))
+        menu_text = device.f_name.ljust(name_len)
         if query and device.software == 'tasmota':
             device.query_tas_status()
-            menu_text = device.f_name.ljust(name_len)
             if 'tas_version' in device.reported:
                 menu_text += device.reported['tas_version'].ljust(15)
                 menu_text += device.reported['core_version'].ljust(7)
@@ -555,10 +557,7 @@ def choose_devices(devices, query=False):
                     menu_text += device.reported['power']
             else:
                 menu_text += 'Offline'
-            choice_list.append({'name': menu_text, 'value': device['f_name']})
-        else:
-            choice_list.append({'name': device['f_name'],
-                                'value': device['f_name']})
+        choice_list.append({'name': menu_text, 'value': device.f_name})
 
     # Ask the user to choose which devices to flash
     questions = [
@@ -570,7 +569,7 @@ def choose_devices(devices, query=False):
         }
     ]
     answers = prompt(questions, style=style)
-    selected_devices = [device for device in devices if device['f_name'] \
+    selected_devices = [device for device in devices if device.f_name \
                         in answers['device_selection']]
     return selected_devices
 
