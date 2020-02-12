@@ -1227,31 +1227,6 @@
         "flash_warning": "Make sure no one is using the laser cutter. Also this will reset any power monitoring calibration"
     },
     {
-        "name": "OLD snapple vending light",
-        "hass_template": "light",
-        "hass_domain": "light",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_BASIC",
-        "board": "esp01_1m",
-        "base_topic": "i3/inside",
-        "topic": "program-me",
-        "group_topic": "none",
-        "ip_addr": "10.13.107.49",
-        "poweron_state": 1,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
-    },
-    {
         "name": "Snapple Vending Light",
         "hass_template": "light_rgb",
         "hass_domain": "light",
