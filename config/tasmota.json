@@ -1783,7 +1783,7 @@
         "instances": [
             {
                 "id": "East",
-                "ip_addr": "10.13.107."
+                "ip_addr": "10.13.107.39"
             },
             {
                 "id": "West",
