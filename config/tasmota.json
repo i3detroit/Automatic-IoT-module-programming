@@ -1771,12 +1771,12 @@
         "commands": [
             {
                 "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON; GPIO4 9; GPIO14 10; GPIO14 11; GPIO5 12; GPIO0 13; GPIO2 14; switchmode1 3; switchmode2 3; switchmode3 3; switchmode4 3; switchmode5 3; switchmode6 3",
+                "payload": "SetOption56 ON; SetOption57 ON; GPIO4 9; GPIO14 10; GPIO12 11; GPIO5 12; GPIO0 13; GPIO2 14; switchmode1 3; switchmode2 3; switchmode3 3; switchmode4 3; switchmode5 3; switchmode6 3",
                 "restart": 1
             },
             {
                 "command": "backlog",
-                "payload": "rule1 on switch1#state do publish cmnd/i3/inside/lights/row1/power 1 endon on switch2#state do publish cmnd/i3/inside/lights/row1/power 0 endon on switch3#state do publish cmnd/i3/inside/lights/row2/power 1 endon on switch4#state do publish cmnd/i3/inside/lights/row2/power 0 endon; on switch5#state do publish cmnd/i3/inside/lights/row3/power 1 endon on switch6#state do publish cmnd/i3/inside/lights/row3/power 0 endon; rule1 1",
+                "payload": "rule1 on switch1#state do publish cmnd/i3/inside/lights/row1/power 1 endon on switch2#state do publish cmnd/i3/inside/lights/row1/power 0 endon on switch3#state do publish cmnd/i3/inside/lights/row2/power 1 endon on switch4#state do publish cmnd/i3/inside/lights/row2/power 0 endon on switch5#state do publish cmnd/i3/inside/lights/row3/power 1 endon on switch6#state do publish cmnd/i3/inside/lights/row3/power 0 endon; rule1 1",
                 "restart": 0
             }
         ],
