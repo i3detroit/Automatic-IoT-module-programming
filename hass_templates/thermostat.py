@@ -1,8 +1,5 @@
-
-# Simple tasmota light and metadata
-# Use for sonoff basic, touch, SV
-
-import generic
+# For use with MQTT Thermostat
+# https://github.com/i3detroit/MQTT-Thermostat
 
 climate = """
 - platform: mqtt
