@@ -24,63 +24,58 @@
         "instances": [
             {
                 "id": "001",
-                "ip_addr": "10.13.107.133",
-                "group_topic": "lights"
+                "ip_addr": "192.168.1.201",
+                "group_topic": "lights/left"
             },
             {
                 "id": "002",
-                "ip_addr": "10.13.107.78",
-                "group_topic": "lights"
+                "ip_addr": "192.168.1.202",
+                "group_topic": "lights/left"
             },
             {
                 "id": "003",
-                "ip_addr": "10.13.107.104",
-                "group_topic": "lights"
+                "ip_addr": "192.168.1.203",
+                "group_topic": "lights/left"
             },
             {
                 "id": "004",
-                "ip_addr": "10.13.107.177",
-                "group_topic": "lights"
+                "ip_addr": "192.168.1.204",
+                "group_topic": "lights/left"
             },
             {
                 "id": "005",
-                "ip_addr": "10.13.107.117",
-                "group_topic": "lights"
+                "ip_addr": "192.168.1.205",
+                "group_topic": "lights/right"
             },
             {
                 "id": "006",
-                "ip_addr": "10.13.107.135",
-                "group_topic": "lights"
+                "ip_addr": "192.168.1.206",
+                "group_topic": "lights/right"
             },
             {
                 "id": "007",
-                "ip_addr": "10.13.107.193",
-                "group_topic": "lights"
+                "ip_addr": "192.167.1.207",
+                "group_topic": "lights/right"
             },
             {
                 "id": "008",
-                "ip_addr": "10.13.107.154",
-                "group_topic": "lights"
+                "ip_addr": "192.168.1.208",
+                "group_topic": "lights/workbench"
             },
             {
                 "id": "009",
-                "ip_addr": "10.13.107.184",
-                "group_topic": "lights"
+                "ip_addr": "192.168.1.209",
+                "group_topic": "lights/workbench"
             },
             {
                 "id": "010",
-                "ip_addr": "10.13.107.130",
-                "group_topic": "lights"
+                "ip_addr": "192.168.1.210",
+                "group_topic": "lights/workbench"
             },
             {
                 "id": "011",
-                "ip_addr": "10.13.107.98",
-                "group_topic": "lights"
-            },
-            {
-                "id": "012",
-                "ip_addr": "10.13.107.98",
-                "group_topic": "lights"
+                "ip_addr": "192.168.1.211",
+                "group_topic": "lights/workbench"
             }
         ]
     },
@@ -115,48 +110,117 @@
         "instances": [
             {
                 "id": "inside/office",
-                "ip_addr": "10.13.107.100"
+                "ip_addr": "192.168.1.101"
             },
             {
                 "id": "inside/basement-west",
-                "ip_addr": "10.13.107.100"
+                "ip_addr": "192.168.1.102"
             },
             {
                 "id": "inside/basement-east",
-                "ip_addr": "10.13.107.100"
+                "ip_addr": "192.168.1.103"
             },
             {
                 "id": "inside/upstairs-west",
-                "ip_addr": "10.13.107.100"
+                "ip_addr": "192.168.1.104"
             },
             {
                 "id": "inside/upstairs-east",
-                "ip_addr": "10.13.107.100"
+                "ip_addr": "192.168.1.105"
             },
             {
                 "id": "inside/hallway",
-                "ip_addr": "10.13.107.100"
+                "ip_addr": "192.168.1.106"
             },
             {
                 "id": "inside/living-room",
-                "ip_addr": "10.13.107.100"
+                "ip_addr": "192.168.1.107"
             },
             {
                 "id": "inside/bathroom",
-                "ip_addr": "10.13.107.100"
+                "ip_addr": "192.168.1.108"
             },
             {
                 "id": "inside/bedroom",
-                "ip_addr": "10.13.107.100"
+                "ip_addr": "192.168.1.109"
             },
             {
                 "id": "inside/kitchen",
-                "ip_addr": "10.13.107.206"
+                "ip_addr": "192.168.1.110"
             },
             {
                 "id": "garage",
-                "ip_addr": "10.13.107.206"
+                "ip_addr": "192.168.1.111"
+            }
+        ]
+    },
+    {
+        "name": "Light Switch %id%",
+        "hass_template": "generic",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "WEMOS",
+        "poweron_state": 0,
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "evan",
+        "topic": "%id%/light-switch",
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON; GPIO4 9; GPIO12 10; GPIO14 11; GPIO5 12; GPIO0 13; GPIO2 14; switchmode1 3; switchmode2 3; switchmode3 3; switchmode4 3; switchmode5 3; switchmode6 3",
+                "restart": 1
+            },
+            {
+                "command": "backlog",
+                "payload": "rule1 on switch1#state do publish cmnd/evan/inside/basement/lights/left/power 1 endon on switch2#state do publish cmnd/evan/inside/basement/lights/left/power 0 endon on switch3#state do publish cmnd/evan/inside/basement/lights/right/power 1 endon on switch4#state do publish cmnd/evan/inside/basement/lights/right/power 0 endon; on switch5#state do publish cmnd/evan/inside/basement/lights/workbench/power 1 endon on switch6#state do publish cmnd/evan/inside/basement/lights/workbench/power 0 endon; rule1 1",
+                "restart": 0
+            }
+        ],
+        "instances": [
+            {
+                "id": "inside/basement",
+                "ip_addr": ""
+            }
+        ]
+    },
+    {
+        "name": "Sump Pump %id%",
+        "hass_template": "sump_pump",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "WEMOS",
+        "poweron_state": 0,
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "evan/inside",
+        "topic": "basement/sump-pump-%id%",
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+		"USE_SR04",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON; GPIO13 73; GPIO12 74",
+                "restart": 1
+            }
+        ],
+        "instances": [
+            {
+                "id": "01",
+                "ip_addr": "192.168.1.41"
             }
         ]
     }
+
 ]
