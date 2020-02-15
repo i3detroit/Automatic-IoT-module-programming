@@ -445,10 +445,18 @@ class device(dict):
         for c in self.yaml_template.components:
             if not os.path.isdir(os.path.join(hass_output_dir, c)):
                 os.mkdir(os.path.join(hass_output_dir, c))
-            output_fn = os.path.join(hass_output_dir, c,
-                                     '{name}_{c}.yaml'.format(c = c, **self))
-            with open(output_fn, 'w') as yamlf:
-                yamlf.write(self.yaml_template.components[c].format(**self))
+
+            output_file = os.path.join(hass_output_dir,
+                                       c,
+                                       '{name}_{c}.yaml'.format(c = c, **self))
+
+            try:
+                with open(output_file, 'w') as yamlf:
+                    yamlf.write(self.yaml_template.components[c].format(**self))
+            except:
+                print("Failed in writing hass config to {file}".format(file=output_file))
+                raise
+
 
 
 def import_devices(device_file):

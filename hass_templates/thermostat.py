@@ -142,9 +142,11 @@ sensor = """
       friendly_name: "{f_name} Temp On"
       unit_of_measurement: "°C"
       value_template: >-
-        {% if states('sensor.{name}_active_state').state | string == "cooling" or states('sensor.{name}_active_state').state | string == "heating" %}
+        {{% if states('sensor.{name}_active_state').state | string == "cooling" or states('sensor.{name}_active_state').state | string == "heating" %}}
           {{{{states('sensor.{name}_ambient_temperature').state | float }}}}
-        {% endif %}
+        {{% endif %}}
+
+
 
 """
 
