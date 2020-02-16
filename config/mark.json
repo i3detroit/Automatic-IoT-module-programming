@@ -63,5 +63,42 @@
         "topic": "thermostat",
         "build_flags": "",
         "commands": null
+    },
+    {
+        "name": "Sensor Cluster %id%",
+        "hass_template": "sensor_cluster",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "mark",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "mark",
+        "topic": "sensors/cluster-%id%",
+        "group_topic": "sensors",
+        "poweron_state": 1,
+        "build_flags": [
+            "USE_I2C",
+            "USE_BMP",
+            "USE_BH1750",
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON; GPIO4 6; GPIO5 5; teleperiod 60",
+                "restart": 1
+            }
+        ],
+        "instances": [
+            {
+                "id": "basement-east"
+            },
+            {
+                "id": "basement-west"
+            }
+        ]
     }
 ]
