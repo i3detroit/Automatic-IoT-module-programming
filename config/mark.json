@@ -9,7 +9,6 @@
         "board": "esp01_1m",
         "base_topic": "mark/basement",
         "topic": "lights/%id%",
-        "group_topic": "lights/all",
         "poweron_state": 1,
         "build_flags": [
                 "USE_RULES",
@@ -25,28 +24,40 @@
         "instances": [
             {
                 "id": "001",
-                "ip_addr": "192.168.107.16"
+                "ip_addr": "192.168.107.16",
+                "group_topic": "lights/b"
             },
             {
-                "id": "002"
+                "id": "002",
+                "group_topic": "lights/b"
             },
             {
-                "id": "003"
+                "id": "003",
+                "group_topic": "lights/a"
             },
             {
-                "id": "004"
+                "id": "004",
+                "group_topic": "lights/b"
             },
             {
-                "id": "005"
+                "id": "005",
+                "group_topic": "lights/a"
             },
             {
-                "id": "006"
+                "id": "006",
+                "group_topic": "lights/b"
             },
             {
-                "id": "007"
+                "id": "007",
+                "group_topic": "lights/laundry"
             },
             {
-                "id": "008"
+                "id": "008",
+                "group_topic": "lights/a"
+            },
+            {
+                "id": "009",
+                "group_topic": "lights/a"
             }
         ]
     },
