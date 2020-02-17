@@ -185,8 +185,13 @@ class device(dict):
         for c in self.commands:
             self.mqtt.connect(self.mqtt_host)
             command = "{c_topic}/{cmnd}".format(**self, cmnd=c['command'])
-            print("Sending {c} {p}".format(c=command, p=c['payload']))
-            self.mqtt.publish(command, c['payload'])
+            payload = ''
+            if 'concat' in c: #It's a set of rules; so do fancy shit
+                payload = ' '.join(c['concat'])
+            else: #payload is the correct thing
+                payload=c['payload']
+            print("Sending {c} {p}".format(c=command, p=payload))
+            self.mqtt.publish(command, payload)
             self.mqtt.disconnect()
             sleep(1)
             if "restart" in c and c['restart'] == 1:
@@ -482,8 +487,13 @@ def import_devices(device_file):
                             for c in new_dev['commands']:
                                 c['command'] = re.sub('%id%', new_dev['id'],
                                                       c['command'])
-                                c['payload'] = re.sub('%id%', new_dev['id'],
-                                                      c['payload'])
+                                if 'payload' in c:
+                                    c['payload'] = re.sub('%id%',
+                                                          new_dev['id'],
+                                                          c['payload'])
+                                elif 'concat' in c:
+                                    for r in c['concat']:
+                                        r = re.sub('%id%', new_dev['id'], r)
                 # each individual doesn't need to contain the other instances
                 del new_dev['instances']
                 devices.append(device(new_dev))

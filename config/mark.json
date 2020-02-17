@@ -111,5 +111,45 @@
                 "id": "basement-west"
             }
         ]
+    },
+    {
+        "name": "Basement Light Switch",
+        "hass_template": "generic",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "mark",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "poweron_state": 0,
+        "group_topic": "none",
+        "base_topic": "mark/basement",
+        "topic": "lightswitch",
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "notes": "gpio2(D4): switch1 all off; gpio4(D2): switch 2 a on; gpio5(D1): switch3 a&b on, gpio12(D6): switch4 laundry off; gpio13(D6): Switch6 laundry on",
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "GPIO2 9; GPIO4 10; GPIO5 11; GPIO12 12; GPIO13 13; switchmode1 3; switchmode2 3; switchmode3 3; switchmode4 3; switchmode4 5; switchmode5 5; restart 1",
+                "restart": 1
+            },
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON switch1#state DO Backlog publish cmnd/mark/basement/lights/a/power 0; publish cmnd/mark/basement/lights/b/power 0 ENDON",
+                    "ON switch2#state DO publish cmnd/mark/basement/lights/a/power 1 ENDON",
+                    "ON switch3#state DO Backlog publish cmnd/mark/basement/lights/a/power 1; publish cmnd/mark/basement/lights/b/power 1 ENDON",
+                    "ON switch4#state DO publish cmnd/mark/basement/lights/laundry/power 0 ENDON",
+                    "ON switch5#state DO publish cmnd/mark/basement/lights/laundry/power 1 ENDON"
+                ]
+            },
+            {
+                "command": "rule1",
+                "payload": "1"
+            }
+        ]
     }
 ]

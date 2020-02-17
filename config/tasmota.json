@@ -1455,9 +1455,17 @@
                 "payload": "sensor29 0,2,1,2; sensor29 1,2,1,2; sensor29 2,2,1,2; sensor29 3,2,1,2; sensor29 4,2,1,2; sensor29 5,2,1,2; sensor29 6,2,1,2; sensor29 7,2,1,2; sensor29 8,2,1,0; sensor29 9,2,1,0; sensor29 10,2,1,2; sensor29 11,2,1,2; sensor29 12,2,1,2; sensor29 13,2,1,2; sensor29 14,2,1,2; sensor29 15,2,1,2"
             },
             {
-                "command": "backlog",
-                "payload": "rule1 on event#MCPINT_D8=0 do publish cmnd/i3/inside/lights/west/power 0 endon on event#MCPINT_D9=0 do publish cmnd/i3/inside/lights/west/power 1 endon; rule1 1"
+                "command": "rule1",
+                "concat": [
+                    "on event#MCPINT_D8=0 do publish cmnd/i3/inside/lights/west/power 0 endon",
+                    "on event#MCPINT_D9=0 do publish cmnd/i3/inside/lights/west/power 1 endon"
+                ]
+            },
+            {
+                "command": "rule1",
+                "payload": "1"
             }
+
         ]
     },
     {
@@ -1574,7 +1582,14 @@
             },
             {
                 "command": "rule1",
-                "payload": "on event#MCPINT_D13=1 do backlog sensor29 3,ON; sensor29 2,OFF endon on event#MCPINT_D13=0 do backlog sensor29 3,OFF; sensor29 2,ON endon on Event#glasslock=LOCKED do backlog sensor29 0,ON; sensor29 1,OFF endon on Event#glasslock=UNLOCKED do backlog sensor29 0,OFF; sensor29 1,ON endon on Event#aircomp=ON do backlog sensor29 6,ON; sensor29 7,OFF endon on Event#aircomp=OFF do backlog sensor29 6,OFF; sensor29 7,ON endon"
+                "concat": [
+                    "on event#MCPINT_D13=1 do backlog sensor29 3,ON; sensor29 2,OFF endon",
+                    "on event#MCPINT_D13=0 do backlog sensor29 3,OFF; sensor29 2,ON endon",
+                    "on Event#glasslock=LOCKED do backlog sensor29 0,ON; sensor29 1,OFF endon",
+                    "on Event#glasslock=UNLOCKED do backlog sensor29 0,OFF; sensor29 1,ON endon",
+                    "on Event#aircomp=ON do backlog sensor29 6,ON; sensor29 7,OFF endon",
+                    "on Event#aircomp=OFF do backlog sensor29 6,OFF; sensor29 7,ON endon"
+                ]
             },
             {
                 "command": "rule1",
@@ -1582,7 +1597,11 @@
             },
             {
                 "command": "rule2",
-                "payload": "on Mqtt#Connected do backlog subscribe glasslock,stat/i3/inside/classroom/glass-door/lock; publish cmnd/i3/inside/classroom/glass-door/lock; subscribe aircomp,stat/i3/inside/infrastructure/air-compressor/power; publish cmnd/i3/inside/infrastructure/air-compressor/POWER endon on event#MCPINT_D10=0 do publish stat/i3/inside/commons/front-door/lock UNLOCKED endon on event#MCPINT_D10=1 do publish stat/i3/inside/commons/front-door/lock LOCKED endon"
+                "concat": [
+                    "on Mqtt#Connected do backlog subscribe glasslock,stat/i3/inside/classroom/glass-door/lock; publish cmnd/i3/inside/classroom/glass-door/lock; subscribe aircomp,stat/i3/inside/infrastructure/air-compressor/power; publish cmnd/i3/inside/infrastructure/air-compressor/POWER endon",
+                    "on event#MCPINT_D10=0 do publish stat/i3/inside/commons/front-door/lock UNLOCKED endon",
+                    "on event#MCPINT_D10=1 do publish stat/i3/inside/commons/front-door/lock LOCKED endon"
+                ]
             },
             {
                 "command": "rule2",
@@ -1590,7 +1609,10 @@
             },
             {
                 "command": "rule3",
-                "payload": "on tele-analog#a0 do var1=((%value%*13)/811) endon on var1#state do publish tele/i3/inside/commons/front-door-indicator/batteryVoltage %var1% endon"
+                "concat": [
+                    "on tele-analog#a0 do var1=((%value%*13)/811) endon",
+                    "on var1#state do publish tele/i3/inside/commons/front-door-indicator/batteryVoltage %var1% endon"
+                ]
             },
             {
                 "command": "rule3",
@@ -1637,7 +1659,12 @@
                 "commands": [
                     {
                         "command": "backlog",
-                        "payload": "rule1 on tele-analog#a0 do var1=((0.2123*%value%)-22.735) endon on var1#state do publish stat/i3/inside/sensors/air-line-pressure-%id%/pressure %var1% endon; rule1 1"
+                        "concat": [
+                            "rule1",
+                            "on tele-analog#a0 do var1=((0.2123*%value%)-22.735) endon",
+                            "on var1#state do publish stat/i3/inside/sensors/air-line-pressure-%id%/pressure %var1% endon;",
+                            "rule1 1"
+                        ]
                     }
                 ]
             },
@@ -1647,7 +1674,12 @@
                 "commands": [
                     {
                         "command": "backlog",
-                        "payload": "rule1 on tele-analog#a0 do var1=((0.1781*%value%)-19.747) endon on var1#state do publish stat/i3/inside/sensors/air-line-pressure-%id%/pressure %var1% endon; rule1 1"
+                        "concat": [
+                            "rule1",
+                            "on tele-analog#a0 do var1=((0.1781*%value%)-19.747) endon",
+                            "on var1#state do publish stat/i3/inside/sensors/air-line-pressure-%id%/pressure %var1% endon;",
+                            "rule1 1"
+                        ]
                     }
                 ]
             }
