@@ -49,7 +49,8 @@ tasmota_status_query = {
                'mac': ['StatusNET', 'Mac'],
                'wificonfig':['StatusNET', 'WifiConfig']},
          '2': {'tas_version': ['StatusFWR', 'Version'],
-              'core_version': ['StatusFWR', 'Core']}
+              'core_version': ['StatusFWR', 'Core'],
+              'build_time': ['StatusFWR', 'BuildDateTime']}
         }
 
 # too_old will return true if the time is more than seconds ago
@@ -341,6 +342,18 @@ class device(dict):
         while not self.online and not too_old(startTime, wait_time):
             self.mqtt.loop(timeout=loop_time)
         time_waited = (dt.datetime.now() - startTime).total_seconds()
+        # If we did not see device publish INFO2, sometimes platformio causes
+        # a delay by checking for updates and we miss seeing this message.
+        # To check for that case, query the device for its build timestamp and
+        # check if it was built in the last couple minutes.
+        if not self.online:
+            self.query_tas_status()
+            if 'build_time' in self.reported:
+                build_time = dt.datetime.strptime(self.reported['build_time'],
+                                                  '%Y-%m-%dT%H:%M:%S')
+                if dt.datetime.now() - build_time < dt.timedelta(minutes=2):
+                    self.online = True
+
         if not self.online:
             print('{RED}{f_name} did not come online within {wait_time} '
                   'seconds{NC}'.format(f_name=self.f_name,
@@ -479,21 +492,17 @@ def import_devices(device_file):
                         new_dev[key] = instance[key]
                 # replace the "%id%" string with 'id' in all device properties
                 if 'id' in new_dev:
+                    sub_id = lambda x: re.sub('%id%', new_dev['id'], x)
                     for key in new_dev:
                         if isinstance(new_dev[key], str):
-                            new_dev[key] = re.sub('%id%', new_dev['id'],
-                                                  new_dev[key])
+                            new_dev[key] = sub_id(new_dev[key])
                         elif key == 'commands':
                             for c in new_dev['commands']:
-                                c['command'] = re.sub('%id%', new_dev['id'],
-                                                      c['command'])
+                                c['command'] = sub_id(c['command'])
                                 if 'payload' in c:
-                                    c['payload'] = re.sub('%id%',
-                                                          new_dev['id'],
-                                                          c['payload'])
+                                    c['payload'] = sub_id(c['payload'])
                                 elif 'concat' in c:
-                                    for r in c['concat']:
-                                        r = re.sub('%id%', new_dev['id'], r)
+                                    c['concat'] = [sub_id(r) for r in c['concat']]
                 # each individual doesn't need to contain the other instances
                 del new_dev['instances']
                 devices.append(device(new_dev))
