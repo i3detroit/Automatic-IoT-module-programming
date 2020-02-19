@@ -196,7 +196,6 @@ class device(dict):
             self.mqtt.disconnect()
             sleep(1)
             if "restart" in c and c['restart'] == 1:
-                sleep(2)
                 self.online_check()
 
     def _handle_result(self, result_code):
@@ -342,8 +341,7 @@ class device(dict):
             if 'build_time' in self.reported:
                 build_time = dt.datetime.strptime(self.reported['build_time'],
                                                   '%Y-%m-%dT%H:%M:%S')
-                if dt.datetime.now() - build_time < dt.timedelta(minutes=2):
-                    self.online = True
+                self.online = not too_old(build_time, 120)
 
         self.online = False
         online_topic = '{t_topic}/INFO2'.format(**self)
@@ -355,10 +353,13 @@ class device(dict):
         self.mqtt.message_callback_add(status_topic, _status2_callback)
         self.mqtt.subscribe(online_topic)
         self.mqtt.subscribe(status_topic)
-        self.mqtt.publish('{c_topic}/status'.format(**self), '2')
         startTime = dt.datetime.now()
+        published = False
         while not self.online and not too_old(startTime, wait_time):
             self.mqtt.loop(timeout=loop_time)
+            if not published and too_old(startTime, 2):
+                self.mqtt.publish('{c_topic}/status'.format(**self), '2')
+                published = True
         time_waited = (dt.datetime.now() - startTime).total_seconds()
 
         if not self.online:
