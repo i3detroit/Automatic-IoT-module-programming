@@ -196,6 +196,7 @@ class device(dict):
             self.mqtt.disconnect()
             sleep(1)
             if "restart" in c and c['restart'] == 1:
+                sleep(2)
                 self.online_check()
 
     def _handle_result(self, result_code):
