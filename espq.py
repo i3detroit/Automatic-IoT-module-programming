@@ -328,31 +328,37 @@ class device(dict):
 
     def online_check(self):
         """
-        Connect to MQTT and watch for the device to publish LWT Online
-        Returns True if device is Online
+        Connect to MQTT and watch for the device to publish INFO2 Online
+        and poll status 2.
+        Returns True if we see the device come online or if the status 2
+        build timestamp is in the last 2 minutes.
         """
-        self.online = False
-        online_topic = '{t_topic}/INFO2'.format(**self)
-        print('{BLUE}Watching for {}{NC}'.format(online_topic, **colors))
-        self.mqtt.connect(self.mqtt_host)
-        self.mqtt.message_callback_add(online_topic, lambda *args: \
-                                                 setattr(self, 'online', True))
-        self.mqtt.subscribe(online_topic)
-        startTime = dt.datetime.now()
-        while not self.online and not too_old(startTime, wait_time):
-            self.mqtt.loop(timeout=loop_time)
-        time_waited = (dt.datetime.now() - startTime).total_seconds()
-        # If we did not see device publish INFO2, sometimes platformio causes
-        # a delay by checking for updates and we miss seeing this message.
-        # To check for that case, query the device for its build timestamp and
-        # check if it was built in the last couple minutes.
-        if not self.online:
-            self.query_tas_status()
+        def _status2_callback(mqtt, userdata, msg):
+            msg = json.loads(msg.payload.decode('UTF-8'))
+            for datum in tasmota_status_query['2']:
+                datumPath=tasmota_status_query['2'][datum]
+                self.reported[datum] = nested_get(msg, datumPath)
             if 'build_time' in self.reported:
                 build_time = dt.datetime.strptime(self.reported['build_time'],
                                                   '%Y-%m-%dT%H:%M:%S')
                 if dt.datetime.now() - build_time < dt.timedelta(minutes=2):
                     self.online = True
+
+        self.online = False
+        online_topic = '{t_topic}/INFO2'.format(**self)
+        status_topic = '{s_topic}/STATUS2'.format(**self)
+        print('{BLUE}Watching for {}{NC}'.format(online_topic, **colors))
+        self.mqtt.connect(self.mqtt_host)
+        self.mqtt.message_callback_add(online_topic, lambda *args: \
+                                                 setattr(self, 'online', True))
+        self.mqtt.message_callback_add(status_topic, _status2_callback)
+        self.mqtt.subscribe(online_topic)
+        self.mqtt.subscribe(status_topic)
+        self.mqtt.publish('{c_topic}/status'.format(**self), '2')
+        startTime = dt.datetime.now()
+        while not self.online and not too_old(startTime, wait_time):
+            self.mqtt.loop(timeout=loop_time)
+        time_waited = (dt.datetime.now() - startTime).total_seconds()
 
         if not self.online:
             print('{RED}{f_name} did not come online within {wait_time} '
@@ -365,7 +371,9 @@ class device(dict):
                                        time_waited=time_waited,
                                        **colors))
         self.mqtt.unsubscribe(online_topic)
+        self.mqtt.unsubscribe(status_topic)
         self.mqtt.message_callback_remove(online_topic)
+        self.mqtt.message_callback_remove(status_topic)
         self.mqtt.disconnect()
         return self.online
 
