@@ -62,7 +62,7 @@ parser.add_argument('--pause',
 parser.add_argument('-p', '--port',
                     dest='serialPort',
                     action='store',
-                    default='/dev/ttyUSB0',
+                    default=None,
                     help='Specify serial port to flash from')
 parser.add_argument('-q', '--query',
                     dest='query',

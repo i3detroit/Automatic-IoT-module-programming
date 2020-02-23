@@ -62,6 +62,11 @@ class device(dict):
     Structure to store the details of each hardware device
     """
     def __init__(self, device):
+        self.flashed = False
+        self.online = False
+        self.reported = {}
+        self.ip_addr = None
+
         for key in device:
             # Convert all other keys to device attributes
             # Sanitize attributes so missing ones are '' instead of None
@@ -112,9 +117,6 @@ class device(dict):
                                 client_id="espq_{name}".format(**self))
         self.mqtt.reinitialise()
         self.mqtt.on_message = self._on_message
-        self.flashed = False
-        self.online = False
-        self.reported = {}
 
     def __getattr__(self, name):
         if name in self:
@@ -141,15 +143,11 @@ class device(dict):
         Flash device, watch for it to come online,
         and run setup commads
         """
-        self.flash_mode = flash_mode
-        if serial_port != '':
-            self.serial_port = serial_port
-
         # Flash the right software.
         if self.software == 'tasmota':
-            self.flashed = self.flash_tasmota()
+            self.flashed = self.flash_tasmota(flash_mode, serial_port)
         else:
-            self.flashed = self.flash_custom()
+            self.flashed = self.flash_custom(flash_mode, serial_port)
         # If it flashed correctly, watch for it to come online.
         online = False
         if self.flashed:
@@ -243,7 +241,17 @@ class device(dict):
                                'user_config_override.h'), 'w') as f:
             f.write(defines)
 
-    def flash_tasmota(self):
+
+    def flashing_notice(self, flash_mode, port):
+        if port is None:
+            port = "autodetection"
+        print(('{BLUE}Now flashing {module} {name} in {software} via '
+            '{flash_mode} at {port}{NC}'.format(**colors,
+                                                **self,
+                                                flash_mode=flash_mode,
+                                                port=port)))
+
+    def flash_tasmota(self, flash_mode, serial_port):
         """
         Flash the device with tasmota
         """
@@ -261,32 +269,35 @@ class device(dict):
         if not os.path.exists(tasmotaPIO) or not cmp(correctPIO, tasmotaPIO):
             copyfile(correctPIO, tasmotaPIO)
 
-        ip_missing = not 'ip_addr' in self or not self.ip_addr
-        if self.flash_mode == 'wifi' and ip_missing:
-            print('No IP address for this device in the config.'
-                  'Querying device...')
-            self.query_tas_status()
-            if 'ip' in self.reported:
-                print('{name} is online at {ip}'.format(name=self.f_name,
-                                                        ip=self.reported['ip']))
-                self.ip_addr = self.reported['ip']
-            else:
-                print('{f_name} did not respond at {c_topic}. IP address '
-                      'unavailable. Skipping device...'.format(**self))
-                return(False)
 
         os.chdir(tasmota_dir)
-        pio_call = 'platformio run -e {env} -t upload --upload-port {port}'
-        if self.flash_mode == 'wifi':
-            pio_call = pio_call.format(env='tasmota-wifi',
-                                       port=(self.ip_addr + '/u2'))
-            print(('{BLUE}Now flashing {module} {f_name} with {software} via '
-                '{flash_mode} at {ip_addr}{NC}'.format(**colors, **self)))
-        elif self.flash_mode == 'serial':
-            pio_call = pio_call.format(env='tasmota-serial',
-                                       port=self.serial_port)
-            print(('{BLUE}Now flashing {module} {f_name} with {software} via '
-                '{flash_mode} at {serial_port}{NC}'.format(**colors, **self)))
+
+        pio_call = 'platformio run -e tasmota-{flash_mode} -t upload'.format(flash_mode=flash_mode);
+
+        # if we're flashing via wifi or serial port is specified to us,
+        # specify it to pio
+        if flash_mode == 'wifi' or serial_port:
+            pio_call += ' --upload-port {port}'
+
+        if flash_mode == 'wifi':
+            self.flashing_notice(flash_mode, self.ip_addr)
+            # If we don't know the IP address, ask device
+            if not 'ip_addr' in self or not self.ip_addr:
+                print('No IP address for this device in the config.'
+                      'Querying device...')
+                self.query_tas_status()
+                if 'ip' in self.reported:
+                    print('{name} is online at {ip}'.format(name=self.f_name,
+                                                            ip=self.reported['ip']))
+                    self.ip_addr = self.reported['ip']
+                else:
+                    print('{f_name} did not respond at {c_topic}. IP address '
+                          'unavailable. Skipping device...'.format(**self))
+                    return(False)
+            pio_call = pio_call.format(port=(self.ip_addr + '/u2'))
+        elif flash_mode == 'serial':
+            self.flashing_notice(flash_mode, serial_port)
+            pio_call = pio_call.format(port=serial_port)
         print('{BLUE}{f_name}\'s MQTT topic is {base_topic}/'
               '{topic}{NC}'.format(**colors, **self))
         print(pio_call)
@@ -294,7 +305,7 @@ class device(dict):
         os.chdir(espqdir)
         return(True if flash_result == 0 else False)
 
-    def flash_custom(self):
+    def flash_custom(self, flash_mode, serial_port):
         """
         Flash the device with custom firmware
         """
@@ -304,16 +315,20 @@ class device(dict):
         print("PLATFORMIO_SRC_DIR:", os.environ['PLATFORMIO_SRC_DIR'])
         print("PLATFORMIO_BUILD_FLAGS:", os.environ['PLATFORMIO_BUILD_FLAGS'])
         os.chdir(custom_dir)
-        pio_call = ('platformio run -e {board}-{flash_mode} -t upload '
-                    '--upload-port {port}')
-        if self.flash_mode == 'wifi':
-            pio_call = pio_call.format(port=self.ip_addr, **self)
-            print(('{BLUE}Now flashing {module} {f_name} in {software} via '
-                '{flash_mode} at {ip_addr}{NC}'.format(**colors, **self)))
-        elif self.flash_mode == 'serial':
-            pio_call = pio_call.format(port=self.serial_port, **self)
-            print(('{BLUE}Now flashing {module} {f_name} in {software} via '
-                '{flash_mode} at {serial_port}{NC}'.format(**colors, **self)))
+
+        pio_call = 'platformio run -e {board}-{flash_mode} -t upload '.format(flash_mode=flash_mode, **self)
+
+        # if we're flashing via wifi or serial port is specified to us,
+        # specify it to pio
+        if flash_mode == 'wifi' or serial_port:
+            pio_call += ' --upload-port {port}'
+
+        if flash_mode == 'wifi':
+            self.flashing_notice(flash_mode, self.ip_addr)
+            pio_call = pio_call.format(port=self.ip_addr)
+        elif flash_mode == 'serial':
+            self.flashing_notice(flash_mode, serial_port)
+            pio_call = pio_call.format(port=serial_port)
         else:
             print("no flash mode set, try again?")
             return(False)
