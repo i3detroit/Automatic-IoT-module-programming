@@ -55,6 +55,9 @@ such as SONOFF_BASIC, SONOFF_TOUCH, WEMOS. For custom programs, see instructions
 ## board
 Type of esp board. esp01_1m for tasmota. Usually d1_mini, nodemcuv2, etc. for custom.
 
+## ip_addr
+(Optional, mostly) The IP address of the device on your network, for OTA flashing. If it's not set, the script will query it with `cmnd/topic/status 5`, which works for devices running Tasmota and as long as you aren't changing the device's topic. Not required for serial flashing.
+
 ## hass_template
 (Optional) Which template file to use from ./hass_templates (light, light_rgb, generic, etc.)
 
