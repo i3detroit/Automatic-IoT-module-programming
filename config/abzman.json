@@ -171,16 +171,27 @@
                 "SUPPORT_MQTT_EVENT",
                 "USE_EXPRESSION"
         ],
+        "notes": "gpio4(D2): switch1 left row off; gpio12(D6): switch 2 left row on; gpio14(D5): switch3 right row off, gpio5(D1): switch4 right row on; gpio0(D3): switch5 workbench lights off; gpio2(D4): switch6 workbench lights on",
         "commands": [
             {
                 "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON; GPIO4 9; GPIO12 10; GPIO14 11; GPIO5 12; GPIO0 13; GPIO2 14; switchmode1 3; switchmode2 3; switchmode3 3; switchmode4 3; switchmode5 3; switchmode6 3",
+                "payload": "GPIO4 9; GPIO12 10; GPIO14 11; GPIO5 12; GPIO0 13; GPIO2 14;switchmode1 3; switchmode2 3; switchmode3 3; switchmode4 3; switchmode4 5; switchmode5 5; switchmode6 3;restart 1",
                 "restart": 1
             },
             {
-                "command": "backlog",
-                "payload": "rule1 on switch1#state do publish cmnd/evan/inside/basement/lights/left/power 1 endon on switch2#state do publish cmnd/evan/inside/basement/lights/left/power 0 endon on switch3#state do publish cmnd/evan/inside/basement/lights/right/power 1 endon on switch4#state do publish cmnd/evan/inside/basement/lights/right/power 0 endon; on switch5#state do publish cmnd/evan/inside/basement/lights/workbench/power 1 endon on switch6#state do publish cmnd/evan/inside/basement/lights/workbench/power 0 endon; rule1 1",
-                "restart": 0
+                "command": "rule1",
+                "concat": [
+                    "ON switch1#state DO publish cmnd/evan/inside/basement/lights/left/power 0 ENDON",
+                    "ON switch2#state DO publish cmnd/evan/inside/basement/lights/left/power 1 ENDON",
+                    "ON switch3#state DO publish cmnd/evan/inside/basement/lights/right/power 0 ENDON",
+                    "ON switch4#state DO publish cmnd/evan/inside/basement/lights/right/power 1 ENDON",
+                    "ON switch5#state DO publish cmnd/evan/inside/basement/lights/workbench/power 0 ENDON",
+                    "ON switch6#state DO publish cmnd/evan/inside/basement/lights/workbench/power 1 ENDON"
+                ]
+            },
+            {
+                "command": "rule1",
+                "payload": "1"
             }
         ],
         "instances": [
