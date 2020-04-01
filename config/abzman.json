@@ -202,6 +202,48 @@
         ]
     },
     {
+        "name": "Condensate Pump %id%",
+        "hass_template": "generic",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "WEMOS",
+        "poweron_state": 0,
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "evan",
+        "topic": "%id%/condensate-pump",
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "notes": "gpio4(D2): condensate pump alarm contact",
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "GPIO4 9;switchmode1 3;restart 1",
+                "restart": 1
+            },
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON switch1#state DO publish cmnd/evan/inside/basement/condensate-pump/alarm 1 ENDON"
+                ]
+            },
+            {
+                "command": "rule1",
+                "payload": "1"
+            }
+        ],
+        "instances": [
+            {
+                "id": "inside/basement",
+                "ip_addr": ""
+            }
+        ]
+    },
+    {
         "name": "Sump Pump %id%",
         "hass_template": "sump_pump",
         "hass_domain": "sensor",
