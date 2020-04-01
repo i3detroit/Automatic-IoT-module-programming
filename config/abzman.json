@@ -228,7 +228,7 @@
             {
                 "command": "rule1",
                 "concat": [
-                    "ON switch1#state DO publish cmnd/evan/inside/basement/condensate-pump/alarm 1 ENDON"
+                    "ON switch1#state DO publish stat/evan/inside/basement/condensate-pump/alarm 1 ENDON"
                 ]
             },
             {
