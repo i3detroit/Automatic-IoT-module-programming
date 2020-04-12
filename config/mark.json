@@ -62,6 +62,35 @@
         ]
     },
     {
+        "name": "Living Room Lights",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "mark",
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "base_topic": "mark/living-room",
+        "topic": "lights/%id%",
+        "group_topic": "NOT_A_TOPIC",
+        "poweron_state": 1,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
+            }
+        ],
+        "instances": [
+            {
+                "id": "main"
+            }
+        ]
+    },
+    {
         "name": "Thermostat",
         "domain": null,
         "software": "custom-mqtt-programs",
