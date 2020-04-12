@@ -260,7 +260,7 @@ class device(dict):
             print('{f_name} is {software}, not tasmota'.format(**self))
             return(False)
         if current_tasmota_version != get_tasmota_version():
-            print('{RED}Error: Tasmota version mismatch{NC}'.format(**colors))
+            print('{RED}Error: Tasmota version mismatch expected: "{expected}", got "{current}"{NC}'.format(**colors, expected=current_tasmota_version, current= get_tasmota_version()))
             return(False)
         self.write_tasmota_config()
 
