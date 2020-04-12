@@ -62,7 +62,7 @@
         ]
     },
     {
-        "name": "Living Room Lights",
+        "name": "Living Room Lights %id%",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
