@@ -6,7 +6,6 @@
         "software": "tasmota",
         "site": "mark",
         "module": "SONOFF_BASIC",
-        "board": "esp01_1m",
         "base_topic": "mark/basement",
         "topic": "lights/%id%",
         "poweron_state": 1,
@@ -68,7 +67,6 @@
         "software": "tasmota",
         "site": "mark",
         "module": "SONOFF_BASIC",
-        "board": "esp01_1m",
         "base_topic": "mark/living-room",
         "topic": "lights/%id%",
         "group_topic": "NOT_A_TOPIC",
@@ -111,7 +109,6 @@
         "software": "tasmota",
         "site": "mark",
         "module": "WEMOS",
-        "board": "esp01_1m",
         "group_topic": "none",
         "base_topic": "mark",
         "topic": "sensors/cluster-%id%",
@@ -142,13 +139,85 @@
         ]
     },
     {
+        "name": "etekcity light",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "mark",
+        "module": "WEMOS",
+        "base_topic": "mark/unnassigned",
+        "topic": "foo",
+        "group_topic": "none",
+        "poweron_state": 0,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "GPIO05 56; GPIO13 21; GPIO14 9; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "restart": 1
+            }
+        ]
+    },
+    {
+        "name": "Bedroom Light",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "mark",
+        "module": "WEMOS",
+        "base_topic": "mark/bedroom",
+        "topic": "lights",
+        "group_topic": "none",
+        "poweron_state": 0,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "GPIO05 56; GPIO13 21; GPIO14 9; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "restart": 1
+            }
+        ]
+    },
+    {
+        "name": "treatlife ss01s switch",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "mark",
+        "module": "WEMOS",
+        "base_topic": "mark/ss01s",
+        "topic": "foo",
+        "ip_addr": "192.168.107.32",
+        "group_topic": "none",
+        "poweron_state": 0,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "Template {'NAME':'TL SS01S Swtch','GPIO':[0,0,0,0,52,158,0,0,21,17,0,0,0],'FLAG':0,'BASE':18}; Module 0; SetOption56 ON; SetOption57 ON",
+                "restart": 1
+            }
+        ]
+    },
+    {
         "name": "Basement Light Switch",
         "hass_template": "generic",
         "hass_domain": "sensor",
         "software": "tasmota",
         "site": "mark",
         "module": "WEMOS",
-        "board": "esp01_1m",
         "poweron_state": 0,
         "group_topic": "none",
         "base_topic": "mark/basement",
