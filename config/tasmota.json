@@ -1597,11 +1597,7 @@
             },
             {
                 "command": "rule2",
-                "concat": [
-                    "on Mqtt#Connected do backlog subscribe glasslock,stat/i3/inside/classroom/glass-door/lock; publish cmnd/i3/inside/classroom/glass-door/lock; subscribe aircomp,stat/i3/inside/infrastructure/air-compressor/power; publish cmnd/i3/inside/infrastructure/air-compressor/POWER endon",
-                    "on event#MCPINT_D10=0 do publish stat/i3/inside/commons/front-door/lock UNLOCKED endon",
-                    "on event#MCPINT_D10=1 do publish stat/i3/inside/commons/front-door/lock LOCKED endon"
-                ]
+                "payload": "on Mqtt#Connected do backlog subscribe glasslock,stat/i3/inside/classroom/glass-door/lock; publish cmnd/i3/inside/classroom/glass-door/lock; subscribe aircomp,stat/i3/inside/infrastructure/air-compressor/power; publish cmnd/i3/inside/infrastructure/air-compressor/POWER endon"
             },
             {
                 "command": "rule2",
@@ -1682,6 +1678,51 @@
                         ]
                     }
                 ]
+            }
+        ]
+    },
+    {
+        "name": "Front Door Lock Sensor",
+        "hass_template": null,
+        "hass_domain": null,
+        "software": "tasmota",
+        "site": "i3",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "base_topic": "i3/inside",
+        "topic": "commons/front-door/lock",
+        "group_topic": "none",
+        "ip_addr": "10.13.107.X",
+        "poweron_state": 0,
+        "build_flags": [
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "GPIO2 9; switchmode 2",
+                "restart": 1
+            },
+                        {
+                "command": "rule1",
+                "concat": [
+                    "on switch1#state=0 do backlog publish stat/i3/inside/commons/front-door/lock UNLOCKED; Mem1 UNLOCKED; RuleTimer1 30 endon",
+                    "on switch1#state=1 do backlog publish stat/i3/inside/commons/front-door/lock LOCKED; Mem1 LOCKED; RuleTimer1 30 endon"
+                ]
+            },
+            {
+                "command": "rule2",
+                "concat": [
+                    "on Mqtt#Connected do RuleTimer1 30 endon",
+                    "on Rules#Timer=1 do backlog publish stat/i3/inside/commons/front-door/lock %mem1%; RuleTimer1 30 endon"
+                ]
+            },
+            {
+                "command": "backlog",
+                "payload": "rule1 1; rule2 1; restart 1",
+                "restart": 1
             }
         ]
     }
