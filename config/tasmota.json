@@ -1692,7 +1692,7 @@
         "base_topic": "i3/inside",
         "topic": "commons/front-door/lock",
         "group_topic": "none",
-        "ip_addr": "10.13.107.X",
+        "ip_addr": "10.13.107.238",
         "poweron_state": 0,
         "build_flags": [
             "USE_RULES",
@@ -1702,7 +1702,7 @@
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO2 9; switchmode 2",
+                "payload": "GPIO2 9; switchmode 1; restart 1",
                 "restart": 1
             },
                         {
@@ -1715,8 +1715,11 @@
             {
                 "command": "rule2",
                 "concat": [
-                    "on Mqtt#Connected do RuleTimer1 30 endon",
-                    "on Rules#Timer=1 do backlog publish stat/i3/inside/commons/front-door/lock %mem1%; RuleTimer1 30 endon"
+                    "on switch1#boot=0 do Mem1 UNLOCKED endon",
+                    "on switch1#boot=1 do Mem1 LOCKED endon",
+                    "on Mqtt#Connected do backlog RuleTimer1 30; publish stat/i3/inside/commons/front-door/lock %mem1%; subscribe get_state,cmnd/i3/inside/commons/front-door/lock/query endon",
+                    "on Rules#Timer=1 do backlog publish stat/i3/inside/commons/front-door/lock %mem1%; RuleTimer1 30 endon",
+                    "ON event#get_state do publish stat/i3/inside/commons/front-door/lock %mem1% ENDON"
                 ]
             },
             {
