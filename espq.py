@@ -8,10 +8,15 @@ from filecmp import cmp
 from copy import deepcopy
 from random import randint
 from shutil import copyfile
-from subprocess import call
+from subprocess import call, check_output
 import paho.mqtt.client as mqtt
 from PyInquirer import style_from_dict, Token, prompt, Separator
+from packaging import version
 
+###########################################################
+# Make sure your environemnt is set correctly for these:
+expected_pio_version = version.parse("4.1.0")
+current_tasmota_version = '0x08010000' # v8.1.0
 ###########################################################
 # Make sure these are set correctly for your environment:
 
@@ -20,12 +25,10 @@ blank_defines = 'blank_defines.h'
 
 espqdir = os.path.dirname(os.path.abspath(__file__))
 
-current_tasmota_version = '0x08010000' # v8.1.0
 tasmota_dir = os.path.join(espqdir, '..', 'Tasmota')
 custom_dir = os.path.join(espqdir, '..', 'custom-mqtt-programs/')
 
 ###########################################################
-
 
 hass_template_dir = os.path.join(espqdir, 'hass_templates')
 hass_output_dir = os.path.join(espqdir, 'hass_output')
@@ -52,6 +55,34 @@ tasmota_status_query = {
               'core_version': ['StatusFWR', 'Core'],
               'build_time': ['StatusFWR', 'BuildDateTime']}
         }
+
+def test_pio_version():
+    pio_output = check_output(["pio", "--version"])
+    m = re.search('PlatformIO, version (.*)\\n', pio_output.decode('utf-8'))
+    pioVersion = version.parse(m.group(1))
+
+    acceptablePioVersion = False;
+    if (pioVersion == expected_pio_version):
+        #print("pio exact version match, good")
+        acceptablePioVersion = True;
+    elif (pioVersion > expected_pio_version and pioVersion.major == expected_pio_version.major):
+        #print("pio greater than expected, but same major version")
+        acceptablePioVersion = True;
+    elif (pioVersion < expected_pio_version and pioVersion.major == expected_pio_version.major):
+        print("pio older than expected, but same major version")
+        acceptablePioVersion = False;
+    elif (pioVersion > expected_pio_version):
+        print("pio is a release ahead expected")
+        acceptablePioVersion = False;
+    elif (pioVersion < expected_pio_version):
+        print("pio is a release behind expected")
+        acceptablePioVersion = False;
+
+    if not acceptablePioVersion:
+        print(f"please fix pio version, this script is intended to be used with pio version {expected_pio_version}")
+        print("Maybe try something like")
+        print(f"pip install -Iv pio=={expected_pio_version}")
+        sys.exit(1)
 
 # too_old will return true if the time is more than seconds ago
 def too_old(time, seconds):
