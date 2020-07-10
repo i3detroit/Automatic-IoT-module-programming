@@ -1,0 +1,194 @@
+[
+    {
+        "name": "Living Room Accent Lamp %id%",
+        "hass_template": "light_rgbw",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "living-room",
+        "topic": "accent-lamp-%id%",
+        "poweron_state": 0,
+        "build_flags": [
+            "USE_IR_REMOTE",
+            "USE_IR_RECEIVE",
+            "IR_RCV_BUFFER_SIZE 100",
+            "IR_RCV_TIMEOUT 15",
+            "IR_RCV_MIN_UNKNOWN_SIZE 6"
+        ],
+        "ids": [
+            {
+                "id": "01",
+                "ip_addr": "192.168.1.183"
+            },
+            {
+                "id": "02",
+                "ip_addr": "192.168.1.184"
+            }
+        ],
+        "commands": [
+            {
+                "command": "GPIO02",
+                "payload": "GPIO_LED1_INV"
+            },
+            {
+                "command": "GPIO4",
+                "payload": "GPIO_IRRECV"
+            },
+            {
+                "command": "GPIO05",
+                "payload": "GPIO_PWM2"
+            },
+            {
+                "command": "GPIO12",
+                "payload": "GPIO_PWM1"
+            },
+            {
+                "command": "GPIO13",
+                "payload": "GPIO_PWM3"
+            },
+            {
+                "command": "GPIO15",
+                "payload": "GPIO_PWM4"
+            },
+            {
+                "command": "SetOption15",
+                "payload": "1"
+            }
+        ]
+    },
+    {
+        "name": "Kitchen Cabinet Accent RGB %id%",
+        "hass_template": "light_rgb",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "kitchen",
+        "topic": "cabinet-accent-%id%",
+        "poweron_state": 0,
+        "build_flags": [
+            "USE_IR_REMOTE",
+            "USE_IR_RECEIVE",
+            "IR_RCV_BUFFER_SIZE 100",
+            "IR_RCV_TIMEOUT 15",
+            "IR_RCV_MIN_UNKNOWN_SIZE 6"
+        ],
+        "ids": [
+            {
+                "id": "01",
+                "ip_addr": "192.168.1.133"
+            },
+            {
+                "id": "02",
+                "ip_addr": "192.168.1.134"
+            }
+        ],
+        "commands": [
+            {
+                "command": "GPIO02",
+                "payload": "GPIO_LED1_INV"
+            },
+            {
+                "command": "GPIO4",
+                "payload": "GPIO_IRRECV"
+            },
+            {
+                "command": "GPIO05",
+                "payload": "GPIO_PWM2"
+            },
+            {
+                "command": "GPIO12",
+                "payload": "GPIO_PWM1"
+            },
+            {
+                "command": "GPIO13",
+                "payload": "GPIO_PWM3"
+            },
+            {
+                "command": "GPIO15",
+                "payload": "GPIO_PWM4"
+            },
+            {
+                "command": "SetOption15",
+                "payload": "1"
+            }
+        ]
+    },
+    {
+        "name": "Living Room Lamp",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "ip_addr": "",
+        "group_topic": "",
+        "base_topic": "living-room",
+        "topic": "lamp",
+        "poweron_state": 0,
+        "build_flags": null,
+        "commands": null
+    },
+    {
+        "name": "Vulcan Power",
+        "hass_template": "switch",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "ip_addr": "192.164.1.54",
+        "group_topic": "",
+        "base_topic": "vulcan",
+        "topic": "power",
+        "poweron_state": 0,
+        "build_flags": null,
+        "commands": null
+    },
+    {
+        "name": "Office Lightswitch",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "base_topic": "office",
+        "topic": "lightswitch",
+        "group_topic": null,
+        "ip_addr": "192.168.1.61",
+        "poweron_state": 0,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "GPIO04 52; GPIO15 158; GPIO12 21; GPIO13 17; SetOption56 ON; SetOption57 ON; SetOption13 ON",
+                "restart": 1
+            }
+        ]
+    },
+    {
+        "name": "Name-me",
+        "hass_template": "switch",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "ip_addr": "x.x.x.x",
+        "group_topic": "",
+        "base_topic": "new-device",
+        "topic": "name-me",
+        "poweron_state": 0,
+        "build_flags": null,
+        "commands": null
+    }
+]
