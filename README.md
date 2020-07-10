@@ -87,38 +87,8 @@ The full MQTT topic will be `%prefix%/{base_topic}/{topic}`
 (Optional) Warning text to be displayed before flashing a device. Forces pause and user interaction before compiling and flashing. Can be used as a failsafe for devices you should care when flashing, like things people might be using (in our case laser cutters) or devices that might lose calibration settings (i.e. sonoff pows)
 
 # Tasmota setup/update
-* `blank_defines.h` undefines everything in `Tasmota/tasmota/my_user_config.h`, look at the top for how to generate a new list of `#undefs`
+* `blank_defines.h` undefines everything in `Tasmota/tasmota/my_user_config.h`, and then enables only certain things.
+  * Look at the top for how to generate a new list of `#undefs`
 * Look at `my_user_config` section 1 and put that in `blank_defines.h`.
 * Like two things in section 2 are also important.
 * Update tasmota version string in `espq.py` from `tasmota/tasmota_version.h`
-* Fix path to Tasmota/pio/espupload.py in Tasmota/pio/http-uploader.py and make sure those scripts are executable
-  * Just apply this patch:
-```
-diff --git a/pio/espupload.py b/pio/espupload.py
-old mode 100644
-new mode 100755
-diff --git a/pio/http-uploader.py b/pio/http-uploader.py
-index dd563177..88d5a23c 100644
---- a/pio/http-uploader.py
-+++ b/pio/http-uploader.py
-@@ -1,4 +1,5 @@
- Import("env")
-+import os
- 
- # pio < 4.0.0
- # from base64 import b64decode
-@@ -7,11 +8,6 @@ Import("env")
- # env.Replace(UPLOADCMD="$UPLOADER -u " + b64decode(ARGUMENTS.get("UPLOAD_PORT")) + " -f $SOURCES")
- 
- # pio >= 4.0.0
--env.Replace(UPLOADER="pio\espupload.py")
-+env.Replace(UPLOADER=os.path.join("pio", "espupload.py"))
- env.Replace(UPLOADERFLAGS="")
- env.Replace(UPLOADCMD="$UPLOADER -u $UPLOAD_PORT -f $SOURCES")
--
--'''
--env.Replace(UPLOADCMD="pio\espupload.py -f $SOURCES") # Windows
--env.Replace(UPLOADCMD="pio/espupload.py -f $SOURCES") # Linux
--'''
-\ No newline at end of file
-```
