@@ -10,17 +10,8 @@
         "base_topic": "i3/inside",
         "topic": "lights/%id%",
         "poweron_state": 1,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ],
+        "build_flags": [],
+        "commands": [],
         "instances": [
             {
                 "id": "001",
@@ -256,16 +247,10 @@
         "group_topic": "lights/east",
         "poweron_state": 1,
         "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
+            "KEY_ONLY_SINGLE_PRESS 1",
+            "KEY_HOLD_TIME 100"
         ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON; SetOption13 ON; SetOption32 100"
-            }
-        ],
+        "commands": [],
         "instances": [
             {
                 "name": "Vinyl Light",
@@ -290,15 +275,11 @@
         "base_topic": "i3/inside",
         "topic": "lights/%id%",
         "poweron_state": 1,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
+        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO2 56; GPIO13 9; GPIO15 21; SetOption56 ON; SetOption57 ON",
+                "payload": "GPIO2 56; GPIO13 9; GPIO15 21",
                 "restart": 1
             }
         ],
@@ -347,17 +328,8 @@
         "topic": "lights/%id%",
         "group_topic": "lights/emergency",
         "poweron_state": 1,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ],
+        "build_flags": [],
+        "commands": [],
         "instances": [
             {
                 "id": "027",
@@ -389,17 +361,8 @@
         "topic": "accent/chandelier-%id%",
         "group_topic": "accent/chandelier",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ],
+        "build_flags": [],
+        "commands": [],
         "instances": [
             {
                 "id": "01",
@@ -427,14 +390,12 @@
             "USE_I2C",
             "USE_BMP",
             "USE_BH1750",
-            "USE_RULES",
-            "SUPPORT_MQTT_EVENT",
-            "USE_EXPRESSION"
+            "TELE_PERIOD 60"
         ],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON; GPIO4 6; GPIO5 5; teleperiod 60",
+                "payload": "GPIO4 6; GPIO5 5",
                 "restart": 1
             }
         ],
@@ -465,17 +426,8 @@
         "topic": "commons/accent/swirly-lights-%id%",
         "group_topic": "none",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ],
+        "build_flags": [],
+        "commands": [],
         "instances": [
             {
                 "id": "01",
@@ -497,17 +449,8 @@
         "base_topic": "i3/inside",
         "group_topic": "none",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ],
+        "build_flags": [],
+        "commands": [],
         "instances": [
             {
                 "name": "Media Lab Lights",
@@ -564,15 +507,11 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.164",
         "poweron_state": 0,
-        "build_flags": [
-            "USE_RULES",
-            "SUPPORT_MQTT_EVENT",
-            "USE_EXPRESSION"
-        ],
+        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "switchmode1 3; rule on button1#state do publish cmnd/i3/inside/classroom/lights-east/POWER TOGGLE endon; rule 1; SetOption56 ON; SetOption57 ON"
+                "payload": "switchmode1 3; rule on button1#state do publish cmnd/i3/inside/classroom/lights-east/POWER TOGGLE endon; rule 1"
             }
         ]
     },
@@ -589,15 +528,11 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.101",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
+        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO05 52; GPIO13 21; GPIO14 9; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "payload": "GPIO05 52; GPIO13 21; GPIO14 9; switchmode1 3",
                 "restart": 1
             }
         ]
@@ -615,15 +550,11 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.174",
         "poweron_state": 0,
-        "build_flags": [
-            "USE_RULES",
-            "SUPPORT_MQTT_EVENT",
-            "USE_EXPRESSION"
-        ],
+        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "switchmode1 3; rule on button1#state do publish cmnd/i3/inside/hallway/light/POWER TOGGLE endon; rule 1; SetOption56 ON; SetOption57 ON"
+                "payload": "switchmode1 3; rule on button1#state do publish cmnd/i3/inside/hallway/light/POWER TOGGLE endon; rule 1"
             }
         ]
     },
@@ -637,17 +568,8 @@
         "base_topic": "i3/inside",
         "group_topic": "none",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ],
+        "build_flags": [],
+        "commands": [],
         "instances":[
             {
                 "name": "Commons Ceiling Fan",
@@ -674,17 +596,8 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.82",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
+        "build_flags": [],
+        "commands": []
     },
     {
         "name": "Laser Vent Fan",
@@ -699,17 +612,8 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.121",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
+        "build_flags": [],
+        "commands": []
     },
     {
         "name": "Traffic Light",
@@ -723,15 +627,12 @@
         "ip_addr": "10.13.107.56",
         "poweron_state": 0,
         "build_flags": [
-            "USE_DHT",
-            "USE_RULES",
-            "SUPPORT_MQTT_EVENT",
-            "USE_EXPRESSION"
+            "USE_DHT"
         ],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO00 9; GPIO04 31; GPIO05 30; GPIO12 29; GPIO14 2; GPIO15 32; GPIO16 56; SetOption56 ON; SetOption57 ON",
+                "payload": "GPIO00 9; GPIO04 31; GPIO05 30; GPIO12 29; GPIO14 2; GPIO15 32; GPIO16 56",
                 "restart": 1
             }
         ]
@@ -749,17 +650,8 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.110",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
+        "build_flags": [],
+        "commands": []
     },
     {
         "name": "Machine Shop Ceiling Fan",
@@ -774,17 +666,8 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.137",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
+        "build_flags": [],
+        "commands": []
     },
     {
         "name": "Paint Box Vent Fan",
@@ -799,17 +682,8 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.199",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
+        "build_flags": [],
+        "commands": []
     },
     {
         "name": "Disco Spotlights",
@@ -824,17 +698,8 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.236",
         "poweron_state": 1,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
+        "build_flags": [],
+        "commands": []
     },
     {
         "name": "433 RF Reciever",
@@ -847,17 +712,8 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.36",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ],
+        "build_flags": [],
+        "commands": [],
         "notes": "433-rf-reciever"
     },
     {
@@ -872,17 +728,8 @@
         "topic": "laser-zone/%id%/chiller",
         "group_topic": "none",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ],
+        "build_flags": [],
+        "commands": [],
         "flash_warning": "Make sure no one is using the laser cutter",
         "instances": [
             {
@@ -909,16 +756,9 @@
         "ip_addr": "10.13.107.77",
         "poweron_state": 0,
         "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
+            "TELE_PERIOD 60"
         ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "teleperiod 60; SetOption56 ON; SetOption57 ON"
-            }
-        ],
+        "commands": [],
         "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration."
     },
     {
@@ -934,17 +774,8 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.83",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
+        "build_flags": [],
+        "commands": []
     },
     {
         "name": "Genie Charging",
@@ -960,16 +791,9 @@
         "ip_addr": "10.13.107.242",
         "poweron_state": 1,
         "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
+            "TELE_PERIOD 60"
         ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "teleperiod 60; SetOption56 ON; SetOption57 ON"
-            }
-        ],
+        "commands": [],
         "flash_warning": "This will reset any power monitoring calibration"
     },
     {
@@ -985,17 +809,8 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.162",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
+        "build_flags": [],
+        "commands": []
     },
     {
         "name": "%id%",
@@ -1010,16 +825,11 @@
         "group_topic": "none",
         "poweron_state": 0,
         "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
+            "KEY_ONLY_SINGLE_PRESS 1",
+            "KEY_HOLD_TIME 100",
+            "TELE_PERIOD 60"
         ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption13 ON; SetOption32 100; teleperiod 60; SetOption56 ON; SetOption57 ON"
-            }
-        ],
+        "commands": [],
         "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration.",
         "instances": [
             {
@@ -1045,15 +855,11 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.132",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
+        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO4 9; GPIO14 56; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "payload": "GPIO4 9; GPIO14 56; switchmode1 3",
                 "restart": 1
             }
         ]
@@ -1071,15 +877,11 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.75",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
+        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO4 9; GPIO14 56; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "payload": "GPIO4 9; GPIO14 56; switchmode1 3",
                 "restart": 1
             }
         ]
@@ -1097,15 +899,11 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.12",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
+        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO4 9; GPIO14 56; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "payload": "GPIO4 9; GPIO14 56; switchmode1 3",
                 "restart": 1
             }
         ]
@@ -1128,14 +926,12 @@
             "IR_RCV_BUFFER_SIZE 100",
             "IR_RCV_TIMEOUT 15",
             "IR_RCV_MIN_UNKNOWN_SIZE 6",
-            "USE_RULES",
-            "SUPPORT_MQTT_EVENT",
-            "USE_EXPRESSION"
+            "LIGHT_MODE true"
         ],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO02 56; GPIO4 51; GPIO05 38; GPIO12 37; GPIO13 39; GPIO15 40; SetOption15 1; SetOption56 ON; SetOption57 ON",
+                "payload": "GPIO02 56; GPIO4 51; GPIO05 38; GPIO12 37; GPIO13 39; GPIO15 40",
                 "restart": 1
             }
         ],
@@ -1163,17 +959,8 @@
         "group_topic": "accent/lanterns",
         "ip_addr": "10.13.107.153",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
+        "build_flags": [],
+        "commands": []
     },
     {
         "name": "Fairy Lights",
@@ -1188,17 +975,8 @@
         "group_topic": "accent/fairy-lights",
         "ip_addr": "10.13.107.253",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ]
+        "build_flags": [],
+        "commands": []
     },
     {
         "name": "Chinesium Laser",
@@ -1214,16 +992,9 @@
         "ip_addr": "10.13.107.86",
         "poweron_state": 0,
         "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
+            "TELE_PERIOD 60"
         ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "teleperiod 60; SetOption56 ON; SetOption57 ON"
-            }
-        ],
+        "commands": [],
         "flash_warning": "Make sure no one is using the laser cutter. Also this will reset any power monitoring calibration"
     },
     {
@@ -1240,14 +1011,12 @@
         "ip_addr": "10.13.107.106",
         "poweron_state": 1,
         "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
+            "LIGHT_MODE true"
         ],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO02 56; GPIO4 51; GPIO05 38; GPIO12 37; GPIO13 39; GPIO15 40; SetOption15 1; SetOption56 ON; SetOption57 ON",
+                "payload": "GPIO02 56; GPIO4 51; GPIO05 38; GPIO12 37; GPIO13 39; GPIO15 40",
                 "restart": 1
             }
         ]
@@ -1265,15 +1034,11 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.103",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
+        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO05 56; GPIO13 21; GPIO14 9; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "payload": "GPIO05 56; GPIO13 21; GPIO14 9; switchmode1 3",
                 "restart": 1
             }
         ]
@@ -1291,15 +1056,11 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.109",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
+        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO05 56; GPIO13 21; GPIO14 9; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "payload": "GPIO05 56; GPIO13 21; GPIO14 9; switchmode1 3",
                 "restart": 1
             }
         ]
@@ -1317,15 +1078,11 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.136",
         "poweron_state": 0,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
+        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO05 56; GPIO13 21; GPIO14 9; switchmode1 3; SetOption56 ON; SetOption57 ON",
+                "payload": "GPIO05 56; GPIO13 21; GPIO14 9; switchmode1 3",
                 "restart": 1
             }
         ]
@@ -1349,14 +1106,12 @@
                 "USE_BME680",
                 "USE_PMS5003",
                 "USE_BH1750",
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
+                "TELE_PERIOD 60"
         ],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO3 69; GPIO4 6; GPIO5 5; teleperiod 60; SetOption56 ON; SetOption57 ON",
+                "payload": "GPIO3 69; GPIO4 6; GPIO5 5",
                 "restart": 1
             }
         ]
@@ -1374,15 +1129,11 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.87",
         "poweron_state": 0,
-        "build_flags": [
-            "USE_RULES",
-            "SUPPORT_MQTT_EVENT",
-            "USE_EXPRESSION"
-        ],
+        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO0 9; GPIO13 56; switchmode 3; rule on switch1#state do publish cmnd/i3/inside/b-side/office/lights/power 2 endon; rule 1; SetOption56 ON; SetOption57 ON",
+                "payload": "GPIO0 9; GPIO13 56; switchmode 3; rule on switch1#state do publish cmnd/i3/inside/b-side/office/lights/power 2 endon; rule 1",
                 "restart": 1
             }
         ]
@@ -1399,15 +1150,11 @@
         "topic": "b-side/shop-%id%-lightswitch",
         "group_topic": "none",
         "poweron_state": 0,
-        "build_flags": [
-            "USE_RULES",
-            "SUPPORT_MQTT_EVENT",
-            "USE_EXPRESSION"
-        ],
+        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO0 9; GPIO13 56; switchmode 3; rule1 on switch1#state do publish cmnd/i3/inside/lights/west/power 2 endon; rule1 1; SetOption56 ON; SetOption57 ON"
+                "payload": "GPIO0 9; GPIO13 56; switchmode 3; rule1 on switch1#state do publish cmnd/i3/inside/lights/west/power 2 endon; rule1 1"
             }
         ],
         "instances": [
@@ -1439,15 +1186,12 @@
            "USE_MCP230xx",
            "USE_MCP230xx_ADDR 0x20",
            "USE_MCP230xx_OUTPUT",
-           "USE_MCP230xx_DISPLAYOUTPUT",
-           "USE_RULES",
-           "SUPPORT_MQTT_EVENT",
-           "USE_EXPRESSION"
+           "USE_MCP230xx_DISPLAYOUTPUT"
         ],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO4 6; GPIO5 5; SetOption56 ON; SetOption57 ON",
+                "payload": "GPIO4 6; GPIO5 5",
                 "restart": 1
             },
             {
@@ -1481,15 +1225,11 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.14",
         "poweron_state": 0,
-        "build_flags": [
-            "USE_RULES",
-            "SUPPORT_MQTT_EVENT",
-            "USE_EXPRESSION"
-        ],
+        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO2 9; switchmode 3; rule on switch1#state do publish cmnd/i3/inside/craftroom/light/power 2 endon; rule 1; SetOption56 ON; SetOption57 ON",
+                "payload": "GPIO2 9; switchmode 3; rule on switch1#state do publish cmnd/i3/inside/craftroom/light/power 2 endon; rule 1",
                 "restart": 1
             }
         ]
@@ -1508,16 +1248,9 @@
         "ip_addr": "10.13.107.55",
         "poweron_state": 1,
         "build_flags": [
-            "USE_RULES",
-            "SUPPORT_MQTT_EVENT",
-            "USE_EXPRESSION"
+            "TELE_PERIOD 60"
         ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "teleperiod 60; SetOption56 ON; SetOption57 ON"
-            }
-        ],
+        "commands": [],
         "flash_warning": "This will reset any power monitoring calibration."
     },
     {
@@ -1534,16 +1267,9 @@
         "ip_addr": "10.13.107.166",
         "poweron_state": 1,
         "build_flags": [
-            "USE_RULES",
-            "SUPPORT_MQTT_EVENT",
-            "USE_EXPRESSION"
+            "TELE_PERIOD 60"
         ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "teleperiod 60; SetOption56 ON; SetOption57 ON"
-            }
-        ],
+        "commands": [],
         "flash_warning": "This will reset any power monitoring calibration."
     },
     {
@@ -1565,15 +1291,12 @@
            "USE_MCP230xx_ADDR 0x20",
            "USE_MCP230xx_OUTPUT",
            "USE_MCP230xx_DISPLAYOUTPUT",
-           "USE_RULES",
-           "SUPPORT_MQTT_EVENT",
-           "USE_EXPRESSION",
            "USE_ANALOG_IN"
         ],
         "commands": [
             {
                 "command": "backlog", 
-                "payload": "GPIO4 6; GPIO5 5; SetOption56 ON; SetOption57 ON; ADC0 1",
+                "payload": "GPIO4 6; GPIO5 5; ADC0 1",
                 "restart": 1
             },
             {
@@ -1636,9 +1359,6 @@
         "build_flags": [
             "USE_I2C",
             "USE_ANALOG_IN",
-            "USE_RULES",
-            "SUPPORT_MQTT_EVENT",
-            "USE_EXPRESSION",
             "TELE_PERIOD 10"
         ],
         "commands": [
@@ -1694,11 +1414,7 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.238",
         "poweron_state": 0,
-        "build_flags": [
-            "USE_RULES",
-            "SUPPORT_MQTT_EVENT",
-            "USE_EXPRESSION"
-        ],
+        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
