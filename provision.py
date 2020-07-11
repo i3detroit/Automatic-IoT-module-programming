@@ -74,6 +74,9 @@ parser.add_argument('-a', '--all',
                     help='Skip device selection & use all devices in file')
 
 args = parser.parse_args()
+
+espq.test_pio_version()
+
 devices = espq.import_devices(args.deviceFile)
 if args.process_all:
     selected_devices = devices
