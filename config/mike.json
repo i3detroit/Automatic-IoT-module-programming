@@ -163,14 +163,12 @@
         "ip_addr": "192.168.1.61",
         "poweron_state": 0,
         "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
+            "KEY_ONLY_SINGLE_PRESS 1"
         ],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO04 52; GPIO15 158; GPIO12 21; GPIO13 17; SetOption56 ON; SetOption57 ON; SetOption13 ON",
+                "payload": "GPIO04 52; GPIO15 158; GPIO12 21; GPIO13 17",
                 "restart": 1
             }
         ]
