@@ -1,4 +1,4 @@
-# 3-way tasmota switch and metadata
+# 3-way tasmota light switch and metadata
 # Use for tuya-based 3-way switch like:
 #  - https://templates.blakadder.com/moes-SS01-1.html
 #  - https://templates.blakadder.com/treatlife_SS01S.html
@@ -8,7 +8,7 @@
 
 import generic
 
-switch = """- platform: mqtt
+light = """- platform: mqtt
   name: '{f_name}'
   state_topic: 'stat/{base_topic}/{topic}/POWER1'
   command_topic: 'cmnd/{base_topic}/{topic}/EVENT'
@@ -26,6 +26,6 @@ sensor = generic.generic_telemetry + """    {name}_power:
 """
 
 components = {
-                'switch': switch,
+                'light': light,
                 'sensor': sensor
              }
