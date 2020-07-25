@@ -212,7 +212,7 @@
     },
     {
         "name": "Mud Room %id% Switch",
-        "hass_template": "3-way-light",
+        "hass_template": "3-way-tuya-switch",
         "hass_domain": "light",
         "software": "tasmota",
         "site": "mike",
@@ -258,14 +258,15 @@
                 ]
             },
             {
-                "command": "rule3",
-                "payload": "1"
+                "command": "backlog",
+                "payload": "rule3 1; restart 1",
+                "restart": 1
             }
         ]
     },
     {
         "name": "Foyer %id% Lightswitch",
-        "hass_template": "3-way-light",
+        "hass_template": "3-way-tuya-switch",
         "hass_domain": "light",
         "software": "tasmota",
         "site": "mike",
@@ -311,8 +312,9 @@
                 ]
             },
             {
-                "command": "rule3",
-                "payload": "1"
+                "command": "backlog",
+                "payload": "rule3 1; restart 1",
+                "restart": 1
             }
         ]
     },
