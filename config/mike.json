@@ -125,12 +125,14 @@
         "site": "mike",
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
-        "ip_addr": "",
+        "ip_addr": "192.168.1.30",
         "group_topic": "",
         "base_topic": "living-room",
         "topic": "lamp",
         "poweron_state": 0,
-        "build_flags": null,
+        "build_flags": [
+            "KEY_ONLY_SINGLE_PRESS 1"
+        ],
         "commands": null
     },
     {
@@ -338,6 +340,35 @@
             {
                 "command": "backlog",
                 "payload": "GPIO04 52; GPIO5 158; GPIO12 21; GPIO13 17",
+                "restart": 1
+            }
+        ]
+    },
+    {
+        "name": "Living Room Dimmer Lightswitch",
+        "hass_template": "DS01-dimmer",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "base_topic": "living-room",
+        "topic": "lightswitch",
+        "group_topic": null,
+        "ip_addr": "192.168.1.16",
+        "poweron_state": 3,
+        "build_flags": [
+            "USE_TUYA_MCU",
+            "TUYA_DIMMER_ID 0"
+        ],
+        "commands": [
+            {
+                "command": "module",
+                "payload": 54
+            },
+            {
+                "command": "backlog",
+                "payload": "TuyaMCU 21,2; DimmerRange 150,1000; setoption20 1; setoption54 1; Rule1 ON System#Boot DO SerialSend5 55AA00060005040400010114 ENDON; Rule1 1; Restart 1",
                 "restart": 1
             }
         ]
