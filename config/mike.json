@@ -133,7 +133,19 @@
         "build_flags": [
             "KEY_ONLY_SINGLE_PRESS 1"
         ],
-        "commands": null
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe hassstart,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hassstart=Online DO power ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": 1
+            }
+        ]
     },
     {
         "name": "Vulcan Power",
@@ -149,7 +161,19 @@
         "topic": "power",
         "poweron_state": 0,
         "build_flags": null,
-        "commands": null
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe hassstart,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hassstart=Online DO power ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": 1
+            }
+        ]
     },
     {
         "name": "Office Lightswitch",
@@ -172,6 +196,17 @@
                 "command": "backlog",
                 "payload": "GPIO04 52; GPIO5 158; GPIO12 21; GPIO13 17",
                 "restart": 1
+            },
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe hassstart,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hassstart=Online DO power ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": 1
             }
         ]
     },
@@ -256,7 +291,9 @@
                 "command": "rule3",
                 "concat": [
                     "ON power1#state=1 DO backlog rule1 0; rule2 1 ENDON",
-                    "ON power1#state=0 DO backlog rule1 1; rule2 0 ENDON"
+                    "ON power1#state=0 DO backlog rule1 1; rule2 0 ENDON",
+                    "ON Mqtt#Connected DO subscribe hassstart,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hassstart=Online DO power ENDON"
                 ]
             },
             {
@@ -310,7 +347,9 @@
                 "command": "rule3",
                 "concat": [
                     "ON power1#state=1 DO backlog rule1 0; rule2 1 ENDON",
-                    "ON power1#state=0 DO backlog rule1 1; rule2 0 ENDON"
+                    "ON power1#state=0 DO backlog rule1 1; rule2 0 ENDON",
+                    "ON Mqtt#Connected DO subscribe hassstart,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hassstart=Online DO power ENDON"
                 ]
             },
             {
@@ -321,7 +360,7 @@
         ]
     },
     {
-        "name": "Front Port Lightswitch",
+        "name": "Front Porch Lightswitch",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -341,6 +380,17 @@
                 "command": "backlog",
                 "payload": "GPIO04 52; GPIO5 158; GPIO12 21; GPIO13 17",
                 "restart": 1
+            },
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe hassstart,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hassstart=Online DO power ENDON"
+                ]
+            },
+            {
+                "command": "rule1",
+                "payload": 1
             }
         ]
     },
@@ -370,6 +420,17 @@
                 "command": "backlog",
                 "payload": "TuyaMCU 21,2; DimmerRange 150,1000; setoption20 1; setoption54 1; Rule1 ON System#Boot DO SerialSend5 55AA00060005040400010114 ENDON; Rule1 1; Restart 1",
                 "restart": 1
+            },
+            {
+                "command": "rule2",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe hassstart,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hassstart=Online DO power ENDON"
+                ]
+            },
+            {
+                "command": "rule2",
+                "payload": 1
             }
         ]
     }
