@@ -15,7 +15,8 @@
             "USE_IR_RECEIVE",
             "IR_RCV_BUFFER_SIZE 100",
             "IR_RCV_TIMEOUT 15",
-            "IR_RCV_MIN_UNKNOWN_SIZE 6"
+            "IR_RCV_MIN_UNKNOWN_SIZE 6",
+            "LIGHT_MODE 1"
         ],
         "instances": [
             {
@@ -51,10 +52,6 @@
             {
                 "command": "GPIO15",
                 "payload": "GPIO_PWM4"
-            },
-            {
-                "command": "SetOption15",
-                "payload": "1"
             }
         ]
     },
@@ -74,7 +71,8 @@
             "USE_IR_RECEIVE",
             "IR_RCV_BUFFER_SIZE 100",
             "IR_RCV_TIMEOUT 15",
-            "IR_RCV_MIN_UNKNOWN_SIZE 6"
+            "IR_RCV_MIN_UNKNOWN_SIZE 6",
+            "LIGHT_MODE 1"
         ],
         "instances": [
             {
@@ -110,10 +108,6 @@
             {
                 "command": "GPIO15",
                 "payload": "GPIO_PWM4"
-            },
-            {
-                "command": "SetOption15",
-                "payload": "1"
             }
         ]
     },
@@ -240,7 +234,7 @@
         "topic": "ir-remote",
         "poweron_state": 0,
         "build_flags": [
-            "USE_IR_REMOTE  ",  
+            "USE_IR_REMOTE",  
             "USE_IR_SEND_NEC",
             "USE_IR_SEND_RC5",
             "USE_IR_SEND_RC6"
@@ -400,25 +394,24 @@
         "hass_domain": "light",
         "software": "tasmota",
         "site": "mike",
-        "module": "WEMOS",
+        "module": "TUYA_DIMMER",
         "board": "esp01_1m",
         "base_topic": "living-room",
         "topic": "lightswitch",
         "group_topic": null,
-        "ip_addr": "192.168.1.16",
+        "ip_addr": "192.168.1.x",
         "poweron_state": 3,
         "build_flags": [
             "USE_TUYA_MCU",
-            "TUYA_DIMMER_ID 0"
+            "TUYA_DIMMER_ID 0",
+            "LIGHT_POWER_CONTROL 1",
+            "TUYA_SETOPTION_20 1"
+
         ],
         "commands": [
             {
-                "command": "module",
-                "payload": 54
-            },
-            {
                 "command": "backlog",
-                "payload": "TuyaMCU 21,2; DimmerRange 150,1000; setoption20 1; setoption54 1; Rule1 ON System#Boot DO SerialSend5 55AA00060005040400010114 ENDON; Rule1 1; Restart 1",
+                "payload": "TuyaMCU 21,2; DimmerRange 150,1000; Rule1 ON System#Boot DO SerialSend5 55AA00060005040400010114 ENDON; Rule1 1; Restart 1",
                 "restart": 1
             },
             {
