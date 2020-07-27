@@ -131,8 +131,8 @@
             {
                 "command": "rule1",
                 "concat": [
-                    "ON Mqtt#Connected DO subscribe hassstart,tele/sirius/hass/LWT ENDON",
-                    "ON Event#hassstart=Online DO power ENDON"
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO power ENDON"
                 ]
             },
             {
@@ -159,8 +159,8 @@
             {
                 "command": "rule1",
                 "concat": [
-                    "ON Mqtt#Connected DO subscribe hassstart,tele/sirius/hass/LWT ENDON",
-                    "ON Event#hassstart=Online DO power ENDON"
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO power ENDON"
                 ]
             },
             {
@@ -194,8 +194,8 @@
             {
                 "command": "rule1",
                 "concat": [
-                    "ON Mqtt#Connected DO subscribe hassstart,tele/sirius/hass/LWT ENDON",
-                    "ON Event#hassstart=Online DO power ENDON"
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO power ENDON"
                 ]
             },
             {
@@ -286,8 +286,8 @@
                 "concat": [
                     "ON power1#state=1 DO backlog rule1 0; rule2 1 ENDON",
                     "ON power1#state=0 DO backlog rule1 1; rule2 0 ENDON",
-                    "ON Mqtt#Connected DO subscribe hassstart,tele/sirius/hass/LWT ENDON",
-                    "ON Event#hassstart=Online DO power ENDON"
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO power ENDON"
                 ]
             },
             {
@@ -342,8 +342,8 @@
                 "concat": [
                     "ON power1#state=1 DO backlog rule1 0; rule2 1 ENDON",
                     "ON power1#state=0 DO backlog rule1 1; rule2 0 ENDON",
-                    "ON Mqtt#Connected DO subscribe hassstart,tele/sirius/hass/LWT ENDON",
-                    "ON Event#hassstart=Online DO power ENDON"
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO power ENDON"
                 ]
             },
             {
@@ -378,8 +378,8 @@
             {
                 "command": "rule1",
                 "concat": [
-                    "ON Mqtt#Connected DO subscribe hassstart,tele/sirius/hass/LWT ENDON",
-                    "ON Event#hassstart=Online DO power ENDON"
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO power ENDON"
                 ]
             },
             {
@@ -399,7 +399,7 @@
         "base_topic": "living-room",
         "topic": "lightswitch",
         "group_topic": null,
-        "ip_addr": "192.168.1.x",
+        "ip_addr": "192.168.1.16",
         "poweron_state": 3,
         "build_flags": [
             "USE_TUYA_MCU",
@@ -417,8 +417,8 @@
             {
                 "command": "rule2",
                 "concat": [
-                    "ON Mqtt#Connected DO subscribe hassstart,tele/sirius/hass/LWT ENDON",
-                    "ON Event#hassstart=Online DO power ENDON"
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO power ENDON"
                 ]
             },
             {
