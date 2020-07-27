@@ -105,10 +105,17 @@ class device(dict):
                 setattr(self, key, device[key])
             else:
                 setattr(self, key, '')
+        if self._key_exists('base_topic'):
+            self.topic = '{base_topic}/{topic}'.format(**self).lower()
+            if self._key_exists('group_topic'):
+                self.group_topic = '{base_topic}/{group_topic}'.format(**self).lower()
+        else:
+            self.topic = self.topic.lower()
 
-        self.base_topic = self.base_topic.lower()
-        self.full_topic = '%prefix%/{base_topic}/%topic%'.format(**self)
-        self.topic = self.topic.lower()
+        if self._key_exists('group_topic') and not self._key_exists('base_topic'):
+            self.group_topic = self.group_topic.lower()
+
+        self.full_topic = '%prefix%/%topic%'
         topic_str = re.sub("%topic%", self.topic, self.full_topic)
         self.c_topic = re.sub('%prefix%','cmnd', topic_str)
         self.s_topic = re.sub('%prefix%','stat', topic_str)
@@ -142,7 +149,7 @@ class device(dict):
                       '-DWIFI_PASSWORD=\\"{wifi_pass}\\" '
                       '-DNAME=\\"{name}\\" '
                       '-DMQTT_SERVER=\\"{mqtt_host}\\" '
-                      '-DTOPIC=\\"{base_topic}/{topic}\\"')
+                      '-DTOPIC=\\"{topic}\\"')
             self.build_flags += bf_str.format(**self)
         self.mqtt = mqtt.Client(clean_session=True,
                                 client_id="espq_{name}".format(**self))
@@ -165,6 +172,14 @@ class device(dict):
     def __del__(self):
         if 'mqtt' in self:
             self.mqtt.disconnect()
+
+    def _key_exists(self, key):
+        # Test if a key exists and is not '', ' ', or None
+        val = self.get(key)
+        if val and val.strip():
+            return True
+        else:
+            return False
 
     def _on_message(self, mqtt, userdata, msg):
         print(msg.topic + ' ' + msg.payload)
@@ -329,7 +344,7 @@ class device(dict):
         elif flash_mode == 'serial':
             self.flashing_notice(flash_mode, serial_port)
             pio_call = pio_call.format(port=serial_port)
-        print('{BLUE}{f_name}\'s MQTT topic is {base_topic}/'
+        print('{BLUE}{f_name}\'s MQTT topic is '
               '{topic}{NC}'.format(**colors, **self))
         print(pio_call)
         flash_result = call(pio_call, shell=True)
