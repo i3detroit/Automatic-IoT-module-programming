@@ -66,7 +66,7 @@ Type of esp board. esp01_1m for tasmota. Usually d1_mini, nodemcuv2, etc. for cu
 
 ## topic, base_topic (optional), group_topic (optional)
 * The MQTT topic will be `%prefix%/{topic}` by default
-* If `base_topic` is defined, the topic will be `%prefix%/{base_topic}/{topic}` 
+* If `base_topic` is defined, the topic will be `%prefix%/{base_topic}/{topic}`
 * If `group_topic` is defined, the group topic will be either `%prefix%/{group_topic}` or `%prefix%/{base_topic}/{group_topic}` depending on whether `base_topic` is defined.
 
 
