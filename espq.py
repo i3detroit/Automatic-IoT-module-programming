@@ -148,11 +148,8 @@ class device(dict):
             bf_str = ('-DWIFI_SSID=\\"{wifi_ssid}\\" '
                       '-DWIFI_PASSWORD=\\"{wifi_pass}\\" '
                       '-DNAME=\\"{name}\\" '
-                      '-DMQTT_SERVER=\\"{mqtt_host}\\" ')
-            if self._key_exists('base_topic'):
-                bf_str += '-DTOPIC=\\"{base_topic}/{topic}\\"'
-            else:
-                '-DTOPIC=\\"{topic}\\"'
+                      '-DMQTT_SERVER=\\"{mqtt_host}\\" '
+                      '-DTOPIC=\\"{topic}\\"')
             self.build_flags += bf_str.format(**self)
         self.mqtt = mqtt.Client(clean_session=True,
                                 client_id="espq_{name}".format(**self))
