@@ -14,7 +14,6 @@
         "instances": [
             {
                 "id": "001",
-                "ip_addr": "192.168.107.16",
                 "group_topic": "lights/b"
             },
             {
@@ -138,35 +137,13 @@
         ]
     },
     {
-        "name": "Bedroom Light",
+        "name": "%id% Bedroom Light",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
         "site": "mark",
+        "topic": "%id%/bedroom/lights",
         "module": "WEMOS",
-        "base_topic": "mark/bedroom",
-        "topic": "lights",
-        "group_topic": "none",
-        "poweron_state": 0,
-        "build_flags": [],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "GPIO05 56; GPIO13 21; GPIO14 9; switchmode1 3",
-                "restart": 1
-            }
-        ]
-    },
-    {
-        "name": "treatlife ss01s switch",
-        "hass_template": "light",
-        "hass_domain": "light",
-        "software": "tasmota",
-        "site": "mark",
-        "module": "WEMOS",
-        "base_topic": "mark/ss01s",
-        "topic": "foo",
-        "ip_addr": "192.168.107.32",
         "group_topic": "none",
         "poweron_state": 0,
         "build_flags": [],
@@ -175,6 +152,49 @@
                 "command": "backlog",
                 "payload": "Template {'NAME':'TL SS01S Swtch','GPIO':[0,0,0,0,52,158,0,0,21,17,0,0,0],'FLAG':0,'BASE':18}; Module 0",
                 "restart": 1
+            }
+        ],
+        "instances": [
+            {
+                "id": "mark",
+                "ip_addr": "192.168.107.33",
+                "label": "treatlife 02"
+            },
+            {
+                "id": "alisa",
+                "ip_addr": "192.168.107.32",
+                "label": "treatlife 01"
+            }
+        ]
+    },
+    {
+        "name": "treatlife ss01s switch %id%",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "mark",
+        "module": "WEMOS",
+        "base_topic": "mark/ss01s-%id%",
+        "topic": "foo",
+        "group_topic": "none",
+        "poweron_state": 0,
+        "build_flags": [],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "Template {'NAME':'TL SS01S Swtch','GPIO':[0,0,0,0,52,158,0,0,21,17,0,0,0],'FLAG':0,'BASE':18}; Module 0",
+                "restart": 1
+            }
+        ],
+        "instances": [
+            {
+                "id": "03"
+            },
+            {
+                "id": "04"
+            },
+            {
+                "id": "05"
             }
         ]
     },
