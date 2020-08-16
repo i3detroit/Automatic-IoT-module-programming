@@ -5,16 +5,16 @@ import generic
 
 light = """- platform: mqtt
   name: '{f_name}'
-  state_topic: 'stat/{base_topic}/{topic}/POWER'
-  command_topic: 'cmnd/{base_topic}/{topic}/POWER'
-  availability_topic: 'tele/{base_topic}/{topic}/LWT'
+  state_topic: 'stat/{topic}/POWER'
+  command_topic: 'cmnd/{topic}/POWER'
+  availability_topic: 'tele/{topic}/LWT'
   payload_available: 'Online'
   payload_not_available: 'Offline'
   payload_on: 'ON'
   payload_off: 'OFF'
   brightness_scale: 50
-  brightness_command_topic: 'cmnd/{base_topic}/{topic}/Dimmer'
-  brightness_state_topic: 'stat/{base_topic}/{topic}/RESULT'
+  brightness_command_topic: 'cmnd/{topic}/Dimmer'
+  brightness_state_topic: 'stat/{topic}/RESULT'
   brightness_value_template: '{{{{value_json.Dimmer}}}}'
 """
 
