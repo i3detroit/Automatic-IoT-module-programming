@@ -8,21 +8,21 @@ light = """- platform: mqtt
   effect_list:
     - 2
     - 3
-  state_topic: "stat/{base_topic}/{topic}/RESULT"
-  command_topic: "cmnd/{base_topic}/{topic}/POWER"
-  json_attributes_topic: 'tele/{base_topic}/{topic}/STATE'
-  availability_topic: "tele/{base_topic}/{topic}/LWT"
-  brightness_state_topic: "stat/{base_topic}/{topic}/RESULT"
-  brightness_command_topic: "cmnd/{base_topic}/{topic}/Dimmer"
+  state_topic: "stat/{topic}/RESULT"
+  command_topic: "cmnd/{topic}/POWER"
+  json_attributes_topic: 'tele/{topic}/STATE'
+  availability_topic: "tele/{topic}/LWT"
+  brightness_state_topic: "stat/{topic}/RESULT"
+  brightness_command_topic: "cmnd/{topic}/Dimmer"
   brightness_scale: 100
   rgb_command_template: "{{{{ '%02x%02x%02x00' | format(red, green, blue)}}}}"
-  rgb_state_topic: "stat/{base_topic}/{topic}/RESULT"
-  rgb_command_topic: "cmnd/{base_topic}/{topic}/Color"
-  white_value_state_topic: "stat/stat/{base_topic}/{topic}/RESULT"
-  white_value_command_topic: "cmnd/{base_topic}/{topic}/channel4"
+  rgb_state_topic: "stat/{topic}/RESULT"
+  rgb_command_topic: "cmnd/{topic}/Color"
+  white_value_state_topic: "stat/stat/{topic}/RESULT"
+  white_value_command_topic: "cmnd/{topic}/channel4"
   white_value_scale: 100
-  effect_command_topic: "cmnd/{base_topic}/{topic}/Scheme"
-  effect_state_topic: "stat/{base_topic}/{topic}/RESULT"
+  effect_command_topic: "cmnd/{topic}/Scheme"
+  effect_state_topic: "stat/{topic}/RESULT"
   state_value_template: >
     {{% if "POWER" in value_json %}}
       {{{{ value_json.POWER }}}}

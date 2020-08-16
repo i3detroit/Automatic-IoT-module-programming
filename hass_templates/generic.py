@@ -4,9 +4,9 @@
 
 sensor = """- platform: mqtt
   name: '{f_name}'
-  state_topic: 'stat/{base_topic}/{topic}/SENSOR'
-  json_attributes_topic: 'tele/{base_topic}/{topic}/STATE'
-  availability_topic: 'tele/{base_topic}/{topic}/LWT'
+  state_topic: 'stat/{topic}/SENSOR'
+  json_attributes_topic: 'tele/{topic}/STATE'
+  availability_topic: 'tele/{topic}/LWT'
   payload_available: 'Online'
   payload_not_available: 'Offline'
 """
