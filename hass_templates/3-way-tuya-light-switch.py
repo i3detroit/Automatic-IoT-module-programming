@@ -26,6 +26,6 @@ sensor = generic.generic_telemetry + """    {name}_power:
 """
 
 components = {
-                'light': light,
-                'sensor': sensor
+                'light': generic.comment + light,
+                'sensor': generic.comment + sensor
              }

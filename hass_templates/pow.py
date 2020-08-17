@@ -130,6 +130,6 @@ sensor = generic.generic_telemetry + """    {name}_power:
 """
 
 components = {
-                'switch': switch,
-                'sensor': sensor
+                'switch': generic.comment + switch,
+                'sensor': generic.comment + sensor
              }

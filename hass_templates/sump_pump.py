@@ -17,5 +17,5 @@ sensor_cluster = """- platform: mqtt
 sensor = generic.sensor + generic.generic_telemetry + sensor_cluster
 
 components = {
-                'sensor': sensor
+                'sensor': generic.comment + sensor
              }
