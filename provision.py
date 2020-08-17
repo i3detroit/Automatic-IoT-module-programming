@@ -54,11 +54,11 @@ parser.add_argument('-m', '--mode',
                     action='store',
                     choices=('wifi', 'serial'),
                     default='serial',
-                    help='set flash mode')
+                    help='Set flash mode (serial or wifi OTA)')
 parser.add_argument('--pause',
                     dest='pauseBeforeFlash',
                     action='store_true',
-                    help='Ask for input before flashing each device')
+                    help='Pause and require input before flashing each device')
 parser.add_argument('-p', '--port',
                     dest='serialPort',
                     action='store',
@@ -67,7 +67,7 @@ parser.add_argument('-p', '--port',
 parser.add_argument('-q', '--query',
                     dest='query',
                     action='store_true',
-                    help='Query devices for version numbers')
+                    help='Query and display device version numbers before running the operation')
 parser.add_argument('-a', '--all',
                     dest='process_all',
                     action='store_true',
