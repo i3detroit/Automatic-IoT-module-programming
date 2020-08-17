@@ -77,8 +77,26 @@ Type of esp board. esp01_1m for tasmota. Usually d1_mini, nodemcuv2, etc. for cu
 * 0 - Leave the relay off when device is plugged in
 * 1 - Switch the relay on when device is plugged in
 
-## build_flags
-(Optional) List of flags to pass when compiling. Useful for enabling tasmota features (i.e. `"USE_RULES"`) or passing other options/defines to custom programs (i.e. `"-DTOPIC_0_TOPIC=\\\"i3/inside/light\\\"`)
+## pio_build_flags
+(Optional)
+List of flags to pass when compiling custom programs. Example: `"-DTOPIC_0_TOPIC=\\\"i3/inside/light\\\"`
+
+## tasmota_defines
+(Optional)
+Defines to put in the tasmota user config.
+It's an array that can contain strings and objects that have USER_TEMPLATE, which is a JSON string, but storing the JSON string in a way that could be escaped sucks.
+You can get USER_TEMPLATEs from https://templates.blakadder.com/ it's really just ways to autosetup what GPIO does what for different devices.
+```
+"tasmota_defines": [
+    "KEY_ONLY_SINGLE_PRESS 1",
+    {"USER_TEMPLATE": {
+        "NAME":"TL SS01 3-Way",
+        "GPIO":[0,0,0,0,21,158,0,0,22,18,9,0,0],
+        "FLAG":0,
+        "BASE":18
+    }}
+],
+```
 
 ## commands
 (Optional) List of command/payload pairs. MQTT commands to be executed when the device comes online after flashing. Useful for setting tasmota options (i.e. `{"command": "GPIO2", "payload": "GPIO_SWT1"}`). Commands (such as tasmota rules) which are long lists can be broken up over multiple lines in an array by using `concat` instead of `payload` (i.e. `{"command": "rule1", "concat": ["on A do B endon", "on X do Y endon"]}`)

@@ -781,7 +781,7 @@
 #define LATITUDE {latitude}
 #define LONGITUDE {longitude}
 #define APP_POWERON_STATE {poweron_state}
-{build_flags}
+{tasmota_defines}
 #ifndef USE_ANALOG_IN
   #define USE_ADC_VCC                              // Display Vcc in Power status. Disable for use as Analog input on selected devices
 #endif

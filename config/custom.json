@@ -8,9 +8,7 @@
         "board": "nodemcuv2",
         "ip_addr": "10.13.107.44",
         "base_topic": "i3/inside",
-        "topic": "commons/16seg",
-        "build_flags": "",
-        "commands": null
+        "topic": "commons/16seg"
     },
     {
         "name": "Machine Shop Motion Sensor",
@@ -21,9 +19,7 @@
         "board": "esp01_1m",
         "ip_addr": "x",
         "base_topic": "i3/inside",
-        "topic": "machine-shop/motion-sensor",
-        "build_flags": "",
-        "commands": null
+        "topic": "machine-shop/motion-sensor"
     },
     {
         "name": "Large Bathroom Motion Sensor",
@@ -34,9 +30,7 @@
         "board": "d1_mini",
         "ip_addr": "x",
         "base_topic": "i3/inside",
-        "topic": "large-bathroom/motion-sensor",
-        "build_flags": "",
-        "commands": null
+        "topic": "large-bathroom/motion-sensor"
     },
     {
         "name": "Small Bathroom Motion Sensor",
@@ -47,9 +41,7 @@
         "board": "d1_mini",
         "ip_addr": "x",
         "base_topic": "i3/inside",
-        "topic": "small-bathroom/motion-sensor",
-        "build_flags": "",
-        "commands": null
+        "topic": "small-bathroom/motion-sensor"
     },
     {
         "name": "Machine Shop Light Switches West",
@@ -60,9 +52,7 @@
         "board": "nodemcuv2",
         "ip_addr": "x",
         "base_topic": "i3/inside",
-        "topic": "machine-shop/light-switches-west",
-        "build_flags": "",
-        "commands": null
+        "topic": "machine-shop/light-switches-west"
     },
     {
         "name": "Machine Shop Light Switches South",
@@ -73,9 +63,7 @@
         "board": "nodemcuv2",
         "ip_addr": "x",
         "base_topic": "i3/inside",
-        "topic": "machine-shop/light-switches-south",
-        "build_flags": "",
-        "commands": null
+        "topic": "machine-shop/light-switches-south"
     },
     {
         "name": "Air Compressor",
@@ -86,9 +74,7 @@
         "board": "nodemcuv2",
         "ip_addr": "x",
         "base_topic": "i3/inside",
-        "topic": "",
-        "build_flags": "",
-        "commands": null
+        "topic": ""
     },
     {
         "name": "Glass Door",
@@ -99,9 +85,7 @@
         "board": "nodemcuv2",
         "ip_addr": "x",
         "base_topic": "i3/inside",
-        "topic": "",
-        "build_flags": "",
-        "commands": null
+        "topic": ""
     },
     {
         "name": "LED Matrix Display",
@@ -112,9 +96,7 @@
         "board": "nodemcuv2",
         "ip_addr": "x",
         "base_topic": "i3/inside",
-        "topic": "",
-        "build_flags": "",
-        "commands": null
+        "topic": ""
     },
     {
         "name": "Middle East Light Switches South",
@@ -125,9 +107,7 @@
         "board": "nodemcuv2",
         "ip_addr": "x",
         "base_topic": "i3/inside",
-        "topic": "commons/middle-east-light-switches-south",
-        "build_flags": "",
-        "commands": null
+        "topic": "commons/middle-east-light-switches-south"
     },
     {
         "name": "Middle East Light Switches North",
@@ -138,9 +118,7 @@
         "board": "nodemcuv2",
         "ip_addr": "x",
         "base_topic": "i3/inside",
-        "topic": "commons/middle-east-light-switches-north",
-        "build_flags": "",
-        "commands": null
+        "topic": "commons/middle-east-light-switches-north"
     },
     {
         "name": "Front Door Funnel",
@@ -151,9 +129,7 @@
         "board": "nodemcuv2",
         "ip_addr": "x",
         "base_topic": "i3/inside",
-        "topic": "",
-        "build_flags": "",
-        "commands": null
+        "topic": ""
     },
     {
         "name": "Front Door Indicator",
@@ -164,9 +140,7 @@
         "board": "nodemcuv2",
         "ip_addr": "10.13.107.208",
         "base_topic": "i3/inside",
-        "topic": "",
-        "build_flags": "",
-        "commands": null
+        "topic": ""
     },
     {
         "name": "Disco Button",
@@ -178,8 +152,7 @@
         "ip_addr": "x",
         "base_topic": "i3/inside",
         "topic": "commons/disco-button",
-        "build_flags": "-DTOPIC_0_TOPIC=\\\"i3/inside/commons/disco\\\"",
-        "commands": null
+        "pio_pio_build_flags": "-DTOPIC_0_TOPIC=\\\"i3/inside/commons/disco\\\""
     },
     {
         "name": "Commons Ground Sensor Cluster",
@@ -190,9 +163,7 @@
         "board": "d1_mini",
         "ip_addr": "10.13.107.59",
         "base_topic": "i3/inside",
-        "topic": "commons/ground-sensor-cluster",
-        "build_flags": "",
-        "commands": null
+        "topic": "commons/ground-sensor-cluster"
     },
     {
         "name": "Commons Ceiling Sensor Cluster",
@@ -203,9 +174,7 @@
         "board": "d1_mini",
         "ip_addr": "10.13.107.134",
         "base_topic": "i3/inside",
-        "topic": "commons/ceiling-sensor-cluster",
-        "build_flags": "",
-        "commands": null
+        "topic": "commons/ceiling-sensor-cluster"
     },
     {
         "name": "Fablab Sensor Cluster",
@@ -216,9 +185,7 @@
         "board": "d1_mini",
         "ip_addr": "10.13.107.222",
         "base_topic": "i3/inside",
-        "topic": "fablab/sensor-cluster",
-        "build_flags": "",
-        "commands": null
+        "topic": "fablab/sensor-cluster"
     },
     {
         "name": "Weld Zone Light Button",
@@ -230,8 +197,7 @@
         "ip_addr": "x",
         "base_topic": "i3/inside",
         "topic": "lights/028-button",
-        "build_flags": "-DTOPIC_0_TOPIC=\\\"i3/inside/lights/028\\\"",
-        "commands": null
+        "pio_pio_build_flags": "-DTOPIC_0_TOPIC=\\\"i3/inside/lights/028\\\""
     },
     {
         "name": "Weld Zone Tank Sensors",
@@ -243,8 +209,7 @@
         "ip_addr": "10.13.107.57",
         "base_topic": "i3/inside",
         "topic": "weld-zone/tank-sensors",
-        "build_flags": "-DTOPIC_0_TOPIC=\\\"i3/inside/weld-zone/tank-sensors/argon\\\"",
-        "commands": null
+        "pio_build_flags": "-DTOPIC_0_TOPIC=\\\"i3/inside/weld-zone/tank-sensors/argon\\\""
     },
     {
         "name": "Fablab Control Buttons",
@@ -256,8 +221,7 @@
         "ip_addr": "10.13.107.71",
         "base_topic": "i3/inside",
         "topic": "fablab-control-buttons",
-        "build_flags": "-DTOPIC_0_TOPIC=\\\"i3/inside/fablab/vent\\\" -DTOPIC_0_ON_PIN=0 -DTOPIC_0_OFF_PIN=2 -DTOPIC_0_TOGGLE_PIN=-1 -DTOPIC_0_LED_ON=5 -DTOPIC_0_LED_OFF=-1 -DTOPIC_1_TOPIC=\\\"i3/inside/fablab/chiller\\\" -DTOPIC_1_ON_PIN=1 -DTOPIC_1_OFF_PIN=3 -DTOPIC_1_TOGGLE_PIN=-1 -DTOPIC_1_LED_ON=12 -DTOPIC_1_LED_OFF=-1 -DTOPIC_2_TOPIC=\\\"i3/inside/infrastructure/air-compressor\\\" -DTOPIC_2_ON_PIN=4 -DTOPIC_2_OFF_PIN=-1 -DTOPIC_2_TOGGLE_PIN=-1 -DTOPIC_2_LED_ON=13 -DTOPIC_2_LED_OFF=-1",
-        "commands": null
+        "pio_build_flags": "-DTOPIC_0_TOPIC=\\\"i3/inside/fablab/vent\\\" -DTOPIC_0_ON_PIN=0 -DTOPIC_0_OFF_PIN=2 -DTOPIC_0_TOGGLE_PIN=-1 -DTOPIC_0_LED_ON=5 -DTOPIC_0_LED_OFF=-1 -DTOPIC_1_TOPIC=\\\"i3/inside/fablab/chiller\\\" -DTOPIC_1_ON_PIN=1 -DTOPIC_1_OFF_PIN=3 -DTOPIC_1_TOGGLE_PIN=-1 -DTOPIC_1_LED_ON=12 -DTOPIC_1_LED_OFF=-1 -DTOPIC_2_TOPIC=\\\"i3/inside/infrastructure/air-compressor\\\" -DTOPIC_2_ON_PIN=4 -DTOPIC_2_OFF_PIN=-1 -DTOPIC_2_TOGGLE_PIN=-1 -DTOPIC_2_LED_ON=13 -DTOPIC_2_LED_OFF=-1"
     },
     {
         "name": "Office Thermostat",
@@ -268,9 +232,7 @@
         "board": "d1_mini",
         "ip_addr": "10.13.107.38",
         "base_topic": "i3/inside",
-        "topic": "office/thermostat",
-        "build_flags": "",
-        "commands": null
+        "topic": "office/thermostat"
     },
     {
         "name": "%id% Status Lights",
@@ -281,8 +243,7 @@
         "board": "nodemcuv2",
         "base_topic": "i3/inside",
         "topic": "laser-zone/%id%/status_lights",
-        "build_flags": "-DDEVICE=\\\"%id%\\\" -DESP8266",
-        "commands": null,
+        "pio_build_flags": "-DDEVICE=\\\"%id%\\\" -DESP8266",
         "ids": [
             {
                 "id": "bumblebee",
@@ -303,9 +264,7 @@
         "board": "d1_mini",
         "ip_addr": "10.13.107.17",
         "base_topic": "i3/inside",
-        "topic": "",
-        "build_flags": "",
-        "commands": null
+        "topic": ""
     },
     {
         "name": "Commons Light Switches %id%",
@@ -316,8 +275,6 @@
         "board": "nodemcuv2",
         "base_topic": "i3/inside",
         "topic": "commons/light-switches-%id%",
-        "build_flags": "",
-        "commands": null,
         "ids": [
             {
                 "id": "east",
@@ -338,8 +295,7 @@
         "board": "d1_mini",
         "base_topic": "i3/inside",
         "topic": "air-compressor-request-%id%",
-        "build_flags": "-DTOPIC_0_TOPIC=\\\"i3/inside/infrastructure/air-compressor\\\"",
-        "commands": null,
+        "pio_build_flags": "-DTOPIC_0_TOPIC=\\\"i3/inside/infrastructure/air-compressor\\\"",
         "ids": [
             {
                 "id": "001",
@@ -364,8 +320,6 @@
         "board": "huzzah",
         "base_topic": "i3/inside",
         "topic": "laser-zone/%id%-timer",
-        "build_flags": "",
-        "commands": null,
         "ids": [
             {
                 "id": "Wolverine",
