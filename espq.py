@@ -148,23 +148,23 @@ class device(dict):
         def processTasmotaDefines(tasmota_defines):
             if not tasmota_defines:
                 return None
-            ret = ""
+            ret = ''
 
             for define in tasmota_defines:
                 if isinstance(define, str):
-                    ret += f"\n#define {define}"
+                    ret += f'#define {define}\n'
                 else: # is object,
                     if not 'USER_TEMPLATE' in define:
                         print("object in tasmota defines that isn't USER_TEMPLATE")
-                        sys.exit(1);
+                        sys.exit(1)
 
                     json_template_str = json.dumps(define['USER_TEMPLATE'], separators=(',', ':'))
                     escaped_json_template_str = json_template_str.replace('"', '\\"')
-                    ret += f"\n#define USER_TEMPLATE \"{escaped_json_template_str}\""
+                    ret += f'#define USER_TEMPLATE "{escaped_json_template_str}"'
 
             return ret
 
-        self.tasmota_defines = processTasmotaDefines(self.tasmota_defines);
+        self.tasmota_defines = processTasmotaDefines(self.tasmota_defines)
 
         self.mqtt = mqtt.Client(clean_session=True,
                                 client_id="espq_{name}".format(**self))
