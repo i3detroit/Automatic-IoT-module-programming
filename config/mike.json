@@ -54,60 +54,6 @@
         ]
     },
     {
-        "name": "Kitchen Cabinet Accent RGB %id%",
-        "hass_template": "light_rgb",
-        "software": "tasmota",
-        "site": "mike",
-        "module": "WEMOS",
-        "board": "esp01_1m",
-        "topic": "kitchen/cabinet-accent-%id%",
-        "poweron_state": 0,
-        "tasmota_defines": [
-            "USE_IR_REMOTE",
-            "USE_IR_RECEIVE",
-            "IR_RCV_BUFFER_SIZE 100",
-            "IR_RCV_TIMEOUT 15",
-            "IR_RCV_MIN_UNKNOWN_SIZE 6",
-            "LIGHT_MODE 1"
-        ],
-        "instances": [
-            {
-                "id": "01",
-                "ip_addr": "192.168.1.x"
-            },
-            {
-                "id": "02",
-                "ip_addr": "192.168.1.x"
-            }
-        ],
-        "commands": [
-            {
-                "command": "GPIO02",
-                "payload": "GPIO_LED1_INV"
-            },
-            {
-                "command": "GPIO4",
-                "payload": "GPIO_IRRECV"
-            },
-            {
-                "command": "GPIO05",
-                "payload": "GPIO_PWM2"
-            },
-            {
-                "command": "GPIO12",
-                "payload": "GPIO_PWM1"
-            },
-            {
-                "command": "GPIO13",
-                "payload": "GPIO_PWM3"
-            },
-            {
-                "command": "GPIO15",
-                "payload": "GPIO_PWM4"
-            }
-        ]
-    },
-    {
         "name": "Living Room Lamp",
         "hass_template": "light",
         "hass_domain": "light",
@@ -143,7 +89,7 @@
         "site": "mike",
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
-        "ip_addr": "192.164.1.54",
+        "ip_addr": "192.168.1.54",
         "topic": "vulcan/power",
         "poweron_state": 0,
         "tasmota_defines": null,
@@ -167,6 +113,7 @@
         "software": "tasmota",
         "site": "mike",
         "module": "USER_MODULE",
+        "type": "TreatLife SS01S Switch",
         "board": "esp01_1m",
         "poweron_state": 3,
         "tasmota_defines": [
@@ -202,17 +149,29 @@
             {
                 "name": "Dining Room Lightswitch",
                 "topic": "dining-room/lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.71"
             },
             {
                 "name": "Guest Bathroom Lightswitch",
                 "topic": "guest-bath/lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.72"
             },
             {
                 "name": "Guest Bathroom Fan Switch",
                 "topic": "guest-bath/fan",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.81",
+                "hass_template": "switch",
+                "hass_domain": "switch"
+            },
+            {
+                "name": "Guest Bedroom Lightswitch",
+                "topic": "guest-bedroom/lightswitch",
+                "ip_addr": "192.168.1.13"
+            },
+            {
+                "name": "Guest Bedroom Spare Switch",
+                "topic": "guest-bedroom/spare",
+                "ip_addr": "192.168.1.22",
                 "hass_template": "switch",
                 "hass_domain": "switch"
             },
@@ -224,103 +183,100 @@
             {
                 "name": "Backyard Lightswitch",
                 "topic": "back-yard/lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.79"
             },
             {
                 "name": "Basement Lightswitch",
                 "topic": "basement/lightswitch",
-                "ip_addr": "192.168.1.X"
-            },
-            {
-                "name": "Basement Lightswitch",
-                "topic": "basement/lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.75"
             },
             {
                 "name": "First Floor Hall Lightswitch",
                 "topic": "first-floor-hall/lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.78"
             },
             {
                 "name": "Driveway Lightswitch",
                 "topic": "driveway/lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.31"
             },
             {
                 "name": "Garage Lightswitch",
                 "topic": "garage/lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.76"
             },
             {
                 "name": "Gym Lightswitch",
                 "topic": "gym/lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.37"
             },
             {
                 "name": "Gym Ceiling Fan Switch",
                 "topic": "gym/ceiling-fan",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.40",
                 "hass_template": "switch",
                 "hass_domain": "switch"
             },
             {
-                "name": "Kitchen Under Cabinet Lightswitch",
-                "topic": "kitchen/under-cabinet/lightswitch",
-                "ip_addr": "192.168.1.X"
+                "name": "Kitchen Cabinet Lightswitch",
+                "topic": "kitchen/cabinet/lightswitch",
+                "ip_addr": "192.168.1.66"
             },
             {
                 "name": "Laundry Lightswitch",
                 "topic": "laundry/lightswitch",
-                "ip_addr": "192.168.1.X"
-            },
-            {
-                "name": "Laundry Lightswitch",
-                "topic": "laundry/lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.26"
             },
             {
                 "name": "Bathroom Lightswitch",
                 "topic": "bathroom/lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.24"
             },
             {
                 "name": "Bathroom Fan",
                 "topic": "bathroom/fan",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.29",
                 "hass_template": "switch",
                 "hass_domain": "switch"
             },
             {
                 "name": "Bedroom Fan",
                 "topic": "bedroom/ceiling-fan",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.21",
                 "hass_template": "switch",
                 "hass_domain": "switch"
             },
             {
                 "name": "Bedroom Lightswitch",
                 "topic": "bedroom/lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.6"
             },
             {
                 "name": "Closet Lightswitch",
                 "topic": "bedroom/closet-lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.35"
             },
             {
                 "name": "Pantry Lightswitch",
                 "topic": "kitchen/pantry-lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.77"
             },
             {
                 "name": "Powder Room Lightswitch",
                 "topic": "powder-room/lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.73"
             },
             {
                 "name": "Powder Room Fan",
                 "topic": "powder-room/fan",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.74",
+                "hass_template": "switch",
+                "hass_domain": "switch"
+            },
+            {
+                "name": "Dance Studio Spare",
+                "topic": "dance-studio/spare",
+                "ip_addr": "192.168.1.19",
                 "hass_template": "switch",
                 "hass_domain": "switch"
             }
@@ -332,6 +288,7 @@
         "software": "tasmota",
         "site": "mike",
         "module": "USER_MODULE",
+        "type": "TreatLife SS01 3-Way Switch",
         "board": "esp01_1m",
         "ip_addr": "192.168.1.4",
         "poweron_state": 3,
@@ -365,7 +322,8 @@
                     "ON power1#state=1 DO backlog rule1 0; rule2 1 ENDON",
                     "ON power1#state=0 DO backlog rule1 1; rule2 0 ENDON",
                     "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
-                    "ON Event#hass=Online DO power ENDON"
+                    "ON Event#hass=Online DO power ENDON",
+                    "ON Event#TOGGLE DO power2 TOGGLE ENDON"
                 ]
             },
             {
@@ -387,7 +345,7 @@
             },
             {
                 "name": "Foyer Upstairs Lightswitch",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.34",
                 "topic": "foyer/upstairs-lightswitch"
             },
             {
@@ -397,33 +355,132 @@
             },
             {
                 "name": "Upstairs Hall East Lightswitch",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.18",
                 "topic": "upstairs-hall/east-lightswitch"
             },
             {
                 "name": "Upstairs Hall West Lightswitch",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.11",
                 "topic": "upstairs-hall/west-lightswitch"
             },
             {
                 "name": "Dog Room North Lightswitch",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.33",
                 "topic": "dog-room/north-lightswitch"
             },
             {
                 "name": "Dog Room South Lightswitch",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.17",
                 "topic": "dog-room/south-lightswitch"
             },
             {
                 "name": "Basement Stairs Top Lightswitch",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.23",
                 "topic": "basement/stairs/top-lightswitch"
             },
             {
                 "name": "Basement Stairs Bottom Lightswitch",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.80",
                 "topic": "basement/stairs/bottom-lightswitch"
+            }
+        ]
+    },
+    {
+        "name": "Upstairs Hall 4Way Switch",
+        "ip_addr": "192.168.1.39",
+        "topic": "upstairs-hall/4-way-switch",
+        "hass_template": "switch",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "USER_MODULE",
+        "type": "TreatLife SS01S Mod Switch",
+        "board": "esp01_1m",
+        "poweron_state": 3,
+        "tasmota_defines": [
+            "SWITCH_MODE PUSHBUTTON",
+            "KEY_ONLY_SINGLE_PRESS 1",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "TL SS01S Switch",
+                    "GPIO": [0, 0, 0, 0, 53, 0, 0, 0, 0, 18, 0, 0, 0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Button2#State DO publish cmnd/upstairs-hall/east-lightswitch/event TOGGLE ENDON",
+                    "ON Mqtt#Connected DO subscribe status,stat/upstairs-hall/east-lightswitch/POWER1 ENDON",
+                    "ON Event#status=ON DO ledpower2 on ENDON",
+                    "ON Event#status=OFF DO ledpower2 off ENDON",
+                    "ON System#Boot DO publish cmnd/upstairs-hall/east-lightswitch/POWER1 ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": 1
+            }
+        ]
+    },
+    {
+        "name": "Kitchen Alt Switch",
+        "ip_addr": "192.168.1.15",
+        "topic": "kitchen/alt-switch",
+        "hass_template": "switch",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "USER_MODULE",
+        "type": "TreatLife SS01S Mod Switch",
+        "board": "esp01_1m",
+                "poweron_state": 3,
+        "tasmota_defines": [
+            "SWITCH_MODE PUSHBUTTON",
+            "KEY_ONLY_SINGLE_PRESS 1",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "TL SS01S Switch",
+                    "GPIO": [0, 0, 0, 0, 53, 158, 0, 0, 0, 18, 0, 0, 0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "notes": [
+            "MEM1: sink status",
+            "MEM2: cabinet status"
+        ],
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Mqtt#Connected DO backlog subscribe sink,stat/kitchen/sink-lightswitch/POWER; subscribe cab,stat/kitchen/cabinet/lightswitch/POWER ENDON",
+                    "ON Event#sink=ON DO backlog ledpower2 ON; MEM1 ON ENDON",
+                    "ON Event#sink=OFF DO MEM1 OFF ENDON",
+                    "ON Event#cab=ON DO backlog ledpower2 ON; MEM2 ON ENDON",
+                    "ON Event#cab=OFF DO MEM2 OFF ENDON",
+                    "ON MEM2#state=OFF DO IF (%MEM1%=OFF) ledpower2 OFF ENDIF ENDON",
+                    "ON MEM1#state=OFF DO IF (%MEM2%=OFF) ledpower2 OFF ENDIF ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": 1
+            },
+            {
+                "command": "rule2",
+                "concat": [
+                    "ON Button2#State DO publish stat/kitchen/alt-switch/pressed ENDON",
+                    "ON System#Boot DO backlog publish cmnd/kitchen/sink-lightswitch/POWER; publish cmnd/kitchen/cabinet/lightswitch/POWER ENDON"
+                ]
+            },
+                        {
+                 "command": "rule2",
+                 "payload": 1
             }
         ]
     },
@@ -433,6 +490,7 @@
         "software": "tasmota",
         "site": "mike",
         "module": "TUYA_DIMMER",
+        "type": "TreatLife DS01 Dimmer",
         "board": "esp01_1m",
         "poweron_state": 3,
         "tasmota_defines": [
@@ -457,7 +515,7 @@
             },
             {
                 "command": "backlog",
-                "payload": "DimmerRange 150,1000; rule2 1"
+                "payload": "DimmerRange 150,1000; rule2 1; ledtable 0"
             }
         ],
         "instances": [
@@ -469,60 +527,91 @@
             {
                 "name": "Kitchen Lightswitch",
                 "topic": "kitchen/ceiling-lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.65"
             },
             {
                 "name": "Kitchen Sink Lightswitch",
                 "topic": "kitchen/sink-lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.68"
             },
             {
                 "name": "Bathroom Shower Lightswitch",
                 "topic": "bathroom/shower-lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.69"
             },
             {
                 "name": "Dance Studio Lightswitch",
                 "topic": "dance-studio/lightswitch",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.70"
             }
         ]
     },
     {
-        "name": "Gym IR Remote",
-        "hass_template": "switch",
-        "hass_domain": "switch",
+        "name": "Living Room Fan Remote",
+        "hass_template": "rf-fan-remote",
+        "hass_domain": "fan",
         "software": "tasmota",
         "site": "mike",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "ip_addr": "192.168.1.71",
-        "topic": "gym/ir-remote",
+        "ip_addr": "192.168.1.36",
+        "topic": "living-room/ceiling-fan",
         "poweron_state": 0,
-        "tasmota_defines": [
-            "USE_IR_REMOTE",  
-            "USE_IR_SEND_NEC",
-            "USE_IR_SEND_RC5",
-            "USE_IR_SEND_RC6"
-        ],
+        "tasmota_defines": null,
+        "notes": {
+            "note": "using 'relays' to trigger remote control button presses with optocouplers",
+            "Relay1": "GPIO14 (D5) Speed 1",
+            "Relay2": "GPIO12 (D6) Light OFF",
+            "Relay3": "GPIO13 (D7) Speed 2",
+            "Relay4": "GPIO15 (D8) Fan OFF",
+            "Relay5": "GPIO5 (D1) Light ON",
+            "Relay6": "GPIO4 (D2) Speed 3",
+            "mem1": "fan speed (Low, Medium, High)",
+            "mem2": "light state (ON/OFF)",
+            "mem3": "fan state (ON/OFF)",
+            "light power topic": "%prefix%/%topic%/light",
+            "fan power topic": "%prefix%/%topic%/fan",
+            "fan speed topic": "%prefix%/%topic%/speed"
+        },
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO4 8"
+                "payload": "GPIO14 21; GPIO12 22; GPIO13 23; GPIO15 24; GPIO5 25; GPIO4 26; blinktime 2; blinkcount 1",
+                "restart": 1
+            },
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Mqtt#Connected DO backlog subscribe hass,tele/sirius/hass/LWT; subscribe fan,cmnd/%topic%/fan; subscribe speed,cmnd/%topic%/speed; subscribe light,cmnd/%topic%/light ENDON",
+                    "ON Event#hass=Online DO backlog publish stat/%topic%/light %mem2%; publish stat/%topic%/speed %mem1%; publish stat/%topic%/fan %mem3% ENDON"
+                ]
+            },
+            {
+                "command": "rule2",
+                "concat": [
+                    "ON Event#light=ON DO backlog power5 3; mem2 ON; event publight ENDON",
+                    "ON Event#light=OFF DO backlog power2 3; mem2 OFF; event publight ENDON",
+                    "ON Event#publight DO publish stat/%topic%/light %mem2% ENDON",
+                    "ON Event#speed=High DO backlog power6 3; mem1 High; mem3 ON; event pubspeed ENDON",
+                    "ON Event#speed=Medium DO backlog power3 3; mem1 Medium; mem3 ON; event pubspeed ENDON",
+                    "ON Event#speed=Low DO backlog power1 3; mem1 Low; mem3 ON; event pubspeed ENDON",
+                    "ON Event#speed=OFF DO backlog power4 3; publish stat/%topic%/fan OFF; mem3 OFF ENDON",
+                    "ON Event#pubspeed DO publish stat/%topic%/speed %mem1% ENDON"
+                ]
+            },
+            {
+                "command": "rule3",
+                "concat": [
+                    "ON Event#fan=ON DO IF (mem1==High) power6 3 ELSEIF (mem1==Medium) power3 3 ELSEIF (mem1==Low) power1 3 ENDIF ENDON",
+                    "ON Event#fan=ON DO backlog publish stat/%topic%/fan ON; publish stat/%topic%/speed %mem1%; mem3 ON ENDON",
+                    "ON Event#fan=OFF DO backlog power4 3; publish stat/%topic%/fan OFF; mem3 OFF ENDON"
+                ]
+            },
+            {
+                "command": "backlog",
+                "payload": "rule1 1; rule2 1; rule3 1; restart 1",
+                "restart": 1
             }
         ]
-    },
-    {
-        "name": "Name-me",
-        "hass_template": "switch",
-        "hass_domain": "switch",
-        "software": "tasmota",
-        "site": "mike",
-        "module": "WEMOS",
-        "board": "esp01_1m",
-        "ip_addr": "192.168.1.x",
-        "topic": "new-device/name-me",
-        "poweron_state": 0,
-        "tasmota_defines": null
     }
 ]
