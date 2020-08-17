@@ -97,6 +97,7 @@ class device(dict):
         self.online = False
         self.reported = {}
         self.ip_addr = None
+        self.group_topic = ''
 
         for key in device:
             # Convert all other keys to device attributes
