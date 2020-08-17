@@ -10,8 +10,6 @@
         "base_topic": "evan/inside/basement",
         "topic": "lights/%id%",
         "poweron_state": 1,
-        "build_flags": [],
-        "commands": [],
         "instances": [
             {
                 "id": "001",
@@ -83,7 +81,7 @@
         "group_topic": "sensors",
         "topic": "%id%/sensor-cluster",
         "poweron_state": 1,
-        "build_flags": [
+        "tasmota_defines": [
             "USE_I2C",
             "USE_BMP",
             "USE_BH1750"
@@ -154,7 +152,6 @@
         "group_topic": "none",
         "base_topic": "evan",
         "topic": "%id%/light-switch",
-        "build_flags": [],
         "notes": "gpio4(D2): switch1 left row off; gpio12(D6): switch 2 left row on; gpio14(D5): switch3 right row off, gpio5(D1): switch4 right row on; gpio0(D3): switch5 workbench lights off; gpio2(D4): switch6 workbench lights on",
         "commands": [
             {
@@ -197,7 +194,6 @@
         "group_topic": "none",
         "base_topic": "evan",
         "topic": "%id%/condensate-pump",
-        "build_flags": [],
         "notes": "gpio4(D2): condensate pump alarm contact",
         "commands": [
             {
@@ -235,7 +231,7 @@
         "group_topic": "none",
         "base_topic": "evan/inside",
         "topic": "basement/sump-pump-%id%",
-        "build_flags": [
+        "tasmota_defines": [
 		        "USE_SR04"
         ],
         "commands": [

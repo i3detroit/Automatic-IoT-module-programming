@@ -9,7 +9,7 @@
         "group_topic": null,
         "topic": "living-room/accent-lamp-%id%",
         "poweron_state": 0,
-        "build_flags": [
+        "tasmota_defines": [
             "USE_IR_REMOTE",
             "USE_IR_RECEIVE",
             "IR_RCV_BUFFER_SIZE 100",
@@ -64,7 +64,7 @@
         "group_topic": null,
         "topic": "kitchen/cabinet-accent-%id%",
         "poweron_state": 0,
-        "build_flags": [
+        "tasmota_defines": [
             "USE_IR_REMOTE",
             "USE_IR_RECEIVE",
             "IR_RCV_BUFFER_SIZE 100",
@@ -121,7 +121,7 @@
         "group_topic": null,
         "topic": "living-room/lamp",
         "poweron_state": 0,
-        "build_flags": [
+        "tasmota_defines": [
             "KEY_ONLY_SINGLE_PRESS 1"
         ],
         "commands": [
@@ -150,7 +150,7 @@
         "group_topic": null,
         "topic": "vulcan/power",
         "poweron_state": 0,
-        "build_flags": null,
+        "tasmota_defines": null,
         "commands": [
             {
                 "command": "rule1",
@@ -174,9 +174,14 @@
         "board": "esp01_1m",
         "group_topic": null,
         "poweron_state": 3,
-        "build_flags": [
+        "tasmota_defines": [
             "KEY_ONLY_SINGLE_PRESS 1",
-            "USER_TEMPLATE \"{\\\"NAME\\\":\\\"TL SS01S Switch\\\",\\\"GPIO\\\":[0,0,0,0,52,158,0,0,21,17,0,0,0],\\\"FLAG\\\":0,\\\"BASE\\\":18}\""
+            {"USER_TEMPLATE": {
+                "NAME":"TL SS01S Switch",
+                "GPIO":[0,0,0,0,52,158,0,0,21,17,0,0,0],
+                "FLAG":0,
+                "BASE":18
+            }}
         ],
         "commands": [
             {
@@ -334,9 +339,14 @@
         "group_topic": null,
         "ip_addr": "192.168.1.4",
         "poweron_state": 3,
-        "build_flags": [
+        "tasmota_defines": [
             "KEY_ONLY_SINGLE_PRESS 1",
-            "USER_TEMPLATE \"{\\\"NAME\\\":\\\"TL SS01 3-Way\\\",\\\"GPIO\\\":[0,0,0,0,21,158,0,0,22,18,9,0,0],\\\"FLAG\\\":0,\\\"BASE\\\":18}\""
+            {"USER_TEMPLATE": {
+                "NAME":"TL SS01 3-Way",
+                "GPIO":[0,0,0,0,21,158,0,0,22,18,9,0,0],
+                "FLAG":0,
+                "BASE":18
+            }}
         ],
         "commands": [
             {
@@ -428,7 +438,7 @@
         "board": "esp01_1m",
         "group_topic": null,
         "poweron_state": 3,
-        "build_flags": [
+        "tasmota_defines": [
             "USE_TUYA_MCU",
             "TUYA_DIMMER_ID 0",
             "LIGHT_POWER_CONTROL 1",
@@ -493,7 +503,7 @@
         "group_topic": null,
         "topic": "gym/ir-remote",
         "poweron_state": 0,
-        "build_flags": [
+        "tasmota_defines": [
             "USE_IR_REMOTE",  
             "USE_IR_SEND_NEC",
             "USE_IR_SEND_RC5",
@@ -518,7 +528,6 @@
         "group_topic": null,
         "topic": "new-device/name-me",
         "poweron_state": 0,
-        "build_flags": null,
-        "commands": null
+        "tasmota_defines": null
     }
 ]

@@ -10,8 +10,6 @@
         "base_topic": "i3/inside",
         "topic": "lights/%id%",
         "poweron_state": 1,
-        "build_flags": [],
-        "commands": [],
         "instances": [
             {
                 "id": "001",
@@ -246,11 +244,10 @@
         "topic": "lights/%id%",
         "group_topic": "lights/east",
         "poweron_state": 1,
-        "build_flags": [
+        "tasmota_defines": [
             "KEY_ONLY_SINGLE_PRESS 1",
             "KEY_HOLD_TIME 100"
         ],
-        "commands": [],
         "instances": [
             {
                 "name": "Vinyl Light",
@@ -275,7 +272,6 @@
         "base_topic": "i3/inside",
         "topic": "lights/%id%",
         "poweron_state": 1,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
@@ -328,8 +324,6 @@
         "topic": "lights/%id%",
         "group_topic": "lights/emergency",
         "poweron_state": 1,
-        "build_flags": [],
-        "commands": [],
         "instances": [
             {
                 "id": "027",
@@ -361,8 +355,6 @@
         "topic": "accent/chandelier-%id%",
         "group_topic": "accent/chandelier",
         "poweron_state": 0,
-        "build_flags": [],
-        "commands": [],
         "instances": [
             {
                 "id": "01",
@@ -386,7 +378,7 @@
         "topic": "sensors/cluster-%id%",
         "group_topic": "none",
         "poweron_state": 1,
-        "build_flags": [
+        "tasmota_defines": [
             "USE_I2C",
             "USE_BMP",
             "USE_BH1750",
@@ -426,8 +418,6 @@
         "topic": "commons/accent/swirly-lights-%id%",
         "group_topic": "none",
         "poweron_state": 0,
-        "build_flags": [],
-        "commands": [],
         "instances": [
             {
                 "id": "01",
@@ -449,8 +439,6 @@
         "base_topic": "i3/inside",
         "group_topic": "none",
         "poweron_state": 0,
-        "build_flags": [],
-        "commands": [],
         "instances": [
             {
                 "name": "Media Lab Lights",
@@ -507,7 +495,6 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.164",
         "poweron_state": 0,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
@@ -528,7 +515,6 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.101",
         "poweron_state": 0,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
@@ -550,7 +536,6 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.174",
         "poweron_state": 0,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
@@ -568,8 +553,6 @@
         "base_topic": "i3/inside",
         "group_topic": "none",
         "poweron_state": 0,
-        "build_flags": [],
-        "commands": [],
         "instances":[
             {
                 "name": "Commons Ceiling Fan",
@@ -595,9 +578,7 @@
         "topic": "small-bathroom/vent",
         "group_topic": "none",
         "ip_addr": "10.13.107.82",
-        "poweron_state": 0,
-        "build_flags": [],
-        "commands": []
+        "poweron_state": 0
     },
     {
         "name": "Laser Vent Fan",
@@ -611,9 +592,7 @@
         "topic": "laser-zone/vent-fan",
         "group_topic": "none",
         "ip_addr": "10.13.107.121",
-        "poweron_state": 0,
-        "build_flags": [],
-        "commands": []
+        "poweron_state": 0
     },
     {
         "name": "Traffic Light",
@@ -626,7 +605,7 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.56",
         "poweron_state": 0,
-        "build_flags": [
+        "tasmota_defines": [
             "USE_DHT"
         ],
         "commands": [
@@ -649,9 +628,7 @@
         "topic": "fablab/vent",
         "group_topic": "none",
         "ip_addr": "10.13.107.110",
-        "poweron_state": 0,
-        "build_flags": [],
-        "commands": []
+        "poweron_state": 0
     },
     {
         "name": "Machine Shop Ceiling Fan",
@@ -665,9 +642,7 @@
         "topic": "machine-shop/ceiling-fan",
         "group_topic": "none",
         "ip_addr": "10.13.107.137",
-        "poweron_state": 0,
-        "build_flags": [],
-        "commands": []
+        "poweron_state": 0
     },
     {
         "name": "Paint Box Vent Fan",
@@ -681,9 +656,7 @@
         "topic": "commons/paint-box",
         "group_topic": "none",
         "ip_addr": "10.13.107.199",
-        "poweron_state": 0,
-        "build_flags": [],
-        "commands": []
+        "poweron_state": 0
     },
     {
         "name": "Disco Spotlights",
@@ -697,9 +670,7 @@
         "topic": "commons/accent/disco-spotlights",
         "group_topic": "none",
         "ip_addr": "10.13.107.236",
-        "poweron_state": 1,
-        "build_flags": [],
-        "commands": []
+        "poweron_state": 1
     },
     {
         "name": "433 RF Reciever",
@@ -712,8 +683,6 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.36",
         "poweron_state": 0,
-        "build_flags": [],
-        "commands": [],
         "notes": "433-rf-reciever"
     },
     {
@@ -728,8 +697,6 @@
         "topic": "laser-zone/%id%/chiller",
         "group_topic": "none",
         "poweron_state": 0,
-        "build_flags": [],
-        "commands": [],
         "flash_warning": "Make sure no one is using the laser cutter",
         "instances": [
             {
@@ -755,10 +722,9 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.77",
         "poweron_state": 0,
-        "build_flags": [
+        "tasmota_defines": [
             "TELE_PERIOD 60"
         ],
-        "commands": [],
         "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration."
     },
     {
@@ -773,9 +739,7 @@
         "topic": "tool-crib/workbench-lights",
         "group_topic": "none",
         "ip_addr": "10.13.107.83",
-        "poweron_state": 0,
-        "build_flags": [],
-        "commands": []
+        "poweron_state": 0
     },
     {
         "name": "Genie Charging",
@@ -790,10 +754,9 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.242",
         "poweron_state": 1,
-        "build_flags": [
+        "tasmota_defines": [
             "TELE_PERIOD 60"
         ],
-        "commands": [],
         "flash_warning": "This will reset any power monitoring calibration"
     },
     {
@@ -808,9 +771,7 @@
         "topic": "commons/siren",
         "group_topic": "none",
         "ip_addr": "10.13.107.162",
-        "poweron_state": 0,
-        "build_flags": [],
-        "commands": []
+        "poweron_state": 0
     },
     {
         "name": "%id%",
@@ -824,12 +785,11 @@
         "topic": "laser-zone/%id%/laser",
         "group_topic": "none",
         "poweron_state": 0,
-        "build_flags": [
+        "tasmota_defines": [
             "KEY_ONLY_SINGLE_PRESS 1",
             "KEY_HOLD_TIME 100",
             "TELE_PERIOD 60"
         ],
-        "commands": [],
         "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration.",
         "instances": [
             {
@@ -855,7 +815,6 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.132",
         "poweron_state": 0,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
@@ -877,7 +836,6 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.75",
         "poweron_state": 0,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
@@ -899,7 +857,6 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.12",
         "poweron_state": 0,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
@@ -920,7 +877,7 @@
         "topic": "elab/accent/arch-%id%",
         "group_topic": "none",
         "poweron_state": 0,
-        "build_flags": [
+        "tasmota_defines": [
             "USE_IR_REMOTE",
             "USE_IR_RECEIVE",
             "IR_RCV_BUFFER_SIZE 100",
@@ -958,9 +915,7 @@
         "topic": "laser-zone/accent/lanterns",
         "group_topic": "accent/lanterns",
         "ip_addr": "10.13.107.153",
-        "poweron_state": 0,
-        "build_flags": [],
-        "commands": []
+        "poweron_state": 0
     },
     {
         "name": "Fairy Lights",
@@ -974,9 +929,7 @@
         "topic": "commons/accent/fairy-lights",
         "group_topic": "accent/fairy-lights",
         "ip_addr": "10.13.107.253",
-        "poweron_state": 0,
-        "build_flags": [],
-        "commands": []
+        "poweron_state": 0
     },
     {
         "name": "Chinesium Laser",
@@ -991,10 +944,9 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.86",
         "poweron_state": 0,
-        "build_flags": [
+        "tasmota_defines": [
             "TELE_PERIOD 60"
         ],
-        "commands": [],
         "flash_warning": "Make sure no one is using the laser cutter. Also this will reset any power monitoring calibration"
     },
     {
@@ -1010,7 +962,7 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.106",
         "poweron_state": 1,
-        "build_flags": [
+        "tasmota_defines": [
             "LIGHT_MODE true"
         ],
         "commands": [
@@ -1034,7 +986,6 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.103",
         "poweron_state": 0,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
@@ -1056,7 +1007,6 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.109",
         "poweron_state": 0,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
@@ -1078,7 +1028,6 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.136",
         "poweron_state": 0,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
@@ -1100,7 +1049,7 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.111",
         "poweron_state": 0,
-        "build_flags": [
+        "tasmota_defines": [
                 "USE_I2C",
                 "USE_BMP",
                 "USE_BME680",
@@ -1129,7 +1078,6 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.87",
         "poweron_state": 0,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
@@ -1150,7 +1098,6 @@
         "topic": "b-side/shop-%id%-lightswitch",
         "group_topic": "none",
         "poweron_state": 0,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
@@ -1181,7 +1128,7 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.228",
         "poweron_state": 0,
-        "build_flags": [
+        "tasmota_defines": [
            "USE_I2C",
            "USE_MCP230xx",
            "USE_MCP230xx_ADDR 0x20",
@@ -1225,7 +1172,6 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.14",
         "poweron_state": 0,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
@@ -1247,10 +1193,9 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.55",
         "poweron_state": 1,
-        "build_flags": [
+        "tasmota_defines": [
             "TELE_PERIOD 60"
         ],
-        "commands": [],
         "flash_warning": "This will reset any power monitoring calibration."
     },
     {
@@ -1266,10 +1211,9 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.166",
         "poweron_state": 1,
-        "build_flags": [
+        "tasmota_defines": [
             "TELE_PERIOD 60"
         ],
-        "commands": [],
         "flash_warning": "This will reset any power monitoring calibration."
     },
     {
@@ -1285,7 +1229,7 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.102",
         "poweron_state": 0,
-        "build_flags": [
+        "tasmota_defines": [
            "USE_I2C",
            "USE_MCP230xx",
            "USE_MCP230xx_ADDR 0x20",
@@ -1356,7 +1300,7 @@
         "topic": "sensors/air-line-pressure-%id%",
         "group_topic": "none",
         "poweron_state": 0,
-        "build_flags": [
+        "tasmota_defines": [
             "USE_I2C",
             "USE_ANALOG_IN",
             "TELE_PERIOD 10"
@@ -1414,7 +1358,6 @@
         "group_topic": "none",
         "ip_addr": "10.13.107.238",
         "poweron_state": 0,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",

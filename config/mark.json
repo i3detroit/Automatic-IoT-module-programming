@@ -9,8 +9,6 @@
         "base_topic": "mark/basement",
         "topic": "lights/%id%",
         "poweron_state": 1,
-        "build_flags": [],
-        "commands": [],
         "instances": [
             {
                 "id": "001",
@@ -61,8 +59,6 @@
         "topic": "lights/%id%",
         "group_topic": "NOT_A_TOPIC",
         "poweron_state": 1,
-        "build_flags": [],
-        "commands": [],
         "instances": [
             {
                 "id": "main"
@@ -79,9 +75,7 @@
         "ip_addr": "192.168.107.12",
         "group_topic": "none",
         "base_topic": "mark",
-        "topic": "thermostat",
-        "build_flags": "",
-        "commands": null
+        "topic": "thermostat"
     },
     {
         "name": "Sensor Cluster %id%",
@@ -127,7 +121,6 @@
         "topic": "foo",
         "group_topic": "none",
         "poweron_state": 0,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
@@ -146,7 +139,6 @@
         "module": "WEMOS",
         "group_topic": "none",
         "poweron_state": 0,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
@@ -178,7 +170,6 @@
         "topic": "foo",
         "group_topic": "none",
         "poweron_state": 0,
-        "build_flags": [],
         "commands": [
             {
                 "command": "backlog",
@@ -209,7 +200,6 @@
         "group_topic": "none",
         "base_topic": "mark/basement",
         "topic": "lightswitch",
-        "build_flags": [],
         "notes": "gpio2(D4): switch1 all off; gpio4(D2): switch 2 a on; gpio5(D1): switch3 a&b on, gpio12(D6): switch4 laundry off; gpio13(D6): Switch6 laundry on",
         "commands": [
             {

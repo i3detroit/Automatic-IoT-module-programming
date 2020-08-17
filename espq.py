@@ -97,6 +97,8 @@ class device(dict):
         self.online = False
         self.reported = {}
         self.ip_addr = None
+        self.pio_build_flags = ''
+        self.tasmota_defines = None
 
         for key in device:
             # Convert all other keys to device attributes
@@ -137,20 +139,28 @@ class device(dict):
                 setattr(self, key, sites[self.site][key])
             else:
                 setattr(self, key, '')
-        # Format the device's build flags
-        # This is still a little hacky--tasmota and custom build flags are
-        # handled entirely differently. The latter way is probably better since
-        # it's the general case
-        if self.software == 'tasmota' and self.build_flags != '':
-            self.build_flags = '\n'.join(['#define {}'.format(flag) for flag \
-                                          in self.build_flags])
-        elif self.software == 'custom-mqtt-programs':
-            bf_str = ('-DWIFI_SSID=\\"{wifi_ssid}\\" '
-                      '-DWIFI_PASSWORD=\\"{wifi_pass}\\" '
-                      '-DNAME=\\"{name}\\" '
-                      '-DMQTT_SERVER=\\"{mqtt_host}\\" '
-                      '-DTOPIC=\\"{topic}\\"')
-            self.build_flags += bf_str.format(**self)
+
+        def processTasmotaDefines(tasmota_defines):
+            if not tasmota_defines:
+                return None
+            ret = ""
+
+            for define in tasmota_defines:
+                if isinstance(define, str):
+                    ret += f"\n#define {define}"
+                else: # is object,
+                    if not 'USER_TEMPLATE' in define:
+                        print("object in tasmota defines that isn't USER_TEMPLATE")
+                        sys.exit(1);
+
+                    json_template_str = json.dumps(define['USER_TEMPLATE'], separators=(',', ':'))
+                    escaped_json_template_str = json_template_str.replace('"', '\\"')
+                    ret += f"\n#define USER_TEMPLATE \"{escaped_json_template_str}\""
+
+            return ret
+
+        self.tasmota_defines = processTasmotaDefines(self.tasmota_defines);
+
         self.mqtt = mqtt.Client(clean_session=True,
                                 client_id="espq_{name}".format(**self))
         self.mqtt.reinitialise()
@@ -356,8 +366,14 @@ class device(dict):
         Flash the device with custom firmware
         """
         src_dir = os.path.join(custom_dir, self.module)
-        os.environ['PLATFORMIO_SRC_DIR']=src_dir
-        os.environ['PLATFORMIO_BUILD_FLAGS']=self.build_flags
+        os.environ['PLATFORMIO_SRC_DIR'] = src_dir
+        os.environ['PLATFORMIO_BUILD_FLAGS'] = self.pio_build_flags
+        os.environ['PLATFORMIO_BUILD_FLAGS'] += ('-DWIFI_SSID=\\"{wifi_ssid}\\" '
+                                                 '-DWIFI_PASSWORD=\\"{wifi_pass}\\" '
+                                                 '-DNAME=\\"{name}\\" '
+                                                 '-DMQTT_SERVER=\\"{mqtt_host}\\" '
+                                                 '-DTOPIC=\\"{topic}\\"').format(**self)
+
         print("PLATFORMIO_SRC_DIR:", os.environ['PLATFORMIO_SRC_DIR'])
         print("PLATFORMIO_BUILD_FLAGS:", os.environ['PLATFORMIO_BUILD_FLAGS'])
         os.chdir(custom_dir)
