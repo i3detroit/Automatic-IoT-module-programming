@@ -72,6 +72,10 @@ parser.add_argument('-a', '--all',
                     dest='process_all',
                     action='store_true',
                     help='Skip device selection & use all devices in file')
+parser.add_argument('-r', '--retry',
+                    dest='retry',
+                    action='store_true',
+                    help='Add optional retry after failed flash')
 
 args = parser.parse_args()
 
@@ -129,6 +133,15 @@ elif args.operation == 'flash':
             print('Processing device {count}/{total} - '
                   '{name}'.format(**device_words))
         dev.flash(args.flashMode, args.serialPort)
+        while args.retry is True and dev.flashed is False:
+            retry = input('{name} flash failed. Retry (y/n)?'.format(**device_words))
+            if retry == 'y' or retry == 'Y':
+                dev.flash(args.flashMode, args.serialPort)
+            elif retry == 'n' or retry == 'N':
+                break
+            else:
+                print('Invalid input. Enter "y" or "n".')
+
         # reset terminal title to something useful like hostname
         sys.stdout.write('\x1b]2{hostname}\x07'.format(hostname=os.uname()[1]))
     print("\nResult report:")
