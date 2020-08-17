@@ -52,6 +52,9 @@ Site name from sites.json, which should include location specific options (wifi 
 For tasmota, should be one of the [supported hardware modules](https://github.com/arendst/Tasmota/blob/development/tasmota/tasmota_template.h#L339)
 such as SONOFF_BASIC, SONOFF_TOUCH, WEMOS. For custom programs, see instructions
 
+## type
+(Optional, defaults to module) Type of device for categorization purposes. With Tasmota, the module is USER_MODULE when supplying _any_ USER_TEMPLATE, and that may refer to many different types of devices.
+
 ## board
 Type of esp board. esp01_1m for tasmota. Usually d1_mini, nodemcuv2, etc. for custom.
 
