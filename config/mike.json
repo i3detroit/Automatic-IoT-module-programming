@@ -171,12 +171,14 @@
         "poweron_state": 3,
         "tasmota_defines": [
             "KEY_ONLY_SINGLE_PRESS 1",
-            {"USER_TEMPLATE": {
-                "NAME":"TL SS01S Switch",
-                "GPIO":[0,0,0,0,52,158,0,0,21,17,0,0,0],
-                "FLAG":0,
-                "BASE":18
-            }}
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "TL SS01S Switch",
+                    "GPIO": [0, 0, 0, 0, 52, 158, 0, 0, 21, 17, 0, 0, 0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
         ],
         "commands": [
             {
@@ -335,12 +337,14 @@
         "poweron_state": 3,
         "tasmota_defines": [
             "KEY_ONLY_SINGLE_PRESS 1",
-            {"USER_TEMPLATE": {
-                "NAME":"TL SS01 3-Way",
-                "GPIO":[0,0,0,0,21,158,0,0,22,18,9,0,0],
-                "FLAG":0,
-                "BASE":18
-            }}
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "TL SS01 3-Way",
+                    "GPIO": [0, 0, 0, 0, 21, 158, 0, 0, 22, 18, 9, 0, 0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
         ],
         "commands": [
             {
