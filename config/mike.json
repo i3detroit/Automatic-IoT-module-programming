@@ -170,19 +170,15 @@
         "hass_domain": "light",
         "software": "tasmota",
         "site": "mike",
-        "module": "WEMOS",
+        "module": "USER_MODULE",
         "board": "esp01_1m",
         "group_topic": null,
         "poweron_state": 3,
         "build_flags": [
-            "KEY_ONLY_SINGLE_PRESS 1"
+            "KEY_ONLY_SINGLE_PRESS 1",
+            "USER_TEMPLATE \"{\\\"NAME\\\":\\\"TL SS01S Switch\\\",\\\"GPIO\\\":[0,0,0,0,52,158,0,0,21,17,0,0,0],\\\"FLAG\\\":0,\\\"BASE\\\":18}\""
         ],
         "commands": [
-            {
-                "command": "backlog",
-                "payload": "GPIO04 52; GPIO5 158; GPIO12 21; GPIO13 17",
-                "restart": 1
-            },
             {
                 "command": "rule1",
                 "concat": [
@@ -333,19 +329,19 @@
         "hass_domain": "light",
         "software": "tasmota",
         "site": "mike",
-        "module": "WEMOS",
+        "module": "USER_MODULE",
         "board": "esp01_1m",
         "group_topic": null,
         "ip_addr": "192.168.1.4",
         "poweron_state": 3,
         "build_flags": [
-            "KEY_ONLY_SINGLE_PRESS 1"
+            "KEY_ONLY_SINGLE_PRESS 1",
+            "USER_TEMPLATE \"{\\\"NAME\\\":\\\"TL SS01 3-Way\\\",\\\"GPIO\\\":[0,0,0,0,21,158,0,0,22,18,9,0,0],\\\"FLAG\\\":0,\\\"BASE\\\":18}\""
         ],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO04 21; GPIO05 158; GPIO12 22; GPIO13 18; GPIO14 9; switchtopic 0; switchmode1 2; switchmode2 5",
-                "restart": 1
+                "payload": "switchtopic 0; switchmode1 2; switchmode2 5"
             },
             {
                 "command": "rule1",

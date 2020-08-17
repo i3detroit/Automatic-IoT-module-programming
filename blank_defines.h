@@ -14,6 +14,11 @@
 #undef APP_DISABLE_POWERCYCLE
 #undef APP_ENABLE_LEDLINK
 #undef APP_FLASH_CYCLE
+#undef APP_INTERLOCK_GROUP_1
+#undef APP_INTERLOCK_GROUP_2
+#undef APP_INTERLOCK_GROUP_3
+#undef APP_INTERLOCK_GROUP_4
+#undef APP_INTERLOCK_MODE
 #undef APP_LEDMASK
 #undef APP_LEDSTATE
 #undef APP_NORMAL_SLEEP
@@ -55,6 +60,7 @@
 #undef DEBUG_TASMOTA_DRIVER
 #undef DEBUG_TASMOTA_SENSOR
 #undef DEEPSLEEP_BOOTCOUNT
+#undef DEEPSLEEP_LWT_HA_DISCOVERY
 #undef DEVICE_GROUPS_ADDRESS
 #undef DEVICE_GROUPS_PORT
 #undef DOMOTICZ_IN_TOPIC
@@ -66,7 +72,11 @@
 #undef ENERGY_HARDWARE_TOTALS
 #undef ENERGY_RESOLUTION
 #undef ENERGY_VOLTAGE_ALWAYS
+#undef ETH_ADDR
+#undef ETH_CLKMODE
+#undef ETH_TYPE
 #undef EXS_MCU_CMNDS
+#undef FALLBACK_MODULE
 #undef FIRMWARE_DISPLAYS
 #undef FIRMWARE_IR
 #undef FIRMWARE_IR_CUSTOM
@@ -80,6 +90,8 @@
 #undef HOME_ASSISTANT_DISCOVERY_ENABLE
 #undef HOME_ASSISTANT_DISCOVERY_PREFIX
 #undef HUMIDITY_RESOLUTION
+#undef IEM3000_ADDR
+#undef IEM3000_SPEED
 #undef IR_ADD_RAW_DATA
 #undef IR_DATA_RADIX
 #undef IR_RCV_BUFFER_SIZE
@@ -171,6 +183,7 @@
 #undef PUB_PREFIX2
 #undef PWM_MAX_SLEEP
 #undef RF_DATA_RADIX
+#undef ROTARY_MAX_STEPS
 #undef ROTARY_V1
 #undef SAVE_DATA
 #undef SAVE_STATE
@@ -244,6 +257,7 @@
 #undef TIME_STD_WEEK
 #undef TUYA_DIMMER_ID
 #undef TUYA_SETOPTION_20
+#undef USER_TEMPLATE
 #undef USE_4K_RSA
 #undef USE_A4988_STEPPER
 #undef USE_ADC_VCC
@@ -262,6 +276,7 @@
 #undef USE_AS3935
 #undef USE_AZ7798
 #undef USE_BH1750
+#undef USE_BL0940
 #undef USE_BME680
 #undef USE_BMP
 #undef USE_BUZZER
@@ -301,6 +316,7 @@
 #undef USE_EMULATION_WEMO
 #undef USE_ENERGY_MARGIN_DETECTION
 #undef USE_ENERGY_POWER_LIMIT
+#undef USE_ETHERNET
 #undef USE_EXPRESSION
 #undef USE_EXS_DIMMER
 #undef USE_FLOG
@@ -310,6 +326,7 @@
 #undef USE_HM10
 #undef USE_HOME_ASSISTANT
 #undef USE_HOTPLUG
+#undef USE_HP303B
 #undef USE_HPMA
 #undef USE_HRE
 #undef USE_HRXL
@@ -319,6 +336,7 @@
 #undef USE_I2C
 #undef USE_IAQ
 #undef USE_IBEACON
+#undef USE_IEM3000
 #undef USE_INA219
 #undef USE_INA226
 #undef USE_IR_RECEIVE
@@ -333,6 +351,7 @@
 #undef USE_LE01MR
 #undef USE_LIGHT_PALETTE
 #undef USE_LM75AD
+#undef USE_LMT01
 #undef USE_MAX31855
 #undef USE_MAX31865
 #undef USE_MAX44009
@@ -341,6 +360,7 @@
 #undef USE_MCP230xx_DISPLAYOUTPUT
 #undef USE_MCP230xx_OUTPUT
 #undef USE_MCP39F501
+#undef USE_MCP9808
 #undef USE_MGC3130
 #undef USE_MGS
 #undef USE_MHZ19
@@ -370,6 +390,7 @@
 #undef USE_PN532_DATA_FUNCTION
 #undef USE_PN532_DATA_RAW
 #undef USE_PN532_HSU
+#undef USE_PROMETHEUS
 #undef USE_PS_16_DZ
 #undef USE_PWM_DIMMER
 #undef USE_PWM_DIMMER_REMOTE
@@ -382,7 +403,6 @@
 #undef USE_RF_SENSOR
 #undef USE_RTC_ADDR
 #undef USE_RULES
-#undef USE_RULES_COMPRESSION
 #undef USE_SCD30
 #undef USE_SCRIPT
 #undef USE_SCRIPT_FATFS
@@ -407,13 +427,19 @@
 #undef USE_SPS30
 #undef USE_SR04
 #undef USE_SUNRISE
-#undef USE_TASMOTA_SLAVE
-#undef USE_TASMOTA_SLAVE_FLASH_SPEED
-#undef USE_TASMOTA_SLAVE_SERIAL_SPEED
+#undef USE_TASMOTA_CLIENT
+#undef USE_TASMOTA_CLIENT_FLASH_SPEED
+#undef USE_TASMOTA_CLIENT_SERIAL_SPEED
+#undef USE_TCP_BRIDGE
+#undef USE_TELEGRAM
+#undef USE_TELEGRAM_FINGERPRINT
+#undef USE_TELEINFO
+#undef USE_TELEINFO_STANDARD
 #undef USE_THEO_V2
 #undef USE_THERMOSTAT
 #undef USE_TIMERS
 #undef USE_TIMERS_WEB
+#undef USE_TLS
 #undef USE_TM1638
 #undef USE_TSL2561
 #undef USE_TSL2591
@@ -421,10 +447,14 @@
 #undef USE_TUYA_TIME
 #undef USE_TX20_WIND_SENSOR
 #undef USE_TX23_WIND_SENSOR
+#undef USE_UNISHOX_COMPRESSION
 #undef USE_VEML6070
 #undef USE_VEML6070_RSET
 #undef USE_VEML6070_SHOW_RAW
+#undef USE_VEML6075
+#undef USE_VEML7700
 #undef USE_VL53L0X
+#undef USE_WEBCAM
 #undef USE_WEBSEND_RESPONSE
 #undef USE_WEBSERVER
 #undef USE_WEMOS_MOTOR_V1
@@ -436,10 +466,11 @@
 #undef USE_ZIGBEE
 #undef USE_ZIGBEE_CHANNEL
 #undef USE_ZIGBEE_COALESCE_ATTR_TIMER
-#undef USE_ZIGBEE_EXTPANID
-#undef USE_ZIGBEE_PANID
-#undef USE_ZIGBEE_PRECFGKEY_H
-#undef USE_ZIGBEE_PRECFGKEY_L
+#undef USE_ZIGBEE_EZSP
+#undef USE_ZIGBEE_MANUFACTURER
+#undef USE_ZIGBEE_MODELID
+#undef USE_ZIGBEE_TXRADIO_DBM
+#undef USE_ZIGBEE_ZNP
 #undef W1_PARASITE_POWER
 #undef WEBSERVER_ADVERTISE
 #undef WEB_LOG_LEVEL
@@ -474,7 +505,12 @@
 #define PROJECT                "tasmota"         // PROJECT is used as the default topic delimiter
 
 // If not selected the default will be SONOFF_BASIC
-//#define MODULE                 SONOFF_BASIC      // [Module] Select default model from tasmota_template.h
+//#define MODULE                 SONOFF_BASIC      // [Module] Select default module from tasmota_template.h
+#ifdef ESP8266
+#define FALLBACK_MODULE        SONOFF_BASIC      // [Module2] Select default module on fast reboot where USER_MODULE is user template
+#else // ESP32
+#define FALLBACK_MODULE        WEMOS             // [Module2] Select default module on fast reboot where USER_MODULE is user template
+#endif
 
 #define SAVE_DATA              1                 // [SaveData] Save changed parameters to Flash (0 = disable, 1 - 3600 seconds)
 #define SAVE_STATE             false             // [SetOption0] Save changed power state to Flash (false = disable, true = enable)
@@ -510,8 +546,8 @@
 // -- MQTT ----------------------------------------
 #define MQTT_USE               true              // [SetOption3] Select default MQTT use (false = Off, true = On)
 
-#define MQTT_FINGERPRINT1      "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"  // [MqttFingerprint1]
-#define MQTT_FINGERPRINT2      "A5 02 FF 13 99 9F 8B 39 8E F1 83 4F 11 23 65 0B 32 36 FC 07"  // [MqttFingerprint2]
+#define MQTT_FINGERPRINT1      "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"  // [MqttFingerprint1] (auto-learn)
+#define MQTT_FINGERPRINT2      "DA 39 A3 EE 5E 6B 4B 0D 32 55 BF EF 95 60 18 90 AF D8 07 09"  // [MqttFingerprint2] (invalid)
 #define MQTT_PORT              1883              // [MqttPort] MQTT port (10123 on CloudMQTT)
 #define MQTT_USER              "DVES_USER"       // [MqttUser] MQTT user
 #define MQTT_PASS              "DVES_PASS"       // [MqttPassword] MQTT password
@@ -521,7 +557,7 @@
 #define MQTT_SWITCH_RETAIN     false             // [SwitchRetain] Switch may send retain flag (false = off, true = on)
 #define MQTT_SENSOR_RETAIN     false             // [SensorRetain] Sensor may send retain flag (false = off, true = on)
 #define MQTT_NO_HOLD_RETAIN    false             // [SetOption62] Disable retain flag on HOLD messages
-//#define MQTT_NO_RETAIN                         // Disable all retain flags (including LWT!) if unsupported by broker (eg Losant)
+//#define MQTT_NO_RETAIN                         // Disable all retain flags (This don't include LWT!) if unsupported by broker (eg Losant)
 
 #define MQTT_STATUS_OFF        "OFF"             // [StateText1] Command or Status result when turned off (needs to be a string like "0" or "Off")
 #define MQTT_STATUS_ON         "ON"              // [StateText2] Command or Status result when turned on (needs to be a string like "1" or "On")
@@ -537,7 +573,7 @@
 #define MQTT_GROUPTOPIC_FORMAT false             // [SetOption75] GroupTopic replaces %topic% (false) or fixed topic cmnd/grouptopic (true)
 #define MQTT_BUTTON_TOPIC      "0"               // [ButtonTopic] MQTT button topic, "0" = same as MQTT_TOPIC, set to 'PROJECT "_BTN_%06X"' for unique topic including device MAC address
 #define MQTT_SWITCH_TOPIC      "0"               // [SwitchTopic] MQTT button topic, "0" = same as MQTT_TOPIC, set to 'PROJECT "_SW_%06X"' for unique topic including device MAC address
-#define MQTT_CLIENT_ID         "DVES_%06X"       // [MqttClient] Also fall back topic using Chip Id = last 6 characters of MAC address
+#define MQTT_CLIENT_ID         "DVES_%06X"       // [MqttClient] Also fall back topic using last 6 characters of MAC address or use "DVES_%12X" for complete MAC address
 
 // -- MQTT - Telemetry ----------------------------
 #define TELE_PERIOD            300               // [TelePeriod] Telemetry (0 = disable, 10 - 3600 seconds)
@@ -549,6 +585,8 @@
 // -- MQTT - Home Assistant Discovery -------------
 #define HOME_ASSISTANT_DISCOVERY_ENABLE   false  // [SetOption19] Home Assistant Discovery (false = Disable, true = Enable)
 #define HASS_AS_LIGHT          false             // [SetOption30] Enforce HAss autodiscovery as light
+//#define DEEPSLEEP_LWT_HA_DISCOVERY             // Enable LWT topic and its payloads for read-only sensors (Status sensor not included) and binary_sensors on HAss Discovery (Commented out: all read-only sensors and binary_sensors
+                                                 // won't be shown as OFFLINE on Home Assistant when the device is DeepSleeping - NOTE: This is only for read-only sensors and binary_sensors, relays will be shown as OFFLINE)
 
 // -- MQTT - Options ------------------------------
 #define MQTT_RESULT_COMMAND    false             // [SetOption4]  Switch between MQTT RESULT or COMMAND
@@ -656,6 +694,12 @@
 #define APP_DISABLE_POWERCYCLE false             // [SetOption65] Disable fast power cycle detection for device reset
 #define DEEPSLEEP_BOOTCOUNT    false             // [SetOption76] Enable incrementing bootcount when deepsleep is enabled
 
+#define APP_INTERLOCK_MODE     false             // [Interlock] Relay interlock mode
+#define APP_INTERLOCK_GROUP_1  0xFF              // [Interlock] Relay bitmask for interlock group 1 (0xFF if undef)
+//#define APP_INTERLOCK_GROUP_2  0x00              // [Interlock] Relay bitmask for interlock group 2 (0x00 if undef)
+//#define APP_INTERLOCK_GROUP_3  0x00              // [Interlock] Relay bitmask for interlock group 3 (0x00 if undef)
+//#define APP_INTERLOCK_GROUP_4  0x00              // [Interlock] Relay bitmask for interlock group 4 (0x00 if undef)
+
 // -- Lights --------------------------------------
 #define WS2812_LEDS            30                // [Pixels] Number of WS2812 LEDs to start with (max is 512)
 #define LIGHT_MODE             true              // [SetOption15] Switch between commands PWM or COLOR/DIMMER/CT/CHANNEL
@@ -702,6 +746,9 @@
 #define USE_WEBSERVER                            // Enable web server and Wifi Manager (+66k code, +8k mem)
   #define WEB_PORT             80                // Web server Port for User and Admin mode
   #define WEB_USERNAME         "admin"           // Web server Admin mode user name
+
+// -- Compression ---------------------------------
+#define USE_UNISHOX_COMPRESSION                  // Add support for string compression in Rules or Scripts
 
 // -- Rules or Script  ----------------------------
 // Select none or only one of the below defines USE_RULES or USE_SCRIPT
