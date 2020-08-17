@@ -77,7 +77,6 @@
         "module": "thermostat",
         "board": "d1_mini",
         "ip_addr": "192.168.107.12",
-        "group_topic": "none",
         "base_topic": "mark",
         "topic": "thermostat",
         "build_flags": "",
@@ -90,7 +89,6 @@
         "software": "tasmota",
         "site": "mark",
         "module": "WEMOS",
-        "group_topic": "none",
         "base_topic": "mark",
         "topic": "sensors/cluster-%id%",
         "group_topic": "sensors",
@@ -125,7 +123,6 @@
         "module": "WEMOS",
         "base_topic": "mark/unnassigned",
         "topic": "foo",
-        "group_topic": "none",
         "poweron_state": 0,
         "build_flags": [],
         "commands": [
@@ -144,7 +141,6 @@
         "site": "mark",
         "topic": "%id%/bedroom/lights",
         "module": "WEMOS",
-        "group_topic": "none",
         "poweron_state": 0,
         "build_flags": [],
         "commands": [
@@ -176,7 +172,6 @@
         "module": "WEMOS",
         "base_topic": "mark/ss01s-%id%",
         "topic": "foo",
-        "group_topic": "none",
         "poweron_state": 0,
         "build_flags": [],
         "commands": [
@@ -206,7 +201,6 @@
         "site": "mark",
         "module": "WEMOS",
         "poweron_state": 0,
-        "group_topic": "none",
         "base_topic": "mark/basement",
         "topic": "lightswitch",
         "build_flags": [],
@@ -230,6 +224,22 @@
             {
                 "command": "rule1",
                 "payload": "1"
+            }
+        ]
+    },
+    {
+        "name": "spare basic %id%",
+        "software": "tasmota",
+        "site": "mark",
+        "module": "SONOFF_BASIC",
+        "base_topic": "mark/spare",
+        "topic": "foo/%id%",
+        "poweron_state": 1,
+        "build_flags": [],
+        "commands": [],
+        "instances": [
+            {
+                "id": "001"
             }
         ]
     }
