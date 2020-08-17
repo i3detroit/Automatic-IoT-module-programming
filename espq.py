@@ -124,7 +124,10 @@ class device(dict):
         self.f_name = re.sub('_', ' ', re.sub('\/|-', ' ', self.name))
         # Unfriendly name
         self.name =   re.sub(' ', '_', re.sub('\/|-', '_', self.name))
-
+        # URL-friendly hostname
+        self.hostname = re.sub('[^A-Za-z\\d-]', '-', self.name)[0:32]
+        if self.hostname[-1] == '-':
+            self.hostname = self.hostname[0:-1]
         # home assistant doesn't like upper case letters in sensor names
         self.name = self.name.lower()
 
@@ -142,6 +145,7 @@ class device(dict):
         # handled entirely differently. The latter way is probably better since
         # it's the general case
         if self.software == 'tasmota' and self.build_flags != '':
+            self.build_flags.append('WIFI_HOSTNAME "{hostname}"'.format(**self))
             self.build_flags = '\n'.join(['#define {}'.format(flag) for flag \
                                           in self.build_flags])
         elif self.software == 'custom-mqtt-programs':
