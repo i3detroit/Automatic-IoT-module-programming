@@ -129,6 +129,10 @@ class device(dict):
         # home assistant doesn't like upper case letters in sensor names
         self.name = self.name.lower()
 
+        # better categorize devices with module USER_MODULE (tasmota templates)
+        if not self._key_exists('type'):
+            self.type = self.module
+
         # Insert site information as device attributes
         with open(site_config, 'r') as f:
             sites = json.load(f)
@@ -293,7 +297,7 @@ class device(dict):
     def flashing_notice(self, flash_mode, port):
         if port is None:
             port = "autodetection"
-        print(('{BLUE}Now flashing {module} {name} in {software} via '
+        print(('{BLUE}Now flashing {type} {name} in {software} via '
             '{flash_mode} at {port}{NC}'.format(**colors,
                                                 **self,
                                                 flash_mode=flash_mode,
@@ -569,7 +573,7 @@ def import_devices(device_file):
                 devices.append(device(new_dev))
         else: # no instances field
             devices.append(device(dev))
-    devices = sorted(devices, key=lambda k: k.module)
+    devices = sorted(devices, key=lambda k: k.type)
     return devices
 
 def nested_get(input_dict, nested_key):
@@ -623,8 +627,8 @@ def choose_devices(devices, query=False):
                                      + 'Firmware'.center(15)
                                      + 'Core'.center(7) + 'State'))
     for device in devices:
-        if device.module != current_type:
-            current_type = device.module
+        if device.type != current_type:
+            current_type = device.type
             sep_str = ' {} '.format(current_type).center(name_len + 29, '=')
             choice_list.append(Separator(sep_str))
         menu_text = device.f_name.ljust(name_len)
