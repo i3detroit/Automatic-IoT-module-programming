@@ -376,7 +376,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "sensors/cluster-%id%",
-        "group_topic": "none",
         "poweron_state": 1,
         "tasmota_defines": [
             "USE_I2C",
@@ -416,7 +415,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "commons/accent/swirly-lights-%id%",
-        "group_topic": "none",
         "poweron_state": 0,
         "instances": [
             {
@@ -437,7 +435,6 @@
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
         "base_topic": "i3/inside",
-        "group_topic": "none",
         "poweron_state": 0,
         "instances": [
             {
@@ -492,7 +489,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "classroom/lightswitch-east",
-        "group_topic": "none",
         "ip_addr": "10.13.107.164",
         "poweron_state": 0,
         "commands": [
@@ -512,7 +508,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "classroom/lights-east",
-        "group_topic": "none",
         "ip_addr": "10.13.107.101",
         "poweron_state": 0,
         "commands": [
@@ -533,7 +528,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "hallway/lightswitch-west",
-        "group_topic": "none",
         "ip_addr": "10.13.107.174",
         "poweron_state": 0,
         "commands": [
@@ -551,7 +545,6 @@
         "module": "SONOFF_TOUCH",
         "board": "esp01_1m",
         "base_topic": "i3/inside",
-        "group_topic": "none",
         "poweron_state": 0,
         "instances":[
             {
@@ -576,7 +569,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "small-bathroom/vent",
-        "group_topic": "none",
         "ip_addr": "10.13.107.82",
         "poweron_state": 0
     },
@@ -590,7 +582,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "laser-zone/vent-fan",
-        "group_topic": "none",
         "ip_addr": "10.13.107.121",
         "poweron_state": 0
     },
@@ -602,7 +593,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "commons/traffic-light",
-        "group_topic": "none",
         "ip_addr": "10.13.107.56",
         "poweron_state": 0,
         "tasmota_defines": [
@@ -626,7 +616,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "fablab/vent",
-        "group_topic": "none",
         "ip_addr": "10.13.107.110",
         "poweron_state": 0
     },
@@ -640,7 +629,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "machine-shop/ceiling-fan",
-        "group_topic": "none",
         "ip_addr": "10.13.107.137",
         "poweron_state": 0
     },
@@ -654,7 +642,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "commons/paint-box",
-        "group_topic": "none",
         "ip_addr": "10.13.107.199",
         "poweron_state": 0
     },
@@ -668,7 +655,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "commons/accent/disco-spotlights",
-        "group_topic": "none",
         "ip_addr": "10.13.107.236",
         "poweron_state": 1
     },
@@ -680,7 +666,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "infrastructure/433-rf-reciever",
-        "group_topic": "none",
         "ip_addr": "10.13.107.36",
         "poweron_state": 0,
         "notes": "433-rf-reciever"
@@ -695,7 +680,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "laser-zone/%id%/chiller",
-        "group_topic": "none",
         "poweron_state": 0,
         "flash_warning": "Make sure no one is using the laser cutter",
         "instances": [
@@ -719,7 +703,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "fablab/chiller",
-        "group_topic": "none",
         "ip_addr": "10.13.107.77",
         "poweron_state": 0,
         "tasmota_defines": [
@@ -737,7 +720,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "tool-crib/workbench-lights",
-        "group_topic": "none",
         "ip_addr": "10.13.107.83",
         "poweron_state": 0
     },
@@ -751,7 +733,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "commons/genie-charging",
-        "group_topic": "none",
         "ip_addr": "10.13.107.242",
         "poweron_state": 1,
         "tasmota_defines": [
@@ -769,7 +750,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "commons/siren",
-        "group_topic": "none",
         "ip_addr": "10.13.107.162",
         "poweron_state": 0
     },
@@ -783,7 +763,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "laser-zone/%id%/laser",
-        "group_topic": "none",
         "poweron_state": 0,
         "tasmota_defines": [
             "KEY_ONLY_SINGLE_PRESS 1",
@@ -812,7 +791,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "cnc/vent",
-        "group_topic": "none",
         "ip_addr": "10.13.107.132",
         "poweron_state": 0,
         "commands": [
@@ -833,7 +811,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "cnc/light",
-        "group_topic": "none",
         "ip_addr": "10.13.107.75",
         "poweron_state": 0,
         "commands": [
@@ -854,7 +831,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "commons/south-vent",
-        "group_topic": "none",
         "ip_addr": "10.13.107.12",
         "poweron_state": 0,
         "commands": [
@@ -875,7 +851,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "elab/accent/arch-%id%",
-        "group_topic": "none",
         "poweron_state": 0,
         "tasmota_defines": [
             "USE_IR_REMOTE",
@@ -941,7 +916,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "fablab/chinesium-laser",
-        "group_topic": "none",
         "ip_addr": "10.13.107.86",
         "poweron_state": 0,
         "tasmota_defines": [
@@ -959,7 +933,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "commons/snapple-vending-light",
-        "group_topic": "none",
         "ip_addr": "10.13.107.106",
         "poweron_state": 1,
         "tasmota_defines": [
@@ -983,7 +956,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "b-side/office/lights",
-        "group_topic": "none",
         "ip_addr": "10.13.107.103",
         "poweron_state": 0,
         "commands": [
@@ -1004,7 +976,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "b-side/roof-exhaust-fan",
-        "group_topic": "none",
         "ip_addr": "10.13.107.109",
         "poweron_state": 0,
         "commands": [
@@ -1025,7 +996,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "etekciy/test-04",
-        "group_topic": "none",
         "ip_addr": "10.13.107.136",
         "poweron_state": 0,
         "commands": [
@@ -1046,7 +1016,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "sensors/omnisensor",
-        "group_topic": "none",
         "ip_addr": "10.13.107.111",
         "poweron_state": 0,
         "tasmota_defines": [
@@ -1075,7 +1044,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "b-side/office-lightswitch",
-        "group_topic": "none",
         "ip_addr": "10.13.107.87",
         "poweron_state": 0,
         "commands": [
@@ -1096,7 +1064,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "b-side/shop-%id%-lightswitch",
-        "group_topic": "none",
         "poweron_state": 0,
         "commands": [
             {
@@ -1125,7 +1092,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "b-side/alarm-panel",
-        "group_topic": "none",
         "ip_addr": "10.13.107.228",
         "poweron_state": 0,
         "tasmota_defines": [
@@ -1169,7 +1135,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "craftroom/lightswitch",
-        "group_topic": "none",
         "ip_addr": "10.13.107.14",
         "poweron_state": 0,
         "commands": [
@@ -1190,7 +1155,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "fablab/ac",
-        "group_topic": "none",
         "ip_addr": "10.13.107.55",
         "poweron_state": 1,
         "tasmota_defines": [
@@ -1208,7 +1172,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "commons/snapple-compress",
-        "group_topic": "none",
         "ip_addr": "10.13.107.166",
         "poweron_state": 1,
         "tasmota_defines": [
@@ -1226,7 +1189,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "commons/front-door-indicator",
-        "group_topic": "none",
         "ip_addr": "10.13.107.102",
         "poweron_state": 0,
         "tasmota_defines": [
@@ -1298,7 +1260,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "sensors/air-line-pressure-%id%",
-        "group_topic": "none",
         "poweron_state": 0,
         "tasmota_defines": [
             "USE_I2C",
@@ -1355,7 +1316,6 @@
         "board": "esp01_1m",
         "base_topic": "i3/inside",
         "topic": "commons/front-door/lock",
-        "group_topic": "none",
         "ip_addr": "10.13.107.238",
         "poweron_state": 0,
         "commands": [

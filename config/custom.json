@@ -7,7 +7,6 @@
         "module": "16seg",
         "board": "nodemcuv2",
         "ip_addr": "10.13.107.44",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/16seg"
     },
@@ -19,7 +18,6 @@
         "module": "motion-sensor",
         "board": "esp01_1m",
         "ip_addr": "x",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "machine-shop/motion-sensor"
     },
@@ -31,7 +29,6 @@
         "module": "motion-sensor",
         "board": "d1_mini",
         "ip_addr": "x",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "large-bathroom/motion-sensor"
     },
@@ -43,7 +40,6 @@
         "module": "motion-sensor",
         "board": "d1_mini",
         "ip_addr": "x",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "small-bathroom/motion-sensor"
     },
@@ -55,7 +51,6 @@
         "module": "machine-shop-light-switches",
         "board": "nodemcuv2",
         "ip_addr": "x",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "machine-shop/light-switches-west"
     },
@@ -67,7 +62,6 @@
         "module": "machine-shop-light-switches",
         "board": "nodemcuv2",
         "ip_addr": "x",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "machine-shop/light-switches-south"
     },
@@ -79,7 +73,6 @@
         "module": "air-compressor",
         "board": "nodemcuv2",
         "ip_addr": "x",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": ""
     },
@@ -91,7 +84,6 @@
         "module": "glass-door",
         "board": "nodemcuv2",
         "ip_addr": "x",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": ""
     },
@@ -103,7 +95,6 @@
         "module": "led-matrix",
         "board": "nodemcuv2",
         "ip_addr": "x",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": ""
     },
@@ -115,7 +106,6 @@
         "module": "middle-east-light-switches",
         "board": "nodemcuv2",
         "ip_addr": "x",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/middle-east-light-switches-south"
     },
@@ -127,7 +117,6 @@
         "module": "middle-east-light-switches",
         "board": "nodemcuv2",
         "ip_addr": "x",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/middle-east-light-switches-north"
     },
@@ -139,7 +128,6 @@
         "module": "front-door-funnel",
         "board": "nodemcuv2",
         "ip_addr": "x",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": ""
     },
@@ -151,7 +139,6 @@
         "module": "front-door-indicator",
         "board": "nodemcuv2",
         "ip_addr": "10.13.107.208",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": ""
     },
@@ -163,7 +150,6 @@
         "module": "multi-topic-button",
         "board": "nodemcuv2",
         "ip_addr": "x",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/disco-button",
         "pio_pio_build_flags": "-DTOPIC_0_TOPIC=\\\"i3/inside/commons/disco\\\""
@@ -176,7 +162,6 @@
         "module": "atmosphere-sensor-cluster",
         "board": "d1_mini",
         "ip_addr": "10.13.107.59",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/ground-sensor-cluster"
     },
@@ -188,7 +173,6 @@
         "module": "atmosphere-sensor-cluster",
         "board": "d1_mini",
         "ip_addr": "10.13.107.134",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/ceiling-sensor-cluster"
     },
@@ -200,7 +184,6 @@
         "module": "atmosphere-sensor-cluster",
         "board": "d1_mini",
         "ip_addr": "10.13.107.222",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "fablab/sensor-cluster"
     },
@@ -212,7 +195,6 @@
         "module": "multi-topic-button",
         "board": "nodemcuv2",
         "ip_addr": "x",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "lights/028-button",
         "pio_pio_build_flags": "-DTOPIC_0_TOPIC=\\\"i3/inside/lights/028\\\""
@@ -225,7 +207,6 @@
         "module": "multi-topic-switch",
         "board": "nodemcuv2",
         "ip_addr": "10.13.107.57",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "weld-zone/tank-sensors",
         "pio_build_flags": "-DTOPIC_0_TOPIC=\\\"i3/inside/weld-zone/tank-sensors/argon\\\""
@@ -238,7 +219,6 @@
         "module": "multi-topic-button",
         "board": "nodemcuv2",
         "ip_addr": "10.13.107.71",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "fablab-control-buttons",
         "pio_build_flags": "-DTOPIC_0_TOPIC=\\\"i3/inside/fablab/vent\\\" -DTOPIC_0_ON_PIN=0 -DTOPIC_0_OFF_PIN=2 -DTOPIC_0_TOGGLE_PIN=-1 -DTOPIC_0_LED_ON=5 -DTOPIC_0_LED_OFF=-1 -DTOPIC_1_TOPIC=\\\"i3/inside/fablab/chiller\\\" -DTOPIC_1_ON_PIN=1 -DTOPIC_1_OFF_PIN=3 -DTOPIC_1_TOGGLE_PIN=-1 -DTOPIC_1_LED_ON=12 -DTOPIC_1_LED_OFF=-1 -DTOPIC_2_TOPIC=\\\"i3/inside/infrastructure/air-compressor\\\" -DTOPIC_2_ON_PIN=4 -DTOPIC_2_OFF_PIN=-1 -DTOPIC_2_TOGGLE_PIN=-1 -DTOPIC_2_LED_ON=13 -DTOPIC_2_LED_OFF=-1"
@@ -251,7 +231,6 @@
         "module": "thermostat",
         "board": "d1_mini",
         "ip_addr": "10.13.107.38",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "office/thermostat"
     },
@@ -262,7 +241,6 @@
         "site": "i3",
         "module": "laser-cutter-status-lights",
         "board": "nodemcuv2",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "laser-zone/%id%/status_lights",
         "pio_build_flags": "-DDEVICE=\\\"%id%\\\" -DESP8266",
@@ -285,7 +263,6 @@
         "module": "flow-meter",
         "board": "d1_mini",
         "ip_addr": "10.13.107.17",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": ""
     },
@@ -296,7 +273,6 @@
         "site": "i3",
         "module": "commons-light-switches",
         "board": "nodemcuv2",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "commons/light-switches-%id%",
         "ids": [
@@ -317,7 +293,6 @@
         "site": "i3",
         "module": "multi-topic-button",
         "board": "d1_mini",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "air-compressor-request-%id%",
         "pio_build_flags": "-DTOPIC_0_TOPIC=\\\"i3/inside/infrastructure/air-compressor\\\"",
@@ -343,7 +318,6 @@
         "site": "i3",
         "module": "laser-timer-esp",
         "board": "huzzah",
-        "group_topic": "none",
         "base_topic": "i3/inside",
         "topic": "laser-zone/%id%-timer",
         "ids": [

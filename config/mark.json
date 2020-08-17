@@ -73,7 +73,6 @@
         "module": "thermostat",
         "board": "d1_mini",
         "ip_addr": "192.168.107.12",
-        "group_topic": "none",
         "base_topic": "mark",
         "topic": "thermostat"
     },
@@ -84,7 +83,6 @@
         "software": "tasmota",
         "site": "mark",
         "module": "WEMOS",
-        "group_topic": "none",
         "base_topic": "mark",
         "topic": "sensors/cluster-%id%",
         "group_topic": "sensors",
@@ -119,7 +117,6 @@
         "module": "WEMOS",
         "base_topic": "mark/unnassigned",
         "topic": "foo",
-        "group_topic": "none",
         "poweron_state": 0,
         "commands": [
             {
@@ -137,7 +134,6 @@
         "site": "mark",
         "topic": "%id%/bedroom/lights",
         "module": "WEMOS",
-        "group_topic": "none",
         "poweron_state": 0,
         "commands": [
             {
@@ -168,7 +164,6 @@
         "module": "WEMOS",
         "base_topic": "mark/ss01s-%id%",
         "topic": "foo",
-        "group_topic": "none",
         "poweron_state": 0,
         "commands": [
             {
@@ -197,7 +192,6 @@
         "site": "mark",
         "module": "WEMOS",
         "poweron_state": 0,
-        "group_topic": "none",
         "base_topic": "mark/basement",
         "topic": "lightswitch",
         "notes": "gpio2(D4): switch1 all off; gpio4(D2): switch 2 a on; gpio5(D1): switch3 a&b on, gpio12(D6): switch4 laundry off; gpio13(D6): Switch6 laundry on",
@@ -220,6 +214,22 @@
             {
                 "command": "rule1",
                 "payload": "1"
+            }
+        ]
+    },
+    {
+        "name": "spare basic %id%",
+        "software": "tasmota",
+        "site": "mark",
+        "module": "SONOFF_BASIC",
+        "base_topic": "mark/spare",
+        "topic": "foo/%id%",
+        "poweron_state": 1,
+        "build_flags": [],
+        "commands": [],
+        "instances": [
+            {
+                "id": "001"
             }
         ]
     }

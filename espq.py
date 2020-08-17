@@ -99,6 +99,7 @@ class device(dict):
         self.ip_addr = None
         self.pio_build_flags = ''
         self.tasmota_defines = None
+        self.group_topic = ''
 
         for key in device:
             # Convert all other keys to device attributes
@@ -129,6 +130,10 @@ class device(dict):
 
         # home assistant doesn't like upper case letters in sensor names
         self.name = self.name.lower()
+
+        # better categorize devices with module USER_MODULE (tasmota templates)
+        if not self._key_exists('type'):
+            self.type = self.module
 
         # Insert site information as device attributes
         with open(site_config, 'r') as f:
@@ -199,6 +204,7 @@ class device(dict):
         Flash device, watch for it to come online,
         and run setup commads
         """
+        os.chdir(espqdir)
         # Flash the right software.
         if self.software == 'tasmota':
             self.flashed = self.flash_tasmota(flash_mode, serial_port)
@@ -301,7 +307,7 @@ class device(dict):
     def flashing_notice(self, flash_mode, port):
         if port is None:
             port = "autodetection"
-        print(('{BLUE}Now flashing {module} {name} in {software} via '
+        print(('{BLUE}Now flashing {type} {name} in {software} via '
             '{flash_mode} at {port}{NC}'.format(**colors,
                                                 **self,
                                                 flash_mode=flash_mode,
@@ -358,7 +364,6 @@ class device(dict):
               '{topic}{NC}'.format(**colors, **self))
         print(pio_call)
         flash_result = call(pio_call, shell=True)
-        os.chdir(espqdir)
         return(True if flash_result == 0 else False)
 
     def flash_custom(self, flash_mode, serial_port):
@@ -400,7 +405,6 @@ class device(dict):
 
         os.environ['PLATFORMIO_SRC_DIR']=''
         os.environ['PLATFORMIO_BUILD_FLAGS']=''
-        os.chdir(espqdir)
         return(True if flash_result == 0 else False)
 
     def online_check(self):
@@ -585,7 +589,7 @@ def import_devices(device_file):
                 devices.append(device(new_dev))
         else: # no instances field
             devices.append(device(dev))
-    devices = sorted(devices, key=lambda k: k.module)
+    devices = sorted(devices, key=lambda k: k.type)
     return devices
 
 def nested_get(input_dict, nested_key):
@@ -639,8 +643,8 @@ def choose_devices(devices, query=False):
                                      + 'Firmware'.center(15)
                                      + 'Core'.center(7) + 'State'))
     for device in devices:
-        if device.module != current_type:
-            current_type = device.module
+        if device.type != current_type:
+            current_type = device.type
             sep_str = ' {} '.format(current_type).center(name_len + 29, '=')
             choice_list.append(Separator(sep_str))
         menu_text = device.f_name.ljust(name_len)

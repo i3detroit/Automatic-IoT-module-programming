@@ -6,7 +6,6 @@
         "site": "mike",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "group_topic": null,
         "topic": "living-room/accent-lamp-%id%",
         "poweron_state": 0,
         "tasmota_defines": [
@@ -61,7 +60,6 @@
         "site": "mike",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "group_topic": null,
         "topic": "kitchen/cabinet-accent-%id%",
         "poweron_state": 0,
         "tasmota_defines": [
@@ -118,7 +116,6 @@
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
         "ip_addr": "192.168.1.30",
-        "group_topic": null,
         "topic": "living-room/lamp",
         "poweron_state": 0,
         "tasmota_defines": [
@@ -147,7 +144,6 @@
         "module": "SONOFF_BASIC",
         "board": "esp01_1m",
         "ip_addr": "192.164.1.54",
-        "group_topic": null,
         "topic": "vulcan/power",
         "poweron_state": 0,
         "tasmota_defines": null,
@@ -172,7 +168,6 @@
         "site": "mike",
         "module": "USER_MODULE",
         "board": "esp01_1m",
-        "group_topic": null,
         "poweron_state": 3,
         "tasmota_defines": [
             "KEY_ONLY_SINGLE_PRESS 1",
@@ -336,7 +331,6 @@
         "site": "mike",
         "module": "USER_MODULE",
         "board": "esp01_1m",
-        "group_topic": null,
         "ip_addr": "192.168.1.4",
         "poweron_state": 3,
         "tasmota_defines": [
@@ -436,7 +430,6 @@
         "site": "mike",
         "module": "TUYA_DIMMER",
         "board": "esp01_1m",
-        "group_topic": null,
         "poweron_state": 3,
         "tasmota_defines": [
             "USE_TUYA_MCU",
@@ -500,7 +493,6 @@
         "module": "WEMOS",
         "board": "esp01_1m",
         "ip_addr": "192.168.1.71",
-        "group_topic": null,
         "topic": "gym/ir-remote",
         "poweron_state": 0,
         "tasmota_defines": [
@@ -525,7 +517,6 @@
         "module": "WEMOS",
         "board": "esp01_1m",
         "ip_addr": "192.168.1.x",
-        "group_topic": null,
         "topic": "new-device/name-me",
         "poweron_state": 0,
         "tasmota_defines": null
