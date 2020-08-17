@@ -98,7 +98,7 @@ class device(dict):
         self.reported = {}
         self.ip_addr = None
         self.pio_build_flags = ''
-        self.tasmota_defines = None
+        self.tasmota_defines = ''
         self.group_topic = ''
 
         for key in device:
@@ -147,7 +147,7 @@ class device(dict):
 
         def processTasmotaDefines(tasmota_defines):
             if not tasmota_defines:
-                return None
+                return ''
             ret = ''
 
             for define in tasmota_defines:
