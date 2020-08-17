@@ -190,6 +190,7 @@ class device(dict):
         Flash device, watch for it to come online,
         and run setup commads
         """
+        os.chdir(espqdir)
         # Flash the right software.
         if self.software == 'tasmota':
             self.flashed = self.flash_tasmota(flash_mode, serial_port)
@@ -349,7 +350,6 @@ class device(dict):
               '{topic}{NC}'.format(**colors, **self))
         print(pio_call)
         flash_result = call(pio_call, shell=True)
-        os.chdir(espqdir)
         return(True if flash_result == 0 else False)
 
     def flash_custom(self, flash_mode, serial_port):
@@ -385,7 +385,6 @@ class device(dict):
 
         os.environ['PLATFORMIO_SRC_DIR']=''
         os.environ['PLATFORMIO_BUILD_FLAGS']=''
-        os.chdir(espqdir)
         return(True if flash_result == 0 else False)
 
     def online_check(self):
