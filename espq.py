@@ -244,19 +244,24 @@ class device(dict):
 
     def run_setup_commands(self):
         for c in self.commands:
-            self.mqtt.connect(self.mqtt_host)
             command = "{c_topic}/{cmnd}".format(**self, cmnd=c['command'])
             payload = ''
             if 'concat' in c: #It's a set of rules; so do fancy shit
                 payload = ' '.join(c['concat'])
             else: #payload is the correct thing
                 payload=c['payload']
-            print("Sending {c} {p}".format(c=command, p=payload))
-            self.mqtt.publish(command, payload)
-            self.mqtt.disconnect()
+            self.send_mqtt_command(command, payload)
             sleep(1)
             if "restart" in c and c['restart'] == 1:
                 self.online_check()
+
+    def send_mqtt_command(self, command, payload):
+        command = f'{self.c_topic}/{command}'
+        print(f'Sending {command} {payload}')
+        self.mqtt.connect(self.mqtt_host)
+        self.mqtt.publish(command, payload)
+        self.mqtt.disconnect()
+
 
     def _handle_result(self, result_code):
         """
