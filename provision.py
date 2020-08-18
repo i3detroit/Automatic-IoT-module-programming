@@ -158,5 +158,6 @@ elif args.operation == 'publish':
             dev.send_mqtt_command(command, payload)
     else:
         print('Command not sent, exiting.')
+        exit()
 
 print("Done.")
