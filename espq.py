@@ -225,16 +225,9 @@ class device(dict):
         # If it came back online, run any setup commands,
         # and watch for it to come online again.
         elif self.flashed and online:
-            # Skip commands if there are none.
-            if not hasattr(self, 'commands') or not self.commands:
-                self._handle_result(0)
-                return(0)
-            else:
-                print(('{GREEN}{f_name} is online after flashing. Running '
-                       'setup commands...{NC}'.format(**colors, **self)))
-                sleep(1)
-                self.run_setup_commands()
-
+            print('{GREEN}{f_name} is online after flashing.{NC}'.format(**colors, **self))
+            sleep(1)
+            self.run_setup_commands()
             if online:
                 self._handle_result(0)
                 return(0)
@@ -243,8 +236,12 @@ class device(dict):
         return(1)
 
     def run_setup_commands(self):
+        """
+        Run setup commands if there are any.
+        """
         if not hasattr(self, 'commands') or not self.commands:
             return
+        print('{GREEN}Running setup commands...{NC}'.format(**colors))
         for c in self.commands:
             self.mqtt.connect(self.mqtt_host)
             command = "{c_topic}/{cmnd}".format(**self, cmnd=c['command'])
