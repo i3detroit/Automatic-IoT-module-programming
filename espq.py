@@ -243,6 +243,8 @@ class device(dict):
         return(1)
 
     def run_setup_commands(self):
+        if not hasattr(self, 'commands') or not self.commands:
+            return
         for c in self.commands:
             self.mqtt.connect(self.mqtt_host)
             command = "{c_topic}/{cmnd}".format(**self, cmnd=c['command'])
