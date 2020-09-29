@@ -1321,7 +1321,7 @@
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO2 9; switchmode 1; restart 1",
+                "payload": "GPIO4 9; switchmode 1; restart 1",
                 "restart": 1
             },
                         {
