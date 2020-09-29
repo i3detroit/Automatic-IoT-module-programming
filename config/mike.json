@@ -54,15 +54,12 @@
         ]
     },
     {
-        "name": "Living Room Lamp",
+        "module": "SONOFF_BASIC",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
         "site": "mike",
-        "module": "SONOFF_BASIC",
         "board": "esp01_1m",
-        "ip_addr": "192.168.1.30",
-        "topic": "living-room/lamp",
         "poweron_state": 0,
         "tasmota_defines": [
             "KEY_ONLY_SINGLE_PRESS 1"
@@ -78,6 +75,18 @@
             {
                  "command": "rule1",
                  "payload": 1
+            }
+        ],
+        "instances": [
+            {
+                "name": "Living Room Lamp",
+                "ip_addr": "192.168.1.30",
+                "topic": "living-room/lamp"
+            },
+            {
+                "name": "Workbench Lights",
+                "ip_addr": "192.168.1.X",
+                "topic": "basement/workbench-lights"
             }
         ]
     },
@@ -611,6 +620,54 @@
                 "command": "backlog",
                 "payload": "rule1 1; rule2 1; rule3 1; restart 1",
                 "restart": 1
+            }
+        ]
+    },
+    {
+        "name": "Sensor Cluster %id%",
+        "hass_template": "sensor_cluster",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "USER_MODULE",
+        "type": "sensor_cluster",
+        "board": "esp01_1m",
+        "topic": "sensors/cluster-%id%",
+        "poweron_state": 1,
+        "tasmota_defines": [
+            "USE_I2C",
+            "USE_BMP",
+            "USE_BH1750",
+            "TELE_PERIOD 60",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "Sensor Cluster",
+                    "GPIO": [0, 0, 0, 0, 6, 5, 0, 0, 0, 0, 0, 0, 0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "notes": [
+            "The teleperiod 60 command below is a hack to get the sensor to publish telementry on demand"
+        ],
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO backlog delay 20; teleperiod 60 ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": "1"
+            }
+        ],
+        "instances": [
+            {
+                "id": "001",
+                "ip_addr": "192.168.0.42"
             }
         ]
     }
