@@ -85,38 +85,20 @@
             },
             {
                 "name": "Workbench Lights",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.57",
                 "topic": "basement/workbench-lights"
-            }
-        ]
-    },
-    {
-        "name": "Vulcan Power",
-        "hass_template": "switch",
-        "hass_domain": "switch",
-        "software": "tasmota",
-        "site": "mike",
-        "module": "SONOFF_BASIC",
-        "board": "esp01_1m",
-        "ip_addr": "192.168.1.54",
-        "topic": "vulcan/power",
-        "poweron_state": 0,
-        "tasmota_defines": null,
-        "commands": [
-            {
-                "command": "rule1",
-                "concat": [
-                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
-                    "ON Event#hass=Online DO backlog delay 20; power ENDON"
-                ]
             },
             {
-                 "command": "rule1",
-                 "payload": 1
+                "name": "Vulcan Power",
+                "hass_template": "switch",
+                "hass_domain": "switch",
+                "ip_addr": "192.168.1.54",
+                "topic": "vulcan/power"
             }
         ]
     },
     {
+        "note": "Normal light switches",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -563,7 +545,7 @@
         "site": "mike",
         "module": "WEMOS",
         "board": "esp01_1m",
-        "ip_addr": "192.168.1.36",
+        "ip_addr": "192.168.1.48",
         "topic": "living-room/ceiling-fan",
         "poweron_state": 0,
         "tasmota_defines": null,
@@ -667,7 +649,68 @@
         "instances": [
             {
                 "id": "001",
-                "ip_addr": "192.168.0.42"
+                "ip_addr": "192.168.1.X"
+            }
+        ]
+    },
+    {
+        "name": "Kitchen Vent Hood",
+        "hass_template": "",
+        "hass_domain": "",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "SONOFF_4CH",
+        "board": "esp01_1m",
+        "ip_addr": "192.168.1.X",
+        "topic": "kitchen/vent-hood",
+        "poweron_state": 0,
+        "tasmota_defines": null,
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO backlog delay 20; power ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": 1
+            }
+        ]
+    },
+    {
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "SONOFF_S31",
+        "board": "esp01_1m",
+        "poweron_state": 0,
+        "tasmota_defines": null,
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO backlog delay 20; power ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": 1
+            }
+        ],
+        "instances": [
+            {
+                "name": "Salt Lamp",
+                "ip_addr": "192.168.1.3",
+                "topic": "bedroom/salt-lamp"
+            },
+            {
+                "name": "Bedroom Lamp",
+                "ip_addr": "192.168.1.60",
+                "topic": "bedroom/lamp"
             }
         ]
     }
