@@ -80,7 +80,7 @@
         "instances": [
             {
                 "name": "Living Room Lamp",
-                "ip_addr": "192.168.1.30",
+                "ip_addr": "192.168.1.66",
                 "topic": "living-room/lamp"
             },
             {
@@ -94,6 +94,31 @@
                 "hass_domain": "switch",
                 "ip_addr": "192.168.1.54",
                 "topic": "vulcan/power"
+            },
+            {
+                "name": "Basement Light 001",
+                "ip_addr": "192.168.1.X",
+                "topic": "basement/light-001"
+            },
+            {
+                "name": "Basement Light 002",
+                "ip_addr": "192.168.1.X",
+                "topic": "basement/light-002"
+            },
+            {
+                "name": "Basement Light 003",
+                "ip_addr": "192.168.1.X",
+                "topic": "basement/light-003"
+            },
+            {
+                "name": "Basement Light 004",
+                "ip_addr": "192.168.1.75",
+                "topic": "basement/light-004"
+            },
+            {
+                "name": "Blue Desk Lamp",
+                "ip_addr": "192.168.1.X",
+                "topic": "office/blue-desk-lamp"
             }
         ]
     },
@@ -711,6 +736,11 @@
                 "name": "Bedroom Lamp",
                 "ip_addr": "192.168.1.60",
                 "topic": "bedroom/lamp"
+            },
+            {
+                "name": "Vulcan Lamp",
+                "ip_addr": "192.168.1.X",
+                "topic": "office/vulcan-lamp"
             }
         ]
     }
