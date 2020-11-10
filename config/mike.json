@@ -117,7 +117,7 @@
             },
             {
                 "name": "Blue Desk Lamp",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.56",
                 "topic": "office/blue-desk-lamp"
             }
         ]
@@ -674,7 +674,7 @@
         "instances": [
             {
                 "id": "001",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.42"
             }
         ]
     },
@@ -712,7 +712,10 @@
         "module": "SONOFF_S31",
         "board": "esp01_1m",
         "poweron_state": 0,
-        "tasmota_defines": null,
+        "tasmota_defines": [
+            "USE_ENERGY_MARGIN_DETECTION",
+            "USE_ENERGY_POWER_LIMIT"
+        ],
         "commands": [
             {
                 "command": "rule1",
@@ -738,9 +741,85 @@
                 "topic": "bedroom/lamp"
             },
             {
+                "name": "Bedroom Corner Lamp",
+                "ip_addr": "192.168.1.82",
+                "topic": "bedroom/corner-lamp"
+            },
+            {
                 "name": "Vulcan Lamp",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.73",
                 "topic": "office/vulcan-lamp"
+            },
+            {
+                "name": "Shop Vac",
+                "ip_addr": "192.168.1.83",
+                "topic": "basement/shop-vac",
+                "hass_template": "switch",
+                "hass_domain": "switch"
+            },
+            {
+                "name": "Mitre Saw",
+                "ip_addr": "192.168.1.85",
+                "topic": "basement/mitre-saw",
+                "hass_template": "switch",
+                "hass_domain": "switch",
+                "commands": [
+                    {
+                        "command": "rule2",
+                        "concat": [
+                            "ON ENERGY#POWER >=50 DO publish cmnd/basement/shop-vac/power on ENDON",
+                            "ON ENERGY#POWER <50 DO ruletimer1 5 ENDON",
+                            "ON RULES#TIMER=1 DO publish cmnd/basement/shop-vac/power off ENDON"
+                        ]
+                    },
+                    {
+                        "command": "backlog",
+                        "payload": "rule2 5; rule2 1; powerdelta 10"
+                    }
+                ]
+            },
+            {
+                "name": "New S31",
+                "ip_addr": "192.168.1.86",
+                "topic": "new-s31/name-me"
+            }
+        ]
+    },
+    {
+        "name": "Shop Vac Button",
+        "ip_addr": "192.168.1.X",
+        "topic": "basement/vac-button",
+        "hass_template": "switch",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "USER_MODULE",
+        "board": "esp01_1m",
+        "poweron_state": 3,
+        "tasmota_defines": [
+            "SWITCH_MODE PUSHBUTTON",
+            "KEY_ONLY_SINGLE_PRESS 1",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "Single button box",
+                    "GPIO": [0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO backlog delay 20; power ENDON",
+                    "ON Button2#State DO backlog publish cmnd/basement/shop-vac/power 2 ENDON; publish stat/basement/vac-button/pressed ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": 1
             }
         ]
     }
