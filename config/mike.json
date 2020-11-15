@@ -714,7 +714,8 @@
         "poweron_state": 0,
         "tasmota_defines": [
             "USE_ENERGY_MARGIN_DETECTION",
-            "USE_ENERGY_POWER_LIMIT"
+            "USE_ENERGY_POWER_LIMIT",
+            "TELE_PERIOD 60"
         ],
         "commands": [
             {
@@ -779,9 +780,11 @@
                 ]
             },
             {
-                "name": "New S31",
+                "name": "Water Heater",
                 "ip_addr": "192.168.1.86",
-                "topic": "new-s31/name-me"
+                "topic": "lab/water-heater",
+                "hass_template": "switch",
+                "hass_domain": "switch"
             }
         ]
     },
