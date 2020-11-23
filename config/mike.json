@@ -97,17 +97,17 @@
             },
             {
                 "name": "Basement Light 001",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.84",
                 "topic": "basement/light-001"
             },
             {
                 "name": "Basement Light 002",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.90",
                 "topic": "basement/light-002"
             },
             {
                 "name": "Basement Light 003",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.89",
                 "topic": "basement/light-003"
             },
             {
@@ -116,9 +116,19 @@
                 "topic": "basement/light-004"
             },
             {
+                "name": "Basement Light 005",
+                "ip_addr": "192.168.1.X",
+                "topic": "basement/light-005"
+            },
+            {
                 "name": "Blue Desk Lamp",
                 "ip_addr": "192.168.1.56",
                 "topic": "office/blue-desk-lamp"
+            },
+            {
+                "name": "New Sonoff Basic",
+                "ip_addr": "192.168.1.X",
+                "topic": "new-device/basic-name-me"
             }
         ]
     },
@@ -175,7 +185,7 @@
             {
                 "name": "Guest Bathroom Fan Switch",
                 "topic": "guest-bath/fan",
-                "ip_addr": "192.168.1.81",
+                "ip_addr": "192.168.1.50",
                 "hass_template": "switch",
                 "hass_domain": "switch"
             },
@@ -187,7 +197,7 @@
             {
                 "name": "Guest Bedroom Spare Switch",
                 "topic": "guest-bedroom/spare",
-                "ip_addr": "192.168.1.22",
+                "ip_addr": "192.168.1.34",
                 "hass_template": "switch",
                 "hass_domain": "switch"
             },
@@ -199,17 +209,17 @@
             {
                 "name": "Backyard Lightswitch",
                 "topic": "back-yard/lightswitch",
-                "ip_addr": "192.168.1.79"
+                "ip_addr": "192.168.1.49"
             },
             {
                 "name": "Basement Lightswitch",
                 "topic": "basement/lightswitch",
-                "ip_addr": "192.168.1.75"
+                "ip_addr": "192.168.1.7"
             },
             {
                 "name": "First Floor Hall Lightswitch",
                 "topic": "first-floor-hall/lightswitch",
-                "ip_addr": "192.168.1.78"
+                "ip_addr": "192.168.1.24"
             },
             {
                 "name": "Driveway Lightswitch",
@@ -224,7 +234,7 @@
             {
                 "name": "Gym Lightswitch",
                 "topic": "gym/lightswitch",
-                "ip_addr": "192.168.1.37"
+                "ip_addr": "192.168.1.18"
             },
             {
                 "name": "Gym Ceiling Fan Switch",
@@ -236,7 +246,7 @@
             {
                 "name": "Kitchen Cabinet Lightswitch",
                 "topic": "kitchen/cabinet/lightswitch",
-                "ip_addr": "192.168.1.66"
+                "ip_addr": "192.168.1.46"
             },
             {
                 "name": "Laundry Lightswitch",
@@ -246,7 +256,7 @@
             {
                 "name": "Bathroom Lightswitch",
                 "topic": "bathroom/lightswitch",
-                "ip_addr": "192.168.1.24"
+                "ip_addr": "192.168.1.8"
             },
             {
                 "name": "Bathroom Fan",
@@ -280,7 +290,7 @@
             {
                 "name": "Powder Room Lightswitch",
                 "topic": "powder-room/lightswitch",
-                "ip_addr": "192.168.1.73"
+                "ip_addr": "192.168.1.39"
             },
             {
                 "name": "Powder Room Fan",
@@ -292,7 +302,7 @@
             {
                 "name": "Dance Studio Spare",
                 "topic": "dance-studio/spare",
-                "ip_addr": "192.168.1.19",
+                "ip_addr": "192.168.1.47",
                 "hass_template": "switch",
                 "hass_domain": "switch"
             }
@@ -361,7 +371,7 @@
             },
             {
                 "name": "Foyer Upstairs Lightswitch",
-                "ip_addr": "192.168.1.34",
+                "ip_addr": "192.168.1.11",
                 "topic": "foyer/upstairs-lightswitch"
             },
             {
@@ -371,17 +381,17 @@
             },
             {
                 "name": "Upstairs Hall East Lightswitch",
-                "ip_addr": "192.168.1.18",
+                "ip_addr": "192.168.1.36",
                 "topic": "upstairs-hall/east-lightswitch"
             },
             {
                 "name": "Upstairs Hall West Lightswitch",
-                "ip_addr": "192.168.1.11",
+                "ip_addr": "192.168.1.19",
                 "topic": "upstairs-hall/west-lightswitch"
             },
             {
                 "name": "Dog Room North Lightswitch",
-                "ip_addr": "192.168.1.33",
+                "ip_addr": "192.168.1.32",
                 "topic": "dog-room/north-lightswitch"
             },
             {
@@ -396,14 +406,14 @@
             },
             {
                 "name": "Basement Stairs Bottom Lightswitch",
-                "ip_addr": "192.168.1.80",
+                "ip_addr": "192.168.1.44",
                 "topic": "basement/stairs/bottom-lightswitch"
             }
         ]
     },
     {
         "name": "Upstairs Hall 4Way Switch",
-        "ip_addr": "192.168.1.39",
+        "ip_addr": "192.168.1.22",
         "topic": "upstairs-hall/4-way-switch",
         "hass_template": "switch",
         "hass_domain": "switch",
@@ -675,6 +685,26 @@
             {
                 "id": "001",
                 "ip_addr": "192.168.1.42"
+            },
+            {
+                "id": "002",
+                "ip_addr": "192.168.1.94"
+            },
+            {
+                "id": "003",
+                "ip_addr": "192.168.1.X"
+            },
+            {
+                "id": "004",
+                "ip_addr": "192.168.1.X"
+            },
+            {
+                "id": "005",
+                "ip_addr": "192.168.1.X"
+            },
+            {
+                "id": "006",
+                "ip_addr": "192.168.1.X"
             }
         ]
     },
@@ -752,9 +782,9 @@
                 "topic": "office/vulcan-lamp"
             },
             {
-                "name": "Shop Vac",
+                "name": "Front Christmas Lights",
                 "ip_addr": "192.168.1.83",
-                "topic": "basement/shop-vac",
+                "topic": "front-yard/christmas-lights",
                 "hass_template": "switch",
                 "hass_domain": "switch"
             },
@@ -790,7 +820,7 @@
     },
     {
         "name": "Shop Vac Button",
-        "ip_addr": "192.168.1.X",
+        "ip_addr": "192.168.1.64",
         "topic": "basement/vac-button",
         "hass_template": "switch",
         "hass_domain": "switch",
@@ -818,6 +848,41 @@
                     "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
                     "ON Event#hass=Online DO backlog delay 20; power ENDON",
                     "ON Button2#State DO backlog publish cmnd/basement/shop-vac/power 2 ENDON; publish stat/basement/vac-button/pressed ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": 1
+            }
+        ]
+    },
+    {
+        "name": "Shop Vac",
+        "ip_addr": "192.168.1.30",
+        "topic": "basement/shop-vac",
+        "hass_template": "switch",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "SONOFF_TH",
+        "board": "esp01_1m",
+        "poweron_state": 3,
+        "tasmota_defines": [
+            "SWITCH_MODE PUSHBUTTON",
+            "KEY_ONLY_SINGLE_PRESS 1"
+        ],
+        "commands": [
+            {
+                 "command": "GPIO14",
+                 "payload": "18",
+                 "restart": 1
+            },
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO backlog delay 20; power ENDON",
+                    "ON Button2#State DO power 2 ENDON"
                 ]
             },
             {
