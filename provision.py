@@ -81,7 +81,7 @@ args = parser.parse_args()
 
 espq.test_pio_version()
 
-devices = espq.import_devices(args.deviceFile)
+devices = espq.import_devices(args.deviceFile, validate=True)
 if args.process_all:
     selected_devices = devices
 else:

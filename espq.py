@@ -549,12 +549,27 @@ class device(dict):
                 yamlf.write(self.yaml_template.components[c].format(**self))
 
 
-def import_devices(device_file):
+def import_devices(device_file, validate=False):
     """
     Process JSON file of device configs, export a list of device objects.
     Keyword arguments:
     device_file -- JSON file of devices
     """
+    def _validate_import(devices):
+        warnings = 0
+        ip_pat = re.compile('\d+\.\d+\.\d+\.\d+')
+        ips = [x['ip_addr'] for x in devices]
+        for ip in ips:
+            if ips.count(ip) > 1 and ip_pat.match(ip) is not None:
+                print(f'Warning: IP address {ip} is duplicated in device config file.')
+                warnings += 1
+        names = [x['name'] for x in devices]
+        for name in names:
+            if names.count(name) > 1:
+                print(f'Warning: {name} is duplicated in device config file.')
+                warnings += 1
+        if warnings > 0:
+            input('Press enter to continue.')
     with open(device_file, 'r') as f:
         device_import = json.load(f)
     devices=[]
@@ -589,6 +604,9 @@ def import_devices(device_file):
         else: # no instances field
             devices.append(device(dev))
     devices = sorted(devices, key=lambda k: k.type)
+    if validate:
+        _validate_import(devices)
+
     return devices
 
 def nested_get(input_dict, nested_key):
