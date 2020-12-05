@@ -15,7 +15,7 @@ from packaging import version
 
 ###########################################################
 # Make sure your environemnt is set correctly for these:
-expected_pio_version = version.parse("4.1.0")
+expected_pio_version = version.parse("5.0.3")
 current_tasmota_version = '0x08040000' # v8.4.0
 ###########################################################
 # Make sure these are set correctly for your environment:
