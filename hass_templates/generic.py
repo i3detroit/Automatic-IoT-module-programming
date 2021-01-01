@@ -27,26 +27,6 @@ generic_telemetry = """- platform: template
     {name}_uptime:
       friendly_name: '{f_name} Uptime'
       value_template: '{{{{ states.{hass_domain}.{name}.attributes.Uptime }}}}'
-    {name}_vcc:
-      friendly_name: '{f_name} Vcc'
-      unit_of_measurement: 'V'
-      value_template: '{{{{ states.{hass_domain}.{name}.attributes.Vcc }}}}'
-    {name}_heap:
-      friendly_name: '{f_name} Heap'
-      value_template: '{{{{ states.{hass_domain}.{name}.attributes.Heap }}}}'
-    {name}_sleepmode:
-      friendly_name: '{f_name} SleepMode'
-      value_template: '{{{{ states.{hass_domain}.{name}.attributes.SleepMode }}}}'
-    {name}_sleep:
-      friendly_name: '{f_name} Sleep'
-      value_template: '{{{{ states.{hass_domain}.{name}.attributes.Sleep }}}}'
-    {name}_loadavg:
-      friendly_name: '{f_name} LoadAvg'
-      unit_of_measurement: '%'
-      value_template: '{{{{ states.{hass_domain}.{name}.attributes.LoadAvg }}}}'
-    {name}_wifi_ssid:
-      friendly_name: '{f_name} Wifi SSId'
-      value_template: "{{{{ state_attr('{hass_domain}.{name}', 'Wifi')['SSId'] }}}}"
     {name}_wifi_bssid:
       friendly_name: '{f_name} Wifi BSSId'
       value_template: "{{{{ state_attr('{hass_domain}.{name}', 'Wifi')['BSSId'] }}}}"

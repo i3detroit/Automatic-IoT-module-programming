@@ -14,6 +14,16 @@ sensor_cluster = """- platform: mqtt
   payload_not_available: 'Offline'
 
 - platform: mqtt
+  name: '{f_name} OneWire Temperature'
+  state_topic: 'tele/{base_topic}/{topic}/SENSOR'
+  unit_of_measurement: 'Â°C'
+  value_template: "{{{{ value_json['DS18B20']['Temperature'] }}}}"
+  force_update: True
+  availability_topic: 'tele/{base_topic}/{topic}/LWT'
+  payload_available: 'Online'
+  payload_not_available: 'Offline'
+
+- platform: mqtt
   name: '{f_name} Pressure'
   state_topic: 'tele/{topic}/SENSOR'
   unit_of_measurement: 'hPa'

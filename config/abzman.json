@@ -1,6 +1,6 @@
 [
     {
-        "name": "Light %id%",
+        "name": "Basement Light %id%",
         "hass_template": "light",
         "hass_domain": "light",
         "software": "tasmota",
@@ -10,6 +10,17 @@
         "base_topic": "evan/inside/basement",
         "topic": "lights/%id%",
         "poweron_state": 1,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
+            }
+        ],
         "instances": [
             {
                 "id": "001",
@@ -43,7 +54,7 @@
             },
             {
                 "id": "007",
-                "ip_addr": "192.167.1.207",
+                "ip_addr": "192.168.1.207",
                 "group_topic": "lights/right"
             },
             {
@@ -69,13 +80,75 @@
         ]
     },
     {
+        "name": "Living Room Light %id%",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "base_topic": "evan/inside/living-room",
+        "topic": "lights/%id%",
+        "poweron_state": 1,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
+            }
+        ],
+        "instances": [
+            {
+                "id": "Large Lamp",
+                "ip_addr": "192.168.1.212",
+                "group_topic": "lights"
+            }
+        ]
+    },
+	{
+        "name": "Kitchen Light %id%",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "base_topic": "evan/inside/kitchen",
+        "topic": "lights/%id%",
+        "poweron_state": 1,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
+            }
+        ],
+        "instances": [
+            {
+                "id": "blue accent",
+                "ip_addr": "",
+                "group_topic": "lights"
+            }
+        ]
+    },
+    {
         "name": "Sensor Cluster %id%",
         "hass_template": "sensor_cluster",
         "hass_domain": "sensor",
         "software": "tasmota",
         "site": "evan",
-        "module": "WEMOS",
+        "module": "USER_MODULE",
+        "type": "sensor_cluster",
         "board": "esp01_1m",
+        "group_topic": "none",
         "base_topic": "evan",
         "group_topic": "sensors",
         "topic": "%id%/sensor-cluster",
@@ -83,12 +156,44 @@
         "tasmota_defines": [
             "USE_I2C",
             "USE_BMP",
-            "USE_BH1750"
+            "USE_BH1750",
+            "TELE_PERIOD 60",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "Sensor Cluster",
+                    "GPIO": [0, 0, 0, 0, 6, 5, 0, 0, 4, 9, 0, 0, 0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
         ],
+        "notes": "gpio13 (D7): PIR sensor pin, gpio12 (D6): onewire temp sensor",
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO4 6; GPIO5 5; teleperiod 60",
+                "payload": "SetOption56 ON; SetOption57 ON; teleperiod 60; switchmode1 2",
+                "restart": 1
+            },
+            {
+                "command": "rule1",
+                "concat": [
+                    "on switch1#state=0 do backlog publish stat/evan/%id%/motion ON; Mem1 ON; RuleTimer1 30 endon",
+                    "on switch1#state=1 do backlog publish stat/evan/%id%/motion OFF; Mem1 OFF; RuleTimer1 30 endon"
+                ]
+            },
+            {
+                "command": "rule2",
+                "concat": [
+                    "on switch1#boot=0 do Mem1 ON endon",
+                    "on switch1#boot=1 do Mem1 OFF endon",
+                    "on Mqtt#Connected do backlog RuleTimer1 30; publish stat/evan/%id%/motion %mem1%; subscribe get_state,cmnd/evan/%id%/motion-sensor/query endon",
+                    "on Rules#Timer=1 do backlog publish stat/evan/%id%/motion %mem1%; RuleTimer1 30 endon",
+                    "ON event#get_state do publish stat/evan/%id%/motion %mem1% ENDON"
+                ]
+            },
+            {
+                "command": "backlog",
+                "payload": "rule1 1; rule2 1; restart 1",
                 "restart": 1
             }
         ],
@@ -136,6 +241,14 @@
             {
                 "id": "garage",
                 "ip_addr": "192.168.1.111"
+            },
+            {
+                "id": "garage-roof",
+                "ip_addr": "192.168.1.112"
+            },
+            {
+                "id": "outside",
+                "ip_addr": "192.168.1.113"
             }
         ]
     },
@@ -148,8 +261,14 @@
         "module": "WEMOS",
         "poweron_state": 0,
         "board": "esp01_1m",
+        "group_topic": "none",
         "base_topic": "evan",
         "topic": "%id%/light-switch",
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "notes": "gpio4(D2): switch1 left row off; gpio12(D6): switch 2 left row on; gpio14(D5): switch3 right row off, gpio5(D1): switch4 right row on; gpio0(D3): switch5 workbench lights off; gpio2(D4): switch6 workbench lights on",
         "commands": [
             {
@@ -176,12 +295,12 @@
         "instances": [
             {
                 "id": "inside/basement",
-                "ip_addr": ""
+                "ip_addr": "192.168.1.43"
             }
         ]
     },
     {
-        "name": "Condensate Pump %id%",
+        "name": "Condensate Pump",
         "hass_template": "generic",
         "hass_domain": "sensor",
         "software": "tasmota",
@@ -189,30 +308,43 @@
         "module": "WEMOS",
         "poweron_state": 0,
         "board": "esp01_1m",
-        "base_topic": "evan",
-        "topic": "%id%/condensate-pump",
+        "group_topic": "none",
+        "base_topic": "evan/inside",
+        "topic": "basement/condensate-pump",
+		"ip_addr": "192.168.1.42",
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
         "notes": "gpio4(D2): condensate pump alarm contact",
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO4 9;switchmode1 3;restart 1",
+                "payload": "GPIO4 9; switchmode 1",
                 "restart": 1
             },
-            {
+                        {
                 "command": "rule1",
                 "concat": [
-                    "ON switch1#state DO publish stat/evan/inside/basement/condensate-pump/alarm 1 ENDON"
+                    "on switch1#state=0 do backlog publish stat/evan/inside/basement/condensate-pump/alarm FULL; Mem1 FULL; RuleTimer1 30 endon",
+                    "on switch1#state=1 do backlog publish stat/evan/inside/basement/condensate-pump/alarm NOTFULL; Mem1 NOTFULL; RuleTimer1 30 endon"
                 ]
             },
             {
-                "command": "rule1",
-                "payload": "1"
-            }
-        ],
-        "instances": [
+                "command": "rule2",
+                "concat": [
+                    "on switch1#boot=0 do Mem1 FULL endon",
+                    "on switch1#boot=1 do Mem1 NOTFULL endon",
+                    "on Mqtt#Connected do backlog RuleTimer1 30; publish stat/evan/inside/basement/condensate-pump/alarm %mem1%; subscribe get_state,cmnd/evan/inside/basement/condensate-pump/query endon",
+                    "on Rules#Timer=1 do backlog publish stat/evan/inside/basement/condensate-pump/alarm %mem1%; RuleTimer1 30 endon",
+                    "ON event#get_state do publish stat/evan/inside/basement/condensate-pump/alarm %mem1% ENDON"
+                ]
+            },
             {
-                "id": "inside/basement",
-                "ip_addr": ""
+                "command": "backlog",
+                "payload": "rule1 1; rule2 1; restart 1",
+                "restart": 1
             }
         ]
     },
@@ -225,15 +357,19 @@
         "module": "WEMOS",
         "poweron_state": 0,
         "board": "esp01_1m",
+        "group_topic": "none",
         "base_topic": "evan/inside",
         "topic": "basement/sump-pump-%id%",
-        "tasmota_defines": [
-		        "USE_SR04"
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+		"USE_SR04",
+                "USE_EXPRESSION"
         ],
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO13 73; GPIO12 74",
+                "payload": "SetOption56 ON; SetOption57 ON; GPIO13 73; GPIO12 74",
                 "restart": 1
             }
         ],
@@ -243,6 +379,298 @@
                 "ip_addr": "192.168.1.41"
             }
         ]
-    }
+    },
+    {
+        "name": "Laundry Sensor",
+        "hass_template": "sensor_cluster",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "group_topic": "none",
+        "base_topic": "evan/inside",
+        "group_topic": "sensors",
+        "topic": "laundry-sensor",
+		"ip_addr": "192.168.1.114",
+        "poweron_state": 1,
+        "build_flags": [
+            "USE_I2C",
+            "USE_ADS1115",
+            "USE_RULES",
+            "SUPPORT_MQTT_EVENT",
+            "USE_EXPRESSION"
+        ],
+        "notes": "i2c only, ads1115, sharp ir on a0, washer CT on a1, dryer ct on a2",
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON; GPIO4 6; GPIO5 5; teleperiod 60",
+                "restart": 1
+            },
+            {
+				"command": "backlog",
+				"concat": [
+					"rule1",
+					"on tele-ADS1115#A0 do var1=((-0.0024*%value%)+28.787) endon",
+					"on var1#state do publish stat/i3/inside/basement/sump-pump/distance %var1% endon;",
+					"rule1 1"
+				]
+            },
+            {
+				"command": "backlog",
+				"concat": [
+					"rule2",
+					"on tele-ADS1115#A1 do var2=((0.0013*%value%)-0.013) endon",
+					"on var2#state do publish stat/i3/inside/basement/washer/current %var2% endon;",
+					"rule2 1"
+				]
+            },
+            {
+				"command": "backlog",
+				"concat": [
+					"rule3",
+					"on tele-ADS1115#A2 do var3=((0.0013*%value%)-0.013) endon",
+					"on var3#state do publish stat/i3/inside/basement/dryer/current %var3% endon;",
+					"rule3 1"
+				]
+            }
+        ]
+    },
+    {
+        "name": "Ceiling Fan %id%",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "SONOFF_IFAN02",
+        "board": "esp01_1m",
+        "base_topic": "evan/inside",
+        "topic": "%id%/fan",
+        "poweron_state": 1,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_SONOFF_IFAN",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
+            }
+        ],
+        "instances": [
+            {
+                "id": "Upstairs",
+                "ip_addr": "192.168.1.213",
+                "group_topic": "lights"
+            }
+        ]
+    },
+    {
+        "name": "Lamp Timer %id%",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "SONOFF_SV",
+        "board": "esp01_1m",
+        "base_topic": "i3/inside",
+        "topic": "%id%/lamptimer",
+        "poweron_state": 1,
+        "build_flags": [
+                "USE_RULES",
+                "SUPPORT_MQTT_EVENT",
+                "USE_EXPRESSION"
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
+            }
+        ],
+        "instances": [
+            {
+                "id": "Aside",
+                "ip_addr": "",
+                "group_topic": "lamptimer"
+            },
+            {
+                "id": "Bside",
+                "ip_addr": "",
+                "group_topic": "lamptimer"
+            }
+        ]
+    },
+    {
+        "name": "RGB Accent %id%",
+        "hass_template": "light_rgb",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "base_topic": "evan/inside",
+        "topic": "temporary/accent/%id%",
+        "poweron_state": 0,
+        "build_flags": [
+            "USE_IR_REMOTE",
+            "USE_IR_RECEIVE",
+            "IR_RCV_BUFFER_SIZE 100",
+            "IR_RCV_TIMEOUT 15",
+            "IR_RCV_MIN_UNKNOWN_SIZE 6",
+            "LIGHT_MODE true"
+        ],
+        "notes": "capsense chip with nfet simulating a button on GPIO0, IR input on GPIO4, PWM Red on GPIO5, PWM Green on GPIO12, PWM Blue on GPIO13",
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "GPIO0 17; GPIO4 51; GPIO05 37; GPIO12 38; GPIO13 39",
+                "restart": 1
+            }
+        ],
+        "instances": [
+            {
+                "id": "Deathstar",
+                "ip_addr": "192.168.200.1",
+                "group_topic": "accent"
+            }
+        ]
+    },
+    {
+        "note": "Normal light switches",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "USER_MODULE",
+        "type": "TreatLife SS01S Switch",
+        "board": "esp01_1m",
+        "base_topic": "evan/inside",
+        "poweron_state": 3,
+        "tasmota_defines": [
+            "KEY_ONLY_SINGLE_PRESS 1",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "TL SS01S Switch",
+                    "GPIO": [0, 0, 0, 0, 52, 158, 0, 0, 21, 17, 0, 0, 0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO backlog delay 20; power ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": 1
+            }
+        ],
+        "instances": [
+            {
+                "name": "Bathroom Lights",
+                "topic": "bathroom/light",
+                "ip_addr": "192.168.1.216",
+                "group_topic": "light"
+            },
+            {
+                "name": "Hallway Light",
+                "topic": "hallway/light",
+                "ip_addr": "192.168.1.217",
+                "group_topic": "light"
+            },
+            {
+                "name": "Office Light",
+                "topic": "office/light",
+                "ip_addr": "192.168.1.218",
+                "group_topic": "light"
+            },
+            {
+                "name": "Bedroom Light",
+                "topic": "bedroom/light",
+                "ip_addr": "192.168.1.219",
+                "group_topic": "light"
+            },
+            {
+                "name": "Kitchen Light",
+                "topic": "kitchen/light",
+                "ip_addr": "192.168.1.220",
+                "group_topic": "light"
+            },
+            {
+                "name": "Garage Lights",
+                "topic": "garage/light",
+                "ip_addr": "192.168.1.221",
+                "group_topic": "light"
+            },
+            {
+                "name": "Outside Flood Light",
+                "topic": "Outside/floodlight",
+                "ip_addr": "192.168.1.222",
+                "group_topic": "light"
+            },
+            {
+                "name": "Garage Vent Thermostat",
+                "topic": "garage/vent/thermostat",
+                "ip_addr": "192.168.1.223",
+                "group_topic": "switch"
+            },
+            {
+                "name": "Garage Vent Override",
+                "topic": "garage/vent/override",
+                "ip_addr": "192.168.1.224",
+                "group_topic": "switch"
+            }
+        ]
+    },
+    {
+        "hass_template": "DS01-dimmer",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "TUYA_DIMMER",
+        "type": "TreatLife DS01 Dimmer",
+        "board": "esp01_1m",
+        "base_topic": "evan/inside",
+        "poweron_state": 3,
+        "tasmota_defines": [
+            "USE_TUYA_MCU",
+            "TUYA_DIMMER_ID 0",
+            "LIGHT_POWER_CONTROL 1",
+            "TUYA_SETOPTION_20 1"
 
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "TuyaMCU 21,2; Rule1 ON System#Boot DO SerialSend5 55AA00060005040400010114 ENDON; Rule1 1; Restart 1",
+                "restart": 1
+            },
+            {
+                "command": "rule2",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO backlog delay 20; power ENDON"
+                ]
+            },
+            {
+                "command": "backlog",
+                "payload": "DimmerRange 150,1000; rule2 1; ledtable 0"
+            }
+        ],
+        "instances": [
+            {
+                "name": "Living Room Sconces",
+                "topic": "living-room/sconces",
+                "ip_addr": "192.168.1.215"
+            }
+        ]
+    }
 ]

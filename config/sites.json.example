@@ -1,5 +1,5 @@
 {
-    "i3": {
+	"i3": {
         "mqtt_host": "10.13.0.22",
         "wifi_ssid": "foo",
         "wifi_pass": "bar",
@@ -11,14 +11,27 @@
         "wifi_APs": [
             {
                 "name": "Office AP",
-                "MAC": "FF:FF:FF:FF:FF:FF"
+                "MAC": "02:9F:C2:24:32:82"
+            },
+            {
+                "name": "Mezzanine AP",
+                "MAC": "02:9F:C2:24:30:D7"
             },
             {
                 "name": "Tool Crib AP",
-                "MAC": "FF:FF:FF:FF:FF:FF"
+                "MAC": "02:9F:C2:24:2D:F1"
+            },
+            {
+                "name": "B-Side South AP",
+                "MAC": "0E:EC:DA:B7:E0:7D"
+            },
+            {
+                "name": "B-Side North AP",
+                "MAC": "C6:FB:E4:44:66:C4"
             }
         ]
     },
+
 
     "mike": {
         "mqtt_host": "192.168.1.107",
@@ -39,5 +52,37 @@
         "ntp": "nl.pool.ntp.org",
         "latitude": "",
         "longitude": ""
+    },
+    "evan": {
+        "mqtt_host": "192.168.1.11",
+        "wifi_ssid": "foo",
+        "wifi_pass": "bar",
+        "wifi_ssid_alt": "",
+        "wifi_pass_alt": "",
+        "ntp": "nl.pool.ntp.org",
+        "latitude": "42.453513",
+        "longitude": "-83.109681",
+        "wifi_APs": [
+            {
+                "name": "Upstairs AP",
+                "MAC": "88:3D:24:75:D1:5B"
+            },
+            {
+                "name": "Office AP",
+                "MAC": "88:3D:24:75:E8:9A"
+            },
+            {
+                "name": "Basement AP",
+                "MAC": "88:3D:24:7A:F5:04"
+            },
+            {
+                "name": "Garage AP",
+                "MAC": "88:3D:24:75:CF:56"
+            }
+
+
+        ]
+
     }
+
 }
