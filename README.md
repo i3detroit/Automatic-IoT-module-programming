@@ -3,8 +3,34 @@
 Setup:
 
 ```
+Install raspbian
+enable ssh, set hostname
+
+sudo apt-get install git
+sudo apt-get install curl
+git clone https://github.com/i3detroit/Automatic-IoT-module-programming.git
+sudo apt-get install python3.7
+sudo apt-get install python3-pip
+
+(update espq.py to use 5.0.0)
+
+cd Automatic-IoT-module-programming
 pip3 install -r requirements.txt
-pip2 install pycurl
+cd ..
+wget https://github.com/arendst/Tasmota/archive/v8.4.0.zip
+unzip v8.4.0.zip
+mv Tasmota-8.4.0 Tasmota
+
+edit Tasmota/pio/espupload.py to be #!/bin/python3 instead of #!/bin/python (may be able to be removed in a future revision)
+create/update config/sites.json from config/sites.json.example
+create site-specific json file for devices
+
+python3 -c "$(curl -fsSL https://raw.githubusercontent.com/platformio/platformio/master/scripts/get-platformio.py)"
+
+add pio path to PATH
+
+sudo apt-get install mosquitto
+./provision...
 ```
 
 Make sure local directories and tasmota version are set correctly at the top of `espq.py`
