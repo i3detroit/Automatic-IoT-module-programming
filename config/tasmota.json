@@ -1347,5 +1347,35 @@
                 "restart": 1
             }
         ]
+    },
+    {
+        "name": "Lamp Timer %id%",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "SONOFF_SV",
+        "board": "esp01_1m",
+        "base_topic": "i3/inside",
+        "topic": "%id%/lamptimer",
+        "poweron_state": 1,
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
+            }
+        ],
+        "instances": [
+            {
+                "id": "Aside",
+                "ip_addr": "",
+                "group_topic": "lamptimer"
+            },
+            {
+                "id": "Bside",
+                "ip_addr": "",
+                "group_topic": "lamptimer"
+            }
+        ]
     }
 ]

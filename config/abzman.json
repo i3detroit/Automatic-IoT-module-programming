@@ -10,11 +10,6 @@
         "base_topic": "evan/inside/basement",
         "topic": "lights/%id%",
         "poweron_state": 1,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
         "commands": [
             {
                 "command": "backlog",
@@ -90,11 +85,6 @@
         "base_topic": "evan/inside/living-room",
         "topic": "lights/%id%",
         "poweron_state": 1,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
         "commands": [
             {
                 "command": "backlog",
@@ -120,11 +110,6 @@
         "base_topic": "evan/inside/kitchen",
         "topic": "lights/%id%",
         "poweron_state": 1,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
         "commands": [
             {
                 "command": "backlog",
@@ -264,11 +249,6 @@
         "group_topic": "none",
         "base_topic": "evan",
         "topic": "%id%/light-switch",
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
         "notes": "gpio4(D2): switch1 left row off; gpio12(D6): switch 2 left row on; gpio14(D5): switch3 right row off, gpio5(D1): switch4 right row on; gpio0(D3): switch5 workbench lights off; gpio2(D4): switch6 workbench lights on",
         "commands": [
             {
@@ -312,11 +292,6 @@
         "base_topic": "evan/inside",
         "topic": "basement/condensate-pump",
 		"ip_addr": "192.168.1.42",
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
         "notes": "gpio4(D2): condensate pump alarm contact",
         "commands": [
             {
@@ -360,11 +335,8 @@
         "group_topic": "none",
         "base_topic": "evan/inside",
         "topic": "basement/sump-pump-%id%",
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-		"USE_SR04",
-                "USE_EXPRESSION"
+        "tasmota_defines": [
+				"USE_SR04"
         ],
         "commands": [
             {
@@ -394,12 +366,9 @@
         "topic": "laundry-sensor",
 		"ip_addr": "192.168.1.114",
         "poweron_state": 1,
-        "build_flags": [
+        "tasmota_defines": [
             "USE_I2C",
-            "USE_ADS1115",
-            "USE_RULES",
-            "SUPPORT_MQTT_EVENT",
-            "USE_EXPRESSION"
+            "USE_ADS1115"
         ],
         "notes": "i2c only, ads1115, sharp ir on a0, washer CT on a1, dryer ct on a2",
         "commands": [
@@ -448,11 +417,8 @@
         "base_topic": "evan/inside",
         "topic": "%id%/fan",
         "poweron_state": 1,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_SONOFF_IFAN",
-                "USE_EXPRESSION"
+        "tasmota_defines": [
+                "USE_SONOFF_IFAN"
         ],
         "commands": [
             {
@@ -469,41 +435,6 @@
         ]
     },
     {
-        "name": "Lamp Timer %id%",
-        "hass_template": "light",
-        "hass_domain": "light",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_SV",
-        "board": "esp01_1m",
-        "base_topic": "i3/inside",
-        "topic": "%id%/lamptimer",
-        "poweron_state": 1,
-        "build_flags": [
-                "USE_RULES",
-                "SUPPORT_MQTT_EVENT",
-                "USE_EXPRESSION"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ],
-        "instances": [
-            {
-                "id": "Aside",
-                "ip_addr": "",
-                "group_topic": "lamptimer"
-            },
-            {
-                "id": "Bside",
-                "ip_addr": "",
-                "group_topic": "lamptimer"
-            }
-        ]
-    },
-    {
         "name": "RGB Accent %id%",
         "hass_template": "light_rgb",
         "hass_domain": "light",
@@ -514,7 +445,7 @@
         "base_topic": "evan/inside",
         "topic": "temporary/accent/%id%",
         "poweron_state": 0,
-        "build_flags": [
+        "tasmota_defines": [
             "USE_IR_REMOTE",
             "USE_IR_RECEIVE",
             "IR_RCV_BUFFER_SIZE 100",
@@ -627,6 +558,30 @@
                 "topic": "garage/vent/override",
                 "ip_addr": "192.168.1.224",
                 "group_topic": "switch"
+            },
+            {
+                "name": "Outside Garage Lights",
+                "topic": "Outside/garagelights",
+                "ip_addr": "192.168.1.225",
+                "group_topic": "light"
+            },
+            {
+                "name": "Kitchen Sink Light",
+                "topic": "kitchen/sink/light",
+                "ip_addr": "192.168.1.226",
+                "group_topic": "light"
+            },
+            {
+                "name": "Outside Porch Light",
+                "topic": "Outside/porchlight",
+                "ip_addr": "192.168.1.227",
+                "group_topic": "light"
+            },
+            {
+                "name": "Outside Side Door Light",
+                "topic": "Outside/sidelight",
+                "ip_addr": "192.168.1.228",
+                "group_topic": "light"
             }
         ]
     },
