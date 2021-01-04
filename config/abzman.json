@@ -243,17 +243,27 @@
         "hass_domain": "sensor",
         "software": "tasmota",
         "site": "evan",
-        "module": "WEMOS",
+        "module": "USER_MODULE",
         "poweron_state": 0,
         "board": "esp01_1m",
         "group_topic": "none",
         "base_topic": "evan",
         "topic": "%id%/light-switch",
+        "tasmota_defines": [
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "Custom Light Switch",
+                    "GPIO": [13, 0, 14, 0, 9, 12, 0, 0, 10, 0, 11, 0, 0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
         "notes": "gpio4(D2): switch1 left row off; gpio12(D6): switch 2 left row on; gpio14(D5): switch3 right row off, gpio5(D1): switch4 right row on; gpio0(D3): switch5 workbench lights off; gpio2(D4): switch6 workbench lights on",
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO4 9; GPIO12 10; GPIO14 11; GPIO5 12; GPIO0 13; GPIO2 14;switchmode1 3; switchmode2 3; switchmode3 3; switchmode4 3; switchmode4 5; switchmode5 5; switchmode6 3;restart 1",
+                "payload": "switchmode1 3; switchmode2 3; switchmode3 3; switchmode4 3; switchmode5 3; switchmode6 3",
                 "restart": 1
             },
             {
@@ -291,12 +301,12 @@
         "group_topic": "none",
         "base_topic": "evan/inside",
         "topic": "basement/condensate-pump",
-		"ip_addr": "192.168.1.42",
+	"ip_addr": "192.168.1.42",
         "notes": "gpio4(D2): condensate pump alarm contact",
         "commands": [
             {
                 "command": "backlog",
-                "payload": "GPIO4 9; switchmode 1",
+                "payload": "GPIO4 9; switchmode1 1",
                 "restart": 1
             },
                         {
@@ -324,35 +334,6 @@
         ]
     },
     {
-        "name": "Sump Pump %id%",
-        "hass_template": "sump_pump",
-        "hass_domain": "sensor",
-        "software": "tasmota",
-        "site": "evan",
-        "module": "WEMOS",
-        "poweron_state": 0,
-        "board": "esp01_1m",
-        "group_topic": "none",
-        "base_topic": "evan/inside",
-        "topic": "basement/sump-pump-%id%",
-        "tasmota_defines": [
-				"USE_SR04"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON; GPIO13 73; GPIO12 74",
-                "restart": 1
-            }
-        ],
-        "instances": [
-            {
-                "id": "01",
-                "ip_addr": "192.168.1.41"
-            }
-        ]
-    },
-    {
         "name": "Laundry Sensor",
         "hass_template": "sensor_cluster",
         "hass_domain": "sensor",
@@ -366,7 +347,7 @@
         "topic": "laundry-sensor",
 		"ip_addr": "192.168.1.114",
         "poweron_state": 1,
-        "tasmota_defines": [
+        "build_flags": [
             "USE_I2C",
             "USE_ADS1115"
         ],
@@ -417,7 +398,7 @@
         "base_topic": "evan/inside",
         "topic": "%id%/fan",
         "poweron_state": 1,
-        "tasmota_defines": [
+        "build_flags": [
                 "USE_SONOFF_IFAN"
         ],
         "commands": [
@@ -431,41 +412,6 @@
                 "id": "Upstairs",
                 "ip_addr": "192.168.1.213",
                 "group_topic": "lights"
-            }
-        ]
-    },
-    {
-        "name": "RGB Accent %id%",
-        "hass_template": "light_rgb",
-        "hass_domain": "light",
-        "software": "tasmota",
-        "site": "evan",
-        "module": "WEMOS",
-        "board": "esp01_1m",
-        "base_topic": "evan/inside",
-        "topic": "temporary/accent/%id%",
-        "poweron_state": 0,
-        "tasmota_defines": [
-            "USE_IR_REMOTE",
-            "USE_IR_RECEIVE",
-            "IR_RCV_BUFFER_SIZE 100",
-            "IR_RCV_TIMEOUT 15",
-            "IR_RCV_MIN_UNKNOWN_SIZE 6",
-            "LIGHT_MODE true"
-        ],
-        "notes": "capsense chip with nfet simulating a button on GPIO0, IR input on GPIO4, PWM Red on GPIO5, PWM Green on GPIO12, PWM Blue on GPIO13",
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "GPIO0 17; GPIO4 51; GPIO05 37; GPIO12 38; GPIO13 39",
-                "restart": 1
-            }
-        ],
-        "instances": [
-            {
-                "id": "Deathstar",
-                "ip_addr": "192.168.200.1",
-                "group_topic": "accent"
             }
         ]
     },
