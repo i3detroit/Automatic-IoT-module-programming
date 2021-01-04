@@ -1,0 +1,248 @@
+[
+    {
+        "name": "Light %id%",
+        "hass_template": "light",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "frank",
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "base_topic": "frank/inside/basement",
+        "topic": "lights/%id%",
+        "poweron_state": 1,
+        "instances": [
+            {
+                "id": "001",
+                "ip_addr": "192.168.4.201",
+                "group_topic": "lights/storage"
+            },
+            {
+                "id": "002",
+                "ip_addr": "192.168.4.202",
+                "group_topic": "lights/storage"
+            },
+            {
+                "id": "003",
+                "ip_addr": "192.168.4.203",
+                "group_topic": "lights/storage"
+            },
+            {
+                "id": "004",
+                "ip_addr": "192.168.4.204",
+                "group_topic": "lights/storage"
+            },
+            {
+                "id": "005",
+                "ip_addr": "192.168.4.205",
+                "group_topic": "lights/storage"
+            },
+            {
+                "id": "006",
+                "ip_addr": "192.168.4.206",
+                "group_topic": "lights/storage"
+            },
+            {
+                "id": "007",
+                "ip_addr": "192.168.4.207",
+                "group_topic": "lights/entertainment"
+            },
+            {
+                "id": "008",
+                "ip_addr": "192.168.4.208",
+                "group_topic": "lights/entertainment"
+            },
+            {
+                "id": "009",
+                "ip_addr": "192.168.4.209",
+                "group_topic": "lights/entertainment"
+            },
+            {
+                "id": "010",
+                "ip_addr": "192.168.4.210",
+		"group_topic": "lights/entertainment"
+            },
+            {
+                "id": "011",
+                "ip_addr": "192.168.4.211",
+                "group_topic": "lights/accent"
+            },
+            {
+                "id": "012",
+                "ip_addr": "192.168.4.212",
+                "group_topic": "lights/workbench"
+            },
+            {
+                "id": "013",
+                "ip_addr": "192.168.4.213",
+                "group_topic": "lights/landing"
+            }
+        ]
+    },
+    {
+        "name": "Switch",
+        "hass_template": "switch",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "frank",
+        "module": "USER_MODULE",
+        "type": "Sonoff T1 US 3 Gang Switch",
+        "board": "esp01_1m",
+        "poweron_state": 3,
+        "tasmota_defines": [
+            "KEY_ONLY_SINGLE_PRESS 1",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "Sonoff T1 3CH",
+                    "GPIO": [17,255,255,255,23,22,18,19,21,56,0,0,0],
+                    "FLAG": 0,
+                    "BASE": 30
+                }
+            }
+        ],
+        "instances": [
+            {
+                "name": "Basement Lightswitch",
+                "topic": "basement/lightswitch",
+                "ip_addr": "192.168.4.220"
+            }
+        ],
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON button1#state DO publish cmnd/frank/inside/basement/lights/entertainment/POWER TOGGLE endon",
+                    "ON button2#state DO publish cmnd/frank/inside/basement/lights/accent/POWER TOGGLE endon",
+                    "ON button3#state DO publish cmnd/frank/inside/basement/lights/storage/POWER TOGGLE endon"
+                ]
+            },
+            {
+                "command": "rule1",
+                "payload": "1"
+            }
+        ]
+	},
+        {
+            "name": "RGB Accent %id%",
+            "hass_template": "light_rgb",
+            "hass_domain": "light",
+            "software": "tasmota",
+            "site": "frank",
+            "module": "USER_MODULE",
+            "type": "Arilux LC03",
+            "board": "esp01_1m",
+            "base_topic": "frank/inside/mainfloor",
+            "topic": "accent/%id%",
+            "poweron_state": 0,
+            "tasmota_defines": [
+                "USE_IR_REMOTE",
+                "USE_IR_RECEIVE",
+                "IR_RCV_BUFFER_SIZE 100",
+                "IR_RCV_TIMEOUT 15",
+                "LIGHT_MODE true",
+                {
+                    "USER_TEMPLATE": {
+                        "NAME": "Arilux LC03",
+                        "GPIO": [17,0,0,0,51,37,0,0,39,38,0,0,0],
+                        "FLAG": 0,
+                        "BASE": 18
+                    }
+                }
+            ],
+            "instances": [
+                {
+                    "id": "001",
+                    "ip_addr": "192.168.4.221",
+                    "group_topic": "lights/accent"
+                },
+                {
+                    "id": "002",
+                    "ip_addr": "192.168.4.223",
+                    "group_topic": "lights/accent"
+                },
+                {
+                    "id": "003",
+                    "ip_addr": "192.168.4.224",
+                    "group_topic": "lights/accent"
+                },
+                {
+                    "id": "004",
+                    "ip_addr": "192.168.4.225",
+                    "group_topic": "lights/accent"
+                },
+                {
+                    "id": "Death Star",
+                    "ip_addr": "192.168.4.226",
+                    "group_topic": "lights/accent"
+                }
+            ]
+        },
+        {
+            "name": "RGBW Accent %id%",
+            "hass_template": "light_rgb",
+	    "hass_domain": "light",
+            "software": "tasmota",
+            "site": "frank",
+            "module": "USER_MODULE",
+            "type": "Arilux LC02",
+            "board": "esp01_1m",
+            "base_topic": "frank/inside/mainfloor",
+            "topic": "accent/%id%",
+            "poweron_state": 0,
+            "tasmota_defines": [
+                "USE_IR_REMOTE",
+                "USE_IR_RECEIVE",
+                "IR_RCV_BUFFER_SIZE 100",
+                "IR_RCV_TIMEOUT 15",
+                "LIGHT_MODE true",
+                {
+                    "USER_TEMPLATE": {
+                        "NAME": "Arilux LC02",
+                        "GPIO": [17,0,0,0,0,38,0,0,39,40,37,0,0],
+                        "FLAG": 0,
+                        "BASE": 18
+                    }
+                }
+            ],
+            "instances": [
+                {
+                    "id": "005",
+                    "ip_addr": "192.168.4.227",
+                    "group_topic": "lights/accent"
+                }
+            ]
+        },
+        {
+            "name": "Master Bath Tub Pump",
+            "hass_template": "pow",
+            "hass_domain":  "switch",
+            "software": "tasmota",
+            "site": "frank",
+            "module": "SONOFF_POW_R2",
+            "board": "esp01_1m",
+            "base_topic": "frank/inside/mainfloor/masterbath",
+            "topic": "pump",
+            "ip_addr": "192.168.4.222",
+            "poweron_state": 0,
+            "tasmota_defines": [
+                "TELE_PERIOD 60"
+            ]
+        },
+        {
+            "name": "Bookshelf Lights",
+	    "hass_template": "light",
+            "hass_domain": "light",
+            "software": "tasmota",
+            "site": "frank",
+            "module": "SONOFF_BASIC",
+            "board": "esp01_1m",
+            "base_topic": "frank/inside/mainfloor",
+            "topic": "lights/bookshelf",
+            "poweron_state": 0,
+            "instances": [
+                {
+                    "ip_addr": "192.168.4.230",
+                    "group_topic": "lights/accent"
+                }
+            ]
+        }
+    ]
