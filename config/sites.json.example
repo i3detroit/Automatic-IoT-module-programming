@@ -83,6 +83,16 @@
 
         ]
 
-    }
-
+    },
+    "frank": {
+        "mqtt_host": "192.168.4.100",
+        "wifi_ssid": "foo",
+        "wifi_pass": "bar",
+        "wifi_ssid_alt": "",
+        "wifi_pass_alt": "",
+        "ntp": "nl.pool.ntp.org",
+        "latitude": "42.67249",
+        "longitude": "-83.13829"
+    },
+    
 }
