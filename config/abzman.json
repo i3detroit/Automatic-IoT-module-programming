@@ -573,5 +573,56 @@
                 "ip_addr": "192.168.1.215"
             }
         ]
+    },
+    {
+        "hass_template": "DS01-dimmer",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "TUYA_DIMMER",
+        "type": "TreatLife DP10 Dimmer",
+        "board": "esp01_1m",
+        "base_topic": "evan/inside",
+        "poweron_state": 3,
+        "tasmota_defines": [
+            "USE_TUYA_MCU",
+            "TUYA_DIMMER_ID 0",
+            "LIGHT_POWER_CONTROL 1",
+            "TUYA_SETOPTION_20 1",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "DP10 Dimmer",
+                    "GPIO": [0,107,0,108,0,0,0,0,0,0,0,0,0],
+                    "FLAG": 0,
+                    "BASE": 54
+                }
+            }
+
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "TuyaMCU 21,2;SetOption20 1;SetOption54 1; Restart 1",
+                "restart": 1
+            },
+            {
+                "command": "rule2",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO backlog delay 20; power ENDON"
+                ]
+            },
+            {
+                "command": "backlog",
+                "payload": "TuyaSend2 3,100; DimmerRange 10,1000; rule2 1; ledtable 0"
+            }
+        ],
+        "instances": [
+            {
+                "name": "Outside Dimmer",
+                "topic": "Outside/dimmer",
+                "ip_addr": "192.168.1.199"
+            }
+        ]
     }
 ]
