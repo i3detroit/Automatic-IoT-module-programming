@@ -425,7 +425,6 @@
         "type": "TreatLife SS01S Switch",
         "board": "esp01_1m",
         "base_topic": "evan/inside",
-        "poweron_state": 3,
         "tasmota_defines": [
             "KEY_ONLY_SINGLE_PRESS 1",
             {
@@ -455,78 +454,91 @@
                 "name": "Bathroom Lights",
                 "topic": "bathroom/light",
                 "ip_addr": "192.168.1.216",
+        	"poweron_state": 0,
                 "group_topic": "light"
             },
             {
                 "name": "Hallway Light",
                 "topic": "hallway/light",
                 "ip_addr": "192.168.1.217",
+        	"poweron_state": 0,
                 "group_topic": "light"
             },
             {
                 "name": "Office Light",
                 "topic": "office/light",
                 "ip_addr": "192.168.1.218",
+        	"poweron_state": 0,
                 "group_topic": "light"
             },
             {
                 "name": "Bedroom Light",
                 "topic": "bedroom/light",
                 "ip_addr": "192.168.1.219",
+        	"poweron_state": 0,
                 "group_topic": "light"
             },
             {
                 "name": "Kitchen Light",
                 "topic": "kitchen/light",
                 "ip_addr": "192.168.1.220",
+        	"poweron_state": 0,
                 "group_topic": "light"
             },
             {
                 "name": "Garage Lights",
                 "topic": "garage/light",
                 "ip_addr": "192.168.1.221",
+        	"poweron_state": 0,
                 "group_topic": "light"
             },
             {
                 "name": "Outside Flood Light",
                 "topic": "Outside/floodlight",
                 "ip_addr": "192.168.1.222",
+        	"poweron_state": 0,
                 "group_topic": "light"
             },
             {
                 "name": "Garage Vent Thermostat",
                 "topic": "garage/vent/thermostat",
                 "ip_addr": "192.168.1.223",
+        	"poweron_state": 0,
                 "group_topic": "switch"
             },
             {
                 "name": "Garage Vent Override",
                 "topic": "garage/vent/override",
                 "ip_addr": "192.168.1.224",
+        	"poweron_state": 0,
                 "group_topic": "switch"
             },
             {
                 "name": "Outside Garage Lights",
                 "topic": "Outside/garagelights",
                 "ip_addr": "192.168.1.225",
+        	"poweron_state": 1,
                 "group_topic": "light"
             },
             {
                 "name": "Kitchen Sink Light",
                 "topic": "kitchen/sink/light",
                 "ip_addr": "192.168.1.226",
+        	"poweron_state": 0,
                 "group_topic": "light"
             },
             {
                 "name": "Outside Porch Light",
                 "topic": "Outside/porchlight",
                 "ip_addr": "192.168.1.227",
+        	"poweron_state": 1,
                 "group_topic": "light"
             },
             {
                 "name": "Outside Side Door Light",
                 "topic": "Outside/sidelight",
                 "ip_addr": "192.168.1.228",
+        	"poweron_state": 1,
                 "group_topic": "light"
             }
         ]
