@@ -232,5 +232,60 @@
                 "id": "001"
             }
         ]
+    },
+    {
+        "hass_template": "switch",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "mark",
+        "module": "USER_MODULE",
+        "type": "TreatLife fan switch",
+        "board": "esp01_1m",
+        "base_topic": "evan/inside",
+        "poweron_state": 0,
+        "tasmota_defines": [
+            "USE_TUYA_MCU",
+            "TUYA_DIMMER_ID 0",
+            "LIGHT_POWER_CONTROL 1",
+            "TUYA_SETOPTION_20 1",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "TreatLife fan switch",
+                    "GPIO": [0,107,0,108,0,0,0,0,0,0,0,0,0],
+                    "FLAG": 0,
+                    "BASE": 54
+                }
+            }
+
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption97 1;WebLog 4;TuyaMCU 11,1;SetOption20 1;SetOption54 1; Restart 1",
+                "restart": 1
+            },
+            {
+                "command": "rule1",
+                "payload": "on TuyaReceived#Data=55AA03070005030400010016 do publish2 stat/Treatlife-DS03/speed 3,1 endon on TuyaReceived#Data=55AA03070005030400010117 do publish2 stat/Treatlife-DS03/speed 3,1 endon on TuyaReceived#Data=55AA03070005030400010218 do publish2 stat/Treatlife-DS03/speed 3,2 endon on TuyaReceived#Data=55AA03070005030400010319 do publish2 stat/Treatlife-DS03/speed 3,3 endon"
+            },
+            {
+                "command": "rule2",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO backlog delay 20; power ENDON"
+                ]
+            },
+            {
+                "command": "backlog",
+                "payload": "rule2 1; rule1 1"
+            }
+        ],
+        "instances": [
+            {
+                "name": "fantest",
+                "topic": "fantest",
+                "ip_addr": "192.168.1.66"
+            }
+        ]
     }
 ]
