@@ -117,8 +117,18 @@
             },
             {
                 "name": "Basement Light 005",
-                "ip_addr": "192.168.1.X",
+                "ip_addr": "192.168.1.101",
                 "topic": "basement/light-005"
+            },
+            {
+                "name": "Basement Light 006",
+                "ip_addr": "192.168.1.98",
+                "topic": "basement/light-006"
+            },
+            {
+                "name": "Basement Light 007",
+                "ip_addr": "192.168.1.102",
+                "topic": "basement/light-007"
             },
             {
                 "name": "Blue Desk Lamp",
@@ -305,6 +315,11 @@
                 "ip_addr": "192.168.1.47",
                 "hass_template": "switch",
                 "hass_domain": "switch"
+            },
+            {
+                "name": "Spare Switch 01",
+                "topic": "new-device/spare-switch-01",
+                "ip_addr": "192.168.1.22"
             }
         ]
     },
@@ -413,7 +428,7 @@
     },
     {
         "name": "Upstairs Hall 4Way Switch",
-        "ip_addr": "192.168.1.22",
+        "ip_addr": "192.168.1.93",
         "topic": "upstairs-hall/4-way-switch",
         "hass_template": "switch",
         "hass_domain": "switch",
@@ -692,11 +707,11 @@
             },
             {
                 "id": "003",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.92"
             },
             {
                 "id": "004",
-                "ip_addr": "192.168.1.X"
+                "ip_addr": "192.168.1.96"
             },
             {
                 "id": "005",
@@ -705,6 +720,52 @@
             {
                 "id": "006",
                 "ip_addr": "192.168.1.X"
+            }
+        ]
+    },
+    {
+        "name": "Sensor Cluster Grow",
+        "ip_addr": "192.168.1.X",
+        "hass_template": "sensor_cluster",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "USER_MODULE",
+        "type": "sensor_cluster_grow",
+        "board": "esp01_1m",
+        "topic": "sensors/grow-sensor",
+        "poweron_state": 1,
+        "tasmota_defines": [
+            "USE_I2C",
+            "USE_BMP",
+            "USE_BH1750",
+            "TELE_PERIOD 60",
+            "USE_DS18x20",
+            "DS18X20_PULL_UP 1",
+            "USE_CHIRP",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "Sensor Cluster Grow",
+                    "GPIO": [0, 0, 0, 0, 6, 5, 0, 0, 0, 0, 4, 0, 0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "notes": [
+            "The teleperiod 60 command below is a hack to get the sensor to publish telementry on demand"
+        ],
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO backlog delay 20; teleperiod 60 ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": "1"
             }
         ]
     },
@@ -735,7 +796,7 @@
         ]
     },
     {
-        "hass_template": "light",
+        "hass_template": "pow",
         "hass_domain": "light",
         "software": "tasmota",
         "site": "mike",
@@ -785,14 +846,12 @@
                 "name": "Front Christmas Lights",
                 "ip_addr": "192.168.1.83",
                 "topic": "front-yard/christmas-lights",
-                "hass_template": "switch",
                 "hass_domain": "switch"
             },
             {
                 "name": "Mitre Saw",
                 "ip_addr": "192.168.1.85",
                 "topic": "basement/mitre-saw",
-                "hass_template": "switch",
                 "hass_domain": "switch",
                 "commands": [
                     {
@@ -810,10 +869,45 @@
                 ]
             },
             {
-                "name": "Water Heater",
+                "name": "Mike PC",
                 "ip_addr": "192.168.1.86",
-                "topic": "lab/water-heater",
-                "hass_template": "switch",
+                "topic": "office/mike-pc",
+                "hass_domain": "switch"
+            },
+            {
+                "name": "Stir Plate",
+                "ip_addr": "192.168.1.51",
+                "topic": "lab/stir-plate",
+                "hass_domain": "switch"
+            },
+            {
+                "name": "Grow Fan",
+                "ip_addr": "192.168.1.80",
+                "topic": "lab/grow-fan",
+                "hass_domain": "switch"
+            },
+            {
+                "name": "Greenhouse Fan",
+                "ip_addr": "192.168.1.100",
+                "topic": "lab/greenhouse-fan",
+                "hass_domain": "switch"
+            },
+                       {
+                "name": "Greenhouse Mister",
+                "ip_addr": "192.168.1.99",
+                "topic": "lab/greenhouse-mister",
+                "hass_domain": "switch"
+            },
+            {
+                "name": "New S31 01",
+                "ip_addr": "192.168.1.X",
+                "topic": "new-device/s31-01",
+                "hass_domain": "switch"
+            },
+            {
+                "name": "New S31 02",
+                "ip_addr": "192.168.1.X",
+                "topic": "new-device/s31-02",
                 "hass_domain": "switch"
             }
         ]
@@ -890,5 +984,64 @@
                  "payload": 1
             }
         ]
+    },
+    {
+        "name": "Cyclops",
+        "ip_addr": "192.168.1.91",
+        "topic": "i3/inside/laser-zone/cyclops/laser",
+        "hass_template": "pow",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "SONOFF_POW_R2",
+        "board": "esp01_1m",
+        "poweron_state": 0,
+        "tasmota_defines": [
+            "KEY_ONLY_SINGLE_PRESS 1",
+            "KEY_HOLD_TIME 100",
+            "USE_ENERGY_MARGIN_DETECTION",
+            "USE_ENERGY_POWER_LIMIT",
+            "TELE_PERIOD 60"
+        ],
+        "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration.",
+        "commands": []
+    },
+    {
+        "name": "Cyclops Chiller",
+        "ip_addr": "192.168.1.87",
+        "topic": "i3/inside/laser-zone/cyclops/chiller",
+        "hass_template": "pow",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "SONOFF_S31",
+        "board": "esp01_1m",
+        "poweron_state": 0,
+        "tasmota_defines": [
+            "USE_ENERGY_MARGIN_DETECTION",
+            "USE_ENERGY_POWER_LIMIT",
+            "TELE_PERIOD 60"
+        ],
+        "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration.",
+        "commands": []
+    },
+    {
+        "name": "Test Device 01",
+        "hass_template": null,
+        "hass_domain": null,
+        "software": "tasmota",
+        "site": "mike",
+        "module": "WEMOS",
+        "board": "esp01_1m",
+        "ip_addr": "192.168.1.X",
+        "topic": "new/test-device",
+        "poweron_state": 0,
+        "tasmota_defines": [
+            "USE_WS2812",
+            "USE_WS2812_HARDWARE NEO_HW_WS2813",
+            "USE_WS2812_CTYPE NEO_GRB"
+
+        ],
+        "commands": []
     }
 ]
