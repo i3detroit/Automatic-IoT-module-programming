@@ -230,6 +230,36 @@
             {
                 "id": "054",
                 "ip_addr": "10.13.107.41"
+            },
+            {
+                "id": "055",
+                "ip_addr": "10.13.107.X",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "056",
+                "ip_addr": "10.13.107.X",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "057",
+                "ip_addr": "10.13.107.X",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "058",
+                "ip_addr": "10.13.107.X",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "059",
+                "ip_addr": "10.13.107.X",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "060",
+                "ip_addr": "10.13.107.X",
+                "group_topic": "lights/west"
             }
         ]
     },
