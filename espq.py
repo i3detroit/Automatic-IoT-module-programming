@@ -15,7 +15,7 @@ from packaging import version
 
 ###########################################################
 # Make sure your environemnt is set correctly for these:
-expected_pio_version = version.parse("5.0.3")
+expected_pio_version = version.parse("5.0.0")
 current_tasmota_version = '0x08040000' # v8.4.0
 ###########################################################
 # Make sure these are set correctly for your environment:
@@ -58,7 +58,10 @@ tasmota_status_query = {
 
 def test_pio_version():
     pio_output = check_output(["pio", "--version"])
-    m = re.search('PlatformIO, version (.*)\\n', pio_output.decode('utf-8'))
+    # version strings:
+    #    PlatformIO, version 5.0.3
+    #    PlatformIO Core, version 5.1.0
+    m = re.search('PlatformIO(?: Core)?, version (.*)\\n', pio_output.decode('utf-8'))
     pioVersion = version.parse(m.group(1))
 
     acceptablePioVersion = False;
