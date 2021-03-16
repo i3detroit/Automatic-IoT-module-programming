@@ -417,7 +417,12 @@ class device(dict):
         self.online = False
         online_topic = '{t_topic}/INFO2'.format(**self)
         print('{BLUE}Watching for {}{NC}'.format(online_topic, **colors))
-        self.mqtt.connect(self.mqtt_host)
+        try:
+            self.mqtt.connect(self.mqtt_host)
+        except Exception:
+            print('MQTT broker not online')
+            return False
+
         self.mqtt.message_callback_add(online_topic, lambda *args: \
                                                  setattr(self, 'online', True))
         self.mqtt.subscribe(online_topic)
