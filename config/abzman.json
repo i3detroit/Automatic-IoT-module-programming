@@ -99,6 +99,54 @@
             }
         ]
     },
+    {
+        "name": "3d printer %id%",
+        "hass_template": "switch",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "base_topic": "evan/inside/basement",
+        "topic": "3d-printer",
+        "poweron_state": 1,
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
+            }
+        ],
+        "instances": [
+            {
+                "id": "01",
+                "ip_addr": "192.168.1.117"
+            }
+        ]
+    },
+    {
+        "name": "air compressor",
+        "hass_template": "switch",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "SONOFF_BASIC",
+        "board": "esp01_1m",
+        "base_topic": "evan/inside/basement",
+        "topic": "air-compressor",
+        "poweron_state": 1,
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption56 ON; SetOption57 ON"
+            }
+        ],
+        "instances": [
+            {
+                "id": "01",
+                "ip_addr": "192.168.1.200"
+            }
+        ]
+    },
 	{
         "name": "Kitchen Light %id%",
         "hass_template": "light",
@@ -119,7 +167,7 @@
         "instances": [
             {
                 "id": "blue accent",
-                "ip_addr": "",
+                "ip_addr": "192.168.1.214",
                 "group_topic": "lights"
             }
         ]
@@ -344,7 +392,7 @@
         "group_topic": "none",
         "base_topic": "evan/inside",
         "group_topic": "sensors",
-        "topic": "laundry-sensor",
+        "topic": "basement/laundry-sensor",
 		"ip_addr": "192.168.1.114",
         "poweron_state": 1,
         "build_flags": [
@@ -388,34 +436,6 @@
         ]
     },
     {
-        "name": "Ceiling Fan %id%",
-        "hass_template": "light",
-        "hass_domain": "light",
-        "software": "tasmota",
-        "site": "evan",
-        "module": "SONOFF_IFAN02",
-        "board": "esp01_1m",
-        "base_topic": "evan/inside",
-        "topic": "%id%/fan",
-        "poweron_state": 1,
-        "build_flags": [
-                "USE_SONOFF_IFAN"
-        ],
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
-        ],
-        "instances": [
-            {
-                "id": "Upstairs",
-                "ip_addr": "192.168.1.213",
-                "group_topic": "lights"
-            }
-        ]
-    },
-    {
         "note": "Normal light switches",
         "hass_template": "light",
         "hass_domain": "light",
@@ -424,7 +444,7 @@
         "module": "USER_MODULE",
         "type": "TreatLife SS01S Switch",
         "board": "esp01_1m",
-        "base_topic": "evan/inside",
+        "base_topic": "evan",
         "tasmota_defines": [
             "KEY_ONLY_SINGLE_PRESS 1",
             {
@@ -452,35 +472,35 @@
         "instances": [
             {
                 "name": "Bathroom Lights",
-                "topic": "bathroom/light",
+                "topic": "inside/bathroom/light",
                 "ip_addr": "192.168.1.216",
         	"poweron_state": 0,
                 "group_topic": "light"
             },
             {
                 "name": "Hallway Light",
-                "topic": "hallway/light",
+                "topic": "inside/hallway/light",
                 "ip_addr": "192.168.1.217",
         	"poweron_state": 0,
                 "group_topic": "light"
             },
             {
                 "name": "Office Light",
-                "topic": "office/light",
+                "topic": "inside/office/light",
                 "ip_addr": "192.168.1.218",
         	"poweron_state": 0,
                 "group_topic": "light"
             },
             {
                 "name": "Bedroom Light",
-                "topic": "bedroom/light",
+                "topic": "inside/bedroom/light",
                 "ip_addr": "192.168.1.219",
         	"poweron_state": 0,
                 "group_topic": "light"
             },
             {
                 "name": "Kitchen Light",
-                "topic": "kitchen/light",
+                "topic": "inside/kitchen/light",
                 "ip_addr": "192.168.1.220",
         	"poweron_state": 0,
                 "group_topic": "light"
@@ -494,7 +514,7 @@
             },
             {
                 "name": "Outside Flood Light",
-                "topic": "Outside/floodlight",
+                "topic": "outside/floodlight",
                 "ip_addr": "192.168.1.222",
         	"poweron_state": 0,
                 "group_topic": "light"
@@ -504,14 +524,18 @@
                 "topic": "garage/vent/thermostat",
                 "ip_addr": "192.168.1.223",
         	"poweron_state": 0,
-                "group_topic": "switch"
+                "group_topic": "switch",
+		"hass_template": "switch",
+        	"hass_domain": "switch"
             },
             {
                 "name": "Garage Vent Override",
                 "topic": "garage/vent/override",
                 "ip_addr": "192.168.1.224",
         	"poweron_state": 0,
-                "group_topic": "switch"
+                "group_topic": "switch",
+		"hass_template": "switch",
+        	"hass_domain": "switch"
             },
             {
                 "name": "Outside Garage Lights",
@@ -522,23 +546,37 @@
             },
             {
                 "name": "Kitchen Sink Light",
-                "topic": "kitchen/sink/light",
+                "topic": "inside/kitchen/sink/light",
                 "ip_addr": "192.168.1.226",
         	"poweron_state": 0,
                 "group_topic": "light"
             },
             {
                 "name": "Outside Porch Light",
-                "topic": "Outside/porchlight",
+                "topic": "outside/porchlight",
                 "ip_addr": "192.168.1.227",
         	"poweron_state": 1,
                 "group_topic": "light"
             },
             {
                 "name": "Outside Side Door Light",
-                "topic": "Outside/sidelight",
+                "topic": "outside/sidelight",
                 "ip_addr": "192.168.1.228",
         	"poweron_state": 1,
+                "group_topic": "light"
+            },
+            {
+                "name": "Living Room Soft Switch",
+                "topic": "inside/living-room/soft",
+                "ip_addr": "192.168.1.229",
+        	"poweron_state": 0,
+                "group_topic": "light"
+            },
+            {
+                "name": "Upstairs Light",
+                "topic": "inside/upstairs/light",
+                "ip_addr": "192.168.1.237",
+        	"poweron_state": 0,
                 "group_topic": "light"
             }
         ]
@@ -552,7 +590,7 @@
         "type": "TreatLife DS01 Dimmer",
         "board": "esp01_1m",
         "base_topic": "evan/inside",
-        "poweron_state": 3,
+        "poweron_state": 0,
         "tasmota_defines": [
             "USE_TUYA_MCU",
             "TUYA_DIMMER_ID 0",
@@ -595,7 +633,7 @@
         "type": "TreatLife DP10 Dimmer",
         "board": "esp01_1m",
         "base_topic": "evan/inside",
-        "poweron_state": 3,
+        "poweron_state": 0,
         "tasmota_defines": [
             "USE_TUYA_MCU",
             "TUYA_DIMMER_ID 0",
@@ -634,6 +672,250 @@
                 "name": "Outside Dimmer",
                 "topic": "Outside/dimmer",
                 "ip_addr": "192.168.1.199"
+            }
+        ]
+    },
+    {
+        "hass_template": "3-way-tuya-light-switch",
+        "hass_domain": "light",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "USER_MODULE",
+        "type": "TreatLife SS01 3-Way Switch",
+        "board": "esp01_1m",
+        "base_topic": "evan/inside",
+        "poweron_state": 0,
+        "tasmota_defines": [
+            "KEY_ONLY_SINGLE_PRESS 1",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "TL SS01 3-Way",
+                    "GPIO": [0, 0, 0, 0, 21, 158, 0, 0, 22, 18, 9, 0, 0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "switchtopic 0; switchmode1 2; switchmode2 5"
+            },
+            {
+                "command": "rule1",
+                "payload": "ON event#ON DO power2 TOGGLE ENDON"
+            },
+            {
+                "command": "rule2",
+                "payload": "ON event#OFF DO power2 TOGGLE ENDON"
+            },
+            {
+                "command": "rule3",
+                "concat": [
+                    "ON power1#state=1 DO backlog rule1 0; rule2 1 ENDON",
+                    "ON power1#state=0 DO backlog rule1 1; rule2 0 ENDON",
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO backlog delay 20; power ENDON",
+                    "ON Event#TOGGLE DO power2 TOGGLE ENDON"
+                ]
+            },
+            {
+                "command": "backlog",
+                "payload": "rule3 1; restart 1",
+                "restart": 1
+            }
+        ],
+        "instances": [
+            {
+                "name": "Upstairs Landing Top Lightswitch",
+                "ip_addr": "192.168.1.230",
+                "topic": "upstairs/top-lightswitch"
+            },
+            {
+                "name": "Upstairs Landing Bottom Lightswitch",
+                "ip_addr": "192.168.1.231",
+                "topic": "upstairs/bottom-lightswitch"
+            },
+            {
+                "name": "Basement Stairs Top Lightswitch",
+                "ip_addr": "192.168.1.232",
+                "topic": "basement/stairs/top-lightswitch"
+            },
+            {
+                "name": "Basement Stairs Bottom Lightswitch",
+                "ip_addr": "192.168.1.233",
+                "topic": "basement/stairs/bottom-lightswitch"
+            },
+            {
+                "name": "Kitchen East Lightswitch",
+                "ip_addr": "192.168.1.234",
+                "topic": "kitchen/east-lightswitch"
+            },
+            {
+                "name": "Kitchen West Lightswitch",
+                "ip_addr": "192.168.1.235",
+                "topic": "kitchen/west-lightswitch"
+            }
+        ]
+    },
+    {
+        "name": "RGBW Nightlight %id%",
+        "hass_template": "light_rgb",
+	"hass_domain": "light",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "USER_MODULE",
+        "type": "Treatlife NL10",
+        "board": "esp01_1m",
+        "base_topic": "evan/inside",
+        "topic": "%id%/nightlight",
+        "poweron_state": 0,
+        "tasmota_defines": [
+            "LIGHT_MODE true",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "Treatlife NL10",
+                    "GPIO": [0,0,0,0,37,40,0,0,38,0,39,17,0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "commands": [
+            {
+                "command": "RGBWWTable",
+                "payload": "170,255,80,255,255",
+                "restart": 1
+            }
+        ],
+        "instances": [
+            {
+                "id": "upstairs",
+                "ip_addr": "192.168.1.255",
+                "group_topic": "upstairs/accent"
+            }
+        ]
+    },
+    {
+        "name": "IR Blaster %id%",
+        "hass_template": "generic",
+	"hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "USER_MODULE",
+        "type": "WiFi IR blaster",
+        "board": "esp01_1m",
+        "base_topic": "evan/inside",
+        "topic": "%id%/IR",
+        "poweron_state": 0,
+        "tasmota_defines": [
+            "USE_IR_REMOTE",
+            "USE_IR_RECEIVE",
+            "IR_RCV_BUFFER_SIZE 100",
+            "IR_RCV_TIMEOUT 15",
+            "LIGHT_MODE true",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "WiFi IR blaster",
+                    "GPIO": [17,0,0,0,8,0,0,0,0,51,0,0,0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "instances": [
+            {
+                "id": "living-room",
+                "ip_addr": "192.168.1.115",
+                "group_topic": ""
+            }
+        ]
+    },
+    {
+        "name": "RGB Strip %id%",
+        "hass_template": "light_rgb",
+	"hass_domain": "light",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "USER_MODULE",
+        "type": "Treatlife ST10",
+        "board": "esp01_1m",
+        "base_topic": "evan/inside",
+        "topic": "%id%/RGBstrip",
+        "poweron_state": 0,
+        "tasmota_defines": [
+            "LIGHT_MODE true",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "Treatlife ST10",
+                    "GPIO": [0,0,0,0,37,0,0,0,38,0,39,0,17],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "instances": [
+            {
+                "id": "living-room",
+                "ip_addr": "192.168.1.236",
+                "group_topic": "living-room/accent"
+            }
+        ]
+    },
+    {
+        "name": "Ceiling Fan %id%",
+        "hass_template": "switch",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "evan",
+        "module": "USER_MODULE",
+        "type": "TreatLife DS02F",
+        "board": "esp01_1m",
+        "base_topic": "evan/inside",
+        "topic": "%id%/fan",
+        "poweron_state": 0,
+        "tasmota_defines": [
+            "USE_TUYA_MCU",
+            "TUYA_DIMMER_ID 0",
+            "LIGHT_POWER_CONTROL 1",
+            "TUYA_SETOPTION_20 1",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "TreatLife DS02F",
+                    "GPIO": [0,107,0,108,0,0,0,0,0,0,0,0,0],
+                    "FLAG": 0,
+                    "BASE": 54
+                }
+            }
+
+        ],
+        "instances": [
+            {
+                "id": "upstairs",
+                "ip_addr": "192.168.1.213",
+                "group_topic": "upstairs"
+            }
+        ],
+        "commands": [
+            {
+                "command": "backlog",
+                "payload": "SetOption97 1;WebLog 4;TuyaMCU 11,1;SetOption20 1;SetOption54 1; Restart 1",
+                "restart": 1
+            },
+            {
+                "command": "rule1",
+                "payload": "on TuyaReceived#Data=55AA03070005030400010016 do publish2 stat/Treatlife-DS03/speed 3,1 endon on TuyaReceived#Data=55AA03070005030400010117 do publish2 stat/Treatlife-DS03/speed 3,1 endon on TuyaReceived#Data=55AA03070005030400010218 do publish2 stat/Treatlife-DS03/speed 3,2 endon on TuyaReceived#Data=55AA03070005030400010319 do publish2 stat/Treatlife-DS03/speed 3,3 endon"
+            },
+            {
+                "command": "rule2",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe hass,tele/sirius/hass/LWT ENDON",
+                    "ON Event#hass=Online DO backlog delay 20; power ENDON"
+                ]
+            },
+            {
+                "command": "backlog",
+                "payload": "rule2 1; rule1 1"
             }
         ]
     }
