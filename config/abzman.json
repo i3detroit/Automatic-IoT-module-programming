@@ -125,27 +125,20 @@
     },
     {
         "name": "air compressor",
-        "hass_template": "switch",
+        "hass_template": "pow",
         "hass_domain": "switch",
         "software": "tasmota",
         "site": "evan",
-        "module": "SONOFF_BASIC",
+        "module": "SONOFF_POW",
         "board": "esp01_1m",
         "base_topic": "evan/inside/basement",
         "topic": "air-compressor",
+        "ip_addr": "192.168.1.200",
         "poweron_state": 1,
-        "commands": [
-            {
-                "command": "backlog",
-                "payload": "SetOption56 ON; SetOption57 ON"
-            }
+        "tasmota_defines": [
+            "TELE_PERIOD 60"
         ],
-        "instances": [
-            {
-                "id": "01",
-                "ip_addr": "192.168.1.200"
-            }
-        ]
+        "flash_warning": "This will reset any power monitoring calibration."
     },
 	{
         "name": "Kitchen Light %id%",
