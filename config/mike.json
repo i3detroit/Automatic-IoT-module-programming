@@ -1,4 +1,4 @@
-[
+ [
     {
         "name": "Living Room Accent Lamp %id%",
         "hass_template": "light_rgbw",
@@ -205,13 +205,6 @@
                 "ip_addr": "192.168.1.13"
             },
             {
-                "name": "Guest Bedroom Spare Switch",
-                "topic": "guest-bedroom/spare",
-                "ip_addr": "192.168.1.34",
-                "hass_template": "switch",
-                "hass_domain": "switch"
-            },
-            {
                 "name": "Front Porch Lightswitch",
                 "topic": "front-porch/lightswitch",
                 "ip_addr": "192.168.1.62"
@@ -298,6 +291,11 @@
                 "ip_addr": "192.168.1.77"
             },
             {
+                "name": "Dance Studio Lightswitch",
+                "topic": "dance-studio/lightswitch",
+                "ip_addr": "192.168.1.22"
+            },
+            {
                 "name": "Powder Room Lightswitch",
                 "topic": "powder-room/lightswitch",
                 "ip_addr": "192.168.1.39"
@@ -308,18 +306,6 @@
                 "ip_addr": "192.168.1.74",
                 "hass_template": "switch",
                 "hass_domain": "switch"
-            },
-            {
-                "name": "Dance Studio Spare",
-                "topic": "dance-studio/spare",
-                "ip_addr": "192.168.1.47",
-                "hass_template": "switch",
-                "hass_domain": "switch"
-            },
-            {
-                "name": "Spare Switch 01",
-                "topic": "new-device/spare-switch-01",
-                "ip_addr": "192.168.1.22"
             }
         ]
     },
@@ -526,6 +512,88 @@
         ]
     },
     {
+        "name": "Guest Bedroom Lamp Switch",
+        "ip_addr": "192.168.1.34",
+        "topic": "guest-bedroom/lamp-switch",
+        "hass_template": "switch",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "USER_MODULE",
+        "type": "TreatLife SS01S Mod Switch",
+        "board": "esp01_1m",
+                "poweron_state": 3,
+        "tasmota_defines": [
+            "SWITCH_MODE PUSHBUTTON",
+            "KEY_ONLY_SINGLE_PRESS 1",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "TL SS01S Switch",
+                    "GPIO": [0, 0, 0, 0, 53, 158, 0, 0, 0, 18, 0, 0, 0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe lamp,stat/guest-bedroom/lamp/POWER ENDON",
+                    "ON System#Boot DO publish cmnd/guest-bedroom/lamp/POWER ENDON",
+                    "ON Event#lamp=ON DO ledpower2 ON ENDON",
+                    "ON Event#lamp=OFF DO ledpower2 OFF ENDON",
+                    "ON Button2#State DO backlog publish stat/guest-bedroom/lamp-switch/pressed; publish cmnd/guest-bedroom/lamp/power 2 ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": 1
+            }
+        ]
+    },
+    {
+        "name": "Dance Studio Spotlight Switch",
+        "ip_addr": "192.168.1.47",
+        "topic": "dance-studio/spotlight-switch",
+        "hass_template": "switch",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "mike",
+        "module": "USER_MODULE",
+        "type": "TreatLife SS01S Mod Switch",
+        "board": "esp01_1m",
+                "poweron_state": 3,
+        "tasmota_defines": [
+            "SWITCH_MODE PUSHBUTTON",
+            "KEY_ONLY_SINGLE_PRESS 1",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "TL SS01S Switch",
+                    "GPIO": [0, 0, 0, 0, 53, 158, 0, 0, 0, 18, 0, 0, 0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe spot,stat/dance-studio/spotlights/POWER ENDON",
+                    "ON System#Boot DO publish cmnd/dance-studio/spotlights/POWER ENDON",
+                    "ON Event#spot=ON DO ledpower2 ON ENDON",
+                    "ON Event#spot=OFF DO ledpower2 OFF ENDON",
+                    "ON Button2#State DO backlog publish stat/dance-studio/spotlight-switch/pressed; publish cmnd/dance-studio/spotlights/power 2 ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": 1
+            }
+        ]
+    },
+    {
         "hass_template": "DS01-dimmer",
         "hass_domain": "light",
         "software": "tasmota",
@@ -581,8 +649,8 @@
                 "ip_addr": "192.168.1.69"
             },
             {
-                "name": "Dance Studio Lightswitch",
-                "topic": "dance-studio/lightswitch",
+                "name": "Spare Dimmer 01",
+                "topic": "new-device/spare-dimmer-01",
                 "ip_addr": "192.168.1.70"
             }
         ]
@@ -843,16 +911,22 @@
                 "topic": "office/vulcan-lamp"
             },
             {
-                "name": "Front Christmas Lights",
+                "name": "Guest Bedroom Lamp",
+                "ip_addr": "192.168.1.87",
+                "topic": "guest-bedroom/lamp"
+            },
+            {
+                "name": "Dance Studio Spotlights",
                 "ip_addr": "192.168.1.83",
-                "topic": "front-yard/christmas-lights",
-                "hass_domain": "switch"
+                "topic": "dance-studio/spotlights",
+                "hass_domain": "light"
             },
             {
                 "name": "Mitre Saw",
                 "ip_addr": "192.168.1.85",
                 "topic": "basement/mitre-saw",
                 "hass_domain": "switch",
+                "poweron_state": 4,
                 "commands": [
                     {
                         "command": "rule2",
@@ -872,7 +946,8 @@
                 "name": "Mike PC",
                 "ip_addr": "192.168.1.86",
                 "topic": "office/mike-pc",
-                "hass_domain": "switch"
+                "hass_domain": "switch",
+                "poweron_state": 4
             },
             {
                 "name": "Stir Plate",
@@ -899,10 +974,30 @@
                 "hass_domain": "switch"
             },
             {
-                "name": "New S31 01",
-                "ip_addr": "192.168.1.X",
-                "topic": "new-device/s31-01",
-                "hass_domain": "switch"
+                "name": "Washing Machine",
+                "ip_addr": "192.168.1.95",
+                "topic": "laundry/washing-machine",
+                "hass_domain": "switch",
+                "poweron_state": 4,
+                "commands": [
+                    {
+                        "command": "powerdelta",
+                        "payload": "150"
+                    }
+                ]
+            },
+            {
+                "name": "Dryer",
+                "ip_addr": "192.168.1.103",
+                "topic": "laundry/dryer",
+                "hass_domain": "switch",
+                "poweron_state": 4,
+                "commands": [
+                    {
+                        "command": "powerdelta",
+                        "payload": "150"
+                    }
+                ]
             },
             {
                 "name": "New S31 02",
@@ -984,46 +1079,6 @@
                  "payload": 1
             }
         ]
-    },
-    {
-        "name": "Cyclops",
-        "ip_addr": "192.168.1.91",
-        "topic": "i3/inside/laser-zone/cyclops/laser",
-        "hass_template": "pow",
-        "hass_domain": "switch",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_POW_R2",
-        "board": "esp01_1m",
-        "poweron_state": 0,
-        "tasmota_defines": [
-            "KEY_ONLY_SINGLE_PRESS 1",
-            "KEY_HOLD_TIME 100",
-            "USE_ENERGY_MARGIN_DETECTION",
-            "USE_ENERGY_POWER_LIMIT",
-            "TELE_PERIOD 60"
-        ],
-        "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration.",
-        "commands": []
-    },
-    {
-        "name": "Cyclops Chiller",
-        "ip_addr": "192.168.1.87",
-        "topic": "i3/inside/laser-zone/cyclops/chiller",
-        "hass_template": "pow",
-        "hass_domain": "switch",
-        "software": "tasmota",
-        "site": "i3",
-        "module": "SONOFF_S31",
-        "board": "esp01_1m",
-        "poweron_state": 0,
-        "tasmota_defines": [
-            "USE_ENERGY_MARGIN_DETECTION",
-            "USE_ENERGY_POWER_LIMIT",
-            "TELE_PERIOD 60"
-        ],
-        "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration.",
-        "commands": []
     },
     {
         "name": "Test Device 01",
