@@ -260,6 +260,46 @@
                 "id": "060",
                 "ip_addr": "10.13.107.X",
                 "group_topic": "lights/west"
+            },
+            {
+                "id": "061",
+                "ip_addr": "10.13.107.X",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "062",
+                "ip_addr": "10.13.107.X",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "063",
+                "ip_addr": "10.13.107.X",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "064",
+                "ip_addr": "10.13.107.X",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "065",
+                "ip_addr": "10.13.107.X",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "066",
+                "ip_addr": "10.13.107.X",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "067",
+                "ip_addr": "10.13.107.X",
+                "group_topic": "lights/west"
+            },
+            {
+                "id": "068",
+                "ip_addr": "10.13.107.X",
+                "group_topic": "lights/west"
             }
         ]
     },
@@ -1407,5 +1447,252 @@
                 "group_topic": "lamptimer"
             }
         ]
+    },
+    {
+        "name": "Dust Collector Button %id%",
+        "topic": "wood-shop/dc-button-%id%",
+        "hass_template": "generic",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "backupi3",
+        "module": "USER_MODULE",
+        "board": "esp01_1m",
+        "poweron_state": 3,
+        "tasmota_defines": [
+            "SWITCH_MODE PUSHBUTTON",
+            "KEY_ONLY_SINGLE_PRESS 1",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "Double button box",
+                    "GPIO": [0, 0, 0, 0, 0, 0, 0, 0, 11, 10, 0, 0, 0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Switch2#State DO backlog publish cmnd/wood-shop/dust-collector/power ON; publish stat/wood-shop/dc-button-%id%/pressed 1 ENDON",
+                    "ON Switch3#State DO backlog publish cmnd/wood-shop/dust-collector/power OFF; publish stat/wood-shop/dc-button-%id%/pressed 2 ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": "1"
+            }
+        ],
+        "instances": [
+            {
+                "id": "01",
+                "ip_addr": "10.13.107.X"
+            },
+            {
+                "id": "02",
+                "ip_addr": "10.13.107.X"
+            },
+            {
+                "id": "03",
+                "ip_addr": "10.13.107.X"
+            },
+            {
+                "id": "04",
+                "ip_addr": "10.13.107.X"
+            },
+            {
+                "id": "05",
+                "ip_addr": "10.13.107.X"
+            },
+            {
+                "id": "06",
+                "ip_addr": "10.13.107.X"
+            }
+        ]
+    },
+    {
+        "name": "Dust Collector Controller",
+        "topic": "wood-shop/dc-controller",
+        "ip_addr": "10.13.107.X",
+        "hass_template": "generic",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "backupi3",
+        "module": "USER_MODULE",
+        "board": "esp01_1m",
+        "poweron_state": 0,
+        "tasmota_defines": [
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "Dust Collector Controller",
+                    "GPIO": [0, 0, 0, 0, 30, 29, 0, 0, 0, 0, 0, 0, 0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Mqtt#Connected DO subscribe pow,cmnd/wood-shop/dust-collector/power ENDON",
+                    "ON Event#pow=ON DO backlog power1 ON; delay 2; power1 OFF ENDON",
+                    "ON Event#pow=OFF DO backlog power2 ON; delay 2; power2 OFF ENDON",
+                    "ON Event#pow=1 DO backlog power1 ON; delay 2; power1 OFF ENDON",
+                    "ON Event#pow=0 DO backlog power2 ON; delay 2; power2 OFF ENDON"
+                ]
+            },
+            {
+                 "command": "backlog",
+                 "payload": "rule1 1;i nterlock 1,2; interlock 1"
+            }
+        ]
+    },
+    {
+        "name": "West Shop Buttons %id%",
+        "topic": "west-shop/button-box-%id%",
+        "hass_template": "generic",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "backupi3",
+        "module": "USER_MODULE",
+        "board": "esp01_1m",
+        "poweron_state": 3,
+        "tasmota_defines": [
+            "SWITCH_MODE PUSHBUTTON",
+            "KEY_ONLY_SINGLE_PRESS 1",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "Six button box",
+                    "GPIO": [0,0,14,0,13,12,0,0,10,9,11,0,0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Switch1#State DO backlog publish cmnd/i3/inside/lights/row4/power ON; publish stat/west-shop/button-box-%id%/01 P ENDON",
+                    "ON Switch2#State DO backlog publish cmnd/i3/inside/lights/row4/power OFF; publish stat/west-shop/button-box-%id%/02 P ENDON",
+                    "ON Switch3#State DO backlog publish cmnd/i3/inside/lights/row5/power ON; publish stat/west-shop/button-box-%id%/03 P ENDON",
+                    "ON Switch4#State DO backlog publish cmnd/i3/inside/lights/row5/power OFF; publish stat/west-shop/button-box-%id%/04 P ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": "1"
+            }
+        ],
+        "instances": [
+            {
+                "id": "01",
+                "ip_addr": "10.13.107.X"
+            },
+            {
+                "id": "02",
+                "ip_addr": "10.13.107.X"
+            }
+        ]
+    },
+    {
+        "name": "East Shop Buttons %id%",
+        "topic": "east-shop/button-box-%id%",
+        "hass_template": "generic",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "backupi3",
+        "module": "USER_MODULE",
+        "board": "esp01_1m",
+        "poweron_state": 3,
+        "tasmota_defines": [
+            "SWITCH_MODE PUSHBUTTON",
+            "KEY_ONLY_SINGLE_PRESS 1",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "Six button box",
+                    "GPIO": [0,0,14,0,13,12,0,0,10,9,11,0,0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Switch1#State DO backlog publish cmnd/i3/inside/lights/row1/power ON; publish stat/east-shop/button-box-%id%/01 P ENDON",
+                    "ON Switch2#State DO backlog publish cmnd/i3/inside/lights/row1/power OFF; publish stat/east-shop/button-box-%id%/02 P ENDON",
+                    "ON Switch3#State DO backlog publish cmnd/i3/inside/lights/row2/power ON; publish stat/east-shop/button-box-%id%/03 P ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": "1"
+            },
+            {
+                "command": "rule2",
+                "concat": [
+                    "ON Switch4#State DO backlog publish cmnd/i3/inside/lights/row2/power OFF; publish stat/east-shop/button-box-%id%/04 P ENDON",
+                    "ON Switch5#State DO backlog publish cmnd/i3/inside/lights/row3/power ON; publish stat/east-shop/button-box-%id%/05 P ENDON",
+                    "ON Switch6#State DO backlog publish cmnd/i3/inside/lights/row3/power OFF; publish stat/east-shop/button-box-%id%/06 P ENDON"
+                ]
+            },
+            {
+                 "command": "rule2",
+                 "payload": "1"
+            }
+        ],
+        "instances": [
+            {
+                "id": "01",
+                "ip_addr": "10.13.107.X"
+            },
+            {
+                "id": "02",
+                "ip_addr": "10.13.107.X"
+            }
+        ]
+    },
+    {
+        "name": "Cyclops",
+        "ip_addr": "192.168.1.91",
+        "topic": "i3/inside/laser-zone/cyclops/laser",
+        "hass_template": "pow",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "SONOFF_POW_R2",
+        "board": "esp01_1m",
+        "poweron_state": 0,
+        "tasmota_defines": [
+            "KEY_ONLY_SINGLE_PRESS 1",
+            "KEY_HOLD_TIME 100",
+            "USE_ENERGY_MARGIN_DETECTION",
+            "USE_ENERGY_POWER_LIMIT",
+            "TELE_PERIOD 60"
+        ],
+        "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration.",
+        "commands": []
+    },
+    {
+        "name": "Cyclops Chiller",
+        "ip_addr": "192.168.1.X",
+        "topic": "i3/inside/laser-zone/cyclops/chiller",
+        "hass_template": "pow",
+        "hass_domain": "switch",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "SONOFF_S31",
+        "board": "esp01_1m",
+        "poweron_state": 0,
+        "tasmota_defines": [
+            "USE_ENERGY_MARGIN_DETECTION",
+            "USE_ENERGY_POWER_LIMIT",
+            "TELE_PERIOD 60"
+        ],
+        "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration.",
+        "commands": []
     }
 ]
