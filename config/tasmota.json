@@ -1694,5 +1694,42 @@
         ],
         "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration.",
         "commands": []
+    },
+    ,
+    {
+        "name": "Disco Button",
+        "topic": "commons/disco-button",
+        "hass_template": "generic",
+        "hass_domain": "sensor",
+        "software": "tasmota",
+        "site": "i3",
+        "module": "USER_MODULE",
+        "board": "esp01_1m",
+        "poweron_state": 3,
+        "tasmota_defines": [
+            "SWITCH_MODE PUSHBUTTON",
+            "KEY_ONLY_SINGLE_PRESS 1",
+            {
+                "USER_TEMPLATE": {
+                    "NAME": "Double button box",
+                    "GPIO": [0, 0, 0, 0, 0, 0, 0, 0, 11, 10, 0, 0, 0],
+                    "FLAG": 0,
+                    "BASE": 18
+                }
+            }
+        ],
+        "commands": [
+            {
+                "command": "rule1",
+                "concat": [
+                    "ON Switch2#State DO backlog publish cmnd/i3/inside/commons/disco/power ON; publish stat/commons/disco-button/pressed 1 ENDON",
+                    "ON Switch3#State DO backlog publish cmnd/i3/inside/commons/disco/power OFF; publish stat/commons/disco-button/pressed 2 ENDON"
+                ]
+            },
+            {
+                 "command": "rule1",
+                 "payload": "1"
+            }
+        ]
     }
 ]
