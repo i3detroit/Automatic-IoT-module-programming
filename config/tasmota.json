@@ -1695,9 +1695,9 @@
         "flash_warning": "Make sure no one is using the laser cutter. Also, this will reset any power monitoring calibration.",
         "commands": []
     },
-    ,
     {
         "name": "Disco Button",
+        "ip_addr": "10.1e.0.x",
         "topic": "commons/disco-button",
         "hass_template": "generic",
         "hass_domain": "sensor",
