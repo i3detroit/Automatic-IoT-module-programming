@@ -129,7 +129,7 @@
         "hass_domain": "switch",
         "software": "tasmota",
         "site": "evan",
-        "module": "SONOFF_POW",
+        "module": "SONOFF_POW_R2",
         "board": "esp01_1m",
         "base_topic": "evan/inside/basement",
         "topic": "air-compressor",
@@ -831,7 +831,7 @@
         "software": "tasmota",
         "site": "evan",
         "module": "USER_MODULE",
-        "type": "Treatlife ST10",
+        "type": "H801",
         "board": "esp01_1m",
         "base_topic": "evan/inside",
         "topic": "%id%/RGBstrip",
@@ -840,10 +840,10 @@
             "LIGHT_MODE true",
             {
                 "USER_TEMPLATE": {
-                    "NAME": "Treatlife ST10",
-                    "GPIO": [0,0,0,0,37,0,0,0,38,0,39,0,17],
+                    "NAME": "H801",
+                    "GPIO": [0,52,0,0,0,57,0,0,39,38,0,37,0],
                     "FLAG": 0,
-                    "BASE": 18
+                    "BASE": 20
                 }
             }
         ],
