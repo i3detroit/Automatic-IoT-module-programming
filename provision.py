@@ -43,7 +43,7 @@ parser = argparse.ArgumentParser(description='Queue up flashing or other '
                                              'described in deviceFile.json')
 parser.add_argument(dest='operation',
                     action='store',
-                    choices=('flash', 'cmds', 'hass'),
+                    choices=('flash', 'cmds', 'hass', 'publish'),
                     default='flash',
                     help=('Operation performed (flash device(s), run setup '
                         'commands, or write home assistant configs)'))
@@ -146,5 +146,18 @@ elif args.operation == 'flash':
         sys.stdout.write('\x1b]2{hostname}\x07'.format(hostname=os.uname()[1]))
     print("\nResult report:")
     progress_report(selected_devices)
+
+elif args.operation == 'publish':
+    command = input('Enter command: ')
+    payload = input('Enter payload: ')
+    cmd_str = ' '.join(filter(None, [command, payload]))
+    choice = input(f'Send cmnd/%topic%/{cmd_str} to {len(selected_devices)} '
+                    'devices? (y/n): ')[0].lower()
+    if choice == 'y':
+        for dev in selected_devices:
+            dev.send_mqtt_command(command, payload)
+    else:
+        print('Command not sent, exiting.')
+        exit()
 
 print("Done.")
